@@ -1,4 +1,4 @@
 User-agent: *
-Disallow: 
+Disallow:
 
-Sitemap: http://tangkangkai.github.io/sitemap.xml 
+Sitemap: http://tangkangkai.github.io/sitemap.xml
