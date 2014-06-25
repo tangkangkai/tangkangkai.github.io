@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>About Me - KK's Coding Blog</title>
+  <title>BFS and DFS - KK's Coding Blog</title>
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content=" About Me Tweet ">
+  <meta name="description" content="Recently I&rsquo;ve been doing LeetCode Problems and found it&rsquo;s tons of fun. Meanwhile I felt my lacking of solid way solving basic questions, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://tangkangkai.github.io/about">
+  <link rel="canonical" href="http://tangkangkai.github.io/blog/2014/06/25/bfs-and-dfs">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="KK's Coding Blog" type="application/atom+xml">
@@ -65,30 +65,101 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">About Me</h1>
     
-  </header>
-  
-  
+      <h1 class="entry-title">BFS and DFS</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
 
   
-    <footer>
+
+
+<time datetime="2014-06-25T07:33:17-07:00" pubdate data-updated="true">Jun 25<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Recently I&rsquo;ve been doing <a href="https://oj.leetcode.com/problems">LeetCode Problems</a> and found it&rsquo;s tons of fun. Meanwhile I felt my lacking of solid way solving basic questions, e.g. the topic of the post today : BFS and DFS.I searched through the Internet and found <a href="http://www.codeproject.com/Articles/32212/Introduction-to-Graph-with-Breadth-First-Search-BF">this post</a> really helps me a lot.</p>
+
+<p>Basically it&rsquo;s important to know which data structure we use to implement the algorithm, for DFS we use Stack and for BFS we use Queue.</p>
+
+<p><strong>The steps for DFS:</strong></p>
+
+<blockquote><p>Step 1: Push the root node in the Stack.<br/>
+Step 2: Loop until stack is empty. <br/>
+Step 3: Peek the node of the stack.<br/>
+Step 4: If the node has unvisited child nodes, get the unvisited child node, mark it as traversed and push it on stack. <br/>
+Step 5: If the node does not have any unvisited child nodes, pop the node from the stack.</p></blockquote>
+
+<p><strong>The steps for DFS:</strong></p>
+
+<blockquote><p>Step 1: Push the root node in the Queue.<br/>
+Step 2: Loop until the queue is empty.<br/>
+Step 3: Remove the node from the Queue. <br/>
+Step 4: If the removed node has unvisited child nodes, mark them as visited and insert the unvisited children in the queue.</p></blockquote>
+</div>
+
+
+  <footer>
+    <p class="meta">
       
-      
-        <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tangkangkai.github.io/about/index.html" data-via="" data-counturl="http://tangkangkai.github.io/about/index.html" >Tweet</a>
+
+<span class="byline author vcard">Authored by <span class="fn">Kangkai Tang</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-25T07:33:17-07:00" pubdate data-updated="true">Jun 25<sup>th</sup>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/algorithm/'>algorithm</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tangkangkai.github.io/blog/2014/06/25/bfs-and-dfs/" data-via="" data-counturl="http://tangkangkai.github.io/blog/2014/06/25/bfs-and-dfs/" >Tweet</a>
   
   
   
 </div>
 
+    
+    <p class="meta">
       
-    </footer>
-  
+        <a class="basic-alignment left" href="/blog/2014/06/23/my-first-post/" title="Previous Post: My First Post">&laquo; My First Post</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 

@@ -3,6 +3,12 @@
   
   
   <url>
+    <loc>http://tangkangkai.github.io/blog/2014/06/25/bfs-and-dfs/</loc>
+    <lastmod>2014-06-25T07:33:17-07:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://tangkangkai.github.io/blog/2014/06/23/my-first-post/</loc>
     <lastmod>2014-06-23T16:59:37-07:00</lastmod>
     <priority>0.8</priority>
@@ -11,28 +17,28 @@
   
   <url>
     <loc>http://tangkangkai.github.io/blog/</loc>
-    <lastmod>2014-06-25T07:27:28-07:00</lastmod>
+    <lastmod>2014-06-25T07:41:32-07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://tangkangkai.github.io/</loc>
-    <lastmod>2014-06-25T07:27:28-07:00</lastmod>
+    <lastmod>2014-06-25T07:41:32-07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
     <loc>http://tangkangkai.github.io/blog/archives/</loc>
-    <lastmod>2014-06-25T07:27:28-07:00</lastmod>
+    <lastmod>2014-06-25T07:41:32-07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://tangkangkai.github.io/about/</loc>
-    <lastmod>2014-06-25T07:27:28-07:00</lastmod>
+    <lastmod>2014-06-25T07:41:32-07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
