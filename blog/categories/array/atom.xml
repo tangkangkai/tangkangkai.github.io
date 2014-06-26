@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Array | KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/blog/categories/array/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-06-25T22:38:13-07:00</updated>
+  <updated>2014-06-25T22:53:19-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -18,7 +18,37 @@
     <link href="http://tangkangkai.github.io/blog/2014/06/25/remove-duplicates-in-array/"/>
     <updated>2014-06-25T22:37:26-07:00</updated>
     <id>http://tangkangkai.github.io/blog/2014/06/25/remove-duplicates-in-array</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<p>Q1: Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length. Do not allocate extra space for another array, you must do this in place with constant memory.</p>
+
+<p>Q2:Follow up for &ldquo;Remove Duplicates&rdquo;: What if duplicates are allowed at most twice?</p>
+
+<hr />
+
+<p>If we adjust the position of every element whenever there happens a duplicate, the running time would be large. In order to be more efficient, we can do in this way: if the element is the same with the previous one, we increase a &ldquo;count&rdquo;(recording the offset) variable by one. When traversing through every element, say index of i, we adjust the position from i to i &ndash; count.</p>
+
+<p>&lsquo;&rsquo;&lsquo;java Remove duplicate start:16 mark:28</p>
+
+<pre><code>    public int removeDuplicates1(int[] A) {
+    if (A == null || A.length == 0) {
+        return 0;
+    }
+
+    // we use count to show the offset
+    int count = 0;
+
+    for (int i = 1; i &lt; A.length; i++) {
+        if (A[i - 1] == A[i]) {
+            count++;
+        } else {
+            A[i - count] = A[i];
+        }
+    }
+
+    return A.length - count;
+}
+</code></pre>
+
+<p>&lsquo;&rsquo;'</p>
 ]]></content>
   </entry>
   
