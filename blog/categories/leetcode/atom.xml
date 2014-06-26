@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Leetcode | KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/blog/categories/leetcode/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-06-25T23:01:28-07:00</updated>
+  <updated>2014-06-25T23:13:42-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -39,9 +39,9 @@
     for (int i = 1; i &lt; A.length; i++) {
         if (A[i - 1] == A[i]) {
             count++;
-        } else {
-            A[i - count] = A[i];
         }
+        A[i - count] = A[i];
+
     }
 
     return A.length - offset;
@@ -52,7 +52,7 @@
 
 <p>For question 2, the solution is similar except for we need know when to increase the offset. We use a variable &ldquo;count&rdquo; to count, the following code show the details:</p>
 
-<p>```java Remove duplicate start:35 mark:46-48, 50</p>
+<p>```java Remove duplicate</p>
 
 <pre><code>public int removeDuplicates2(int[] A) {
     if (A == null || A.length == 0) {
