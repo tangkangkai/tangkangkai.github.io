@@ -4,7 +4,7 @@
   <title><![CDATA[KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-06-25T22:53:19-07:00</updated>
+  <updated>2014-06-25T23:01:28-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -26,29 +26,89 @@
 
 <p>If we adjust the position of every element whenever there happens a duplicate, the running time would be large. In order to be more efficient, we can do in this way: if the element is the same with the previous one, we increase a &ldquo;count&rdquo;(recording the offset) variable by one. When traversing through every element, say index of i, we adjust the position from i to i &ndash; count.</p>
 
-<p>&lsquo;&rsquo;&lsquo;java Remove duplicate start:16 mark:28</p>
+<figure class='code'><figcaption><span>Remove duplicate start:16 mark:28</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'>     <span class="kd">public</span> <span class="kt">int</span> <span class="nf">removeDuplicates1</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">A</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">A</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">// we use count to show the offset</span>
+</span><span class='line'>      <span class="kt">int</span> <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">==</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">{</span>
+</span><span class='line'>              <span class="n">count</span><span class="o">++;</span>
+</span><span class='line'>          <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class='line'>              <span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">count</span><span class="o">]</span> <span class="o">=</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+</span><span class='line'>          <span class="o">}</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">return</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">offset</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>    public int removeDuplicates1(int[] A) {
-    if (A == null || A.length == 0) {
-        return 0;
-    }
 
-    // we use count to show the offset
-    int count = 0;
+<p>For question 2, the solution is similar except for we need know when to increase the offset. We use a variable &ldquo;count&rdquo; to count, the following code show the details:</p>
 
-    for (int i = 1; i &lt; A.length; i++) {
-        if (A[i - 1] == A[i]) {
-            count++;
-        } else {
-            A[i - count] = A[i];
-        }
-    }
+<figure class='code'><figcaption><span>Remove duplicate start:35 mark:46-48, 50</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'> <span class="kd">public</span> <span class="kt">int</span> <span class="nf">removeDuplicates2</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">A</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">A</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class='line'>      <span class="kt">int</span> <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">==</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">{</span>
+</span><span class='line'>              <span class="n">count</span><span class="o">++;</span>
+</span><span class='line'>              <span class="k">if</span> <span class="o">(</span><span class="n">count</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>                  <span class="n">offset</span> <span class="o">+=</span> <span class="mi">1</span><span class="o">;</span>
+</span><span class='line'>              <span class="o">}</span>
+</span><span class='line'>          <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class='line'>              <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class='line'>          <span class="o">}</span>
+</span><span class='line'>          <span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">offset</span><span class="o">]</span> <span class="o">=</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+</span><span class='line'>      <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
-    return A.length - count;
-}
-</code></pre>
 
-<p>&lsquo;&rsquo;&#8217;</p>
+
 ]]></content>
   </entry>
   
