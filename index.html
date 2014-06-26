@@ -9,7 +9,7 @@
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="Q1: Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length. Do not allocate extra &hellip;">
+  <meta name="description" content="The foundation is so important for a skyscraper, thus I want to rebuild, or, renovate of my java foundation in the next week (6.26 &ndash; 7.3). I &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,6 +72,70 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2014/06/26/relearn-java-day-1/">Relearn Java Day 1</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-26T07:53:35-07:00" pubdate data-updated="true">Jun 26<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The foundation is so important for a skyscraper, thus I want to rebuild, or, renovate of my java foundation in the next week (6.26 &ndash; 7.3). I will post valuable points here in this <em>relearn java</em> series. Here is Day 1:</p>
+
+<ol>
+<li>Basic Conceptions:
+
+<ul>
+<li><strong>Java Virtual Machine(JVM)</strong>:
+
+<ul>
+<li>help Java become cross-platform language(note jvm isn&rsquo;t cross-platform)</li>
+<li>between language and operating system</li>
+</ul>
+</li>
+<li><strong>Java Runtime Environment(JRE)</strong>
+
+<ul>
+<li>JVM + 核心类库</li>
+</ul>
+</li>
+<li><strong>Java Development Kit(JDK)</strong>
+
+<ul>
+<li>JRE + javac.exe + jar.exe + &hellip;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2014/06/25/remove-duplicates-in-array/">Remove Duplicates in Array</a></h1>
     
     
@@ -101,9 +165,9 @@
 
 <hr />
 
-<p>If we adjust the position of every element whenever there happens a duplicate, the running time would be large. In order to be more efficient, we can do in this way: if the element is the same with the previous one, we increase a &ldquo;count&rdquo;(recording the offset) variable by one. When traversing through every element, say index of i, we adjust the position from i to i &ndash; count.</p>
+<p>If we adjust the position of every element whenever there happens a duplicate, the running time would be large. In order to be more efficient, we can do in this way: if the element is the same with the previous one, we increase a &ldquo;offset&rdquo;(recording the offset) variable by one. When traversing through every element, say index of i, we adjust the position from i to i &ndash; offset.</p>
 
-<figure class='code'><figcaption><span>Remove duplicate start:16 mark:28</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>Remove duplicate </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -131,9 +195,9 @@
 </span><span class='line'>
 </span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
 </span><span class='line'>          <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">==</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">{</span>
-</span><span class='line'>              <span class="n">count</span><span class="o">++;</span>
+</span><span class='line'>              <span class="n">offset</span><span class="o">++;</span>
 </span><span class='line'>          <span class="o">}</span>
-</span><span class='line'>          <span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">count</span><span class="o">]</span> <span class="o">=</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+</span><span class='line'>          <span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">offset</span><span class="o">]</span> <span class="o">=</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
 </span><span class='line'>      
 </span><span class='line'>      <span class="o">}</span>
 </span><span class='line'>
