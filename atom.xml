@@ -4,7 +4,7 @@
   <title><![CDATA[KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-06-27T11:23:13-07:00</updated>
+  <updated>2014-06-27T11:31:13-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -18,7 +18,7 @@
     <link href="http://tangkangkai.github.io/blog/2014/06/27/relearn-java-day-2/"/>
     <updated>2014-06-27T08:35:05-07:00</updated>
     <id>http://tangkangkai.github.io/blog/2014/06/27/relearn-java-day-2</id>
-    <content type="html"><![CDATA[<p>1.<strong>break</strong>:</p>
+    <content type="html"><![CDATA[<p>1.<strong>Break</strong>:</p>
 
 <ul>
 <li>jump out of only : <strong>switch</strong>, loop</li>
@@ -41,7 +41,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>2.<strong>overload</strong>:</p>
+<p>2.<strong>Overload</strong>:</p>
 
 <blockquote><ol>
 <li>同一个类，</li>
@@ -52,15 +52,21 @@
 </ol>
 </blockquote>
 
-<p>3.<strong>Arrays</strong><br/>
-* initialization:</p>
+<p>3.<strong>Arrays</strong>：</p>
 
-<pre><code>* int[] arr = new int[5]; //the default value would be 0(default value of int)  
-* int[] arr = new int[]{1, 2, 3, 4, 5};  
-* int[] arr =   
-</code></pre>
+<ul>
+<li>initialization:
 
-<p>4.Division of JVM:</p>
+<ul>
+<li>int[] arr = new int[5]; //the default value would be 0(default value of int)</li>
+<li>int[] arr = new int[]{1, 2, 3, 4, 5};</li>
+<li>int[] arr = {1, 2, 3, 4, 5};</li>
+</ul>
+</li>
+</ul>
+
+
+<p>4.<strong>Division of JVM</strong>:</p>
 
 <blockquote><ol>
 <li>寄存器。</li>
