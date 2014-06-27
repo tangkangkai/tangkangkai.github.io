@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-06-27T11:20:57-07:00</updated>
+  <updated>2014-06-27T11:23:13-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -20,9 +20,11 @@
     <id>http://tangkangkai.github.io/blog/2014/06/27/relearn-java-day-2</id>
     <content type="html"><![CDATA[<p>1.<strong>break</strong>:</p>
 
-<pre><code>* jump out of only : **switch**, loop 
-* break designated loop : break + 标号
-</code></pre>
+<ul>
+<li>jump out of only : <strong>switch</strong>, loop</li>
+<li>break designated loop : break + 标号</li>
+</ul>
+
 
 <p>``` java Example</p>
 
@@ -38,38 +40,46 @@
 
 <p>2.<strong>overload</strong>:</p>
 
-<blockquote><pre><code>1. 同一个类，  
-2. 同名。  
-3. 参数个数不同。or 参数类型不同。  
-4. 函数重载和返回值类型无关。  
-5. java是严谨性语言，如果函数出现的调用的不确定性，会编译失败。 
-</code></pre></blockquote>
+<blockquote><ol>
+<li>同一个类，</li>
+<li>同名。</li>
+<li>参数个数不同。or 参数类型不同。</li>
+<li>函数重载和返回值类型无关。</li>
+<li>java是严谨性语言，如果函数出现的调用的不确定性，会编译失败。</li>
+</ol>
+</blockquote>
 
-<p>3.<strong>Arrays</strong></p>
+<p>3.<strong>Arrays</strong><br/>
+* initialization:</p>
 
-<pre><code>* initialization:
-    * int[] arr = new int[5]; //the default value would be 0(default value of int)
-    * int[] arr = new int[]{1, 2, 3, 4, 5}; 
-    * int[] arr = 
+<pre><code>* int[] arr = new int[5]; //the default value would be 0(default value of int)  
+* int[] arr = new int[]{1, 2, 3, 4, 5};  
+* int[] arr =   
 </code></pre>
 
 <p>4.Division of JVM:</p>
 
-<blockquote><pre><code>1. 寄存器。  
-2. 本地方法区。  
-    和所在系统有关
-3. 方法区。  
-4. 栈内存（Stack）。  
-    存储的都是局部变量。  
-    而且变量所属的作用域一旦结束，该变量就自动释放。 
-    特点：生命周期短，处理速度快 
-5. 堆内存(Heap)。  
-    存储是数组和对象(其实数组就是对象) 凡是new建立在堆中。  
-    特点：  
-    1. 每一个实体都有首地址值。  
-    2. 堆内存中的每一个变量都有默认初始化值，根据类型的不同而不同。整数是0，小数0.0或者0.0f，boolean false char '\u0000'  
-    3. 垃圾回收机制。      
-</code></pre></blockquote>
+<blockquote><ol>
+<li>寄存器。</li>
+<li>本地方法区。<br/>
+ 和所在系统有关</li>
+<li>方法区。</li>
+<li>栈内存（Stack）。<br/>
+ 存储的都是局部变量。<br/>
+ 而且变量所属的作用域一旦结束，该变量就自动释放。
+ 特点：生命周期短，处理速度快</li>
+<li>堆内存(Heap)。<br/>
+ 存储是数组和对象(其实数组就是对象) 凡是new建立在堆中。<br/>
+ 特点：
+
+<ol>
+<li>每一个实体都有首地址值。</li>
+<li>堆内存中的每一个变量都有默认初始化值，根据类型的不同而不同。整数是0，小数0.0或者0.0f，boolean false char &lsquo;\u0000&rsquo;</li>
+<li>垃圾回收机制。</li>
+</ol>
+</li>
+</ol>
+</blockquote>
 ]]></content>
   </entry>
   
