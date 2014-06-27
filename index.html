@@ -97,7 +97,10 @@
 
   <div class="entry-content"><p>Q：Suppose a sorted array is rotated at some pivot unknown to you beforehand.You are given a target value to search. If found in the array return its index, otherwise return -1.You may assume no duplicate exists in the array.</p>
 
-<p>Q2:</p>
+<p>Q2:Follow up for &ldquo;Search in Rotated Sorted Array&rdquo;:
+What if duplicates are allowed?<br/>
+Would this affect the run-time complexity? How and why?<br/>
+Write a function to determine if a given target is in the array.</p>
 
 <hr />
 
@@ -113,6 +116,34 @@
 </blockquote>
 
 <p>Now the array is rotated, while when doing binary search, after <em>mid</em> divides the array into two parts, there must be one part that is in sequence. Thus we can adjust the previous solution a little bit, that is, after step 3, we figure out which part is in sequence, then we judge whether the target would reside in the part. If so, actually it becomes same with normal binary search, if not, it must reside in the other part(based on the fact that the target is in the array), then we can repeat the procedure again on the subtracted array.</p>
+
+<p>&#8220;java Search in Sorted Array</p>
+
+<pre><code>    while (left &lt;= right) {
+        int mid = (left + right) / 2;
+
+        if (A[mid] == target) {
+            return mid;
+        } else if (A[left] &lt;= A[mid]) {
+            if (A[left] &lt;= target &amp;&amp; target &lt; A[mid]) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        } else {
+            if (A[mid] &lt; target &amp;&amp; target &lt;= A[right]) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+    }
+    return -1;
+</code></pre>
+
+<p>&#8220;`</p>
+
+<p>If duplicates are allowed</p>
 </div>
   
   
