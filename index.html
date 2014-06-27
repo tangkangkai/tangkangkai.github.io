@@ -9,7 +9,7 @@
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="The foundation is so important for a skyscraper, thus I want to rebuild, or, renovate of my java foundation in the next few weeks. I will post &hellip;">
+  <meta name="description" content="Q：Suppose a sorted array is rotated at some pivot unknown to you beforehand.You are given a target value to search. If found in the array return its &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +66,59 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/06/26/search-in-rotated-sorted-array/">Search in Rotated Sorted Array</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-26T17:23:30-07:00" pubdate data-updated="true">Jun 26<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Q：Suppose a sorted array is rotated at some pivot unknown to you beforehand.You are given a target value to search. If found in the array return its index, otherwise return -1.You may assume no duplicate exists in the array.</p>
+
+<p>Q2:</p>
+
+<hr />
+
+<p>For sorted array <strong>not rotated</strong>, we use binary search, the runtime of which would be O(logn). The basic steps would be :</p>
+
+<blockquote><ol>
+<li>Set <em>left</em> be the left most point of the array, similar to <em>right</em></li>
+<li>Set <em>mid</em> to be the mid point of the array : (left + right) / 2</li>
+<li>If <em>mid</em> element is equal to target, we return the index</li>
+<li>Otherwise, we compare the <em>mid</em> element with target, and repeat these steps on the subtracted array (either <em>left</em> to <em>mid</em>-1 or <em>mid</em>+1 to right)。</li>
+<li>If we can&rsquo;t find one before left &lt;= right, we will return -1.</li>
+</ol>
+</blockquote>
+
+<p>Now the array is rotated, while when doing binary search, after <em>mid</em> divides the array into two parts, there must be one part that is in sequence. Thus we can adjust the previous solution a little bit, that is, after step 3, we figure out which part is in sequence, then we judge whether the target would reside in the part. If so, actually it becomes same with normal binary search, if not, it must reside in the other part(based on the fact that the target is in the array), then we can repeat the procedure again on the subtracted array.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>

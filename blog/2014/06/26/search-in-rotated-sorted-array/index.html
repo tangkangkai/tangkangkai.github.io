@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Relearn Java Day 1 - KK's Coding Blog</title>
+  <title>Search in Rotated Sorted Array - KK's Coding Blog</title>
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="The foundation is so important for a skyscraper, thus I want to rebuild, or, renovate of my java foundation in the next few weeks. I will post &hellip;">
+  <meta name="description" content="Q：Suppose a sorted array is rotated at some pivot unknown to you beforehand.You are given a target value to search. If found in the array return its &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://tangkangkai.github.io/blog/2014/06/26/relearn-java-day-1">
+  <link rel="canonical" href="http://tangkangkai.github.io/blog/2014/06/26/search-in-rotated-sorted-array">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="KK's Coding Blog" type="application/atom+xml">
@@ -69,7 +69,7 @@
   
   <header>
     
-      <h1 class="entry-title">Relearn Java Day 1</h1>
+      <h1 class="entry-title">Search in Rotated Sorted Array</h1>
     
     
       <p class="meta">
@@ -85,79 +85,31 @@
   
 
 
-<time datetime="2014-06-26T07:53:35-07:00" pubdate data-updated="true">Jun 26<sup>th</sup>, 2014</time>
+<time datetime="2014-06-26T17:23:30-07:00" pubdate data-updated="true">Jun 26<sup>th</sup>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>The foundation is so important for a skyscraper, thus I want to rebuild, or, renovate of my java foundation in the next few weeks. I will post valuable points here in this <em>relearn java</em> series. Here is Day 1:</p>
+<div class="entry-content"><p>Q：Suppose a sorted array is rotated at some pivot unknown to you beforehand.You are given a target value to search. If found in the array return its index, otherwise return -1.You may assume no duplicate exists in the array.</p>
 
-<ol>
-<li>Basic Conceptions:
+<p>Q2:</p>
 
-<ul>
-<li><strong>Java Virtual Machine(JVM)</strong>:
+<hr />
 
-<ul>
-<li>help Java become cross-platform language(note jvm isn&rsquo;t cross-platform)</li>
-<li>between language and operating system</li>
-</ul>
-</li>
-<li><strong>Java Runtime Environment(JRE)</strong>
+<p>For sorted array <strong>not rotated</strong>, we use binary search, the runtime of which would be O(logn). The basic steps would be :</p>
 
-<ul>
-<li>JVM + 核心类库</li>
-</ul>
-</li>
-<li><strong>Java Development Kit(JDK)</strong>
-
-<ul>
-<li>JRE + javac.exe + jar.exe + &hellip;</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Comment</p>
-
-<ul>
-<li>one line : //</li>
-<li>multiple line: /<em>  </em>/</li>
-<li>文档注释： /<em>* </em>/</li>
-</ul>
-</li>
-<li><p>Bit computing</p>
-
-<ul>
-<li>&amp; and. could used to get several bits of bytes.
-
-<ul>
-<li>not the difference between &amp; and &amp;&amp; is &amp;&amp; is more efficient when the left of &amp;&amp; is false(it will stop calculating the right one).</li>
-</ul>
-</li>
-<li>^ xor. note you can get the original number by xor two times
-
-<ul>
-<li>change the value of variable a, b in place :<br/>
-  a = a ^ b;
-  b = a ^ b;
-  a = a ^ b;</li>
-</ul>
-</li>
-<li><strong>&lt;&lt;</strong> 左移 （该数乘以2的几次方）</li>
-<li><strong>>></strong> 右移 （该数除以2的几次方）对于高位出现的空位， 补与原来相同的数</li>
-<li><strong>>>></strong> 无论原来高位是什么 都用0来补</li>
-</ul>
-</li>
-<li><p>switch :</p>
-
-<ul>
-<li>the types that could be compared ： byte, short, int, char</li>
-</ul>
-</li>
+<blockquote><ol>
+<li>Set <em>left</em> be the left most point of the array, similar to <em>right</em></li>
+<li>Set <em>mid</em> to be the mid point of the array : (left + right) / 2</li>
+<li>If <em>mid</em> element is equal to target, we return the index</li>
+<li>Otherwise, we compare the <em>mid</em> element with target, and repeat these steps on the subtracted array (either <em>left</em> to <em>mid</em>-1 or <em>mid</em>+1 to right)。</li>
+<li>If we can&rsquo;t find one before left &lt;= right, we will return -1.</li>
 </ol>
+</blockquote>
 
+<p>Now the array is rotated, while when doing binary search, after <em>mid</em> divides the array into two parts, there must be one part that is in sequence. Thus we can adjust the previous solution a little bit, that is, after step 3, we figure out which part is in sequence, then we judge whether the target would reside in the part. If so, actually it becomes same with normal binary search, if not, it must reside in the other part(based on the fact that the target is in the array), then we can repeat the procedure again on the subtracted array.</p>
 </div>
 
 
@@ -180,12 +132,12 @@
   
 
 
-<time datetime="2014-06-26T07:53:35-07:00" pubdate data-updated="true">Jun 26<sup>th</sup>, 2014</time>
+<time datetime="2014-06-26T17:23:30-07:00" pubdate data-updated="true">Jun 26<sup>th</sup>, 2014</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/java/'>java</a>
+    <a class='category' href='/blog/categories/array/'>array</a>, <a class='category' href='/blog/categories/leetcode/'>leetcode</a>
   
 </span>
 
@@ -194,7 +146,7 @@
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tangkangkai.github.io/blog/2014/06/26/relearn-java-day-1/" data-via="" data-counturl="http://tangkangkai.github.io/blog/2014/06/26/relearn-java-day-1/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tangkangkai.github.io/blog/2014/06/26/search-in-rotated-sorted-array/" data-via="" data-counturl="http://tangkangkai.github.io/blog/2014/06/26/search-in-rotated-sorted-array/" >Tweet</a>
   
   
   
@@ -203,10 +155,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/06/25/remove-duplicates-in-array/" title="Previous Post: Remove duplicates in array">&laquo; Remove duplicates in array</a>
+        <a class="basic-alignment left" href="/blog/2014/06/26/relearn-java-day-1/" title="Previous Post: Relearn Java Day 1">&laquo; Relearn Java Day 1</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/06/26/search-in-rotated-sorted-array/" title="Next Post: Search in Rotated Sorted Array">Search in Rotated Sorted Array &raquo;</a>
       
     </p>
   </footer>
