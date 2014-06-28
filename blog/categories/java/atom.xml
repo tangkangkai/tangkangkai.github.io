@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-06-28T08:52:39-07:00</updated>
+  <updated>2014-06-28T12:00:14-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -35,8 +35,13 @@
 <li>Arrays.sort([]);</li>
 </ul>
 </li>
-<li><p>BinarySearch:<br/>
-```java example</p></li>
+<li><p>BinarySearch:</p>
+
+<ul>
+<li>Arrays.binarySearch(arr,key);//如果存在返回的具体的角标位置，不存在返回的是  -插入点-1 <br/>
+```java example</li>
+</ul>
+</li>
 </ul>
 
 

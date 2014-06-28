@@ -9,9 +9,8 @@
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="1.Arrays： initialization: int[] arr = new int[5]; //the default value would be 0(default value of int)
-int[] arr = new int[]{1, 2, 3, 4, 5};
-int[] &hellip;">
+  <meta name="description" content="Questions: Two Sum :
+Given an array of integers, find two numbers such that they add up to a specific target number. The function twoSum should &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -74,6 +73,103 @@ int[] &hellip;">
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2014/06/28/num-sum/">Num Sum</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-28T11:39:45-07:00" pubdate data-updated="true">Jun 28<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Questions:</p>
+
+<p><strong>Two Sum</strong> :
+Given an array of integers, find two numbers such that they add up to a specific target number. The function twoSum should return indices (not zero based) of the two numbers such that they add up to the target.</p>
+
+<p><strong>Three</strong>:</p>
+
+<hr />
+
+<p>Answers:</p>
+
+<p><strong>Two Sum</strong> : <br/>
+If we use brute for, the time complexity would be O(n<sup>2</sup>), definitely we can figure out a better way. Try to think like this, first we get an element(say, index of <em>i</em>) of the array, then we determine if <em>target</em>&ndash;<em>element</em> is in the array. As there would be only one solution, we can safely return if we can find <em>target</em>&ndash;<em>element</em>  in the array from index <em>i+1</em> to <em>arr.length-1</em>.</p>
+
+<figure class='code'><figcaption><span>Example</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'> <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">twoSum</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">numbers</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>      <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+</span><span class='line'>      <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">set</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;();</span>
+</span><span class='line'>      
+</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+</span><span class='line'>          <span class="n">set</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">val</span><span class="o">);</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      
+</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class='line'>          <span class="kt">int</span> <span class="n">goal</span> <span class="o">=</span> <span class="n">target</span> <span class="o">-</span> <span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+</span><span class='line'>
+</span><span class='line'>          <span class="k">if</span> <span class="o">(</span><span class="n">set</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">goal</span><span class="o">))</span> <span class="o">{</span>
+</span><span class='line'>              <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">len</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class='line'>                  <span class="k">if</span><span class="o">(</span><span class="n">numbers</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">==</span> <span class="n">goal</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>                      <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="o">};</span>
+</span><span class='line'>                  <span class="o">}</span>
+</span><span class='line'>              <span class="o">}</span>
+</span><span class='line'>          <span class="o">}</span>
+</span><span class='line'>      <span class="o">}</span>
+</span><span class='line'>      <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2014/06/28/relearn-java-day-3/">Relearn Java Day 3</a></h1>
     
     
@@ -114,7 +210,12 @@ int[] &hellip;">
 <li>Arrays.sort([]);</li>
 </ul>
 </li>
-<li><p>BinarySearch:</p></li>
+<li><p>BinarySearch:</p>
+
+<ul>
+<li>Arrays.binarySearch(arr,key);//如果存在返回的具体的角标位置，不存在返回的是  -插入点-1</li>
+</ul>
+</li>
 </ul>
 
 

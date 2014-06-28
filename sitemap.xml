@@ -3,6 +3,12 @@
   
   
   <url>
+    <loc>http://tangkangkai.github.io/blog/2014/06/28/num-sum/</loc>
+    <lastmod>2014-06-28T11:39:45-07:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://tangkangkai.github.io/blog/2014/06/28/relearn-java-day-3/</loc>
     <lastmod>2014-06-28T07:31:57-07:00</lastmod>
     <priority>0.8</priority>
@@ -47,28 +53,28 @@
   
   <url>
     <loc>http://tangkangkai.github.io/blog/</loc>
-    <lastmod>2014-06-28T08:52:39-07:00</lastmod>
+    <lastmod>2014-06-28T12:00:14-07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://tangkangkai.github.io/</loc>
-    <lastmod>2014-06-28T08:52:39-07:00</lastmod>
+    <lastmod>2014-06-28T12:00:14-07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
     <loc>http://tangkangkai.github.io/blog/archives/</loc>
-    <lastmod>2014-06-28T08:52:39-07:00</lastmod>
+    <lastmod>2014-06-28T12:00:14-07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://tangkangkai.github.io/about/</loc>
-    <lastmod>2014-06-28T08:52:39-07:00</lastmod>
+    <lastmod>2014-06-28T12:00:14-07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
