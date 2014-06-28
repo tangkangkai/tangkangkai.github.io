@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-06-27T11:31:13-07:00</updated>
+  <updated>2014-06-28T08:52:39-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -12,6 +12,59 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Relearn Java Day 3]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/06/28/relearn-java-day-3/"/>
+    <updated>2014-06-28T07:31:57-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/06/28/relearn-java-day-3</id>
+    <content type="html"><![CDATA[<p>1.<strong>Arrays</strong>：</p>
+
+<ul>
+<li>initialization:
+
+<ul>
+<li>int[] arr = new int[5]; //the default value would be 0(default value of int)</li>
+<li>int[] arr = new int[]{1, 2, 3, 4, 5};</li>
+<li>int[] arr = {1, 2, 3, 4, 5};</li>
+</ul>
+</li>
+<li><p>sort:</p>
+
+<ul>
+<li>Arrays.sort([]);</li>
+</ul>
+</li>
+<li><p>BinarySearch:<br/>
+```java example</p></li>
+</ul>
+
+
+<p>public static int halfSearch_2(int[] arr,int key)</p>
+
+<pre><code>{
+    int max,min,mid;
+    min = 0;
+    max = arr.length-1;
+
+    while(min&lt;=max)
+    {
+        mid = (max+min)&gt;&gt;1;
+
+        if(key&gt;arr[mid])
+            min = mid + 1;
+        else if(key&lt;arr[mid])
+            max = mid - 1;
+        else
+            return mid;
+    }
+    return -1;
+}
+</code></pre>
+
+<p>```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Relearn Java Day 2]]></title>
@@ -49,21 +102,7 @@
 </ol>
 </blockquote>
 
-<p>3.<strong>Arrays</strong>：</p>
-
-<ul>
-<li>initialization:
-
-<ul>
-<li>int[] arr = new int[5]; //the default value would be 0(default value of int)</li>
-<li>int[] arr = new int[]{1, 2, 3, 4, 5};</li>
-<li>int[] arr = {1, 2, 3, 4, 5};</li>
-</ul>
-</li>
-</ul>
-
-
-<p>4.<strong>Division of JVM</strong>:</p>
+<p>3.<strong>Division of JVM</strong>:</p>
 
 <blockquote><ol>
 <li>寄存器。</li>
