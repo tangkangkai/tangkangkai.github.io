@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-06-29T08:38:09-07:00</updated>
+  <updated>2014-06-29T08:42:20-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -35,6 +35,11 @@
       <li>new Car();</li>
       <li>when member functions only called once, we can use anonymous object</li>
       <li>can be regarded as function arguments.</li>
+    </ul>
+  </li>
+  <li><strong>encapsulation</strong>
+    <ul>
+      <li>hide details, including private the member variable.(set(), get())</li>
     </ul>
   </li>
 </ul>
