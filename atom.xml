@@ -4,7 +4,7 @@
   <title><![CDATA[KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-06-28T12:00:14-07:00</updated>
+  <updated>2014-06-28T22:50:23-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -18,67 +18,64 @@
     <link href="http://tangkangkai.github.io/blog/2014/06/28/num-sum/"/>
     <updated>2014-06-28T11:39:45-07:00</updated>
     <id>http://tangkangkai.github.io/blog/2014/06/28/num-sum</id>
-    <content type="html"><![CDATA[<p>Questions:</p>
+    <content type="html"><![CDATA[<p>Questions:  </p>
 
-<p><strong>Two Sum</strong> :
-Given an array of integers, find two numbers such that they add up to a specific target number. The function twoSum should return indices (not zero based) of the two numbers such that they add up to the target.</p>
+<p><strong>Two Sum</strong> : 
+Given an array of integers, find two numbers such that they add up to a specific target number. The function twoSum should return indices (not zero based) of the two numbers such that they add up to the target. </p>
 
-<p><strong>Three</strong>:</p>
+<p><strong>Three</strong>:  </p>
 
 <hr />
+<p>Answers:  </p>
 
-<p>Answers:</p>
+<p><strong>Two Sum</strong> : <br />
+If we use brute force, the time complexity would be O(n^2), we can figure out a better way. Try to think like this, first we get an element(say, at index  <em>i</em>) of the array, next we can determine if <em>target</em>-<em>element</em> is in the array(with the help of other data structures like HashSet). As there would be only one solution, we can safely return if we can find <em>target</em>-<em>element</em>  in the array from index <em>i+1</em> to <em>arr.length-1</em>.</p>
 
-<p><strong>Two Sum</strong> : <br/>
-If we use brute for, the time complexity would be O(n<sup>2</sup>), definitely we can figure out a better way. Try to think like this, first we get an element(say, index of <em>i</em>) of the array, then we determine if <em>target</em>&ndash;<em>element</em> is in the array. As there would be only one solution, we can safely return if we can find <em>target</em>&ndash;<em>element</em>  in the array from index <em>i+1</em> to <em>arr.length-1</em>.</p>
-
-<figure class='code'><figcaption><span>Example</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'> <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">twoSum</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">numbers</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
-</span><span class='line'>      <span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">set</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;();</span>
-</span><span class='line'>      
-</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-</span><span class='line'>          <span class="n">set</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">val</span><span class="o">);</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>      
-</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="kt">int</span> <span class="n">goal</span> <span class="o">=</span> <span class="n">target</span> <span class="o">-</span> <span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-</span><span class='line'>
-</span><span class='line'>          <span class="k">if</span> <span class="o">(</span><span class="n">set</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">goal</span><span class="o">))</span> <span class="o">{</span>
-</span><span class='line'>              <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">len</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
-</span><span class='line'>                  <span class="k">if</span><span class="o">(</span><span class="n">numbers</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">==</span> <span class="n">goal</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>                      <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="o">};</span>
-</span><span class='line'>                  <span class="o">}</span>
-</span><span class='line'>              <span class="o">}</span>
-</span><span class='line'>          <span class="o">}</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>      <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-</span><span class='line'>  <span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Example</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line">	<span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">twoSum</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">numbers</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">		<span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+</span><span class="line">		<span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">set</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;();</span>
+</span><span class="line">		
+</span><span class="line">		<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class="line">			<span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+</span><span class="line">			<span class="n">set</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">val</span><span class="o">);</span>
+</span><span class="line">		<span class="o">}</span>
+</span><span class="line">		
+</span><span class="line">		<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class="line">			<span class="kt">int</span> <span class="n">goal</span> <span class="o">=</span> <span class="n">target</span> <span class="o">-</span> <span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+</span><span class="line">
+</span><span class="line">			<span class="k">if</span> <span class="o">(</span><span class="n">set</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">goal</span><span class="o">))</span> <span class="o">{</span>
+</span><span class="line">				<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">len</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class="line">					<span class="k">if</span><span class="o">(</span><span class="n">numbers</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">==</span> <span class="n">goal</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">						<span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="o">};</span>
+</span><span class="line">					<span class="o">}</span>
+</span><span class="line">				<span class="o">}</span>
+</span><span class="line">			<span class="o">}</span>
+</span><span class="line">		<span class="o">}</span>
+</span><span class="line">		<span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span><span class="line">	<span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 ]]></content>
   </entry>
@@ -88,72 +85,70 @@ If we use brute for, the time complexity would be O(n<sup>2</sup>), definitely w
     <link href="http://tangkangkai.github.io/blog/2014/06/28/relearn-java-day-3/"/>
     <updated>2014-06-28T07:31:57-07:00</updated>
     <id>http://tangkangkai.github.io/blog/2014/06/28/relearn-java-day-3</id>
-    <content type="html"><![CDATA[<p>1.<strong>Arrays</strong>：</p>
+    <content type="html"><![CDATA[<p>1.<strong>Arrays</strong>： </p>
 
 <ul>
-<li>initialization:
+  <li>initialization:
+    <ul>
+      <li>int[] arr = new int[5]; //the default value would be 0(default value of int)  </li>
+      <li>int[] arr = new int[]{1, 2, 3, 4, 5};  </li>
+      <li>int[] arr = {1, 2, 3, 4, 5};</li>
+    </ul>
+  </li>
+  <li>
+    <p>sort:</p>
 
-<ul>
-<li>int[] arr = new int[5]; //the default value would be 0(default value of int)</li>
-<li>int[] arr = new int[]{1, 2, 3, 4, 5};</li>
-<li>int[] arr = {1, 2, 3, 4, 5};</li>
+    <ul>
+      <li>Arrays.sort([]);  </li>
+    </ul>
+  </li>
+  <li>
+    <p>BinarySearch: </p>
+
+    <ul>
+      <li>Arrays.binarySearch(arr,key);//如果存在返回的具体的角标位置，不存在返回的是  -插入点-1 <br />
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;figcaption&gt;<span>example  </span>&lt;/figcaption&gt;&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span></figure></notextile></li>
+    </ul>
+  </li>
 </ul>
-</li>
-<li><p>sort:</p>
-
-<ul>
-<li>Arrays.sort([]);</li>
-</ul>
-</li>
-<li><p>BinarySearch:</p>
-
-<ul>
-<li>Arrays.binarySearch(arr,key);//如果存在返回的具体的角标位置，不存在返回的是  -插入点-1</li>
-</ul>
-</li>
-</ul>
-
-
-<figure class='code'><figcaption><span>example  </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">halfSearch_2</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span><span class="kt">int</span> <span class="n">key</span><span class="o">)</span>
-</span><span class='line'><span class="o">{</span>
-</span><span class='line'>  <span class="kt">int</span> <span class="n">max</span><span class="o">,</span><span class="n">min</span><span class="o">,</span><span class="n">mid</span><span class="o">;</span>
-</span><span class='line'>  <span class="n">min</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-</span><span class='line'>  <span class="n">max</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">while</span><span class="o">(</span><span class="n">min</span><span class="o">&lt;=</span><span class="n">max</span><span class="o">)</span>
-</span><span class='line'>  <span class="o">{</span>
-</span><span class='line'>      <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">max</span><span class="o">+</span><span class="n">min</span><span class="o">)&gt;&gt;</span><span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="k">if</span><span class="o">(</span><span class="n">key</span><span class="o">&gt;</span><span class="n">arr</span><span class="o">[</span><span class="n">mid</span><span class="o">])</span>
-</span><span class='line'>          <span class="n">min</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>      <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">key</span><span class="o">&lt;</span><span class="n">arr</span><span class="o">[</span><span class="n">mid</span><span class="o">])</span>
-</span><span class='line'>          <span class="n">max</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>      <span class="k">else</span>
-</span><span class='line'>          <span class="k">return</span> <span class="n">mid</span><span class="o">;</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<p>&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class="java"><span class="line"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">halfSearch_2</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span><span class="kt">int</span> <span class="n">key</span><span class="o">)</span>
+</span><span class="line"><span class="o">{</span>
+</span><span class="line">	<span class="kt">int</span> <span class="n">max</span><span class="o">,</span><span class="n">min</span><span class="o">,</span><span class="n">mid</span><span class="o">;</span>
+</span><span class="line">	<span class="n">min</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class="line">	<span class="n">max</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+</span><span class="line">
+</span><span class="line">	<span class="k">while</span><span class="o">(</span><span class="n">min</span><span class="o">&lt;=</span><span class="n">max</span><span class="o">)</span>
+</span><span class="line">	<span class="o">{</span>
+</span><span class="line">		<span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">max</span><span class="o">+</span><span class="n">min</span><span class="o">)&gt;&gt;</span><span class="mi">1</span><span class="o">;</span>
+</span><span class="line">
+</span><span class="line">		<span class="k">if</span><span class="o">(</span><span class="n">key</span><span class="o">&gt;</span><span class="n">arr</span><span class="o">[</span><span class="n">mid</span><span class="o">])</span>
+</span><span class="line">			<span class="n">min</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+</span><span class="line">		<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">key</span><span class="o">&lt;</span><span class="n">arr</span><span class="o">[</span><span class="n">mid</span><span class="o">])</span>
+</span><span class="line">			<span class="n">max</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+</span><span class="line">		<span class="k">else</span>
+</span><span class="line">			<span class="k">return</span> <span class="n">mid</span><span class="o">;</span>
+</span><span class="line">	<span class="o">}</span>
+</span><span class="line">	<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+</span><span class="line"><span class="o">}</span>
+</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/notextile&gt;&lt;/div&gt;</p>
 ]]></content>
   </entry>
   
@@ -165,60 +160,49 @@ If we use brute for, the time complexity would be O(n<sup>2</sup>), definitely w
     <content type="html"><![CDATA[<p>1.<strong>Break</strong>:</p>
 
 <ul>
-<li>jump out of only : <strong>switch</strong>, loop</li>
-<li>break designated loop : break + 标号</li>
+  <li>jump out of only : <strong>switch</strong>, loop </li>
+  <li>break designated loop : break + 标号</li>
 </ul>
 
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Example</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line">	<span class="nl">loopoint:</span><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span> <span class="n">x</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class="line">		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span> <span class="n">y</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class="line">			<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">y</span><span class="o">);</span>
+</span><span class="line">			<span class="k">break</span> <span class="n">loopoint</span><span class="o">;</span>
+</span><span class="line">		<span class="o">}</span>	
+</span><span class="line">	<span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<figure class='code'><figcaption><span>Example</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'> <span class="nl">loopoint:</span><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span> <span class="n">x</span><span class="o">++)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span> <span class="n">y</span><span class="o">++)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">y</span><span class="o">);</span>
-</span><span class='line'>          <span class="k">break</span> <span class="n">loopoint</span><span class="o">;</span>
-</span><span class='line'>      <span class="o">}</span>    
-</span><span class='line'>  <span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
+<p>2.<strong>Overload</strong>:<br />
+&gt;
+1. 同一个类，<br />
+2. 同名。<br />
+3. 参数个数不同。or 参数类型不同。<br />
+4. 函数重载和返回值类型无关。<br />
+5. java是严谨性语言，如果函数出现的调用的不确定性，会编译失败。 </p>
 
+<p>3.<strong>Division of JVM</strong>:<br />
+&gt;	
+1. 寄存器。<br />
+2. 本地方法区。<br />
+	和所在系统有关
+3. 方法区。<br />
+4. 栈内存（Stack）。<br />
+	存储的都是局部变量。<br />
+	而且变量所属的作用域一旦结束，该变量就自动释放。 
+	特点：生命周期短，处理速度快 
+5. 堆内存(Heap)。<br />
+	存储是数组和对象(其实数组就是对象) 凡是new建立在堆中。<br />
+	特点：<br />
+	1. 每一个实体都有首地址值。<br />
+	2. 堆内存中的每一个变量都有默认初始化值，根据类型的不同而不同。整数是0，小数0.0或者0.0f，boolean false char ‘\u0000’<br />
+	3. 垃圾回收机制。      </p>
 
-<p>2.<strong>Overload</strong>:</p>
-
-<blockquote><ol>
-<li>同一个类，</li>
-<li>同名。</li>
-<li>参数个数不同。or 参数类型不同。</li>
-<li>函数重载和返回值类型无关。</li>
-<li>java是严谨性语言，如果函数出现的调用的不确定性，会编译失败。</li>
-</ol>
-</blockquote>
-
-<p>3.<strong>Division of JVM</strong>:</p>
-
-<blockquote><ol>
-<li>寄存器。</li>
-<li>本地方法区。<br/>
- 和所在系统有关</li>
-<li>方法区。</li>
-<li>栈内存（Stack）。<br/>
- 存储的都是局部变量。<br/>
- 而且变量所属的作用域一旦结束，该变量就自动释放。
- 特点：生命周期短，处理速度快</li>
-<li>堆内存(Heap)。<br/>
- 存储是数组和对象(其实数组就是对象) 凡是new建立在堆中。<br/>
- 特点：
-
-<ol>
-<li>每一个实体都有首地址值。</li>
-<li>堆内存中的每一个变量都有默认初始化值，根据类型的不同而不同。整数是0，小数0.0或者0.0f，boolean false char &lsquo;\u0000&rsquo;</li>
-<li>垃圾回收机制。</li>
-</ol>
-</li>
-</ol>
-</blockquote>
 ]]></content>
   </entry>
   
@@ -229,124 +213,119 @@ If we use brute for, the time complexity would be O(n<sup>2</sup>), definitely w
     <id>http://tangkangkai.github.io/blog/2014/06/26/search-in-rotated-sorted-array</id>
     <content type="html"><![CDATA[<p>Q：Suppose a sorted array is rotated at some pivot unknown to you beforehand.You are given a target value to search. If found in the array return its index, otherwise return -1.You may assume no duplicate exists in the array.</p>
 
-<p>Q2:Follow up for &ldquo;Search in Rotated Sorted Array&rdquo;:
-What if duplicates are allowed?<br/>
-Would this affect the run-time complexity? How and why?<br/>
+<p>Q2:Follow up for “Search in Rotated Sorted Array”:
+What if duplicates are allowed?<br />
+Would this affect the run-time complexity? How and why?<br />
 Write a function to determine if a given target is in the array.</p>
 
 <hr />
 
-<p>For sorted array <strong>not rotated</strong>, we use binary search, the runtime of which would be O(logn). The basic steps would be :</p>
+<p>For sorted array <strong>not rotated</strong>, we use binary search, the runtime of which would be O(logn). The basic steps would be : 
+&gt;
+1. Set <em>left</em> be the left most point of the array, similar to <em>right</em>
+2. Set <em>mid</em> to be the mid point of the array : (left + right) / 2
+3. If <em>mid</em> element is equal to target, we return the index
+4. Otherwise, we compare the <em>mid</em> element with target, and repeat these steps on the subtracted array (either <em>left</em> to <em>mid</em>-1 or <em>mid</em>+1 to right)。
+5. If we can’t find one before left &lt;= right, we will return -1.</p>
 
-<blockquote><ol>
-<li>Set <em>left</em> be the left most point of the array, similar to <em>right</em></li>
-<li>Set <em>mid</em> to be the mid point of the array : (left + right) / 2</li>
-<li>If <em>mid</em> element is equal to target, we return the index</li>
-<li>Otherwise, we compare the <em>mid</em> element with target, and repeat these steps on the subtracted array (either <em>left</em> to <em>mid</em>-1 or <em>mid</em>+1 to right)。</li>
-<li>If we can&rsquo;t find one before left &lt;= right, we will return -1.</li>
-</ol>
-</blockquote>
+<p>Now the array is rotated, while when doing binary search, after <em>mid</em> divides the array into two parts, there must be one part that is in sequence. Thus we can adjust the previous solution a little bit, that is, after step 3, we figure out which part is in sequence, then we judge whether the target would reside in the part. If so, actually it becomes same with normal binary search, if not, it must reside in the other part(based on the fact that the target is in the array), then we can repeat the procedure again on the subtracted array. </p>
 
-<p>Now the array is rotated, while when doing binary search, after <em>mid</em> divides the array into two parts, there must be one part that is in sequence. Thus we can adjust the previous solution a little bit, that is, after step 3, we figure out which part is in sequence, then we judge whether the target would reside in the part. If so, actually it becomes same with normal binary search, if not, it must reside in the other part(based on the fact that the target is in the array), then we can repeat the procedure again on the subtracted array.</p>
-
-<figure class='code'><figcaption><span>Search in Sorted Array</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'>     <span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>          <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>              <span class="k">return</span> <span class="n">mid</span><span class="o">;</span>
-</span><span class='line'>          <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">])</span> <span class="o">{</span>
-</span><span class='line'>              <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">target</span> <span class="o">&amp;&amp;</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">])</span> <span class="o">{</span>
-</span><span class='line'>                  <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>              <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class='line'>                  <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>              <span class="o">}</span>
-</span><span class='line'>          <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class='line'>              <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span> <span class="o">&amp;&amp;</span> <span class="n">target</span> <span class="o">&lt;=</span> <span class="n">A</span><span class="o">[</span><span class="n">right</span><span class="o">])</span> <span class="o">{</span>
-</span><span class='line'>                  <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>              <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class='line'>                  <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>              <span class="o">}</span>
-</span><span class='line'>          <span class="o">}</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>      <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Search in Sorted Array</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line">		<span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">			<span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+</span><span class="line">
+</span><span class="line">			<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">				<span class="k">return</span> <span class="n">mid</span><span class="o">;</span>
+</span><span class="line">			<span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">])</span> <span class="o">{</span>
+</span><span class="line">				<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">target</span> <span class="o">&amp;&amp;</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">])</span> <span class="o">{</span>
+</span><span class="line">					<span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+</span><span class="line">				<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class="line">					<span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+</span><span class="line">				<span class="o">}</span>
+</span><span class="line">			<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class="line">				<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span> <span class="o">&amp;&amp;</span> <span class="n">target</span> <span class="o">&lt;=</span> <span class="n">A</span><span class="o">[</span><span class="n">right</span><span class="o">])</span> <span class="o">{</span>
+</span><span class="line">					<span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+</span><span class="line">				<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class="line">					<span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+</span><span class="line">				<span class="o">}</span>
+</span><span class="line">			<span class="o">}</span>
+</span><span class="line">		<span class="o">}</span>
+</span><span class="line">		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>If duplicates are allowed, we have no idea if the part is in sequence by comparing <em>left</em> and <em>mid</em>(or <em>mid</em> and <em>right</em>) as they may be the same.
 Thus we need figure if target must reside in one of the two parts(to see if <em>left</em>&lt;target&lt;<em>mid</em> or <em>mid</em> &lt; target &lt; <em>right</em>), if so, we do the same previously. Otherwise, if we could not make sure either of them, we need narrow the range of left to right and repeat the procedure again. By doing so, the runtime would be O(n) in worst. Here is the detail:</p>
 
-<figure class='code'><figcaption><span>Search in Sorted Array</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'>     <span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
-</span><span class='line'>          <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>              <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-</span><span class='line'>          <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class='line'>              <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span> <span class="o">&amp;&amp;</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">])</span> <span class="o">{</span>
-</span><span class='line'>                  <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>              <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span> <span class="o">&amp;&amp;</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">[</span><span class="n">right</span><span class="o">])</span> <span class="o">{</span>
-</span><span class='line'>                  <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>              <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class='line'>                  <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>                      <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-</span><span class='line'>                  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class='line'>                      <span class="n">left</span><span class="o">++;</span>
-</span><span class='line'>                  <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>                  <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">right</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>                      <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-</span><span class='line'>                  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class='line'>                      <span class="n">right</span><span class="o">--;</span>
-</span><span class='line'>                  <span class="o">}</span>
-</span><span class='line'>              <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>          <span class="o">}</span>
-</span><span class='line'>      <span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Search in Sorted Array</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line">		<span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">			<span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+</span><span class="line">			<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">				<span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span><span class="line">			<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class="line">				<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span> <span class="o">&amp;&amp;</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">])</span> <span class="o">{</span>
+</span><span class="line">					<span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+</span><span class="line">				<span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span> <span class="o">&amp;&amp;</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">[</span><span class="n">right</span><span class="o">])</span> <span class="o">{</span>
+</span><span class="line">					<span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+</span><span class="line">				<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class="line">					<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">						<span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span><span class="line">					<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class="line">						<span class="n">left</span><span class="o">++;</span>
+</span><span class="line">					<span class="o">}</span>
+</span><span class="line">
+</span><span class="line">					<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">right</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">						<span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span><span class="line">					<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class="line">						<span class="n">right</span><span class="o">--;</span>
+</span><span class="line">					<span class="o">}</span>
+</span><span class="line">				<span class="o">}</span>
+</span><span class="line">
+</span><span class="line">			<span class="o">}</span>
+</span><span class="line">		<span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 ]]></content>
   </entry>
   
@@ -358,69 +337,59 @@ Thus we need figure if target must reside in one of the two parts(to see if <em>
     <content type="html"><![CDATA[<p>The foundation is so important for a skyscraper, thus I want to rebuild, or, renovate of my java foundation in the next few weeks. I will post valuable points here in this <em>relearn java</em> series. Here is Day 1:</p>
 
 <ol>
-<li>Basic Conceptions:
-
-<ul>
-<li><strong>Java Virtual Machine(JVM)</strong>:
-
-<ul>
-<li>help Java become cross-platform language(note jvm isn&rsquo;t cross-platform)</li>
-<li>between language and operating system</li>
-</ul>
-</li>
-<li><strong>Java Runtime Environment(JRE)</strong>
-
-<ul>
-<li>JVM + 核心类库</li>
-</ul>
-</li>
-<li><strong>Java Development Kit(JDK)</strong>
-
-<ul>
-<li>JRE + javac.exe + jar.exe + &hellip;</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Comment</p>
-
-<ul>
-<li>one line : //</li>
-<li>multiple line: /<em>  </em>/</li>
-<li>文档注释： /<em>* </em>/</li>
-</ul>
-</li>
-<li><p>Bit computing</p>
-
-<ul>
-<li>&amp; and. could used to get several bits of bytes.
-
-<ul>
-<li>not the difference between &amp; and &amp;&amp; is &amp;&amp; is more efficient when the left of &amp;&amp; is false(it will stop calculating the right one).</li>
-</ul>
-</li>
-<li>^ xor. note you can get the original number by xor two times
-
-<ul>
-<li>change the value of variable a, b in place :<br/>
+  <li>Basic Conceptions:<br />
+    <ul>
+      <li><strong>Java Virtual Machine(JVM)</strong>:  <br />
+        <ul>
+          <li>help Java become cross-platform language(note jvm isn’t cross-platform)</li>
+          <li>between language and operating system</li>
+        </ul>
+      </li>
+      <li><strong>Java Runtime Environment(JRE)</strong>
+        <ul>
+          <li>JVM + 核心类库</li>
+        </ul>
+      </li>
+      <li><strong>Java Development Kit(JDK)</strong>
+        <ul>
+          <li>JRE + javac.exe + jar.exe + …</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Comment
+    <ul>
+      <li>one line : //</li>
+      <li>multiple line: /*  */</li>
+      <li>文档注释： /** */</li>
+    </ul>
+  </li>
+  <li>Bit computing
+    <ul>
+      <li>&amp; and. could used to get several bits of bytes.
+        <ul>
+          <li>not the difference between &amp; and &amp;&amp; is &amp;&amp; is more efficient when the left of &amp;&amp; is false(it will stop calculating the right one).</li>
+        </ul>
+      </li>
+      <li>^ xor. note you can get the original number by xor two times
+        <ul>
+          <li>change the value of variable a, b in place :<br />
   a = a ^ b;
   b = a ^ b;
   a = a ^ b;</li>
-</ul>
-</li>
-<li><strong>&lt;&lt;</strong> 左移 （该数乘以2的几次方）</li>
-<li><strong>>></strong> 右移 （该数除以2的几次方）对于高位出现的空位， 补与原来相同的数</li>
-<li><strong>>>></strong> 无论原来高位是什么 都用0来补</li>
-</ul>
-</li>
-<li><p>switch :</p>
-
-<ul>
-<li>the types that could be compared ： byte, short, int, char</li>
-</ul>
-</li>
+        </ul>
+      </li>
+      <li><strong>«</strong> 左移 （该数乘以2的几次方）</li>
+      <li><strong>»</strong> 右移 （该数除以2的几次方）对于高位出现的空位， 补与原来相同的数</li>
+      <li><strong>»&gt;</strong> 无论原来高位是什么 都用0来补</li>
+    </ul>
+  </li>
+  <li>switch : 
+    <ul>
+      <li>the types that could be compared ： byte, short, int, char</li>
+    </ul>
+  </li>
 </ol>
-
 ]]></content>
   </entry>
   
@@ -429,96 +398,93 @@ Thus we need figure if target must reside in one of the two parts(to see if <em>
     <link href="http://tangkangkai.github.io/blog/2014/06/25/remove-duplicates-in-array/"/>
     <updated>2014-06-25T22:37:26-07:00</updated>
     <id>http://tangkangkai.github.io/blog/2014/06/25/remove-duplicates-in-array</id>
-    <content type="html"><![CDATA[<p>Q1: Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length. Do not allocate extra space for another array, you must do this in place with constant memory.</p>
+    <content type="html"><![CDATA[<p>Q1: Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length. Do not allocate extra space for another array, you must do this in place with constant memory. </p>
 
-<p>Q2:Follow up for &ldquo;Remove Duplicates&rdquo;: What if duplicates are allowed at most twice?</p>
+<p>Q2:Follow up for “Remove Duplicates”: What if duplicates are allowed at most twice?</p>
 
 <hr />
 
-<p>If we adjust the position of every element whenever there happens a duplicate, the running time would be large. In order to be more efficient, we can do in this way: if the element is the same with the previous one, we increase a &ldquo;offset&rdquo;(recording the offset) variable by one. When traversing through every element, say index of i, we adjust the position from i to i &ndash; offset.</p>
+<p>If we adjust the position of every element whenever there happens a duplicate, the running time would be large. In order to be more efficient, we can do in this way: if the element is the same with the previous one, we increase a “offset”(recording the offset) variable by one. When traversing through every element, say index of i, we adjust the position from i to i - offset.</p>
 
-<figure class='code'><figcaption><span>Remove duplicate </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'>     <span class="kd">public</span> <span class="kt">int</span> <span class="nf">removeDuplicates1</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">A</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">A</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="c1">// we use count to show the offset</span>
-</span><span class='line'>      <span class="kt">int</span> <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">==</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">{</span>
-</span><span class='line'>              <span class="n">offset</span><span class="o">++;</span>
-</span><span class='line'>          <span class="o">}</span>
-</span><span class='line'>          <span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">offset</span><span class="o">]</span> <span class="o">=</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-</span><span class='line'>      
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="k">return</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">offset</span><span class="o">;</span>
-</span><span class='line'>  <span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Remove duplicate </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line">		<span class="kd">public</span> <span class="kt">int</span> <span class="nf">removeDuplicates1</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">A</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">		<span class="k">if</span> <span class="o">(</span><span class="n">A</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">			<span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class="line">		<span class="o">}</span>
+</span><span class="line">
+</span><span class="line">		<span class="c1">// we use count to show the offset</span>
+</span><span class="line">		<span class="kt">int</span> <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class="line">
+</span><span class="line">		<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class="line">			<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">==</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">{</span>
+</span><span class="line">				<span class="n">offset</span><span class="o">++;</span>
+</span><span class="line">			<span class="o">}</span>
+</span><span class="line">			<span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">offset</span><span class="o">]</span> <span class="o">=</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+</span><span class="line">		
+</span><span class="line">		<span class="o">}</span>
+</span><span class="line">
+</span><span class="line">		<span class="k">return</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">offset</span><span class="o">;</span>
+</span><span class="line">	<span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<p>For question 2, the solution is similar except for we need know when to increase the offset. We use a variable “count” to count, the following code show the details:</p>
 
-<p>For question 2, the solution is similar except for we need know when to increase the offset. We use a variable &ldquo;count&rdquo; to count, the following code show the details:</p>
-
-<figure class='code'><figcaption><span>Remove duplicate </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'> <span class="kd">public</span> <span class="kt">int</span> <span class="nf">removeDuplicates2</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">A</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>      <span class="k">if</span> <span class="o">(</span><span class="n">A</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-</span><span class='line'>      <span class="kt">int</span> <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">==</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">{</span>
-</span><span class='line'>              <span class="n">count</span><span class="o">++;</span>
-</span><span class='line'>              <span class="k">if</span> <span class="o">(</span><span class="n">count</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>                  <span class="n">offset</span> <span class="o">+=</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>              <span class="o">}</span>
-</span><span class='line'>          <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class='line'>              <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-</span><span class='line'>          <span class="o">}</span>
-</span><span class='line'>          <span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">offset</span><span class="o">]</span> <span class="o">=</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-</span><span class='line'>      <span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Remove duplicate </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line">	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">removeDuplicates2</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">A</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">		<span class="k">if</span> <span class="o">(</span><span class="n">A</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">			<span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class="line">		<span class="o">}</span>
+</span><span class="line">
+</span><span class="line">		<span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class="line">		<span class="kt">int</span> <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class="line">
+</span><span class="line">		<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class="line">			<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">==</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">{</span>
+</span><span class="line">				<span class="n">count</span><span class="o">++;</span>
+</span><span class="line">				<span class="k">if</span> <span class="o">(</span><span class="n">count</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">					<span class="n">offset</span> <span class="o">+=</span> <span class="mi">1</span><span class="o">;</span>
+</span><span class="line">				<span class="o">}</span>
+</span><span class="line">			<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class="line">				<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class="line">			<span class="o">}</span>
+</span><span class="line">			<span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">offset</span><span class="o">]</span> <span class="o">=</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+</span><span class="line">		<span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 ]]></content>
   </entry>
@@ -528,24 +494,23 @@ Thus we need figure if target must reside in one of the two parts(to see if <em>
     <link href="http://tangkangkai.github.io/blog/2014/06/25/bfs-and-dfs/"/>
     <updated>2014-06-25T07:33:17-07:00</updated>
     <id>http://tangkangkai.github.io/blog/2014/06/25/bfs-and-dfs</id>
-    <content type="html"><![CDATA[<p>Recently I&rsquo;ve been doing <a href="https://oj.leetcode.com/problems">LeetCode Problems</a> and found it&rsquo;s tons of fun. Meanwhile I felt my lacking of solid way solving basic questions, e.g. the topic of the post today : BFS and DFS.I searched through the Internet and found <a href="http://www.codeproject.com/Articles/32212/Introduction-to-Graph-with-Breadth-First-Search-BF">this post</a> really helps me a lot.</p>
+    <content type="html"><![CDATA[<p>Recently I’ve been doing <a href="https://oj.leetcode.com/problems">LeetCode Problems</a> and found it’s tons of fun. Meanwhile I felt my lacking of solid way solving basic questions, e.g. the topic of the post today : BFS and DFS.I searched through the Internet and found <a href="http://www.codeproject.com/Articles/32212/Introduction-to-Graph-with-Breadth-First-Search-BF">this post</a> really helps me a lot.  </p>
 
-<p>Basically it&rsquo;s important to know which data structure we use to implement the algorithm, for DFS we use Stack and for BFS we use Queue.</p>
+<p>Basically it’s important to know which data structure we use to implement the algorithm, for DFS we use Stack and for BFS we use Queue.</p>
 
-<p><strong>The steps for DFS:</strong></p>
+<p><strong>The steps for DFS:</strong><br />
+&gt;Step 1: Push the root node in the Stack.<br />
+Step 2: Loop until stack is empty. <br />
+Step 3: Peek the node of the stack.<br />
+Step 4: If the node has unvisited child nodes, get the unvisited child node, mark it as traversed and push it on stack. <br />
+Step 5: If the node does not have any unvisited child nodes, pop the node from the stack. </p>
 
-<blockquote><p>Step 1: Push the root node in the Stack.<br/>
-Step 2: Loop until stack is empty. <br/>
-Step 3: Peek the node of the stack.<br/>
-Step 4: If the node has unvisited child nodes, get the unvisited child node, mark it as traversed and push it on stack. <br/>
-Step 5: If the node does not have any unvisited child nodes, pop the node from the stack.</p></blockquote>
+<p><strong>The steps for DFS:</strong><br />
+&gt;Step 1: Push the root node in the Queue.<br />
+Step 2: Loop until the queue is empty.<br />
+Step 3: Remove the node from the Queue. <br />
+Step 4: If the removed node has unvisited child nodes, mark them as visited and insert the unvisited children in the queue. </p>
 
-<p><strong>The steps for DFS:</strong></p>
-
-<blockquote><p>Step 1: Push the root node in the Queue.<br/>
-Step 2: Loop until the queue is empty.<br/>
-Step 3: Remove the node from the Queue. <br/>
-Step 4: If the removed node has unvisited child nodes, mark them as visited and insert the unvisited children in the queue.</p></blockquote>
 ]]></content>
   </entry>
   
@@ -554,148 +519,145 @@ Step 4: If the removed node has unvisited child nodes, mark them as visited and 
     <link href="http://tangkangkai.github.io/blog/2014/06/23/my-first-post/"/>
     <updated>2014-06-23T16:59:37-07:00</updated>
     <id>http://tangkangkai.github.io/blog/2014/06/23/my-first-post</id>
-    <content type="html"><![CDATA[<p>Hello every one. This will be my new home for my coding journey.<br/>
-Here is my code snippet (also used for testing the blog :P)</p>
-
-<div><script src='https://gist.github.com/9968025.js'></script>
+    <content type="html"><![CDATA[<p>Hello every one. This will be my new home for my coding journey.<br />
+Here is my code snippet (also used for testing the blog :P)  </p>
+<div><script src="https://gist.github.com/9968025.js"></script>
 <noscript><pre><code>import java.util.Stack;
 
 import org.junit.Test;
 
 public class TreeTraversal {
 
-    Stack&lt;BinaryTreeNode&gt; btStack = new Stack&lt;&gt;();
-    BinaryTreeNode current = null;
+	Stack&lt;BinaryTreeNode&gt; btStack = new Stack&lt;&gt;();
+	BinaryTreeNode current = null;
 
-    // Pre-Order recursion
-    public void preOrderRecursion(BinaryTreeNode bt) {
-        if (bt != null) {
-            System.out.print(bt.data + &quot;  &quot;);
-            preOrderRecursion(bt.left);
-            preOrderRecursion(bt.right);
-        }
-    }
+	// Pre-Order recursion
+	public void preOrderRecursion(BinaryTreeNode bt) {
+		if (bt != null) {
+			System.out.print(bt.data + &quot;  &quot;);
+			preOrderRecursion(bt.left);
+			preOrderRecursion(bt.right);
+		}
+	}
 
-    // Pre-Order interation
-    public void preOrderIteration(BinaryTreeNode bt) {
-        BinaryTreeNode current = bt;
-        while (current != null || !btStack.isEmpty()) {
-            if (current != null) {
-                System.out.print(current.data + &quot;  &quot;);// print the data when
-                                                        // pushed into the stack
-                btStack.push(current);
-                current = current.left;
-            } else {
-                current = btStack.pop();
-                current = current.right;
-            }
-        }
-    }
+	// Pre-Order interation
+	public void preOrderIteration(BinaryTreeNode bt) {
+		BinaryTreeNode current = bt;
+		while (current != null || !btStack.isEmpty()) {
+			if (current != null) {
+				System.out.print(current.data + &quot;  &quot;);// print the data when
+														// pushed into the stack
+				btStack.push(current);
+				current = current.left;
+			} else {
+				current = btStack.pop();
+				current = current.right;
+			}
+		}
+	}
 
-    // In-Order recursion
-    public void inOrderRecursion(BinaryTreeNode bt) {
-        if (bt != null) {
-            inOrderRecursion(bt.left);
-            System.out.print(bt.data + &quot;  &quot;);
-            inOrderRecursion(bt.right);
-        }
-    }
+	// In-Order recursion
+	public void inOrderRecursion(BinaryTreeNode bt) {
+		if (bt != null) {
+			inOrderRecursion(bt.left);
+			System.out.print(bt.data + &quot;  &quot;);
+			inOrderRecursion(bt.right);
+		}
+	}
 
-    // In-Order Iteration
-    public void inOrderIteration(BinaryTreeNode bt) {
-        current = bt;
-        while (current != null || !btStack.isEmpty()) {
-            if (current != null) {
-                btStack.push(current);
-                current = current.left;
-            } else {
-                current = btStack.pop();
-                System.out.print(current.data + &quot;  &quot;);// print the data when
-                                                        // popped out of stack
-                current = current.right;
-            }
-        }
+	// In-Order Iteration
+	public void inOrderIteration(BinaryTreeNode bt) {
+		current = bt;
+		while (current != null || !btStack.isEmpty()) {
+			if (current != null) {
+				btStack.push(current);
+				current = current.left;
+			} else {
+				current = btStack.pop();
+				System.out.print(current.data + &quot;  &quot;);// print the data when
+														// popped out of stack
+				current = current.right;
+			}
+		}
 
-    }
+	}
 
-    // Post-Order Recursion
-    public void postOrderRecursion(BinaryTreeNode bt) {
-        if (bt != null) {
-            postOrderRecursion(bt.left);
-            postOrderRecursion(bt.right);
-            System.out.print(bt.data + &quot;  &quot;);
-        }
+	// Post-Order Recursion
+	public void postOrderRecursion(BinaryTreeNode bt) {
+		if (bt != null) {
+			postOrderRecursion(bt.left);
+			postOrderRecursion(bt.right);
+			System.out.print(bt.data + &quot;  &quot;);
+		}
 
-    }
+	}
 
-    // Post-Order Iteration
-    public void postOrderIteration(BinaryTreeNode bt) {
-        current = bt;
-        while (current != null || !btStack.isEmpty()) {
-            if (current != null) {
-                btStack.push(current);
-                current = current.left;
-            } else {
-                current = btStack.pop();
-                if (current.isFinished) { // we use isFinished as a flag to see
-                                            // if both of the children have been
-                                            // visited.
-                    System.out.print(current.data + &quot;  &quot;);
-                    current = null;
-                } else {
-                    current.isFinished = true;
-                    btStack.push(current);
-                    current = current.right;
-                }
-            }
-        }
+	// Post-Order Iteration
+	public void postOrderIteration(BinaryTreeNode bt) {
+		current = bt;
+		while (current != null || !btStack.isEmpty()) {
+			if (current != null) {
+				btStack.push(current);
+				current = current.left;
+			} else {
+				current = btStack.pop();
+				if (current.isFinished) { // we use isFinished as a flag to see
+											// if both of the children have been
+											// visited.
+					System.out.print(current.data + &quot;  &quot;);
+					current = null;
+				} else {
+					current.isFinished = true;
+					btStack.push(current);
+					current = current.right;
+				}
+			}
+		}
 
-    }
+	}
 
-    @Test
-    public void generalTest() {
-        BinaryTreeNode root = new BinaryTreeNode(1);
-        BinaryTreeNode left = new BinaryTreeNode(2);
-        BinaryTreeNode right = new BinaryTreeNode(3);
-        root.left = left;
-        root.right = right;
+	@Test
+	public void generalTest() {
+		BinaryTreeNode root = new BinaryTreeNode(1);
+		BinaryTreeNode left = new BinaryTreeNode(2);
+		BinaryTreeNode right = new BinaryTreeNode(3);
+		root.left = left;
+		root.right = right;
 
-        left.left = new BinaryTreeNode(4);
-        left.right = new BinaryTreeNode(5);
-        right.left = new BinaryTreeNode(6);
-        right.right = new BinaryTreeNode(7);
-        System.out.println(&quot;========Pre Order Test=========&quot;);
-        preOrderRecursion(root);
-        System.out.println();
-        preOrderIteration(root);
-        System.out.println();
+		left.left = new BinaryTreeNode(4);
+		left.right = new BinaryTreeNode(5);
+		right.left = new BinaryTreeNode(6);
+		right.right = new BinaryTreeNode(7);
+		System.out.println(&quot;========Pre Order Test=========&quot;);
+		preOrderRecursion(root);
+		System.out.println();
+		preOrderIteration(root);
+		System.out.println();
 
-        System.out.println(&quot;========In Order Test=========&quot;);
-        inOrderRecursion(root);
-        System.out.println();
-        inOrderIteration(root);
-        System.out.println();
+		System.out.println(&quot;========In Order Test=========&quot;);
+		inOrderRecursion(root);
+		System.out.println();
+		inOrderIteration(root);
+		System.out.println();
 
-        System.out.println(&quot;========Post Order Test=========&quot;);
-        postOrderRecursion(root);
-        System.out.println();
-        postOrderIteration(root);
-    }
+		System.out.println(&quot;========Post Order Test=========&quot;);
+		postOrderRecursion(root);
+		System.out.println();
+		postOrderIteration(root);
+	}
 }
 
 class BinaryTreeNode {
-    int data;
-    boolean isFinished;
-    BinaryTreeNode left = null;
-    BinaryTreeNode right = null;
+	int data;
+	boolean isFinished;
+	BinaryTreeNode left = null;
+	BinaryTreeNode right = null;
 
-    public BinaryTreeNode(int data) {
-        this.data = data;
-    }
+	public BinaryTreeNode(int data) {
+		this.data = data;
+	}
 }
 </code></pre></noscript></div>
-
-
 
 ]]></content>
   </entry>

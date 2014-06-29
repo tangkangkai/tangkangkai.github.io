@@ -9,9 +9,7 @@
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="1.Arrays： initialization: int[] arr = new int[5]; //the default value would be 0(default value of int)
-int[] arr = new int[]{1, 2, 3, 4, 5};
-int[] &hellip;">
+  <meta name="description" content="1.Arrays： initialization: int[] arr = new int[5]; //the default value would be 0(default value of int) int[] arr = new int[]{1, 2, 3, 4, 5}; int[] &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -94,72 +92,70 @@ int[] &hellip;">
   </header>
 
 
-<div class="entry-content"><p>1.<strong>Arrays</strong>：</p>
+<div class="entry-content"><p>1.<strong>Arrays</strong>： </p>
 
 <ul>
-<li>initialization:
+  <li>initialization:
+    <ul>
+      <li>int[] arr = new int[5]; //the default value would be 0(default value of int)  </li>
+      <li>int[] arr = new int[]{1, 2, 3, 4, 5};  </li>
+      <li>int[] arr = {1, 2, 3, 4, 5};</li>
+    </ul>
+  </li>
+  <li>
+    <p>sort:</p>
 
-<ul>
-<li>int[] arr = new int[5]; //the default value would be 0(default value of int)</li>
-<li>int[] arr = new int[]{1, 2, 3, 4, 5};</li>
-<li>int[] arr = {1, 2, 3, 4, 5};</li>
+    <ul>
+      <li>Arrays.sort([]);  </li>
+    </ul>
+  </li>
+  <li>
+    <p>BinarySearch: </p>
+
+    <ul>
+      <li>Arrays.binarySearch(arr,key);//如果存在返回的具体的角标位置，不存在返回的是  -插入点-1 <br />
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;figcaption&gt;<span>example  </span>&lt;/figcaption&gt;&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span></figure></notextile></li>
+    </ul>
+  </li>
 </ul>
-</li>
-<li><p>sort:</p>
-
-<ul>
-<li>Arrays.sort([]);</li>
-</ul>
-</li>
-<li><p>BinarySearch:</p>
-
-<ul>
-<li>Arrays.binarySearch(arr,key);//如果存在返回的具体的角标位置，不存在返回的是  -插入点-1</li>
-</ul>
-</li>
-</ul>
-
-
-<figure class='code'><figcaption><span>example  </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">halfSearch_2</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span><span class="kt">int</span> <span class="n">key</span><span class="o">)</span>
-</span><span class='line'><span class="o">{</span>
-</span><span class='line'>  <span class="kt">int</span> <span class="n">max</span><span class="o">,</span><span class="n">min</span><span class="o">,</span><span class="n">mid</span><span class="o">;</span>
-</span><span class='line'>  <span class="n">min</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-</span><span class='line'>  <span class="n">max</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">while</span><span class="o">(</span><span class="n">min</span><span class="o">&lt;=</span><span class="n">max</span><span class="o">)</span>
-</span><span class='line'>  <span class="o">{</span>
-</span><span class='line'>      <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">max</span><span class="o">+</span><span class="n">min</span><span class="o">)&gt;&gt;</span><span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="k">if</span><span class="o">(</span><span class="n">key</span><span class="o">&gt;</span><span class="n">arr</span><span class="o">[</span><span class="n">mid</span><span class="o">])</span>
-</span><span class='line'>          <span class="n">min</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>      <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">key</span><span class="o">&lt;</span><span class="n">arr</span><span class="o">[</span><span class="n">mid</span><span class="o">])</span>
-</span><span class='line'>          <span class="n">max</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>      <span class="k">else</span>
-</span><span class='line'>          <span class="k">return</span> <span class="n">mid</span><span class="o">;</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'>  <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<p>&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class="java"><span class="line"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">halfSearch_2</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span><span class="kt">int</span> <span class="n">key</span><span class="o">)</span>
+</span><span class="line"><span class="o">{</span>
+</span><span class="line">	<span class="kt">int</span> <span class="n">max</span><span class="o">,</span><span class="n">min</span><span class="o">,</span><span class="n">mid</span><span class="o">;</span>
+</span><span class="line">	<span class="n">min</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class="line">	<span class="n">max</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+</span><span class="line">
+</span><span class="line">	<span class="k">while</span><span class="o">(</span><span class="n">min</span><span class="o">&lt;=</span><span class="n">max</span><span class="o">)</span>
+</span><span class="line">	<span class="o">{</span>
+</span><span class="line">		<span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">max</span><span class="o">+</span><span class="n">min</span><span class="o">)&gt;&gt;</span><span class="mi">1</span><span class="o">;</span>
+</span><span class="line">
+</span><span class="line">		<span class="k">if</span><span class="o">(</span><span class="n">key</span><span class="o">&gt;</span><span class="n">arr</span><span class="o">[</span><span class="n">mid</span><span class="o">])</span>
+</span><span class="line">			<span class="n">min</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+</span><span class="line">		<span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">key</span><span class="o">&lt;</span><span class="n">arr</span><span class="o">[</span><span class="n">mid</span><span class="o">])</span>
+</span><span class="line">			<span class="n">max</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+</span><span class="line">		<span class="k">else</span>
+</span><span class="line">			<span class="k">return</span> <span class="n">mid</span><span class="o">;</span>
+</span><span class="line">	<span class="o">}</span>
+</span><span class="line">	<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+</span><span class="line"><span class="o">}</span>
+</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/notextile&gt;&lt;/div&gt;</p>
 </div>
 
 

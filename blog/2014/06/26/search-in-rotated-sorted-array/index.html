@@ -94,124 +94,119 @@
 
 <div class="entry-content"><p>Q：Suppose a sorted array is rotated at some pivot unknown to you beforehand.You are given a target value to search. If found in the array return its index, otherwise return -1.You may assume no duplicate exists in the array.</p>
 
-<p>Q2:Follow up for &ldquo;Search in Rotated Sorted Array&rdquo;:
-What if duplicates are allowed?<br/>
-Would this affect the run-time complexity? How and why?<br/>
+<p>Q2:Follow up for “Search in Rotated Sorted Array”:
+What if duplicates are allowed?<br />
+Would this affect the run-time complexity? How and why?<br />
 Write a function to determine if a given target is in the array.</p>
 
 <hr />
 
-<p>For sorted array <strong>not rotated</strong>, we use binary search, the runtime of which would be O(logn). The basic steps would be :</p>
+<p>For sorted array <strong>not rotated</strong>, we use binary search, the runtime of which would be O(logn). The basic steps would be : 
+&gt;
+1. Set <em>left</em> be the left most point of the array, similar to <em>right</em>
+2. Set <em>mid</em> to be the mid point of the array : (left + right) / 2
+3. If <em>mid</em> element is equal to target, we return the index
+4. Otherwise, we compare the <em>mid</em> element with target, and repeat these steps on the subtracted array (either <em>left</em> to <em>mid</em>-1 or <em>mid</em>+1 to right)。
+5. If we can’t find one before left &lt;= right, we will return -1.</p>
 
-<blockquote><ol>
-<li>Set <em>left</em> be the left most point of the array, similar to <em>right</em></li>
-<li>Set <em>mid</em> to be the mid point of the array : (left + right) / 2</li>
-<li>If <em>mid</em> element is equal to target, we return the index</li>
-<li>Otherwise, we compare the <em>mid</em> element with target, and repeat these steps on the subtracted array (either <em>left</em> to <em>mid</em>-1 or <em>mid</em>+1 to right)。</li>
-<li>If we can&rsquo;t find one before left &lt;= right, we will return -1.</li>
-</ol>
-</blockquote>
+<p>Now the array is rotated, while when doing binary search, after <em>mid</em> divides the array into two parts, there must be one part that is in sequence. Thus we can adjust the previous solution a little bit, that is, after step 3, we figure out which part is in sequence, then we judge whether the target would reside in the part. If so, actually it becomes same with normal binary search, if not, it must reside in the other part(based on the fact that the target is in the array), then we can repeat the procedure again on the subtracted array. </p>
 
-<p>Now the array is rotated, while when doing binary search, after <em>mid</em> divides the array into two parts, there must be one part that is in sequence. Thus we can adjust the previous solution a little bit, that is, after step 3, we figure out which part is in sequence, then we judge whether the target would reside in the part. If so, actually it becomes same with normal binary search, if not, it must reside in the other part(based on the fact that the target is in the array), then we can repeat the procedure again on the subtracted array.</p>
-
-<figure class='code'><figcaption><span>Search in Sorted Array</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'>     <span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
-</span><span class='line'>
-</span><span class='line'>          <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>              <span class="k">return</span> <span class="n">mid</span><span class="o">;</span>
-</span><span class='line'>          <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">])</span> <span class="o">{</span>
-</span><span class='line'>              <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">target</span> <span class="o">&amp;&amp;</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">])</span> <span class="o">{</span>
-</span><span class='line'>                  <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>              <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class='line'>                  <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>              <span class="o">}</span>
-</span><span class='line'>          <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class='line'>              <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span> <span class="o">&amp;&amp;</span> <span class="n">target</span> <span class="o">&lt;=</span> <span class="n">A</span><span class="o">[</span><span class="n">right</span><span class="o">])</span> <span class="o">{</span>
-</span><span class='line'>                  <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>              <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class='line'>                  <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>              <span class="o">}</span>
-</span><span class='line'>          <span class="o">}</span>
-</span><span class='line'>      <span class="o">}</span>
-</span><span class='line'>      <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Search in Sorted Array</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line">		<span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">			<span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+</span><span class="line">
+</span><span class="line">			<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">				<span class="k">return</span> <span class="n">mid</span><span class="o">;</span>
+</span><span class="line">			<span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">])</span> <span class="o">{</span>
+</span><span class="line">				<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">target</span> <span class="o">&amp;&amp;</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">])</span> <span class="o">{</span>
+</span><span class="line">					<span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+</span><span class="line">				<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class="line">					<span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+</span><span class="line">				<span class="o">}</span>
+</span><span class="line">			<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class="line">				<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span> <span class="o">&amp;&amp;</span> <span class="n">target</span> <span class="o">&lt;=</span> <span class="n">A</span><span class="o">[</span><span class="n">right</span><span class="o">])</span> <span class="o">{</span>
+</span><span class="line">					<span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+</span><span class="line">				<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class="line">					<span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+</span><span class="line">				<span class="o">}</span>
+</span><span class="line">			<span class="o">}</span>
+</span><span class="line">		<span class="o">}</span>
+</span><span class="line">		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>If duplicates are allowed, we have no idea if the part is in sequence by comparing <em>left</em> and <em>mid</em>(or <em>mid</em> and <em>right</em>) as they may be the same.
 Thus we need figure if target must reside in one of the two parts(to see if <em>left</em>&lt;target&lt;<em>mid</em> or <em>mid</em> &lt; target &lt; <em>right</em>), if so, we do the same previously. Otherwise, if we could not make sure either of them, we need narrow the range of left to right and repeat the procedure again. By doing so, the runtime would be O(n) in worst. Here is the detail:</p>
 
-<figure class='code'><figcaption><span>Search in Sorted Array</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'>     <span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>          <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
-</span><span class='line'>          <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>              <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-</span><span class='line'>          <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class='line'>              <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span> <span class="o">&amp;&amp;</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">])</span> <span class="o">{</span>
-</span><span class='line'>                  <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>              <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span> <span class="o">&amp;&amp;</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">[</span><span class="n">right</span><span class="o">])</span> <span class="o">{</span>
-</span><span class='line'>                  <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class='line'>              <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class='line'>                  <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>                      <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-</span><span class='line'>                  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class='line'>                      <span class="n">left</span><span class="o">++;</span>
-</span><span class='line'>                  <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>                  <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">right</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>                      <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-</span><span class='line'>                  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class='line'>                      <span class="n">right</span><span class="o">--;</span>
-</span><span class='line'>                  <span class="o">}</span>
-</span><span class='line'>              <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>          <span class="o">}</span>
-</span><span class='line'>      <span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Search in Sorted Array</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line">		<span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">			<span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+</span><span class="line">			<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">				<span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span><span class="line">			<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class="line">				<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span> <span class="o">&amp;&amp;</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">])</span> <span class="o">{</span>
+</span><span class="line">					<span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+</span><span class="line">				<span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span> <span class="o">&amp;&amp;</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">[</span><span class="n">right</span><span class="o">])</span> <span class="o">{</span>
+</span><span class="line">					<span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+</span><span class="line">				<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class="line">					<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">						<span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span><span class="line">					<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class="line">						<span class="n">left</span><span class="o">++;</span>
+</span><span class="line">					<span class="o">}</span>
+</span><span class="line">
+</span><span class="line">					<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">right</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">						<span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span><span class="line">					<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class="line">						<span class="n">right</span><span class="o">--;</span>
+</span><span class="line">					<span class="o">}</span>
+</span><span class="line">				<span class="o">}</span>
+</span><span class="line">
+</span><span class="line">			<span class="o">}</span>
+</span><span class="line">		<span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 </div>
 
 
