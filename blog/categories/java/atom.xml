@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-06-29T08:57:32-07:00</updated>
+  <updated>2014-06-29T09:03:10-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -45,7 +45,8 @@
   </li>
   <li><strong>Constructor</strong>
     <ul>
-      <li>when newed, constructor functions will be called</li>
+      <li>when newed, constructor functions must be called</li>
+      <li>if not defined, there would be a default constructor function. If defined, the default one is overide.</li>
     </ul>
   </li>
 </ul>
