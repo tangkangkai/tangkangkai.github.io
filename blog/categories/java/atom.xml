@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-06-29T08:50:22-07:00</updated>
+  <updated>2014-06-29T08:57:32-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -19,13 +19,20 @@
     <updated>2014-06-29T07:33:54-07:00</updated>
     <id>http://tangkangkai.github.io/blog/2014/06/29/relearn-java-day-4</id>
     <content type="html"><![CDATA[<ul>
-  <li><strong>encapsulation</strong>
+  <li><strong>Encapsulation</strong>
     <ul>
       <li>hide details, including private the member variable.(set(), get())</li>
       <li>class, framework are also encapsulation </li>
     </ul>
   </li>
-  <li><strong>member variable</strong>:
+  <li><strong>Anonymous object</strong>
+    <ul>
+      <li>new Car();</li>
+      <li>when member functions only called once, we can use anonymous object</li>
+      <li>can be regarded as function arguments.</li>
+    </ul>
+  </li>
+  <li><strong>Member variable</strong>:
     <ul>
       <li>when object created, the corresponding member variables are initialized with default value (as the object is created in heap)</li>
       <li>the difference between member variable and local variable:<br />
@@ -36,11 +43,9 @@
   4.member variable has default value, local variable doesn’t</li>
     </ul>
   </li>
-  <li><strong>anonymous object</strong>
+  <li><strong>Constructor</strong>
     <ul>
-      <li>new Car();</li>
-      <li>when member functions only called once, we can use anonymous object</li>
-      <li>can be regarded as function arguments.</li>
+      <li>when newed, constructor functions will be called</li>
     </ul>
   </li>
 </ul>
