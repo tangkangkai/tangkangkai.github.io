@@ -212,28 +212,30 @@ If we use brute force, the time complexity would be O(n^2), we can figure out a 
     <ul>
       <li>Arrays.binarySearch(arr,key);//如果存在返回的具体的角标位置，不存在返回的是  -插入点-1   </li>
     </ul>
-
-    <p>public static int halfSearch_2(int[] arr,int key)
-  {
-      int max,min,mid;
-      min = 0;
-      max = arr.length-1;</p>
-
-    <pre><code>  while(min&lt;=max)
-  {
-      mid = (max+min)&gt;&gt;1;
-
-      if(key&gt;arr[mid])
-          min = mid + 1;
-      else if(key&lt;arr[mid])
-          max = mid - 1;
-      else
-          return mid;
-  }
-  return -1;   }
-</code></pre>
   </li>
 </ul>
+
+<p>`
+public static int halfSearch_2(int[] arr,int key)
+	{
+		int max,min,mid;
+		min = 0;
+		max = arr.length-1;</p>
+
+<pre><code>	while(min&lt;=max)
+	{
+		mid = (max+min)&gt;&gt;1;
+
+		if(key&gt;arr[mid])
+			min = mid + 1;
+		else if(key&lt;arr[mid])
+			max = mid - 1;
+		else
+			return mid;
+	}
+	return -1;
+} `{:lang="java"}
+</code></pre>
 
 </div>
   
