@@ -1,12 +1,12 @@
 /*
-Syntax error: Invalid CSS after "...ustom/coderay";": expected selector or at-rule, was "<link href="/st..."
-        on line 2 of c:/projects/github/octopress/sass/custom/_styles.scss
+Syntax error: Invalid CSS after "": expected selector or at-rule, was "<link href="/st..."
+        on line 1 of c:/projects/github/octopress/sass/custom/_styles.scss
         from line 11 of c:/projects/github/octopress/sass/screen.scss
 
 1: c:/projects/github/octopress/sass/screen.scss
 
 Backtrace:
-c:/projects/github/octopress/sass/custom/_styles.scss:2
+c:/projects/github/octopress/sass/custom/_styles.scss:1
 c:/projects/github/octopress/sass/screen.scss:11
 c:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:1147:in `expected'
 c:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/sass-3.2.19/lib/sass/scss/parser.rb:1085:in `expected'
@@ -55,4 +55,4 @@ c:/Ruby200-x64/bin/compass:23:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Invalid CSS after \"...ustom/coderay\";\": expected selector or at-rule, was \"<link href=\"/st...\"\A         on line 2 of c:/projects/github/octopress/sass/custom/_styles.scss\A         from line 11 of c:/projects/github/octopress/sass/screen.scss\A \A 1: c:/projects/github/octopress/sass/screen.scss"; }
+  content: "Syntax error: Invalid CSS after \"\": expected selector or at-rule, was \"<link href=\"/st...\"\A         on line 1 of c:/projects/github/octopress/sass/custom/_styles.scss\A         from line 11 of c:/projects/github/octopress/sass/screen.scss\A \A 1: c:/projects/github/octopress/sass/screen.scss"; }
