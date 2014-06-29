@@ -4,7 +4,7 @@
   <title><![CDATA[KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-06-29T09:20:46-07:00</updated>
+  <updated>2014-06-29T09:23:21-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -46,7 +46,7 @@
     <ul>
       <li>when newed, constructor functions must be called</li>
       <li>if not defined, there would be a default constructor function. If defined, the default one not used.</li>
-      <li></li>
+      <li>could be overloaded</li>
     </ul>
   </li>
 </ul>
