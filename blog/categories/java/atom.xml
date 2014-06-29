@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-06-28T23:26:05-07:00</updated>
+  <updated>2014-06-28T23:32:28-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -84,18 +84,6 @@
         }
         <span class="keyword">return</span> -<span class="integer">1</span>;
     }
-</pre></td>
-</tr></table>
-</div>
-
-<div><table class="CodeRay"><tr>
-  <td class="line-numbers"><pre><a href="#n1" name="n1">1</a>
-<a href="#n2" name="n2">2</a>
-<a href="#n3" name="n3">3</a>
-</pre></td>
-  <td class="code"><pre><span class="keyword">def</span> <span class="function">hello</span>
-  puts <span class="string"><span class="delimiter">&quot;</span><span class="content">hello world</span><span class="delimiter">&quot;</span></span>
-<span class="keyword">end</span>
 </pre></td>
 </tr></table>
 </div>
