@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-06-29T08:22:38-07:00</updated>
+  <updated>2014-06-29T08:24:14-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -23,7 +23,8 @@
     <ul>
       <li>when object created, the corresponding member variables are initialized with default value (as the object is created in heap)</li>
       <li>the difference between member variable and local variable:<br />
-  ^ 1.member variable is defined in the block of class, can be visited through the class. local variable is defined in the block of function.<br />
+  ^ 
+  1.member variable is defined in the block of class, can be visited through the class. local variable is defined in the block of function.<br />
   2.member variable is created in heap, while local variable in stack.<br />
   3.member variable exists with class, local variable exists with it’s corresponding blcok(functions).<br />
   4.member variable has default value, local variable doesn’t
