@@ -179,51 +179,34 @@ Given an array of integers, find two numbers such that they add up to a specific
 <p><strong>Two Sum</strong> : <br />
 If we use brute force, the time complexity would be O(n^2), we can figure out a better way. Try to think like this, first we get an element(say, at index  <em>i</em>) of the array, next we can determine if <em>target</em>-<em>element</em> is in the array(with the help of other data structures like HashSet). As there would be only one solution, we can safely return if we can find <em>target</em>-<em>element</em>  in the array from index <em>i+1</em> to <em>arr.length-1</em>.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Example</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-</pre></td><td class="code"><pre><code class="java"><span class="line">	<span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">twoSum</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">numbers</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-</span><span class="line">		<span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
-</span><span class="line">		<span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">set</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;();</span>
-</span><span class="line">		
-</span><span class="line">		<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-</span><span class="line">			<span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-</span><span class="line">			<span class="n">set</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">val</span><span class="o">);</span>
-</span><span class="line">		<span class="o">}</span>
-</span><span class="line">		
-</span><span class="line">		<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-</span><span class="line">			<span class="kt">int</span> <span class="n">goal</span> <span class="o">=</span> <span class="n">target</span> <span class="o">-</span> <span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-</span><span class="line">
-</span><span class="line">			<span class="k">if</span> <span class="o">(</span><span class="n">set</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">goal</span><span class="o">))</span> <span class="o">{</span>
-</span><span class="line">				<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">len</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
-</span><span class="line">					<span class="k">if</span><span class="o">(</span><span class="n">numbers</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">==</span> <span class="n">goal</span><span class="o">)</span> <span class="o">{</span>
-</span><span class="line">						<span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="o">};</span>
-</span><span class="line">					<span class="o">}</span>
-</span><span class="line">				<span class="o">}</span>
-</span><span class="line">			<span class="o">}</span>
-</span><span class="line">		<span class="o">}</span>
-</span><span class="line">		<span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-</span><span class="line">	<span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>    <span class="directive">public</span> <span class="type">int</span><span class="type">[]</span> twoSum(<span class="type">int</span><span class="type">[]</span> numbers, <span class="type">int</span> target) {
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        <span class="type">int</span> len = numbers.length;
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        <span class="predefined-type">Set</span>&lt;<span class="predefined-type">Integer</span>&gt; set = <span class="keyword">new</span> <span class="predefined-type">HashSet</span>&lt;&gt;();
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; len; i++) {
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>            <span class="type">int</span> val = numbers[i];
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>            set.add(val);
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        }
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; len; i++) {
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>            <span class="type">int</span> goal = target - numbers[i];
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>            <span class="keyword">if</span> (set.contains(goal)) {
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>                <span class="keyword">for</span> (<span class="type">int</span> j = i + <span class="integer">1</span>; j &lt; len; j++) {
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>                    <span class="keyword">if</span>(numbers[j] == goal) {
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>                        <span class="keyword">return</span> <span class="keyword">new</span> <span class="type">int</span><span class="type">[]</span>{i + <span class="integer">1</span>, j + <span class="integer">1</span>};
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>                    }
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>                }
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>            }
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>        }
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>        <span class="keyword">return</span> <span class="predefined-constant">null</span>;
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>    }
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>
+</pre></div>
+</div>
+</div>
 
 </div>
   
