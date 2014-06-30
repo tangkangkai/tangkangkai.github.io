@@ -8,11 +8,11 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Category: Leetcode - KK's Coding Blog</title>
+  <title>Permutation Sequence - KK's Coding Blog</title>
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="Category: leetcode">
+  <meta name="description" content="Question We have already solved Next Permutation question, with the help of this, we just need a loop to find the _k_th string. Here are the code: &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +21,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://tangkangkai.github.io/blog/categories/leetcode">
+  <link rel="canonical" href="http://tangkangkai.github.io/blog/2014/06/30/permutation-sequence">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="KK's Coding Blog" type="application/atom+xml">
@@ -68,105 +68,107 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Leetcode</h1>
+    
+      <h1 class="entry-title">Permutation Sequence</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-30T11:40:31-07:00" pubdate data-updated="true">Jun 30<sup>th</sup>, 2014</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p><a href="https://oj.leetcode.com/problems/permutation-sequence/">Question</a></p>
 
-  
-  <h2>2014</h2>
+<hr />
 
-<article>
-  
-<h1><a href="/blog/2014/06/30/permutation-sequence/">Permutation Sequence</a></h1>
-<time datetime="2014-06-30T11:40:31-07:00" pubdate><span class='month'>Jun</span> <span class='day'>30</span> <span class='year'>2014</span></time>
+<p>We have already solved <a href="http://www.codertkk.com/blog/2014/06/29/next-permutation/">Next Permutation</a> question, with the help of this, we just need a loop to find the _k_th string. Here are the code:</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/array/'>array</a>, <a class='category' href='/blog/categories/leetcode/'>leetcode</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2014/06/29/next-permutation/">Next Permutation</a></h1>
-<time datetime="2014-06-29T22:33:09-07:00" pubdate><span class='month'>Jun</span> <span class='day'>29</span> <span class='year'>2014</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/array/'>array</a>, <a class='category' href='/blog/categories/leetcode/'>leetcode</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2014/06/29/remove-elements/">Remove Elements</a></h1>
-<time datetime="2014-06-29T18:28:09-07:00" pubdate><span class='month'>Jun</span> <span class='day'>29</span> <span class='year'>2014</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/array/'>array</a>, <a class='category' href='/blog/categories/leetcode/'>leetcode</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2014/06/28/num-sum/">Num Sum</a></h1>
-<time datetime="2014-06-28T11:39:45-07:00" pubdate><span class='month'>Jun</span> <span class='day'>28</span> <span class='year'>2014</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/array/'>array</a>, <a class='category' href='/blog/categories/leetcode/'>leetcode</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2014/06/26/search-in-rotated-sorted-array/">Search in Rotated Sorted Array</a></h1>
-<time datetime="2014-06-26T17:23:30-07:00" pubdate><span class='month'>Jun</span> <span class='day'>26</span> <span class='year'>2014</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/array/'>array</a>, <a class='category' href='/blog/categories/leetcode/'>leetcode</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/blog/2014/06/25/remove-duplicates-in-array/">Remove Duplicates in Array</a></h1>
-<time datetime="2014-06-25T22:37:26-07:00" pubdate><span class='month'>Jun</span> <span class='day'>25</span> <span class='year'>2014</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/array/'>array</a>, <a class='category' href='/blog/categories/leetcode/'>leetcode</a></span>
-</footer>
-
-
-</article>
-
+<pre><code>public String getPermutation(int n, int k) {
+	int[] num = new int[n];
+	for (int i = 0; i &lt; n; i++) {
+		num[i] = i + 1;
+	}
+	
+	for(int i = 1; i &lt; k; i++ ) {
+		nextPermutation(num);
+	}
+		
+	StringBuilder sb = new StringBuilder();
+	for(int i : num) {
+		sb.append(i);
+	}
+	return sb.toString();
+}
+</code></pre>
+<p>{.language-java}</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Authored by <span class="fn">Kangkai Tang</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-30T11:40:31-07:00" pubdate data-updated="true">Jun 30<sup>th</sup>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/array/'>array</a>, <a class='category' href='/blog/categories/leetcode/'>leetcode</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tangkangkai.github.io/blog/2014/06/30/permutation-sequence/" data-via="" data-counturl="http://tangkangkai.github.io/blog/2014/06/30/permutation-sequence/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/06/29/next-permutation/" title="Previous Post: Next Permutation">&laquo; Next Permutation</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 
