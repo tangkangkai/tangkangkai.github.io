@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+
+<link href="/stylesheets/coderay-github.css" media="screen" rel="stylesheet" type="text/css">
+
+<head>
+  <meta charset="utf-8">
+  <title>Next Permutation - KK's Coding Blog</title>
+  <meta name="author" content="Kangkai Tang">
+
+  
+  <meta name="description" content="Question For this question, in order to get the next larger permutation, we need start from the last element, compare it with the previous element to &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tangkangkai.github.io/blog/2014/06/29/next-permutation">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="KK's Coding Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">KK's Coding Blog</a></h1>
+  
+    <h2>keep coding keep pushing keep believing</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:tangkangkai.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Next Permutation</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-29T22:33:09-07:00" pubdate data-updated="true">Jun 29<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="https://oj.leetcode.com/problems/next-permutation/">Question</a></p>
+
+<p>For this question, in order to get the <em>next</em> larger permutation, we need start from the last element, compare it with the previous element to see if it’s larger(if not, swapping them would make the number smaller). We start from index <em>arr.length</em> -2 to 0 to see which element could be swapped, say we are now at index i, then we use j to traverse from index <em>arr.length</em> -1 to i - 1 to see if arr[i] is smaller than arr[j], if so we can safely swap them(As if we come to index i, the elements from index i + 1 to <em>arr.length</em> -1 must be in decreasing order, otherwise, the swap would happen before i). After we swap, there need two things to be done, first we sort the array after index i, second we return directly. If the previous requirement not met, we simply sort and return.</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span class="directive">public</span> <span class="type">void</span> nextPermutation(<span class="type">int</span><span class="type">[]</span> num) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>    <span class="type">int</span> lastIndex = num.length - <span class="integer">1</span>;
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>    <span class="keyword">for</span> (<span class="type">int</span> i = lastIndex - <span class="integer">1</span>; i &gt;= <span class="integer">0</span>; i--) {
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        <span class="keyword">for</span> (<span class="type">int</span> j = lastIndex; j &gt; i; j--) {
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>            <span class="keyword">if</span> (num[i] &lt; num[j]) {
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>                swap(num, i, j);
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>                <span class="keyword">for</span> (<span class="type">int</span> m = i + <span class="integer">2</span>; m &lt;= num.length - <span class="integer">1</span>; m++) {
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>                    <span class="keyword">for</span> (<span class="type">int</span> n = m; n &gt; i + <span class="integer">1</span> &amp;&amp; num[n] &lt; num[n - <span class="integer">1</span>]; n--) {
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>                        swap(num, n, n - <span class="integer">1</span>);
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>                    }
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>                }
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>                <span class="keyword">return</span>;
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>            }
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>        }
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>    }
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>    <span class="predefined-type">Arrays</span>.sort(num);
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>}
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span><span class="comment">/* Helper Functions */</span>
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span><span class="directive">public</span> <span class="type">void</span> swap(<span class="type">int</span><span class="type">[]</span> num, <span class="type">int</span> i, <span class="type">int</span> j) {
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>    <span class="type">int</span> temp = num[i];
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>    num[i] = num[j];
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>    num[j] = temp;
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>}
+</pre></div>
+</div>
+</div>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Authored by <span class="fn">Kangkai Tang</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-29T22:33:09-07:00" pubdate data-updated="true">Jun 29<sup>th</sup>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/array/'>array</a>, <a class='category' href='/blog/categories/leetcode/'>leetcode</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tangkangkai.github.io/blog/2014/06/29/next-permutation/" data-via="" data-counturl="http://tangkangkai.github.io/blog/2014/06/29/next-permutation/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/06/29/remove-elements/" title="Previous Post: Remove Elements">&laquo; Remove Elements</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Kangkai Tang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

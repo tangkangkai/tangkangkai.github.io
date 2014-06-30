@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Array | KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/blog/categories/array/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-06-29T18:35:32-07:00</updated>
+  <updated>2014-06-29T23:20:40-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -12,6 +12,80 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Next Permutation]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/06/29/next-permutation/"/>
+    <updated>2014-06-29T22:33:09-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/06/29/next-permutation</id>
+    <content type="html"><![CDATA[<p><a href="https://oj.leetcode.com/problems/next-permutation/">Question</a></p>
+
+<p>For this question, in order to get the <em>next</em> larger permutation, we need start from the last element, compare it with the previous element to see if it’s larger(if not, swapping them would make the number smaller). We start from index <em>arr.length</em> -2 to 0 to see which element could be swapped, say we are now at index i, then we use j to traverse from index <em>arr.length</em> -1 to i - 1 to see if arr[i] is smaller than arr[j], if so we can safely swap them(As if we come to index i, the elements from index i + 1 to <em>arr.length</em> -1 must be in decreasing order, otherwise, the swap would happen before i). After we swap, there need two things to be done, first we sort the array after index i, second we return directly. If the previous requirement not met, we simply sort and return.</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span class="directive">public</span> <span class="type">void</span> nextPermutation(<span class="type">int</span><span class="type">[]</span> num) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>    <span class="type">int</span> lastIndex = num.length - <span class="integer">1</span>;
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>    <span class="keyword">for</span> (<span class="type">int</span> i = lastIndex - <span class="integer">1</span>; i &gt;= <span class="integer">0</span>; i--) {
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        <span class="keyword">for</span> (<span class="type">int</span> j = lastIndex; j &gt; i; j--) {
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>            <span class="keyword">if</span> (num[i] &lt; num[j]) {
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>                swap(num, i, j);
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>                <span class="keyword">for</span> (<span class="type">int</span> m = i + <span class="integer">2</span>; m &lt;= num.length - <span class="integer">1</span>; m++) {
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>                    <span class="keyword">for</span> (<span class="type">int</span> n = m; n &gt; i + <span class="integer">1</span> &amp;&amp; num[n] &lt; num[n - <span class="integer">1</span>]; n--) {
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>                        swap(num, n, n - <span class="integer">1</span>);
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>                    }
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>                }
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>                <span class="keyword">return</span>;
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>            }
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>        }
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>    }
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>    <span class="predefined-type">Arrays</span>.sort(num);
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>}
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span><span class="comment">/* Helper Functions */</span>
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span><span class="directive">public</span> <span class="type">void</span> swap(<span class="type">int</span><span class="type">[]</span> num, <span class="type">int</span> i, <span class="type">int</span> j) {
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>    <span class="type">int</span> temp = num[i];
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>    num[i] = num[j];
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>    num[j] = temp;
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>}
+</pre></div>
+</div>
+</div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Remove Elements]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/06/29/remove-elements/"/>
+    <updated>2014-06-29T18:28:09-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/06/29/remove-elements</id>
+    <content type="html"><![CDATA[<p>Q:Given an array and a value, remove all instances of that value in place and return the new length.The order of elements can be changed. It doesn’t matter what you leave beyond the new length. </p>
+
+<hr />
+
+<p>This question is an easier version of <a href="http://www.codertkk.com/blog/2014/06/25/remove-duplicates-in-array/">Remove duplicates in array</a>. Below follows the code:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="type">int</span> removeElement(<span class="type">int</span><span class="type">[]</span> A, <span class="type">int</span> elem) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="type">int</span> offset = <span class="integer">0</span>;
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>    
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; A.length; i++) {
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>            <span class="keyword">if</span> (A[i] == elem) {
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>                offset++;
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>            } <span class="keyword">else</span> {
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>                A[i - offset] = A[i];
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>            }
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        }
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>    
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        <span class="keyword">return</span> A.length - offset;
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>    }
+</pre></div>
+</div>
+</div>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Num Sum]]></title>
