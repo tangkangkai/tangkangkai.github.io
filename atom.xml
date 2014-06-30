@@ -4,7 +4,7 @@
   <title><![CDATA[KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-06-30T11:48:54-07:00</updated>
+  <updated>2014-06-30T13:02:39-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -22,26 +22,28 @@
 
 <hr />
 
-<p>We have already solved <a href="http://www.codertkk.com/blog/2014/06/29/next-permutation/">Next Permutation</a> question, with the help of this, we just need a loop to find the _k_th string. Here are the code:</p>
+<p>We have already solved <a href="http://www.codertkk.com/blog/2014/06/29/next-permutation/">Next Permutation</a> question, with the help of this, we just need a loop to find the <em>k</em> th string. Here are the code:</p>
 
-<pre><code>public String getPermutation(int n, int k) {
-	int[] num = new int[n];
-	for (int i = 0; i &lt; n; i++) {
-		num[i] = i + 1;
-	}
-	
-	for(int i = 1; i &lt; k; i++ ) {
-		nextPermutation(num);
-	}
-		
-	StringBuilder sb = new StringBuilder();
-	for(int i : num) {
-		sb.append(i);
-	}
-	return sb.toString();
-}
-</code></pre>
-<p>{.language-java}</p>
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span class="directive">public</span> <span class="predefined-type">String</span> getPermutation(<span class="type">int</span> n, <span class="type">int</span> k) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>    <span class="type">int</span><span class="type">[]</span> num = <span class="keyword">new</span> <span class="type">int</span>[n];
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; n; i++) {
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        num[i] = i + <span class="integer">1</span>;
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>    }
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>    
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="integer">1</span>; i &lt; k; i++ ) {
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        nextPermutation(num);
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>    }
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>    <span class="predefined-type">StringBuilder</span> sb = <span class="keyword">new</span> <span class="predefined-type">StringBuilder</span>();
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>    <span class="keyword">for</span>(<span class="type">int</span> i : num) {
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>        sb.append(i);
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>    }
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>    <span class="keyword">return</span> sb.toString();
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>}
+</pre></div>
+</div>
+</div>
 ]]></content>
   </entry>
   
