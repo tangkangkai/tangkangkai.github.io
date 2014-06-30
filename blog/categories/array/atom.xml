@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Array | KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/blog/categories/array/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-06-29T23:20:40-07:00</updated>
+  <updated>2014-06-30T00:15:18-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -20,7 +20,7 @@
     <id>http://tangkangkai.github.io/blog/2014/06/29/next-permutation</id>
     <content type="html"><![CDATA[<p><a href="https://oj.leetcode.com/problems/next-permutation/">Question</a></p>
 
-<p>For this question, in order to get the <em>next</em> larger permutation, we need start from the last element, compare it with the previous element to see if it’s larger(if not, swapping them would make the number smaller). We start from index <em>arr.length</em> -2 to 0 to see which element could be swapped, say we are now at index i, then we use j to traverse from index <em>arr.length</em> -1 to i - 1 to see if arr[i] is smaller than arr[j], if so we can safely swap them(As if we come to index i, the elements from index i + 1 to <em>arr.length</em> -1 must be in decreasing order, otherwise, the swap would happen before i). After we swap, there need two things to be done, first we sort the array after index i, second we return directly. If the previous requirement not met, we simply sort and return.</p>
+<p>For this question, in order to get the <em>next</em> larger permutation, we need start from the last element, compare it with the previous element to see if it’s larger(if not, swapping them would make the number smaller). We start from index <em>arr.length</em> -2 to 0 to see which element could be swapped, say we are now at index i, then we use j to traverse from index <em>arr.length</em> -1 to i - 1 to see if arr[i] is smaller than arr[j], if so we can safely swap them(As if we come to index i, the elements from index i + 1 to <em>arr.length</em> -1 must be in decreasing order, otherwise, the swap would happen before i). After we swap, there need two things to be done, first we sort the array after index i(here I use <a href="http://www.sorting-algorithms.com/insertion-sort">insertion sort</a>), then we return directly. If the previous requirement not met, we simply sort and return.</p>
 
 <div><div class="CodeRay">
   <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span class="directive">public</span> <span class="type">void</span> nextPermutation(<span class="type">int</span><span class="type">[]</span> num) {
@@ -60,7 +60,7 @@
     <link href="http://tangkangkai.github.io/blog/2014/06/29/remove-elements/"/>
     <updated>2014-06-29T18:28:09-07:00</updated>
     <id>http://tangkangkai.github.io/blog/2014/06/29/remove-elements</id>
-    <content type="html"><![CDATA[<p>Q:Given an array and a value, remove all instances of that value in place and return the new length.The order of elements can be changed. It doesn’t matter what you leave beyond the new length. </p>
+    <content type="html"><![CDATA[<p><a href="https://oj.leetcode.com/problems/remove-element/">Question</a></p>
 
 <hr />
 
@@ -94,13 +94,9 @@
     <id>http://tangkangkai.github.io/blog/2014/06/28/num-sum</id>
     <content type="html"><![CDATA[<p>Questions:  </p>
 
-<p><strong>Two Sum</strong> : 
-Given an array of integers, find two numbers such that they add up to a specific target number. The function twoSum should return indices (not zero based) of the two numbers such that they add up to the target. </p>
+<p><a href="https://oj.leetcode.com/problems/two-sum/"><strong>Two Sum</strong></a> </p>
 
-<p><strong>Three</strong>:  </p>
-
-<hr />
-<p>Answers:  </p>
+<p><a href="https://oj.leetcode.com/problems/3sum/"><strong>Three Sum</strong></a> </p>
 
 <p><strong>Two Sum</strong> : <br />
 If we use brute force, the time complexity would be O(n^2), we can figure out a better way. Try to think like this, first we get an element(say, at index  <em>i</em>) of the array, next we can determine if <em>target</em>-<em>element</em> is in the array(with the help of other data structures like HashSet). As there would be only one solution, we can safely return if we can find <em>target</em>-<em>element</em>  in the array from index <em>i+1</em> to <em>arr.length-1</em>.</p>
@@ -129,6 +125,14 @@ If we use brute force, the time complexity would be O(n^2), we can figure out a 
 <span class="line-numbers"><a href="#n21" name="n21">21</a></span>        <span class="keyword">return</span> <span class="predefined-constant">null</span>;
 <span class="line-numbers"><a href="#n22" name="n22">22</a></span>    }
 </pre></div>
+</div>
+</div>
+
+<p><strong>Three Sum</strong>
+With the help of three sum’s <a href="http://en.wikipedia.org/wiki/3SUM">wiki page</a>, we can get the following code. Note in order to eliminate duplicate arrays, we need take advantage of HashSet, which can automatically help determine if the elements of two arrayList are the same.</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span></pre></div>
 </div>
 </div>
 

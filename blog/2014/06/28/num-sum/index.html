@@ -12,7 +12,7 @@
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="Questions: Two Sum : Given an array of integers, find two numbers such that they add up to a specific target number. The function twoSum should &hellip;">
+  <meta name="description" content="Questions: Two Sum Three Sum Two Sum : If we use brute force, the time complexity would be O(n^2), we can figure out a better way. Try to think like &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -97,13 +97,9 @@
 
 <div class="entry-content"><p>Questions:  </p>
 
-<p><strong>Two Sum</strong> : 
-Given an array of integers, find two numbers such that they add up to a specific target number. The function twoSum should return indices (not zero based) of the two numbers such that they add up to the target. </p>
+<p><a href="https://oj.leetcode.com/problems/two-sum/"><strong>Two Sum</strong></a> </p>
 
-<p><strong>Three</strong>:  </p>
-
-<hr />
-<p>Answers:  </p>
+<p><a href="https://oj.leetcode.com/problems/3sum/"><strong>Three Sum</strong></a> </p>
 
 <p><strong>Two Sum</strong> : <br />
 If we use brute force, the time complexity would be O(n^2), we can figure out a better way. Try to think like this, first we get an element(say, at index  <em>i</em>) of the array, next we can determine if <em>target</em>-<em>element</em> is in the array(with the help of other data structures like HashSet). As there would be only one solution, we can safely return if we can find <em>target</em>-<em>element</em>  in the array from index <em>i+1</em> to <em>arr.length-1</em>.</p>
@@ -132,6 +128,14 @@ If we use brute force, the time complexity would be O(n^2), we can figure out a 
 <span class="line-numbers"><a href="#n21" name="n21">21</a></span>        <span class="keyword">return</span> <span class="predefined-constant">null</span>;
 <span class="line-numbers"><a href="#n22" name="n22">22</a></span>    }
 </pre></div>
+</div>
+</div>
+
+<p><strong>Three Sum</strong>
+With the help of three sum’s <a href="http://en.wikipedia.org/wiki/3SUM">wiki page</a>, we can get the following code. Note in order to eliminate duplicate arrays, we need take advantage of HashSet, which can automatically help determine if the elements of two arrayList are the same.</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span></pre></div>
 </div>
 </div>
 
