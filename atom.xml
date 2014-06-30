@@ -4,7 +4,7 @@
   <title><![CDATA[KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-06-30T00:15:18-07:00</updated>
+  <updated>2014-06-30T00:22:38-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -179,7 +179,47 @@ If we use brute force, the time complexity would be O(n^2), we can figure out a 
 With the help of three sum’s <a href="http://en.wikipedia.org/wiki/3SUM">wiki page</a>, we can get the following code. Note in order to eliminate duplicate arrays, we need take advantage of HashSet, which can automatically help determine if the elements of two arrayList are the same.</p>
 
 <div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span></pre></div>
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span class="directive">public</span> <span class="type">class</span> <span class="class">Solution</span> {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>    <span class="predefined-type">List</span>&lt;<span class="predefined-type">List</span>&lt;<span class="predefined-type">Integer</span>&gt;&gt; sumList;
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>    <span class="predefined-type">Set</span>&lt;<span class="predefined-type">List</span>&lt;<span class="predefined-type">Integer</span>&gt;&gt; set;
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>    <span class="predefined-type">List</span>&lt;<span class="predefined-type">Integer</span>&gt; list;
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>    <span class="directive">public</span> <span class="predefined-type">List</span>&lt;<span class="predefined-type">List</span>&lt;<span class="predefined-type">Integer</span>&gt;&gt; threeSum(<span class="type">int</span><span class="type">[]</span> num) {
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        <span class="predefined-type">Arrays</span>.sort(num);
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        sumList = <span class="keyword">new</span> <span class="predefined-type">ArrayList</span>&lt;&gt;();
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        set = <span class="keyword">new</span> <span class="predefined-type">HashSet</span>&lt;&gt;();
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; num.length - <span class="integer">3</span>; i++) {
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>            <span class="type">int</span> first = num[i];
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>            <span class="type">int</span> j = i + <span class="integer">1</span>;
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>            <span class="type">int</span> k = num.length - <span class="integer">1</span>;
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>            <span class="keyword">while</span> (j &lt; k) {
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>                <span class="type">int</span> second = num[j];
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>                <span class="type">int</span> third = num[k];
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>                <span class="type">int</span> result = first + second + third;
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>                <span class="keyword">if</span> (result == <span class="integer">0</span>) {
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>                    list = <span class="keyword">new</span> <span class="predefined-type">ArrayList</span>&lt;&gt;();
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>                    list.add(first);
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>                    list.add(second);
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>                    list.add(third);
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>                    set.add(list);
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>                    j++;
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span>                    k--;
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span>                } <span class="keyword">else</span> {
+<span class="line-numbers"><a href="#n29" name="n29">29</a></span>                    <span class="keyword">if</span> (result &lt; <span class="integer">0</span>) {
+<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>                        j++;
+<span class="line-numbers"><a href="#n31" name="n31">31</a></span>                    } <span class="keyword">else</span> {
+<span class="line-numbers"><a href="#n32" name="n32">32</a></span>                        k--;
+<span class="line-numbers"><a href="#n33" name="n33">33</a></span>                    }
+<span class="line-numbers"><a href="#n34" name="n34">34</a></span>                }
+<span class="line-numbers"><a href="#n35" name="n35">35</a></span>            }
+<span class="line-numbers"><a href="#n36" name="n36">36</a></span>        }
+<span class="line-numbers"><a href="#n37" name="n37">37</a></span>        sumList.addAll(set);
+<span class="line-numbers"><a href="#n38" name="n38">38</a></span>        <span class="keyword">return</span> sumList;
+<span class="line-numbers"><a href="#n39" name="n39">39</a></span>    }
+<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>}
+</pre></div>
 </div>
 </div>
 
