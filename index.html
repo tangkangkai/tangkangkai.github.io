@@ -12,7 +12,7 @@
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="Question We have already solved Next Permutation question, with the help of this, we just need a loop to find the k th string. Here are the code: &hellip;">
+  <meta name="description" content="Question This is a simple question, as the rules of a valid sudoku is already given. We just need to follow the rules to implement the function. Here &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,110 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/06/30/valid-sudoku/">Valid Sudoku</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-30T15:45:57-07:00" pubdate data-updated="true">Jun 30<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://oj.leetcode.com/problems/valid-sudoku/">Question</a></p>
+
+<hr />
+
+<p>This is a simple question, as the <a href="http://sudoku.com.au/TheRules.aspx">rules</a> of a valid sudoku is already given. We just need to follow the rules to implement the function.</p>
+
+<p>Here I convert int <em>i</em> to char by using (char)(‘0’ + i). The whole codes follows here:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="type">boolean</span> isValidSudoku(<span class="type">char</span><span class="type">[]</span><span class="type">[]</span> board) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="predefined-type">Set</span>&lt;<span class="predefined-type">Character</span>&gt; set1 = <span class="keyword">new</span> <span class="predefined-type">HashSet</span>&lt;&gt;();
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        <span class="predefined-type">Set</span>&lt;<span class="predefined-type">Character</span>&gt; set2 = <span class="keyword">new</span> <span class="predefined-type">HashSet</span>&lt;&gt;();
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; <span class="integer">9</span>; i++) {
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>            setUp(set1);
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>            setUp(set2);
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="integer">0</span>; j &lt; <span class="integer">9</span>; j++) {
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>                <span class="type">char</span> num;
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>                <span class="comment">// Each row must have the numbers 1-9 occuring just once.</span>
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>                <span class="keyword">if</span> ((num = board[i][j]) != <span class="string"><span class="delimiter">'</span><span class="content">.</span><span class="delimiter">'</span></span>) {
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>                    <span class="keyword">if</span> (set1.contains(num)) {
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>                        set1.remove(num);
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>                    } <span class="keyword">else</span> {
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>                        <span class="keyword">return</span> <span class="predefined-constant">false</span>;
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>                    }
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>                }
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>                <span class="comment">// Each column must have the numbers 1-9 occuring just once.</span>
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>                <span class="keyword">if</span> ((num = board[j][i]) != <span class="string"><span class="delimiter">'</span><span class="content">.</span><span class="delimiter">'</span></span>) {
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>                    <span class="keyword">if</span> (set2.contains(num)) {
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>                        set2.remove(num);
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>                    } <span class="keyword">else</span> {
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>                        <span class="keyword">return</span> <span class="predefined-constant">false</span>;
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>                    }
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>                }
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>            }
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>        }
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span>
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span>        <span class="comment">// the numbers 1-9 must occur just once in each of the 9 sub-boxes of</span>
+<span class="line-numbers"><a href="#n29" name="n29">29</a></span>        <span class="comment">// the grid.</span>
+<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; <span class="integer">3</span>; i++) {
+<span class="line-numbers"><a href="#n31" name="n31">31</a></span>            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="integer">0</span>; j &lt; <span class="integer">3</span>; j++) {
+<span class="line-numbers"><a href="#n32" name="n32">32</a></span>                <span class="type">int</span> m = i * <span class="integer">3</span>;
+<span class="line-numbers"><a href="#n33" name="n33">33</a></span>                <span class="type">int</span> n = j * <span class="integer">3</span>;
+<span class="line-numbers"><a href="#n34" name="n34">34</a></span>                setUp(set1);
+<span class="line-numbers"><a href="#n35" name="n35">35</a></span>                <span class="keyword">for</span> (<span class="type">int</span> k = m; k &lt; m + <span class="integer">3</span>; k++) {
+<span class="line-numbers"><a href="#n36" name="n36">36</a></span>                    <span class="keyword">for</span> (<span class="type">int</span> l = n; l &lt; n + <span class="integer">3</span>; l++) {
+<span class="line-numbers"><a href="#n37" name="n37">37</a></span>                        <span class="type">char</span> num;
+<span class="line-numbers"><a href="#n38" name="n38">38</a></span>                        <span class="keyword">if</span> ((num = board[k][l]) == <span class="string"><span class="delimiter">'</span><span class="content">.</span><span class="delimiter">'</span></span>)
+<span class="line-numbers"><a href="#n39" name="n39">39</a></span>                            <span class="keyword">continue</span>;
+<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>                        <span class="keyword">if</span> (set1.contains(num)) {
+<span class="line-numbers"><a href="#n41" name="n41">41</a></span>                            set1.remove(num);
+<span class="line-numbers"><a href="#n42" name="n42">42</a></span>                        } <span class="keyword">else</span> {
+<span class="line-numbers"><a href="#n43" name="n43">43</a></span>                            <span class="keyword">return</span> <span class="predefined-constant">false</span>;
+<span class="line-numbers"><a href="#n44" name="n44">44</a></span>                        }
+<span class="line-numbers"><a href="#n45" name="n45">45</a></span>                    }
+<span class="line-numbers"><a href="#n46" name="n46">46</a></span>                }
+<span class="line-numbers"><a href="#n47" name="n47">47</a></span>            }
+<span class="line-numbers"><a href="#n48" name="n48">48</a></span>        }
+<span class="line-numbers"><a href="#n49" name="n49">49</a></span>        <span class="keyword">return</span> <span class="predefined-constant">true</span>;
+<span class="line-numbers"><strong><a href="#n50" name="n50">50</a></strong></span>    }
+<span class="line-numbers"><a href="#n51" name="n51">51</a></span>
+<span class="line-numbers"><a href="#n52" name="n52">52</a></span>    <span class="comment">/* Helper Functions */</span>
+<span class="line-numbers"><a href="#n53" name="n53">53</a></span>    <span class="directive">public</span> <span class="type">void</span> setUp(<span class="predefined-type">Set</span>&lt;<span class="predefined-type">Character</span>&gt; set) {
+<span class="line-numbers"><a href="#n54" name="n54">54</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">1</span>; i &lt;= <span class="integer">9</span>; i++) {
+<span class="line-numbers"><a href="#n55" name="n55">55</a></span>            set.add((<span class="type">char</span>) (<span class="string"><span class="delimiter">'</span><span class="content">0</span><span class="delimiter">'</span></span> + i));
+<span class="line-numbers"><a href="#n56" name="n56">56</a></span>        }
+<span class="line-numbers"><a href="#n57" name="n57">57</a></span>    }
+</pre></div>
+</div>
+</div>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -854,129 +958,6 @@ Thus we need figure if target must reside in one of the two parts(to see if <em>
     </ul>
   </li>
 </ol>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/25/remove-duplicates-in-array/">Remove Duplicates in Array</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-25T22:37:26-07:00" pubdate data-updated="true">Jun 25<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Q1: Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length. Do not allocate extra space for another array, you must do this in place with constant memory. </p>
-
-<p>Q2:Follow up for “Remove Duplicates”: What if duplicates are allowed at most twice?</p>
-
-<hr />
-
-<p>If we adjust the position of every element whenever there happens a duplicate, the running time would be large. In order to be more efficient, we can do in this way: if the element is the same with the previous one, we increase a “offset”(recording the offset) variable by one. When traversing through every element, say index of i, we adjust the position from i to i - offset.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Remove duplicate </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-</pre></td><td class="code"><pre><code class="java"><span class="line">		<span class="kd">public</span> <span class="kt">int</span> <span class="nf">removeDuplicates1</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">A</span><span class="o">)</span> <span class="o">{</span>
-</span><span class="line">		<span class="k">if</span> <span class="o">(</span><span class="n">A</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-</span><span class="line">			<span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
-</span><span class="line">		<span class="o">}</span>
-</span><span class="line">
-</span><span class="line">		<span class="c1">// we use count to show the offset</span>
-</span><span class="line">		<span class="kt">int</span> <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-</span><span class="line">
-</span><span class="line">		<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-</span><span class="line">			<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">==</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">{</span>
-</span><span class="line">				<span class="n">offset</span><span class="o">++;</span>
-</span><span class="line">			<span class="o">}</span>
-</span><span class="line">			<span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">offset</span><span class="o">]</span> <span class="o">=</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-</span><span class="line">		
-</span><span class="line">		<span class="o">}</span>
-</span><span class="line">
-</span><span class="line">		<span class="k">return</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">offset</span><span class="o">;</span>
-</span><span class="line">	<span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>For question 2, the solution is similar except for we need know when to increase the offset. We use a variable “count” to count, the following code show the details:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Remove duplicate </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-</pre></td><td class="code"><pre><code class="java"><span class="line">	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">removeDuplicates2</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">A</span><span class="o">)</span> <span class="o">{</span>
-</span><span class="line">		<span class="k">if</span> <span class="o">(</span><span class="n">A</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-</span><span class="line">			<span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
-</span><span class="line">		<span class="o">}</span>
-</span><span class="line">
-</span><span class="line">		<span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-</span><span class="line">		<span class="kt">int</span> <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-</span><span class="line">
-</span><span class="line">		<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-</span><span class="line">			<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">==</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">{</span>
-</span><span class="line">				<span class="n">count</span><span class="o">++;</span>
-</span><span class="line">				<span class="k">if</span> <span class="o">(</span><span class="n">count</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
-</span><span class="line">					<span class="n">offset</span> <span class="o">+=</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class="line">				<span class="o">}</span>
-</span><span class="line">			<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class="line">				<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-</span><span class="line">			<span class="o">}</span>
-</span><span class="line">			<span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">offset</span><span class="o">]</span> <span class="o">=</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-</span><span class="line">		<span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
 </div>
   
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Array | KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/blog/categories/array/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-06-30T13:02:39-07:00</updated>
+  <updated>2014-06-30T15:51:31-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -12,6 +12,83 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Valid Sudoku]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/06/30/valid-sudoku/"/>
+    <updated>2014-06-30T15:45:57-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/06/30/valid-sudoku</id>
+    <content type="html"><![CDATA[<p><a href="https://oj.leetcode.com/problems/valid-sudoku/">Question</a></p>
+
+<hr />
+
+<p>This is a simple question, as the <a href="http://sudoku.com.au/TheRules.aspx">rules</a> of a valid sudoku is already given. We just need to follow the rules to implement the function.</p>
+
+<p>Here I convert int <em>i</em> to char by using (char)(‘0’ + i). The whole codes follows here:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="type">boolean</span> isValidSudoku(<span class="type">char</span><span class="type">[]</span><span class="type">[]</span> board) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="predefined-type">Set</span>&lt;<span class="predefined-type">Character</span>&gt; set1 = <span class="keyword">new</span> <span class="predefined-type">HashSet</span>&lt;&gt;();
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        <span class="predefined-type">Set</span>&lt;<span class="predefined-type">Character</span>&gt; set2 = <span class="keyword">new</span> <span class="predefined-type">HashSet</span>&lt;&gt;();
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; <span class="integer">9</span>; i++) {
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>            setUp(set1);
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>            setUp(set2);
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="integer">0</span>; j &lt; <span class="integer">9</span>; j++) {
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>                <span class="type">char</span> num;
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>                <span class="comment">// Each row must have the numbers 1-9 occuring just once.</span>
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>                <span class="keyword">if</span> ((num = board[i][j]) != <span class="string"><span class="delimiter">'</span><span class="content">.</span><span class="delimiter">'</span></span>) {
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>                    <span class="keyword">if</span> (set1.contains(num)) {
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>                        set1.remove(num);
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>                    } <span class="keyword">else</span> {
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>                        <span class="keyword">return</span> <span class="predefined-constant">false</span>;
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>                    }
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>                }
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>                <span class="comment">// Each column must have the numbers 1-9 occuring just once.</span>
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>                <span class="keyword">if</span> ((num = board[j][i]) != <span class="string"><span class="delimiter">'</span><span class="content">.</span><span class="delimiter">'</span></span>) {
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>                    <span class="keyword">if</span> (set2.contains(num)) {
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>                        set2.remove(num);
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>                    } <span class="keyword">else</span> {
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>                        <span class="keyword">return</span> <span class="predefined-constant">false</span>;
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>                    }
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>                }
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>            }
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>        }
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span>
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span>        <span class="comment">// the numbers 1-9 must occur just once in each of the 9 sub-boxes of</span>
+<span class="line-numbers"><a href="#n29" name="n29">29</a></span>        <span class="comment">// the grid.</span>
+<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; <span class="integer">3</span>; i++) {
+<span class="line-numbers"><a href="#n31" name="n31">31</a></span>            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="integer">0</span>; j &lt; <span class="integer">3</span>; j++) {
+<span class="line-numbers"><a href="#n32" name="n32">32</a></span>                <span class="type">int</span> m = i * <span class="integer">3</span>;
+<span class="line-numbers"><a href="#n33" name="n33">33</a></span>                <span class="type">int</span> n = j * <span class="integer">3</span>;
+<span class="line-numbers"><a href="#n34" name="n34">34</a></span>                setUp(set1);
+<span class="line-numbers"><a href="#n35" name="n35">35</a></span>                <span class="keyword">for</span> (<span class="type">int</span> k = m; k &lt; m + <span class="integer">3</span>; k++) {
+<span class="line-numbers"><a href="#n36" name="n36">36</a></span>                    <span class="keyword">for</span> (<span class="type">int</span> l = n; l &lt; n + <span class="integer">3</span>; l++) {
+<span class="line-numbers"><a href="#n37" name="n37">37</a></span>                        <span class="type">char</span> num;
+<span class="line-numbers"><a href="#n38" name="n38">38</a></span>                        <span class="keyword">if</span> ((num = board[k][l]) == <span class="string"><span class="delimiter">'</span><span class="content">.</span><span class="delimiter">'</span></span>)
+<span class="line-numbers"><a href="#n39" name="n39">39</a></span>                            <span class="keyword">continue</span>;
+<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>                        <span class="keyword">if</span> (set1.contains(num)) {
+<span class="line-numbers"><a href="#n41" name="n41">41</a></span>                            set1.remove(num);
+<span class="line-numbers"><a href="#n42" name="n42">42</a></span>                        } <span class="keyword">else</span> {
+<span class="line-numbers"><a href="#n43" name="n43">43</a></span>                            <span class="keyword">return</span> <span class="predefined-constant">false</span>;
+<span class="line-numbers"><a href="#n44" name="n44">44</a></span>                        }
+<span class="line-numbers"><a href="#n45" name="n45">45</a></span>                    }
+<span class="line-numbers"><a href="#n46" name="n46">46</a></span>                }
+<span class="line-numbers"><a href="#n47" name="n47">47</a></span>            }
+<span class="line-numbers"><a href="#n48" name="n48">48</a></span>        }
+<span class="line-numbers"><a href="#n49" name="n49">49</a></span>        <span class="keyword">return</span> <span class="predefined-constant">true</span>;
+<span class="line-numbers"><strong><a href="#n50" name="n50">50</a></strong></span>    }
+<span class="line-numbers"><a href="#n51" name="n51">51</a></span>
+<span class="line-numbers"><a href="#n52" name="n52">52</a></span>    <span class="comment">/* Helper Functions */</span>
+<span class="line-numbers"><a href="#n53" name="n53">53</a></span>    <span class="directive">public</span> <span class="type">void</span> setUp(<span class="predefined-type">Set</span>&lt;<span class="predefined-type">Character</span>&gt; set) {
+<span class="line-numbers"><a href="#n54" name="n54">54</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">1</span>; i &lt;= <span class="integer">9</span>; i++) {
+<span class="line-numbers"><a href="#n55" name="n55">55</a></span>            set.add((<span class="type">char</span>) (<span class="string"><span class="delimiter">'</span><span class="content">0</span><span class="delimiter">'</span></span> + i));
+<span class="line-numbers"><a href="#n56" name="n56">56</a></span>        }
+<span class="line-numbers"><a href="#n57" name="n57">57</a></span>    }
+</pre></div>
+</div>
+</div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Permutation Sequence]]></title>
@@ -212,90 +289,6 @@ With the help of three sum’s <a href="http://en.wikipedia.org/wiki/3SUM">wiki 
 </div>
 </div>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Search in Rotated Sorted Array]]></title>
-    <link href="http://tangkangkai.github.io/blog/2014/06/26/search-in-rotated-sorted-array/"/>
-    <updated>2014-06-26T17:23:30-07:00</updated>
-    <id>http://tangkangkai.github.io/blog/2014/06/26/search-in-rotated-sorted-array</id>
-    <content type="html"><![CDATA[<p>Q：Suppose a sorted array is rotated at some pivot unknown to you beforehand.You are given a target value to search. If found in the array return its index, otherwise return -1.You may assume no duplicate exists in the array.</p>
-
-<p>Q2:Follow up for “Search in Rotated Sorted Array”:
-What if duplicates are allowed?<br />
-Would this affect the run-time complexity? How and why?<br />
-Write a function to determine if a given target is in the array.</p>
-
-<hr />
-
-<p>For sorted array <strong>not rotated</strong>, we use binary search, the runtime of which would be O(logn). The basic steps would be : 
-&gt;
-1. Set <em>left</em> be the left most point of the array, similar to <em>right</em>
-2. Set <em>mid</em> to be the mid point of the array : (left + right) / 2
-3. If <em>mid</em> element is equal to target, we return the index
-4. Otherwise, we compare the <em>mid</em> element with target, and repeat these steps on the subtracted array (either <em>left</em> to <em>mid</em>-1 or <em>mid</em>+1 to right)。
-5. If we can’t find one before left &lt;= right, we will return -1.</p>
-
-<p>Now the array is rotated, while when doing binary search, after <em>mid</em> divides the array into two parts, there must be one part that is in sequence. Thus we can adjust the previous solution a little bit, that is, after step 3, we figure out which part is in sequence, then we judge whether the target would reside in the part. If so, actually it becomes same with normal binary search, if not, it must reside in the other part(based on the fact that the target is in the array), then we can repeat the procedure again on the subtracted array. </p>
-
-<p>```java Search in Sorted Array</p>
-
-<pre><code>	while (left &lt;= right) {
-		int mid = (left + right) / 2;
-
-		if (A[mid] == target) {
-			return mid;
-		} else if (A[left] &lt;= A[mid]) {
-			if (A[left] &lt;= target &amp;&amp; target &lt; A[mid]) {
-				right = mid - 1;
-			} else {
-				left = mid + 1;
-			}
-		} else {
-			if (A[mid] &lt; target &amp;&amp; target &lt;= A[right]) {
-				left = mid + 1;
-			} else {
-				right = mid - 1;
-			}
-		}
-	}
-	return -1;
-</code></pre>
-
-<p>```</p>
-
-<p>If duplicates are allowed, we have no idea if the part is in sequence by comparing <em>left</em> and <em>mid</em>(or <em>mid</em> and <em>right</em>) as they may be the same.
-Thus we need figure if target must reside in one of the two parts(to see if <em>left</em>&lt;target&lt;<em>mid</em> or <em>mid</em> &lt; target &lt; <em>right</em>), if so, we do the same previously. Otherwise, if we could not make sure either of them, we need narrow the range of left to right and repeat the procedure again. By doing so, the runtime would be O(n) in worst. Here is the detail:</p>
-
-<p>```java Search in Sorted Array</p>
-
-<pre><code>	while (left &lt;= right) {
-		int mid = (left + right) / 2;
-		if (A[mid] == target) {
-			return true;
-		} else {
-			if (A[left] &lt; target &amp;&amp; target &lt; A[mid]) {
-				right = mid - 1;
-			} else if (A[mid] &lt; target &amp;&amp; target &lt; A[right]) {
-				left = mid + 1;
-			} else {
-				if (A[left] == target) {
-					return true;
-				} else {
-					left++;
-				}
-
-				if (A[right] == target) {
-					return true;
-				} else {
-					right--;
-				}
-			}
-
-		}
-	} ```
-</code></pre>
 ]]></content>
   </entry>
   
