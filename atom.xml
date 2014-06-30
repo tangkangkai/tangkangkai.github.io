@@ -4,7 +4,7 @@
   <title><![CDATA[KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-06-30T11:45:08-07:00</updated>
+  <updated>2014-06-30T11:46:47-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -52,7 +52,7 @@
     <id>http://tangkangkai.github.io/blog/2014/06/29/next-permutation</id>
     <content type="html"><![CDATA[<p><a href="https://oj.leetcode.com/problems/next-permutation/">Question</a></p>
 
-<p>–</p>
+<hr />
 
 <p>For this question, in order to get the <em>next</em> larger permutation, we need start from the last element, compare it with the previous element to see if it’s larger(if not, swapping them would make the number smaller). We start from index <em>arr.length</em> -2 to 0 to see which element could be swapped, say we are now at index i, then we use j to traverse from index <em>arr.length</em> -1 to i - 1 to see if arr[i] is smaller than arr[j], if so we can safely swap them(As if we come to index i, the elements from index i + 1 to <em>arr.length</em> -1 must be in decreasing order, otherwise, the swap would happen before i). After we swap, there need two things to be done, first we sort the array after index i(here I use <a href="http://www.sorting-algorithms.com/insertion-sort">insertion sort</a>), then we return directly. If the previous requirement not met, we simply sort and return.</p>
 
