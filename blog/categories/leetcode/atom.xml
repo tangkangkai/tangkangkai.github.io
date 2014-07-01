@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Leetcode | KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/blog/categories/leetcode/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-07-01T15:49:36-07:00</updated>
+  <updated>2014-07-01T16:36:47-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -12,6 +12,54 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Plus One]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/07/01/plus-one/"/>
+    <updated>2014-07-01T16:30:34-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/07/01/plus-one</id>
+    <content type="html"><![CDATA[<p><a href="https://oj.leetcode.com/problems/plus-one/">Question</a></p>
+
+<hr />
+<p>For this question, I take advantage of a helper function <em>plusOneHelper</em>, which will add one to the <em>end</em> element of array <em>digit</em>, if the result is smaller than 10, we can return. If not, we set the digit on that index 0 and recursively call this helper function on the array from start to <em>end</em>-1. After running this helper function, we determine if the first element of the array is 0, if not we return the original array. Otherwise, we create a new array <em>newDigit</em>, starting with 1, and copy the rest from <em>digits</em>. Here is the code:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="type">int</span><span class="type">[]</span> plusOne(<span class="type">int</span><span class="type">[]</span> digits) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        plusOneHelper(digits, <span class="integer">0</span>, digits.length - <span class="integer">1</span>);
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        <span class="keyword">if</span> (digits[<span class="integer">0</span>] == <span class="integer">0</span>) {
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>            <span class="type">int</span><span class="type">[]</span> newDigit = <span class="keyword">new</span> <span class="type">int</span>[digits.length + <span class="integer">1</span>];
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>            newDigit[<span class="integer">0</span>] = <span class="integer">1</span>;
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; digits.length; i++) {
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>                newDigit[i + <span class="integer">1</span>] = digits[i];
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>            }
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>            <span class="keyword">return</span> newDigit;
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        }
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>        <span class="keyword">return</span> digits;
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>    }
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>    <span class="comment">/* Helper Functions */</span>
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>    <span class="directive">private</span> <span class="type">void</span> plusOneHelper(<span class="type">int</span><span class="type">[]</span> digits, <span class="type">int</span> start, <span class="type">int</span> end) {
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>        <span class="keyword">if</span> (end &lt; start) {
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>            <span class="keyword">return</span>;
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>        }
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>        <span class="type">int</span> base = digits[end];
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>        base += <span class="integer">1</span>;
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>        <span class="keyword">if</span> (base &lt; <span class="integer">10</span>) {
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>            digits[end] = base;
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span>        } <span class="keyword">else</span> {
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span>            digits[end] = <span class="integer">0</span>;
+<span class="line-numbers"><a href="#n29" name="n29">29</a></span>            plusOneHelper(digits, start, end - <span class="integer">1</span>);
+<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>        }
+<span class="line-numbers"><a href="#n31" name="n31">31</a></span>    }
+</pre></div>
+</div>
+</div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Rotate Image]]></title>
@@ -217,50 +265,6 @@
 <span class="line-numbers"><a href="#n14" name="n14">14</a></span>    }
 <span class="line-numbers"><a href="#n15" name="n15">15</a></span>    <span class="keyword">return</span> sb.toString();
 <span class="line-numbers"><a href="#n16" name="n16">16</a></span>}
-</pre></div>
-</div>
-</div>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Next Permutation]]></title>
-    <link href="http://tangkangkai.github.io/blog/2014/06/29/next-permutation/"/>
-    <updated>2014-06-29T22:33:09-07:00</updated>
-    <id>http://tangkangkai.github.io/blog/2014/06/29/next-permutation</id>
-    <content type="html"><![CDATA[<p><a href="https://oj.leetcode.com/problems/next-permutation/">Question</a></p>
-
-<hr />
-
-<p>For this question, in order to get the <em>next</em> larger permutation, we need start from the last element, compare it with the previous element to see if it’s larger(if not, swapping them would make the number smaller). We start from index <em>arr.length</em> -2 to 0 to see which element could be swapped, say we are now at index i, then we use j to traverse from index <em>arr.length</em> -1 to i - 1 to see if arr[i] is smaller than arr[j], if so we can safely swap them(As if we come to index i, the elements from index i + 1 to <em>arr.length</em> -1 must be in decreasing order, otherwise, the swap would happen before i). After we swap, there need two things to be done, first we sort the array after index i(here I use <a href="http://www.sorting-algorithms.com/insertion-sort">insertion sort</a>), then we return directly. If the previous requirement not met, we simply sort and return.</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span class="directive">public</span> <span class="type">void</span> nextPermutation(<span class="type">int</span><span class="type">[]</span> num) {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>    <span class="type">int</span> lastIndex = num.length - <span class="integer">1</span>;
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>    <span class="keyword">for</span> (<span class="type">int</span> i = lastIndex - <span class="integer">1</span>; i &gt;= <span class="integer">0</span>; i--) {
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        <span class="keyword">for</span> (<span class="type">int</span> j = lastIndex; j &gt; i; j--) {
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>            <span class="keyword">if</span> (num[i] &lt; num[j]) {
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>                swap(num, i, j);
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>                <span class="keyword">for</span> (<span class="type">int</span> m = i + <span class="integer">2</span>; m &lt;= num.length - <span class="integer">1</span>; m++) {
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>                    <span class="keyword">for</span> (<span class="type">int</span> n = m; n &gt; i + <span class="integer">1</span> &amp;&amp; num[n] &lt; num[n - <span class="integer">1</span>]; n--) {
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>                        swap(num, n, n - <span class="integer">1</span>);
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>                    }
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>                }
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>                <span class="keyword">return</span>;
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>            }
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>        }
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>    }
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>
-<span class="line-numbers"><a href="#n18" name="n18">18</a></span>    <span class="predefined-type">Arrays</span>.sort(num);
-<span class="line-numbers"><a href="#n19" name="n19">19</a></span>}
-<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>
-<span class="line-numbers"><a href="#n21" name="n21">21</a></span><span class="comment">/* Helper Functions */</span>
-<span class="line-numbers"><a href="#n22" name="n22">22</a></span><span class="directive">public</span> <span class="type">void</span> swap(<span class="type">int</span><span class="type">[]</span> num, <span class="type">int</span> i, <span class="type">int</span> j) {
-<span class="line-numbers"><a href="#n23" name="n23">23</a></span>    <span class="type">int</span> temp = num[i];
-<span class="line-numbers"><a href="#n24" name="n24">24</a></span>    num[i] = num[j];
-<span class="line-numbers"><a href="#n25" name="n25">25</a></span>    num[j] = temp;
-<span class="line-numbers"><a href="#n26" name="n26">26</a></span>}
 </pre></div>
 </div>
 </div>

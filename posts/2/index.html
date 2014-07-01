@@ -12,7 +12,12 @@
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="Q：Suppose a sorted array is rotated at some pivot unknown to you beforehand.You are given a target value to search. If found in the array return its &hellip;">
+  <meta name="description" content="1.Break: jump out of only : switch, loop break designated loop : break + 标号 Example1
+2
+3
+4
+5
+6 loopoint:for (int x = 0; x &lt; 3; x++) { for(int y = &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +74,87 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/06/27/relearn-java-day-2/">Relearn Java Day 2</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-27T08:35:05-07:00" pubdate data-updated="true">Jun 27<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>1.<strong>Break</strong>:</p>
+
+<ul>
+  <li>jump out of only : <strong>switch</strong>, loop </li>
+  <li>break designated loop : break + 标号</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Example</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line">	<span class="nl">loopoint:</span><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span> <span class="n">x</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class="line">		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span> <span class="n">y</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class="line">			<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">y</span><span class="o">);</span>
+</span><span class="line">			<span class="k">break</span> <span class="n">loopoint</span><span class="o">;</span>
+</span><span class="line">		<span class="o">}</span>	
+</span><span class="line">	<span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>2.<strong>Overload</strong>:<br />
+&gt;
+1. 同一个类，<br />
+2. 同名。<br />
+3. 参数个数不同。or 参数类型不同。<br />
+4. 函数重载和返回值类型无关。<br />
+5. java是严谨性语言，如果函数出现的调用的不确定性，会编译失败。 </p>
+
+<p>3.<strong>Division of JVM</strong>:<br />
+&gt;	
+1. 寄存器。<br />
+2. 本地方法区。<br />
+	和所在系统有关
+3. 方法区。<br />
+4. 栈内存（Stack）。<br />
+	存储的都是局部变量。<br />
+	而且变量所属的作用域一旦结束，该变量就自动释放。 
+	特点：生命周期短，处理速度快 
+5. 堆内存(Heap)。<br />
+	存储是数组和对象(其实数组就是对象) 凡是new建立在堆中。<br />
+	特点：<br />
+	1. 每一个实体都有首地址值。<br />
+	2. 堆内存中的每一个变量都有默认初始化值，根据类型的不同而不同。整数是0，小数0.0或者0.0f，boolean false char ‘\u0000’<br />
+	3. 垃圾回收机制。      </p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
