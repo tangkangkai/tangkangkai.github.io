@@ -100,7 +100,6 @@
 <hr />
 <p>I firstly figure out O(m + n) solution, that is to create two HashSets, one containing the rows where exist 0 element, the other columns. Then traverse through those two sets, and set the corresponding rows and columns to 0. The code follows below:
 ~~~
-	/* O(m + n) */
 	public void setZeroes(int[][] matrix) {</p>
 
 <div><div class="CodeRay">
@@ -144,65 +143,65 @@
 
 <p>However, as mentioned in the question, this is not the best solution. It’s able to devise a constant space solution. We can take the first row and first column in the matrix to flag. For example, if <em>matrix[i][j]</em> is 0, then we set the corresponding <em>matrix[i][0]</em> and <em>matrix[0][j]</em> as 0. Note we need to take care of these things: 1. As the first row and first column would be overwritten, we need firstly determine if there is 0 on the them before we go to flag. 2. After finishing the flag job, we are going to set zeroes, here we not only need set the rows and columns whose corresponding flag rows and columns have zeroes, but also keep the flag row and column not overwritten by 0, thus we need firstly set zeroes except for first row and column, then according to 1, at last we deal with the first row and column. The code follows below:
 ~~~
-/* O(1) space */
 	public void setZeroes2(int[][] matrix) {
 		boolean firstRowZero = false;
 		boolean firstColumnZero = false;</p>
 
-<pre><code>	/* determine if there is zero in first row and first column */
-	if (matrix[0][0] == 0) {
-		firstRowZero = true;
-		firstColumnZero = true;
-	} else {
-		for (int i = 1; i &lt; matrix.length; i++) {
-			if (matrix[i][0] == 0) {
-				firstColumnZero = true;
-			}
-		}
-
-		for (int i = 1; i &lt; matrix[0].length; i++) {
-			if (matrix[0][i] == 0) {
-				firstRowZero = true;
-			}
-		}
-	}
-	
-	/* make first row and first column as the counting row and column */
-	for (int i = 1; i &lt; matrix.length; i++) {
-		for (int j = 1; j &lt; matrix[0].length; j++) {
-			if (matrix[i][j] == 0) {
-				matrix[0][j] = 0;
-				matrix[i][0] = 0;
-			}
-		}
-	}
-
-	/* set zeroes except for first row and column */
-	for (int i = 1; i &lt; matrix.length; i++) {
-		if (matrix[i][0] == 0) {
-			setRowZero(matrix, i);
-		}
-	}
-
-	for (int i = 1; i &lt; matrix[0].length; i++) {
-		if (matrix[0][i] == 0) {
-			setColumnZero(matrix, i);
-		}
-	}
-
-	/* set zeroes for first row and column */
-	if (firstColumnZero) {
-		setColumnZero(matrix, 0);
-	}
-
-	if (firstRowZero) {
-		setRowZero(matrix, 0);
-	}
-
-}
-</code></pre>
-
-<p class="language-java">~~~</p>
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="comment">/* determine if there is zero in first row and first column */</span>
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>    <span class="keyword">if</span> (matrix[<span class="integer">0</span>][<span class="integer">0</span>] == <span class="integer">0</span>) {
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        firstRowZero = <span class="predefined-constant">true</span>;
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        firstColumnZero = <span class="predefined-constant">true</span>;
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>    } <span class="keyword">else</span> {
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">1</span>; i &lt; matrix.length; i++) {
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>            <span class="keyword">if</span> (matrix[i][<span class="integer">0</span>] == <span class="integer">0</span>) {
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>                firstColumnZero = <span class="predefined-constant">true</span>;
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>            }
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        }
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">1</span>; i &lt; matrix[<span class="integer">0</span>].length; i++) {
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>            <span class="keyword">if</span> (matrix[<span class="integer">0</span>][i] == <span class="integer">0</span>) {
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>                firstRowZero = <span class="predefined-constant">true</span>;
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>            }
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>        }
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>    }
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>    
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>    <span class="comment">/* make first row and first column as the counting row and column */</span>
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">1</span>; i &lt; matrix.length; i++) {
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="integer">1</span>; j &lt; matrix[<span class="integer">0</span>].length; j++) {
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>            <span class="keyword">if</span> (matrix[i][j] == <span class="integer">0</span>) {
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>                matrix[<span class="integer">0</span>][j] = <span class="integer">0</span>;
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>                matrix[i][<span class="integer">0</span>] = <span class="integer">0</span>;
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>            }
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>        }
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span>    }
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span>
+<span class="line-numbers"><a href="#n29" name="n29">29</a></span>    <span class="comment">/* set zeroes except for first row and column */</span>
+<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">1</span>; i &lt; matrix.length; i++) {
+<span class="line-numbers"><a href="#n31" name="n31">31</a></span>        <span class="keyword">if</span> (matrix[i][<span class="integer">0</span>] == <span class="integer">0</span>) {
+<span class="line-numbers"><a href="#n32" name="n32">32</a></span>            setRowZero(matrix, i);
+<span class="line-numbers"><a href="#n33" name="n33">33</a></span>        }
+<span class="line-numbers"><a href="#n34" name="n34">34</a></span>    }
+<span class="line-numbers"><a href="#n35" name="n35">35</a></span>
+<span class="line-numbers"><a href="#n36" name="n36">36</a></span>    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">1</span>; i &lt; matrix[<span class="integer">0</span>].length; i++) {
+<span class="line-numbers"><a href="#n37" name="n37">37</a></span>        <span class="keyword">if</span> (matrix[<span class="integer">0</span>][i] == <span class="integer">0</span>) {
+<span class="line-numbers"><a href="#n38" name="n38">38</a></span>            setColumnZero(matrix, i);
+<span class="line-numbers"><a href="#n39" name="n39">39</a></span>        }
+<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>    }
+<span class="line-numbers"><a href="#n41" name="n41">41</a></span>
+<span class="line-numbers"><a href="#n42" name="n42">42</a></span>    <span class="comment">/* set zeroes for first row and column */</span>
+<span class="line-numbers"><a href="#n43" name="n43">43</a></span>    <span class="keyword">if</span> (firstColumnZero) {
+<span class="line-numbers"><a href="#n44" name="n44">44</a></span>        setColumnZero(matrix, <span class="integer">0</span>);
+<span class="line-numbers"><a href="#n45" name="n45">45</a></span>    }
+<span class="line-numbers"><a href="#n46" name="n46">46</a></span>
+<span class="line-numbers"><a href="#n47" name="n47">47</a></span>    <span class="keyword">if</span> (firstRowZero) {
+<span class="line-numbers"><a href="#n48" name="n48">48</a></span>        setRowZero(matrix, <span class="integer">0</span>);
+<span class="line-numbers"><a href="#n49" name="n49">49</a></span>    }
+<span class="line-numbers"><strong><a href="#n50" name="n50">50</a></strong></span>
+<span class="line-numbers"><a href="#n51" name="n51">51</a></span>} ~~~
+</pre></div>
+</div>
+</div>
 </div>
 
 
