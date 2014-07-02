@@ -4,7 +4,7 @@
   <title><![CDATA[KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-07-01T23:35:31-07:00</updated>
+  <updated>2014-07-02T15:17:51-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -12,6 +12,101 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Gray Code]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/07/02/gray-code/"/>
+    <updated>2014-07-02T15:07:43-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/07/02/gray-code</id>
+    <content type="html"><![CDATA[<p><a href="https://oj.leetcode.com/problems/gray-code/">Question</a></p>
+
+<hr />
+
+<p>After seeing this question, my first thought is to try flipping each bit and compare it to the elements in the <em>returnarr</em> to see if the flipped elements exists there. If not, I’ll continue flipping the next bit. The code follows below:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="predefined-type">List</span>&lt;<span class="predefined-type">Integer</span>&gt; grayCode(<span class="type">int</span> n) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="predefined-type">List</span>&lt;<span class="predefined-type">Integer</span>&gt; codeList = <span class="keyword">new</span> <span class="predefined-type">ArrayList</span>&lt;&gt;();
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        <span class="type">int</span> base = <span class="integer">0</span>;
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        <span class="comment">/* begin with 0 */</span>
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        codeList.add(base);
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        <span class="keyword">while</span> (codeList.size() &lt; <span class="predefined-type">Math</span>.pow(<span class="integer">2</span>, n)) {
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; n; i++) {
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>                <span class="type">int</span> newBase;
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>                <span class="keyword">if</span> ((base &gt;&gt; i) % <span class="integer">2</span> == <span class="integer">0</span>) {
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>                    newBase = base + (<span class="integer">1</span> &lt;&lt; i);
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>                } <span class="keyword">else</span> {
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>                    newBase = base - (<span class="integer">1</span> &lt;&lt; i);
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>                }
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>                <span class="keyword">if</span> (!codeList.contains(newBase)) {
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>                    codeList.add(newBase);
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>                    base = newBase;
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>                    <span class="keyword">break</span>;
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>                }
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>            }
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>        }
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>        <span class="keyword">return</span> codeList;
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span>    }
+</pre></div>
+</div>
+</div>
+
+<p>However, this method will take at least O(n*2^n) time complexity. Thanks to <a href="http://n00tc0d3r.blogspot.com/2013/03/gray-code-and-variants.html">this website</a>, giving a O(2^n) time complexity algorithm, efficient and genius as well. The method is basically from this:
+To calculate gray code sequence of 1 bit, only need to flip the last bit from 0 to 1.</p>
+
+<pre><code>0
+1
+</code></pre>
+
+<p>Move to 2 bits, as shown above, first generate a gray code sequence of 1 bit, then go backwards and flip the second bit from 0 to 1.</p>
+
+<pre><code>00
+01 ↑
+---
+11 ↓
+10
+</code></pre>
+
+<p>Move to 3 bits, first generate a gray code sequence of 2 bits, then go backwards and flip the third bit from 0 to 1.</p>
+
+<pre><code>000
+001
+011
+010 ↑
+-----
+110 ↓
+111
+101
+100
+</code></pre>
+
+<p>we can generate n bits gray code by generating n - 1 bits gray code firstly, and flip the highest bit from 0 to 1. Thus we can go all way down to 1 bit and start from there. The code follows below:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="predefined-type">List</span>&lt;<span class="predefined-type">Integer</span>&gt; grayCode2(<span class="type">int</span> n) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="predefined-type">List</span>&lt;<span class="predefined-type">Integer</span>&gt; codeList = <span class="keyword">new</span> <span class="predefined-type">ArrayList</span>&lt;&gt;();
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        <span class="comment">/* begin with 0 */</span>
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        codeList.add(<span class="integer">0</span>);
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; n; ++i) {
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>            <span class="keyword">for</span> (<span class="type">int</span> j = codeList.size() - <span class="integer">1</span>; j &gt;= <span class="integer">0</span>; j--) {
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>                codeList.add(codeList.get(j) | <span class="integer">1</span> &lt;&lt; i);
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>            }
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>        }
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>        <span class="keyword">return</span> codeList;
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>    }
+</pre></div>
+</div>
+</div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Climbing Stairs]]></title>
@@ -24,19 +119,18 @@
 <p>We can solve this question by taking advantage of <a href="http://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci number</a>. To get the distinct ways to climb n steps, we can separate it into two parts, first taking one step, then the ways is the same with <em>climeStair(n - 1)</em>; Second taking two steps, then the the ways is the same with <em>climeStair(n - 2)</em>. In total, <em>climeStair(n)</em> = <em>climeStair(n - 1)</em> + <em>climeStair(n - 2)</em>, which is actually to find the _n_th Fibonacci number. The code follows here:</p>
 
 <div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>    <span class="directive">public</span> <span class="type">int</span> climbStairs(<span class="type">int</span> n) {
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        <span class="keyword">if</span> (n &lt;= <span class="integer">2</span>) {
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>            <span class="keyword">return</span> n;
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        }
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        <span class="type">int</span><span class="type">[]</span> steps = <span class="keyword">new</span> <span class="type">int</span>[n + <span class="integer">1</span>];
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        steps[<span class="integer">1</span>] = <span class="integer">1</span>;
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        steps[<span class="integer">2</span>] = <span class="integer">2</span>;
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="integer">3</span>; i &lt;= n; i++) {
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>            steps[i] = steps[i - <span class="integer">1</span>] + steps[i - <span class="integer">2</span>];
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>        }
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        <span class="keyword">return</span> steps[n];
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>    }
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="type">int</span> climbStairs(<span class="type">int</span> n) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="keyword">if</span> (n &lt;= <span class="integer">2</span>) {
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>            <span class="keyword">return</span> n;
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        }
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        <span class="type">int</span><span class="type">[]</span> steps = <span class="keyword">new</span> <span class="type">int</span>[n + <span class="integer">1</span>];
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        steps[<span class="integer">1</span>] = <span class="integer">1</span>;
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        steps[<span class="integer">2</span>] = <span class="integer">2</span>;
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="integer">3</span>; i &lt;= n; i++) {
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>            steps[i] = steps[i - <span class="integer">1</span>] + steps[i - <span class="integer">2</span>];
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        }
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>        <span class="keyword">return</span> steps[n];
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>    }
 </pre></div>
 </div>
 </div>

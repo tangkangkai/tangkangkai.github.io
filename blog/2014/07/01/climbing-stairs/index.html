@@ -101,19 +101,18 @@
 <p>We can solve this question by taking advantage of <a href="http://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci number</a>. To get the distinct ways to climb n steps, we can separate it into two parts, first taking one step, then the ways is the same with <em>climeStair(n - 1)</em>; Second taking two steps, then the the ways is the same with <em>climeStair(n - 2)</em>. In total, <em>climeStair(n)</em> = <em>climeStair(n - 1)</em> + <em>climeStair(n - 2)</em>, which is actually to find the _n_th Fibonacci number. The code follows here:</p>
 
 <div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>    <span class="directive">public</span> <span class="type">int</span> climbStairs(<span class="type">int</span> n) {
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        <span class="keyword">if</span> (n &lt;= <span class="integer">2</span>) {
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>            <span class="keyword">return</span> n;
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        }
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        <span class="type">int</span><span class="type">[]</span> steps = <span class="keyword">new</span> <span class="type">int</span>[n + <span class="integer">1</span>];
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        steps[<span class="integer">1</span>] = <span class="integer">1</span>;
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        steps[<span class="integer">2</span>] = <span class="integer">2</span>;
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="integer">3</span>; i &lt;= n; i++) {
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>            steps[i] = steps[i - <span class="integer">1</span>] + steps[i - <span class="integer">2</span>];
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>        }
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        <span class="keyword">return</span> steps[n];
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>    }
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="type">int</span> climbStairs(<span class="type">int</span> n) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="keyword">if</span> (n &lt;= <span class="integer">2</span>) {
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>            <span class="keyword">return</span> n;
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        }
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        <span class="type">int</span><span class="type">[]</span> steps = <span class="keyword">new</span> <span class="type">int</span>[n + <span class="integer">1</span>];
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        steps[<span class="integer">1</span>] = <span class="integer">1</span>;
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        steps[<span class="integer">2</span>] = <span class="integer">2</span>;
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="integer">3</span>; i &lt;= n; i++) {
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>            steps[i] = steps[i - <span class="integer">1</span>] + steps[i - <span class="integer">2</span>];
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        }
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>        <span class="keyword">return</span> steps[n];
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>    }
 </pre></div>
 </div>
 </div>
@@ -164,6 +163,8 @@
       
         <a class="basic-alignment left" href="/blog/2014/07/01/plus-one/" title="Previous Post: Plus One">&laquo; Plus One</a>
       
+      
+        <a class="basic-alignment right" href="/blog/2014/07/02/gray-code/" title="Next Post: Gray Code">Gray Code &raquo;</a>
       
     </p>
   </footer>
