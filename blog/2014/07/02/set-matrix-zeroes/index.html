@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+
+<link href="/stylesheets/coderay-github.css" media="screen" rel="stylesheet" type="text/css">
+
+<head>
+  <meta charset="utf-8">
+  <title>Set Matrix Zeroes - KK's Coding Blog</title>
+  <meta name="author" content="Kangkai Tang">
+
+  
+  <meta name="description" content="Question I firstly figure out O(m + n) solution, that is to create two HashSets, one containing the rows where exist 0 element, the other columns. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tangkangkai.github.io/blog/2014/07/02/set-matrix-zeroes">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="KK's Coding Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">KK's Coding Blog</a></h1>
+  
+    <h2>keep coding keep pushing keep believing</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:tangkangkai.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Set Matrix Zeroes</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-02T16:02:01-07:00" pubdate data-updated="true">Jul 2<sup>nd</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="https://oj.leetcode.com/problems/set-matrix-zeroes/">Question</a></p>
+
+<hr />
+<p>I firstly figure out O(m + n) solution, that is to create two HashSets, one containing the rows where exist 0 element, the other columns. Then traverse through those two sets, and set the corresponding rows and columns to 0. The code follows below:
+~~~
+	/* O(m + n) */
+	public void setZeroes(int[][] matrix) {</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="predefined-type">Set</span>&lt;<span class="predefined-type">Integer</span>&gt; zeroRow = <span class="keyword">new</span> <span class="predefined-type">HashSet</span>&lt;&gt;();
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>    <span class="predefined-type">Set</span>&lt;<span class="predefined-type">Integer</span>&gt; zeroColumn = <span class="keyword">new</span> <span class="predefined-type">HashSet</span>&lt;&gt;();
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; matrix.length; i++) {
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="integer">0</span>; j &lt; matrix[<span class="integer">0</span>].length; j++) {
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>            <span class="keyword">if</span> (matrix[i][j] == <span class="integer">0</span>) {
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>                zeroRow.add(i);
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>                zeroColumn.add(j);
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>            }
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        }
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>    }
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>    
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>    <span class="keyword">for</span> (<span class="predefined-type">Integer</span> row : zeroRow) {
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>        setRowZero(matrix, row);
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>    }
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>    
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>    <span class="keyword">for</span> (<span class="predefined-type">Integer</span> column : zeroColumn) {
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>        setColumnZero(matrix, column);
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>    }
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>}
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span><span class="comment">/* Helper Functions */</span>
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span><span class="directive">private</span> <span class="type">void</span> setRowZero(<span class="type">int</span><span class="type">[]</span><span class="type">[]</span> matrix, <span class="type">int</span> row) {
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; matrix[<span class="integer">0</span>].length; i++) {
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>        matrix[row][i] = <span class="integer">0</span>;
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span>    }
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span>}
+<span class="line-numbers"><a href="#n29" name="n29">29</a></span>
+<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span><span class="directive">private</span> <span class="type">void</span> setColumnZero(<span class="type">int</span><span class="type">[]</span><span class="type">[]</span> matrix, <span class="type">int</span> column) {
+<span class="line-numbers"><a href="#n31" name="n31">31</a></span>    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; matrix.length; i++) {
+<span class="line-numbers"><a href="#n32" name="n32">32</a></span>        matrix[i][column] = <span class="integer">0</span>;
+<span class="line-numbers"><a href="#n33" name="n33">33</a></span>    }
+<span class="line-numbers"><a href="#n34" name="n34">34</a></span>} ~~~
+</pre></div>
+</div>
+</div>
+
+<p>However, as mentioned in the question, this is not the best solution. It’s able to devise a constant space solution. We can take the first row and first column in the matrix to flag. For example, if <em>matrix[i][j]</em> is 0, then we set the corresponding <em>matrix[i][0]</em> and <em>matrix[0][j]</em> as 0. Note we need to take care of these things: 1. As the first row and first column would be overwritten, we need firstly determine if there is 0 on the them before we go to flag. 2. After finishing the flag job, we are going to set zeroes, here we not only need set the rows and columns whose corresponding flag rows and columns have zeroes, but also keep the flag row and column not overwritten by 0, thus we need firstly set zeroes except for first row and column, then according to 1, at last we deal with the first row and column. The code follows below:
+~~~
+/* O(1) space */
+	public void setZeroes2(int[][] matrix) {
+		boolean firstRowZero = false;
+		boolean firstColumnZero = false;</p>
+
+<pre><code>	/* determine if there is zero in first row and first column */
+	if (matrix[0][0] == 0) {
+		firstRowZero = true;
+		firstColumnZero = true;
+	} else {
+		for (int i = 1; i &lt; matrix.length; i++) {
+			if (matrix[i][0] == 0) {
+				firstColumnZero = true;
+			}
+		}
+
+		for (int i = 1; i &lt; matrix[0].length; i++) {
+			if (matrix[0][i] == 0) {
+				firstRowZero = true;
+			}
+		}
+	}
+	
+	/* make first row and first column as the counting row and column */
+	for (int i = 1; i &lt; matrix.length; i++) {
+		for (int j = 1; j &lt; matrix[0].length; j++) {
+			if (matrix[i][j] == 0) {
+				matrix[0][j] = 0;
+				matrix[i][0] = 0;
+			}
+		}
+	}
+
+	/* set zeroes except for first row and column */
+	for (int i = 1; i &lt; matrix.length; i++) {
+		if (matrix[i][0] == 0) {
+			setRowZero(matrix, i);
+		}
+	}
+
+	for (int i = 1; i &lt; matrix[0].length; i++) {
+		if (matrix[0][i] == 0) {
+			setColumnZero(matrix, i);
+		}
+	}
+
+	/* set zeroes for first row and column */
+	if (firstColumnZero) {
+		setColumnZero(matrix, 0);
+	}
+
+	if (firstRowZero) {
+		setRowZero(matrix, 0);
+	}
+
+}
+</code></pre>
+
+<p class="language-java">~~~</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Authored by <span class="fn">Kangkai Tang</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-02T16:02:01-07:00" pubdate data-updated="true">Jul 2<sup>nd</sup>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/array/'>array</a>, <a class='category' href='/blog/categories/leetcode/'>leetcode</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tangkangkai.github.io/blog/2014/07/02/set-matrix-zeroes/" data-via="" data-counturl="http://tangkangkai.github.io/blog/2014/07/02/set-matrix-zeroes/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/07/02/gray-code/" title="Previous Post: Gray Code">&laquo; Gray Code</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Kangkai Tang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
