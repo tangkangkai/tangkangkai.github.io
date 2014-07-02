@@ -3,6 +3,12 @@
   
   
   <url>
+    <loc>http://tangkangkai.github.io/blog/2014/07/01/climbing-stairs/</loc>
+    <lastmod>2014-07-01T23:11:20-07:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://tangkangkai.github.io/blog/2014/07/01/plus-one/</loc>
     <lastmod>2014-07-01T16:30:34-07:00</lastmod>
     <priority>0.8</priority>
@@ -101,28 +107,28 @@
   
   <url>
     <loc>http://tangkangkai.github.io/blog/</loc>
-    <lastmod>2014-07-01T16:36:47-07:00</lastmod>
+    <lastmod>2014-07-01T23:35:31-07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://tangkangkai.github.io/</loc>
-    <lastmod>2014-07-01T16:36:47-07:00</lastmod>
+    <lastmod>2014-07-01T23:35:31-07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
     <loc>http://tangkangkai.github.io/blog/archives/</loc>
-    <lastmod>2014-07-01T16:36:47-07:00</lastmod>
+    <lastmod>2014-07-01T23:35:31-07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://tangkangkai.github.io/about/</loc>
-    <lastmod>2014-07-01T16:36:47-07:00</lastmod>
+    <lastmod>2014-07-01T23:35:31-07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Leetcode | KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/blog/categories/leetcode/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-07-01T16:36:47-07:00</updated>
+  <updated>2014-07-01T23:35:31-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -12,6 +12,36 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Climbing Stairs]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/07/01/climbing-stairs/"/>
+    <updated>2014-07-01T23:11:20-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/07/01/climbing-stairs</id>
+    <content type="html"><![CDATA[<p><a href="https://oj.leetcode.com/problems/climbing-stairs/">Question</a></p>
+
+<hr />
+<p>We can solve this question by taking advantage of <a href="http://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci number</a>. To get the distinct ways to climb n steps, we can separate it into two parts, first taking one step, then the ways is the same with <em>climeStair(n - 1)</em>; Second taking two steps, then the the ways is the same with <em>climeStair(n - 2)</em>. In total, <em>climeStair(n)</em> = <em>climeStair(n - 1)</em> + <em>climeStair(n - 2)</em>, which is actually to find the _n_th Fibonacci number. The code follows here:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>    <span class="directive">public</span> <span class="type">int</span> climbStairs(<span class="type">int</span> n) {
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        <span class="keyword">if</span> (n &lt;= <span class="integer">2</span>) {
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>            <span class="keyword">return</span> n;
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        }
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        <span class="type">int</span><span class="type">[]</span> steps = <span class="keyword">new</span> <span class="type">int</span>[n + <span class="integer">1</span>];
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        steps[<span class="integer">1</span>] = <span class="integer">1</span>;
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        steps[<span class="integer">2</span>] = <span class="integer">2</span>;
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="integer">3</span>; i &lt;= n; i++) {
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>            steps[i] = steps[i - <span class="integer">1</span>] + steps[i - <span class="integer">2</span>];
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>        }
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        <span class="keyword">return</span> steps[n];
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>    }
+</pre></div>
+</div>
+</div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Plus One]]></title>
@@ -231,40 +261,6 @@
 <span class="line-numbers"><a href="#n55" name="n55">55</a></span>            set.add((<span class="type">char</span>) (<span class="string"><span class="delimiter">'</span><span class="content">0</span><span class="delimiter">'</span></span> + i));
 <span class="line-numbers"><a href="#n56" name="n56">56</a></span>        }
 <span class="line-numbers"><a href="#n57" name="n57">57</a></span>    }
-</pre></div>
-</div>
-</div>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Permutation Sequence]]></title>
-    <link href="http://tangkangkai.github.io/blog/2014/06/30/permutation-sequence/"/>
-    <updated>2014-06-30T11:40:31-07:00</updated>
-    <id>http://tangkangkai.github.io/blog/2014/06/30/permutation-sequence</id>
-    <content type="html"><![CDATA[<p><a href="https://oj.leetcode.com/problems/permutation-sequence/">Question</a></p>
-
-<hr />
-
-<p>We have already solved <a href="http://www.codertkk.com/blog/2014/06/29/next-permutation/">Next Permutation</a> question, with the help of this, we just need a loop to find the <em>k</em> th string. Here are the code:</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span class="directive">public</span> <span class="predefined-type">String</span> getPermutation(<span class="type">int</span> n, <span class="type">int</span> k) {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>    <span class="type">int</span><span class="type">[]</span> num = <span class="keyword">new</span> <span class="type">int</span>[n];
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; n; i++) {
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        num[i] = i + <span class="integer">1</span>;
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>    }
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>    
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="integer">1</span>; i &lt; k; i++ ) {
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        nextPermutation(num);
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>    }
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>    <span class="predefined-type">StringBuilder</span> sb = <span class="keyword">new</span> <span class="predefined-type">StringBuilder</span>();
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>    <span class="keyword">for</span>(<span class="type">int</span> i : num) {
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>        sb.append(i);
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>    }
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>    <span class="keyword">return</span> sb.toString();
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>}
 </pre></div>
 </div>
 </div>
