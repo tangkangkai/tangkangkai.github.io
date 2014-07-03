@@ -12,7 +12,7 @@
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="Question I firstly figure out O(m + n) solution, that is to create two HashSets, one containing the rows where exist 0 element, the other columns. &hellip;">
+  <meta name="description" content="Question For this question, not we are using a array to represent an circular route, thus we need take care of the boundary conditions: when the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,73 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/07/02/gas-station/">Gas Station</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-02T17:10:12-07:00" pubdate data-updated="true">Jul 2<sup>nd</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://oj.leetcode.com/problems/gas-station/">Question</a></p>
+
+<hr />
+<p>For this question, not we are using a array to represent an circular route, thus we need take care of the boundary conditions: when the station is at the index of <em>gas.length - 1</em>, the next station would be at index <em>0</em> rather than <em>gas.length</em>. For every station, we check if the requirement is met, if we come back to the very first index, we successfully travel around the circuit. Below is the code:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="type">int</span> canCompleteCircuit(<span class="type">int</span><span class="type">[]</span> gas, <span class="type">int</span><span class="type">[]</span> cost) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; gas.length; i++) {
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>            <span class="keyword">if</span> (ifComplete(i, gas, cost))
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>                <span class="keyword">return</span> i;
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        }
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        <span class="keyword">return</span> -<span class="integer">1</span>;
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>    }
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>    <span class="comment">/* Helper Functions */</span>
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>    <span class="directive">public</span> <span class="type">boolean</span> ifComplete(<span class="type">int</span> index, <span class="type">int</span><span class="type">[]</span> gas, <span class="type">int</span><span class="type">[]</span> cost) {
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        <span class="type">int</span> gasNum = <span class="integer">0</span>;
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>        <span class="type">int</span> startingStation = index;
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>        <span class="keyword">while</span> ((gasNum = gasNum + gas[index] - cost[index]) &gt;= <span class="integer">0</span>) {
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>            index = index == gas.length - <span class="integer">1</span> ? <span class="integer">0</span> : ++index;
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>            <span class="keyword">if</span> (index == startingStation) {
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>                <span class="keyword">return</span> <span class="predefined-constant">true</span>;
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>            }
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>        }
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>        <span class="keyword">return</span> <span class="predefined-constant">false</span>;
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>    }
+</pre></div>
+</div>
+</div>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -847,65 +914,6 @@ To calculate gray code sequence of 1 bit, only need to flip the last bit from 0 
 </pre></div>
 </div>
 </div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/29/remove-elements/">Remove Elements</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-29T18:28:09-07:00" pubdate data-updated="true">Jun 29<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="https://oj.leetcode.com/problems/remove-element/">Question</a></p>
-
-<hr />
-
-<p>This question is an easier version of <a href="http://www.codertkk.com/blog/2014/06/25/remove-duplicates-in-array/">Remove duplicates in array</a>. Below follows the code:</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="type">int</span> removeElement(<span class="type">int</span><span class="type">[]</span> A, <span class="type">int</span> elem) {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="type">int</span> offset = <span class="integer">0</span>;
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>    
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; A.length; i++) {
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>            <span class="keyword">if</span> (A[i] == elem) {
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>                offset++;
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>            } <span class="keyword">else</span> {
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>                A[i - offset] = A[i];
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>            }
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        }
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>    
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        <span class="keyword">return</span> A.length - offset;
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>    }
-</pre></div>
-</div>
-</div>
-
 </div>
   
   

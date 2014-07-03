@@ -12,7 +12,7 @@
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="Encapsulation hide details, including private the member variable.(set(), get()) class, framework are also encapsulation Anonymous object new Car &hellip;">
+  <meta name="description" content="Question This question is an easier version of Remove duplicates in array. Below follows the code: 1 public int removeElement(int[] A, int elem) { 2 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,65 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/06/29/remove-elements/">Remove Elements</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-29T18:28:09-07:00" pubdate data-updated="true">Jun 29<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://oj.leetcode.com/problems/remove-element/">Question</a></p>
+
+<hr />
+
+<p>This question is an easier version of <a href="http://www.codertkk.com/blog/2014/06/25/remove-duplicates-in-array/">Remove duplicates in array</a>. Below follows the code:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="type">int</span> removeElement(<span class="type">int</span><span class="type">[]</span> A, <span class="type">int</span> elem) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="type">int</span> offset = <span class="integer">0</span>;
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>    
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; A.length; i++) {
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>            <span class="keyword">if</span> (A[i] == elem) {
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>                offset++;
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>            } <span class="keyword">else</span> {
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>                A[i - offset] = A[i];
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>            }
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        }
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>    
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        <span class="keyword">return</span> A.length - offset;
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>    }
+</pre></div>
+</div>
+</div>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>

@@ -4,7 +4,7 @@
   <title><![CDATA[KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-07-02T17:03:08-07:00</updated>
+  <updated>2014-07-02T17:15:02-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -12,6 +12,46 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Gas Station]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/07/02/gas-station/"/>
+    <updated>2014-07-02T17:10:12-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/07/02/gas-station</id>
+    <content type="html"><![CDATA[<p><a href="https://oj.leetcode.com/problems/gas-station/">Question</a></p>
+
+<hr />
+<p>For this question, not we are using a array to represent an circular route, thus we need take care of the boundary conditions: when the station is at the index of <em>gas.length - 1</em>, the next station would be at index <em>0</em> rather than <em>gas.length</em>. For every station, we check if the requirement is met, if we come back to the very first index, we successfully travel around the circuit. Below is the code:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="type">int</span> canCompleteCircuit(<span class="type">int</span><span class="type">[]</span> gas, <span class="type">int</span><span class="type">[]</span> cost) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; gas.length; i++) {
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>            <span class="keyword">if</span> (ifComplete(i, gas, cost))
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>                <span class="keyword">return</span> i;
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        }
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        <span class="keyword">return</span> -<span class="integer">1</span>;
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>    }
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>    <span class="comment">/* Helper Functions */</span>
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>    <span class="directive">public</span> <span class="type">boolean</span> ifComplete(<span class="type">int</span> index, <span class="type">int</span><span class="type">[]</span> gas, <span class="type">int</span><span class="type">[]</span> cost) {
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        <span class="type">int</span> gasNum = <span class="integer">0</span>;
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>        <span class="type">int</span> startingStation = index;
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>        <span class="keyword">while</span> ((gasNum = gasNum + gas[index] - cost[index]) &gt;= <span class="integer">0</span>) {
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>            index = index == gas.length - <span class="integer">1</span> ? <span class="integer">0</span> : ++index;
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>            <span class="keyword">if</span> (index == startingStation) {
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>                <span class="keyword">return</span> <span class="predefined-constant">true</span>;
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>            }
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>        }
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>        <span class="keyword">return</span> <span class="predefined-constant">false</span>;
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>    }
+</pre></div>
+</div>
+</div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Set Matrix Zeroes]]></title>
