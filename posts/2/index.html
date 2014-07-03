@@ -12,7 +12,7 @@
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="Question This question is an easier version of Remove duplicates in array. Below follows the code: 1 public int removeElement(int[] A, int elem) { 2 &hellip;">
+  <meta name="description" content="Question For this question, in order to get the next larger permutation, we need start from the last element, compare it with the previous element to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,77 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/06/29/next-permutation/">Next Permutation</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-29T22:33:09-07:00" pubdate data-updated="true">Jun 29<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://oj.leetcode.com/problems/next-permutation/">Question</a></p>
+
+<hr />
+
+<p>For this question, in order to get the <em>next</em> larger permutation, we need start from the last element, compare it with the previous element to see if it’s larger(if not, swapping them would make the number smaller). We start from index <em>arr.length</em> -2 to 0 to see which element could be swapped, say we are now at index i, then we use j to traverse from index <em>arr.length</em> -1 to i - 1 to see if arr[i] is smaller than arr[j], if so we can safely swap them(As if we come to index i, the elements from index i + 1 to <em>arr.length</em> -1 must be in decreasing order, otherwise, the swap would happen before i). After we swap, there need two things to be done, first we sort the array after index i(here I use <a href="http://www.sorting-algorithms.com/insertion-sort">insertion sort</a>), then we return directly. If the previous requirement not met, we simply sort and return.</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span class="directive">public</span> <span class="type">void</span> nextPermutation(<span class="type">int</span><span class="type">[]</span> num) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>    <span class="type">int</span> lastIndex = num.length - <span class="integer">1</span>;
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>    <span class="keyword">for</span> (<span class="type">int</span> i = lastIndex - <span class="integer">1</span>; i &gt;= <span class="integer">0</span>; i--) {
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        <span class="keyword">for</span> (<span class="type">int</span> j = lastIndex; j &gt; i; j--) {
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>            <span class="keyword">if</span> (num[i] &lt; num[j]) {
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>                swap(num, i, j);
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>                <span class="keyword">for</span> (<span class="type">int</span> m = i + <span class="integer">2</span>; m &lt;= num.length - <span class="integer">1</span>; m++) {
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>                    <span class="keyword">for</span> (<span class="type">int</span> n = m; n &gt; i + <span class="integer">1</span> &amp;&amp; num[n] &lt; num[n - <span class="integer">1</span>]; n--) {
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>                        swap(num, n, n - <span class="integer">1</span>);
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>                    }
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>                }
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>                <span class="keyword">return</span>;
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>            }
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>        }
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>    }
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>    <span class="predefined-type">Arrays</span>.sort(num);
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>}
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span><span class="comment">/* Helper Functions */</span>
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span><span class="directive">public</span> <span class="type">void</span> swap(<span class="type">int</span><span class="type">[]</span> num, <span class="type">int</span> i, <span class="type">int</span> j) {
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>    <span class="type">int</span> temp = num[i];
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>    num[i] = num[j];
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>    num[j] = temp;
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>}
+</pre></div>
+</div>
+</div>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -904,182 +975,9 @@ Step 4: If the removed node has unvisited child nodes, mark them as visited and 
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/23/my-first-post/">My First Post</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-23T16:59:37-07:00" pubdate data-updated="true">Jun 23<sup>rd</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Hello every one. This will be my new home for my coding journey.<br />
-Here is my code snippet (also used for testing the blog :P)  </p>
-<div><script src="https://gist.github.com/9968025.js"></script>
-<noscript><pre><code>import java.util.Stack;
-
-import org.junit.Test;
-
-public class TreeTraversal {
-
-	Stack&lt;BinaryTreeNode&gt; btStack = new Stack&lt;&gt;();
-	BinaryTreeNode current = null;
-
-	// Pre-Order recursion
-	public void preOrderRecursion(BinaryTreeNode bt) {
-		if (bt != null) {
-			System.out.print(bt.data + &quot;  &quot;);
-			preOrderRecursion(bt.left);
-			preOrderRecursion(bt.right);
-		}
-	}
-
-	// Pre-Order interation
-	public void preOrderIteration(BinaryTreeNode bt) {
-		BinaryTreeNode current = bt;
-		while (current != null || !btStack.isEmpty()) {
-			if (current != null) {
-				System.out.print(current.data + &quot;  &quot;);// print the data when
-														// pushed into the stack
-				btStack.push(current);
-				current = current.left;
-			} else {
-				current = btStack.pop();
-				current = current.right;
-			}
-		}
-	}
-
-	// In-Order recursion
-	public void inOrderRecursion(BinaryTreeNode bt) {
-		if (bt != null) {
-			inOrderRecursion(bt.left);
-			System.out.print(bt.data + &quot;  &quot;);
-			inOrderRecursion(bt.right);
-		}
-	}
-
-	// In-Order Iteration
-	public void inOrderIteration(BinaryTreeNode bt) {
-		current = bt;
-		while (current != null || !btStack.isEmpty()) {
-			if (current != null) {
-				btStack.push(current);
-				current = current.left;
-			} else {
-				current = btStack.pop();
-				System.out.print(current.data + &quot;  &quot;);// print the data when
-														// popped out of stack
-				current = current.right;
-			}
-		}
-
-	}
-
-	// Post-Order Recursion
-	public void postOrderRecursion(BinaryTreeNode bt) {
-		if (bt != null) {
-			postOrderRecursion(bt.left);
-			postOrderRecursion(bt.right);
-			System.out.print(bt.data + &quot;  &quot;);
-		}
-
-	}
-
-	// Post-Order Iteration
-	public void postOrderIteration(BinaryTreeNode bt) {
-		current = bt;
-		while (current != null || !btStack.isEmpty()) {
-			if (current != null) {
-				btStack.push(current);
-				current = current.left;
-			} else {
-				current = btStack.pop();
-				if (current.isFinished) { // we use isFinished as a flag to see
-											// if both of the children have been
-											// visited.
-					System.out.print(current.data + &quot;  &quot;);
-					current = null;
-				} else {
-					current.isFinished = true;
-					btStack.push(current);
-					current = current.right;
-				}
-			}
-		}
-
-	}
-
-	@Test
-	public void generalTest() {
-		BinaryTreeNode root = new BinaryTreeNode(1);
-		BinaryTreeNode left = new BinaryTreeNode(2);
-		BinaryTreeNode right = new BinaryTreeNode(3);
-		root.left = left;
-		root.right = right;
-
-		left.left = new BinaryTreeNode(4);
-		left.right = new BinaryTreeNode(5);
-		right.left = new BinaryTreeNode(6);
-		right.right = new BinaryTreeNode(7);
-		System.out.println(&quot;========Pre Order Test=========&quot;);
-		preOrderRecursion(root);
-		System.out.println();
-		preOrderIteration(root);
-		System.out.println();
-
-		System.out.println(&quot;========In Order Test=========&quot;);
-		inOrderRecursion(root);
-		System.out.println();
-		inOrderIteration(root);
-		System.out.println();
-
-		System.out.println(&quot;========Post Order Test=========&quot;);
-		postOrderRecursion(root);
-		System.out.println();
-		postOrderIteration(root);
-	}
-}
-
-class BinaryTreeNode {
-	int data;
-	boolean isFinished;
-	BinaryTreeNode left = null;
-	BinaryTreeNode right = null;
-
-	public BinaryTreeNode(int data) {
-		this.data = data;
-	}
-}
-</code></pre></noscript></div>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/posts/3">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     

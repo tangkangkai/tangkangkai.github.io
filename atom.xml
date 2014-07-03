@@ -4,7 +4,7 @@
   <title><![CDATA[KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-07-02T17:38:30-07:00</updated>
+  <updated>2014-07-02T17:41:54-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -12,6 +12,49 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Add Two Numbers]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/07/02/add-two-numbers/"/>
+    <updated>2014-07-02T17:39:28-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/07/02/add-two-numbers</id>
+    <content type="html"><![CDATA[<p><a href="https://oj.leetcode.com/problems/add-two-numbers/">Question</a></p>
+
+<hr />
+<p>For this question, we need to take care of the carry from the previous calculation. Here I use a helper function <em>addHelper</em> to help maintain the information of the carry. Here follows the code:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        <span class="keyword">return</span> addHelper(l1, l2, <span class="integer">0</span>);
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>    }
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>    <span class="comment">/* Helper Functions */</span>
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>    <span class="comment">/* @param carry:if there is a carry from previous caculation */</span>
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>    <span class="directive">private</span> ListNode addHelper(ListNode l1, ListNode l2, <span class="type">int</span> carry) {
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        <span class="keyword">if</span> (l1 == <span class="predefined-constant">null</span> &amp;&amp; l2 == <span class="predefined-constant">null</span>) {
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>            <span class="keyword">return</span> carry == <span class="integer">1</span> ? <span class="keyword">new</span> ListNode(<span class="integer">1</span>) : <span class="predefined-constant">null</span>;
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        } <span class="keyword">else</span> <span class="keyword">if</span> (l1 == <span class="predefined-constant">null</span>) {
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>            <span class="keyword">return</span> carry == <span class="integer">1</span> ? addHelper(l2, <span class="keyword">new</span> ListNode(<span class="integer">1</span>), <span class="integer">0</span>) : l2;
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>        } <span class="keyword">else</span> <span class="keyword">if</span> (l2 == <span class="predefined-constant">null</span>) {
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>            <span class="keyword">return</span> carry == <span class="integer">1</span> ? addHelper(l1, <span class="keyword">new</span> ListNode(<span class="integer">1</span>), <span class="integer">0</span>) : l1;
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>        } <span class="keyword">else</span> {
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>            <span class="type">int</span> val1 = l1.val;
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>            <span class="type">int</span> val2 = l2.val;
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>            <span class="type">int</span> sum = carry + val1 + val2;
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>            ListNode lstNode = <span class="keyword">new</span> ListNode(sum % <span class="integer">10</span>);
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>            lstNode.next = (sum &gt;= <span class="integer">10</span>) ? (addHelper(l1.next, l2.next, <span class="integer">1</span>))
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>                    : (addHelper(l1.next, l2.next, <span class="integer">0</span>));
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>            <span class="keyword">return</span> lstNode;
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>        }
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>    }
+</pre></div>
+</div>
+</div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Gas Station]]></title>
@@ -1181,154 +1224,6 @@ Step 5: If the node does not have any unvisited child nodes, pop the node from t
 Step 2: Loop until the queue is empty.<br />
 Step 3: Remove the node from the Queue. <br />
 Step 4: If the removed node has unvisited child nodes, mark them as visited and insert the unvisited children in the queue. </p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[My First Post]]></title>
-    <link href="http://tangkangkai.github.io/blog/2014/06/23/my-first-post/"/>
-    <updated>2014-06-23T16:59:37-07:00</updated>
-    <id>http://tangkangkai.github.io/blog/2014/06/23/my-first-post</id>
-    <content type="html"><![CDATA[<p>Hello every one. This will be my new home for my coding journey.<br />
-Here is my code snippet (also used for testing the blog :P)  </p>
-<div><script src="https://gist.github.com/9968025.js"></script>
-<noscript><pre><code>import java.util.Stack;
-
-import org.junit.Test;
-
-public class TreeTraversal {
-
-	Stack&lt;BinaryTreeNode&gt; btStack = new Stack&lt;&gt;();
-	BinaryTreeNode current = null;
-
-	// Pre-Order recursion
-	public void preOrderRecursion(BinaryTreeNode bt) {
-		if (bt != null) {
-			System.out.print(bt.data + &quot;  &quot;);
-			preOrderRecursion(bt.left);
-			preOrderRecursion(bt.right);
-		}
-	}
-
-	// Pre-Order interation
-	public void preOrderIteration(BinaryTreeNode bt) {
-		BinaryTreeNode current = bt;
-		while (current != null || !btStack.isEmpty()) {
-			if (current != null) {
-				System.out.print(current.data + &quot;  &quot;);// print the data when
-														// pushed into the stack
-				btStack.push(current);
-				current = current.left;
-			} else {
-				current = btStack.pop();
-				current = current.right;
-			}
-		}
-	}
-
-	// In-Order recursion
-	public void inOrderRecursion(BinaryTreeNode bt) {
-		if (bt != null) {
-			inOrderRecursion(bt.left);
-			System.out.print(bt.data + &quot;  &quot;);
-			inOrderRecursion(bt.right);
-		}
-	}
-
-	// In-Order Iteration
-	public void inOrderIteration(BinaryTreeNode bt) {
-		current = bt;
-		while (current != null || !btStack.isEmpty()) {
-			if (current != null) {
-				btStack.push(current);
-				current = current.left;
-			} else {
-				current = btStack.pop();
-				System.out.print(current.data + &quot;  &quot;);// print the data when
-														// popped out of stack
-				current = current.right;
-			}
-		}
-
-	}
-
-	// Post-Order Recursion
-	public void postOrderRecursion(BinaryTreeNode bt) {
-		if (bt != null) {
-			postOrderRecursion(bt.left);
-			postOrderRecursion(bt.right);
-			System.out.print(bt.data + &quot;  &quot;);
-		}
-
-	}
-
-	// Post-Order Iteration
-	public void postOrderIteration(BinaryTreeNode bt) {
-		current = bt;
-		while (current != null || !btStack.isEmpty()) {
-			if (current != null) {
-				btStack.push(current);
-				current = current.left;
-			} else {
-				current = btStack.pop();
-				if (current.isFinished) { // we use isFinished as a flag to see
-											// if both of the children have been
-											// visited.
-					System.out.print(current.data + &quot;  &quot;);
-					current = null;
-				} else {
-					current.isFinished = true;
-					btStack.push(current);
-					current = current.right;
-				}
-			}
-		}
-
-	}
-
-	@Test
-	public void generalTest() {
-		BinaryTreeNode root = new BinaryTreeNode(1);
-		BinaryTreeNode left = new BinaryTreeNode(2);
-		BinaryTreeNode right = new BinaryTreeNode(3);
-		root.left = left;
-		root.right = right;
-
-		left.left = new BinaryTreeNode(4);
-		left.right = new BinaryTreeNode(5);
-		right.left = new BinaryTreeNode(6);
-		right.right = new BinaryTreeNode(7);
-		System.out.println(&quot;========Pre Order Test=========&quot;);
-		preOrderRecursion(root);
-		System.out.println();
-		preOrderIteration(root);
-		System.out.println();
-
-		System.out.println(&quot;========In Order Test=========&quot;);
-		inOrderRecursion(root);
-		System.out.println();
-		inOrderIteration(root);
-		System.out.println();
-
-		System.out.println(&quot;========Post Order Test=========&quot;);
-		postOrderRecursion(root);
-		System.out.println();
-		postOrderIteration(root);
-	}
-}
-
-class BinaryTreeNode {
-	int data;
-	boolean isFinished;
-	BinaryTreeNode left = null;
-	BinaryTreeNode right = null;
-
-	public BinaryTreeNode(int data) {
-		this.data = data;
-	}
-}
-</code></pre></noscript></div>
 
 ]]></content>
   </entry>
