@@ -4,7 +4,7 @@
   <title><![CDATA[KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-07-10T15:57:13-07:00</updated>
+  <updated>2014-07-10T21:56:08-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -12,6 +12,70 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Partition List]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/07/10/partition-list/"/>
+    <updated>2014-07-10T21:46:09-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/07/10/partition-list</id>
+    <content type="html"><![CDATA[<p><a href="https://oj.leetcode.com/problems/partition-list/">Question</a></p>
+
+<hr />
+<p>First, we need to find the first node whose <em>next</em> node’s value is not smaller than 3, which means the nodes before (and it self)this say,  <em>pivot node</em>, do not need to change. Next we traverse to see which node is smaller than <em>x</em>, put it after <em>pivot node</em>. Also note the special case where the head node’s value is larger than <em>x</em>, then the <em>pivot node</em> would be assigned later. Here is the code:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span class="directive">public</span> ListNode partition(ListNode head, <span class="type">int</span> x) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="keyword">if</span> (head == <span class="predefined-constant">null</span>) {
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>            <span class="keyword">return</span> <span class="predefined-constant">null</span>;
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        }
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        ListNode pointNode = head;
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        ListNode pivotNode;
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        <span class="comment">/* Find the pivot node */</span>
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>        <span class="keyword">if</span> (head.val &lt; x) {
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>            <span class="keyword">while</span> (pointNode.next != <span class="predefined-constant">null</span>) {
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>                <span class="keyword">if</span> (pointNode.next.val &lt; x) {
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>                    pointNode = pointNode.next;
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>                } <span class="keyword">else</span> {
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>                    <span class="keyword">break</span>;
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>                }
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>            }
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>            pivotNode = pointNode;
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>        } <span class="keyword">else</span> { <span class="comment">// if the head node's value is larger than x, then pivotNode is null</span>
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>            pivotNode = <span class="predefined-constant">null</span>;
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>        }
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>        
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>        <span class="comment">/* Traverse */</span>
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>        <span class="keyword">while</span> (pointNode.next != <span class="predefined-constant">null</span>) {
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span>            <span class="keyword">if</span> (pointNode.next.val &lt; x) {
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span>                ListNode temp = pointNode.next;
+<span class="line-numbers"><a href="#n29" name="n29">29</a></span>                pointNode.next = pointNode.next.next;
+<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>
+<span class="line-numbers"><a href="#n31" name="n31">31</a></span>                <span class="keyword">if</span> (pivotNode != <span class="predefined-constant">null</span>) {
+<span class="line-numbers"><a href="#n32" name="n32">32</a></span>                    temp.next = pivotNode.next;
+<span class="line-numbers"><a href="#n33" name="n33">33</a></span>                    pivotNode.next = temp;
+<span class="line-numbers"><a href="#n34" name="n34">34</a></span>                    pivotNode = temp;
+<span class="line-numbers"><a href="#n35" name="n35">35</a></span>                } <span class="keyword">else</span> {
+<span class="line-numbers"><a href="#n36" name="n36">36</a></span>                    pivotNode = temp;
+<span class="line-numbers"><a href="#n37" name="n37">37</a></span>                    temp.next = head;
+<span class="line-numbers"><a href="#n38" name="n38">38</a></span>                    head = temp;
+<span class="line-numbers"><a href="#n39" name="n39">39</a></span>                }
+<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>
+<span class="line-numbers"><a href="#n41" name="n41">41</a></span>            } <span class="keyword">else</span> {
+<span class="line-numbers"><a href="#n42" name="n42">42</a></span>                pointNode = pointNode.next;
+<span class="line-numbers"><a href="#n43" name="n43">43</a></span>            }
+<span class="line-numbers"><a href="#n44" name="n44">44</a></span>        }
+<span class="line-numbers"><a href="#n45" name="n45">45</a></span>
+<span class="line-numbers"><a href="#n46" name="n46">46</a></span>        <span class="keyword">return</span> head;
+<span class="line-numbers"><a href="#n47" name="n47">47</a></span>    }
+</pre></div>
+</div>
+</div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Reverse Linked List II]]></title>
@@ -1186,102 +1250,6 @@ Thus we need figure if target must reside in one of the two parts(to see if <em>
     </ul>
   </li>
 </ol>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Remove Duplicates in Array]]></title>
-    <link href="http://tangkangkai.github.io/blog/2014/06/25/remove-duplicates-in-array/"/>
-    <updated>2014-06-25T22:37:26-07:00</updated>
-    <id>http://tangkangkai.github.io/blog/2014/06/25/remove-duplicates-in-array</id>
-    <content type="html"><![CDATA[<p>Q1: Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length. Do not allocate extra space for another array, you must do this in place with constant memory. </p>
-
-<p>Q2:Follow up for “Remove Duplicates”: What if duplicates are allowed at most twice?</p>
-
-<hr />
-
-<p>If we adjust the position of every element whenever there happens a duplicate, the running time would be large. In order to be more efficient, we can do in this way: if the element is the same with the previous one, we increase a “offset”(recording the offset) variable by one. When traversing through every element, say index of i, we adjust the position from i to i - offset.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Remove duplicate </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-</pre></td><td class="code"><pre><code class="java"><span class="line">		<span class="kd">public</span> <span class="kt">int</span> <span class="nf">removeDuplicates1</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">A</span><span class="o">)</span> <span class="o">{</span>
-</span><span class="line">		<span class="k">if</span> <span class="o">(</span><span class="n">A</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-</span><span class="line">			<span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
-</span><span class="line">		<span class="o">}</span>
-</span><span class="line">
-</span><span class="line">		<span class="c1">// we use count to show the offset</span>
-</span><span class="line">		<span class="kt">int</span> <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-</span><span class="line">
-</span><span class="line">		<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-</span><span class="line">			<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">==</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">{</span>
-</span><span class="line">				<span class="n">offset</span><span class="o">++;</span>
-</span><span class="line">			<span class="o">}</span>
-</span><span class="line">			<span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">offset</span><span class="o">]</span> <span class="o">=</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-</span><span class="line">		
-</span><span class="line">		<span class="o">}</span>
-</span><span class="line">
-</span><span class="line">		<span class="k">return</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">offset</span><span class="o">;</span>
-</span><span class="line">	<span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>For question 2, the solution is similar except for we need know when to increase the offset. We use a variable “count” to count, the following code show the details:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Remove duplicate </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-</pre></td><td class="code"><pre><code class="java"><span class="line">	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">removeDuplicates2</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">A</span><span class="o">)</span> <span class="o">{</span>
-</span><span class="line">		<span class="k">if</span> <span class="o">(</span><span class="n">A</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-</span><span class="line">			<span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
-</span><span class="line">		<span class="o">}</span>
-</span><span class="line">
-</span><span class="line">		<span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-</span><span class="line">		<span class="kt">int</span> <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-</span><span class="line">
-</span><span class="line">		<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-</span><span class="line">			<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">==</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">{</span>
-</span><span class="line">				<span class="n">count</span><span class="o">++;</span>
-</span><span class="line">				<span class="k">if</span> <span class="o">(</span><span class="n">count</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
-</span><span class="line">					<span class="n">offset</span> <span class="o">+=</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class="line">				<span class="o">}</span>
-</span><span class="line">			<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class="line">				<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-</span><span class="line">			<span class="o">}</span>
-</span><span class="line">			<span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">offset</span><span class="o">]</span> <span class="o">=</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-</span><span class="line">		<span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
 ]]></content>
   </entry>
   
