@@ -4,7 +4,7 @@
   <title><![CDATA[KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-07-10T21:56:08-07:00</updated>
+  <updated>2014-07-11T00:40:44-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -12,6 +12,96 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Remove Duplicates From Sorted List]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/07/10/remove-duplicates-from-sorted-list/"/>
+    <updated>2014-07-10T23:25:13-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/07/10/remove-duplicates-from-sorted-list</id>
+    <content type="html"><![CDATA[<p><a href="https://oj.leetcode.com/problems/remove-duplicates-from-sorted-list/">Question1</a></p>
+
+<p><a href="https://oj.leetcode.com/problems/remove-duplicates-from-sorted-list-ii/">Question2</a></p>
+
+<hr />
+<p>Question 1 is very easy, I’ll just post my solution:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> ListNode deleteDuplicates(ListNode head) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="keyword">if</span> (head == <span class="predefined-constant">null</span>) {
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>            <span class="keyword">return</span> <span class="predefined-constant">null</span>;
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        }
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        ListNode pointNode = head;
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        ListNode nextNode;
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        <span class="keyword">while</span> ((nextNode = pointNode.next) != <span class="predefined-constant">null</span>) {
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>            <span class="keyword">if</span> (pointNode.val == nextNode.val) {
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>                pointNode.next = nextNode.next;
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>            } <span class="keyword">else</span> {
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>                pointNode = pointNode.next;
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>            }
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>        }
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>        
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>        <span class="keyword">return</span> head;
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>    }
+</pre></div>
+</div>
+</div>
+
+<p>For question 2, we need deal with more possible cases. We can use a <em>pivot node</em> to track. The basic idea is, if the first node is element, <em>pivot node</em> would be null and recursively call the first node after the duplicate nodesl; Otherwise, set the head node as the pivot node and begin to traverse. If we meet duplicates node, we skip them and point to <em>pivot node</em> to the next node which is not duplicate, update the pivot node to that node as well. We keep doing it until we meet the end of the list. Here is the code:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> ListNode deleteDuplicates(ListNode head) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="keyword">if</span> (head == <span class="predefined-constant">null</span> || head.next == <span class="predefined-constant">null</span>) {
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>            <span class="keyword">return</span> head;
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        }
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        ListNode pointNode;
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        ListNode pivotNode;
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        <span class="comment">/* if head node is duplicated, recursively call at the first node</span>
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span><span class="comment">         * which is different with the head node</span>
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span><span class="comment">         */</span>
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        <span class="keyword">if</span> (head.val == head.next.val) {
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>            pointNode = head;
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>            <span class="keyword">while</span> (pointNode.next != <span class="predefined-constant">null</span> &amp;&amp; pointNode.val == pointNode.next.val) {
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>                pointNode = pointNode.next;
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>            }
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>            <span class="keyword">return</span> deleteDuplicates(pointNode.next);
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>        } <span class="keyword">else</span> {
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>            <span class="comment">/* if head node is not duplicated, set it as pivot node</span>
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span><span class="comment">             * if it's next node is not duplicated, set it's next node as new pivot node</span>
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span><span class="comment">             * otherwise point pivotNode to the first node not duplicated, and set it as new pivot node</span>
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span><span class="comment">             */</span>
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>            pivotNode = head;
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>            pointNode = head.next;
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>            <span class="keyword">while</span> (pointNode.next != <span class="predefined-constant">null</span>) {
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span>                <span class="keyword">if</span> (pointNode.val == pointNode.next.val) {
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span>                    <span class="keyword">while</span> (pointNode.next != <span class="predefined-constant">null</span> &amp;&amp; pointNode.val == pointNode.next.val) {
+<span class="line-numbers"><a href="#n29" name="n29">29</a></span>                        pointNode = pointNode.next;
+<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>                    }
+<span class="line-numbers"><a href="#n31" name="n31">31</a></span>
+<span class="line-numbers"><a href="#n32" name="n32">32</a></span>                    <span class="keyword">if</span> (pointNode.next == <span class="predefined-constant">null</span>) {
+<span class="line-numbers"><a href="#n33" name="n33">33</a></span>                        pivotNode.next = <span class="predefined-constant">null</span>;
+<span class="line-numbers"><a href="#n34" name="n34">34</a></span>                    } <span class="keyword">else</span> {
+<span class="line-numbers"><a href="#n35" name="n35">35</a></span>                        pointNode = pointNode.next;
+<span class="line-numbers"><a href="#n36" name="n36">36</a></span>                        pivotNode.next = pointNode;
+<span class="line-numbers"><a href="#n37" name="n37">37</a></span>                    }
+<span class="line-numbers"><a href="#n38" name="n38">38</a></span>
+<span class="line-numbers"><a href="#n39" name="n39">39</a></span>                } <span class="keyword">else</span> {
+<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>                    pivotNode = pointNode;
+<span class="line-numbers"><a href="#n41" name="n41">41</a></span>                    pointNode = pointNode.next;
+<span class="line-numbers"><a href="#n42" name="n42">42</a></span>                }
+<span class="line-numbers"><a href="#n43" name="n43">43</a></span>            }
+<span class="line-numbers"><a href="#n44" name="n44">44</a></span>
+<span class="line-numbers"><a href="#n45" name="n45">45</a></span>            <span class="keyword">return</span> head;
+<span class="line-numbers"><a href="#n46" name="n46">46</a></span>        }
+<span class="line-numbers"><a href="#n47" name="n47">47</a></span>    }
+</pre></div>
+</div>
+</div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Partition List]]></title>
@@ -1186,70 +1276,6 @@ Thus we need figure if target must reside in one of the two parts(to see if <em>
 </span><span class="line">			<span class="o">}</span>
 </span><span class="line">		<span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Relearn Java Day 1]]></title>
-    <link href="http://tangkangkai.github.io/blog/2014/06/26/relearn-java-day-1/"/>
-    <updated>2014-06-26T07:53:35-07:00</updated>
-    <id>http://tangkangkai.github.io/blog/2014/06/26/relearn-java-day-1</id>
-    <content type="html"><![CDATA[<p>The foundation is so important for a skyscraper, thus I want to rebuild, or, renovate of my java foundation in the next few weeks. I will post valuable points here in this <em>relearn java</em> series. Here is Day 1:</p>
-
-<ol>
-  <li>Basic Conceptions:<br />
-    <ul>
-      <li><strong>Java Virtual Machine(JVM)</strong>:  <br />
-        <ul>
-          <li>help Java become cross-platform language(note jvm isn’t cross-platform)</li>
-          <li>between language and operating system</li>
-        </ul>
-      </li>
-      <li><strong>Java Runtime Environment(JRE)</strong>
-        <ul>
-          <li>JVM + 核心类库</li>
-        </ul>
-      </li>
-      <li><strong>Java Development Kit(JDK)</strong>
-        <ul>
-          <li>JRE + javac.exe + jar.exe + …</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>Comment
-    <ul>
-      <li>one line : //</li>
-      <li>multiple line: /*  */</li>
-      <li>文档注释： /** */</li>
-    </ul>
-  </li>
-  <li>Bit computing
-    <ul>
-      <li>&amp; and. could used to get several bits of bytes.
-        <ul>
-          <li>not the difference between &amp; and &amp;&amp; is &amp;&amp; is more efficient when the left of &amp;&amp; is false(it will stop calculating the right one).</li>
-        </ul>
-      </li>
-      <li>^ xor. note you can get the original number by xor two times
-        <ul>
-          <li>change the value of variable a, b in place :<br />
-  a = a ^ b;
-  b = a ^ b;
-  a = a ^ b;</li>
-        </ul>
-      </li>
-      <li><strong>«</strong> 左移 （该数乘以2的几次方）</li>
-      <li><strong>»</strong> 右移 （该数除以2的几次方）对于高位出现的空位， 补与原来相同的数</li>
-      <li><strong>»&gt;</strong> 无论原来高位是什么 都用0来补</li>
-    </ul>
-  </li>
-  <li>switch : 
-    <ul>
-      <li>the types that could be compared ： byte, short, int, char</li>
-    </ul>
-  </li>
-</ol>
 ]]></content>
   </entry>
   

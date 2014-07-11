@@ -12,7 +12,7 @@
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="Question This is a simple question, as the rules of a valid sudoku is already given. We just need to follow the rules to implement the function. Here &hellip;">
+  <meta name="description" content="Question For every slot, we find both the highest elevation of its left slots and right slots, the smaller of which will be the local maximum height &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,94 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/06/30/trapping-rain-water/">Trapping Rain Water</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-30T17:06:16-07:00" pubdate data-updated="true">Jun 30<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://oj.leetcode.com/problems/trapping-rain-water/">Question</a></p>
+
+<hr />
+<p>For every slot, we find both the highest elevation of its left slots and right slots, the <strong>smaller</strong> of which will be the local maximum height. Next we need to compare this height, say <em>maxh</em> with the height of the slot, say <em>h</em>, if <em>h</em> is larger, meaning it’s not able to trap water as it itself is the highest. If not, we can trap <em>mh</em> - <em>h</em> amount of water. Here follows the code:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="type">int</span> trap(<span class="type">int</span><span class="type">[]</span> A) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="keyword">if</span> (A.length == <span class="integer">0</span>) {
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>            <span class="keyword">return</span> <span class="integer">0</span>;
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        }
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        <span class="comment">/* Initialize leftMax and rightMax */</span>
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        <span class="type">int</span> leftMax = A[<span class="integer">0</span>];
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        <span class="type">int</span> rightMax = <span class="integer">0</span>;
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">1</span>; i &lt; A.length; i++) {
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>            <span class="keyword">if</span> (A[i] &gt; rightMax) {
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>                rightMax = A[i];
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>            }
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>        }
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>        
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>        <span class="comment">/* Get capacity of every slot */</span>
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>        <span class="type">int</span> capacity = <span class="integer">0</span>;
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">1</span>; i &lt; A.length - <span class="integer">1</span>; i++) {
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>            <span class="type">int</span> left = <span class="integer">0</span>;
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>            <span class="type">int</span> right = <span class="integer">0</span>;
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>            <span class="keyword">if</span> (leftMax &gt; A[i]) {
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>                left = leftMax;
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>            } <span class="keyword">else</span> {
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>                leftMax = A[i];
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>            }
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span>            <span class="keyword">if</span> (rightMax &gt; A[i]) {
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span>                right = rightMax;
+<span class="line-numbers"><a href="#n29" name="n29">29</a></span>            } <span class="keyword">else</span> {
+<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>                <span class="type">int</span> newRightMax = <span class="integer">0</span>;
+<span class="line-numbers"><a href="#n31" name="n31">31</a></span>                <span class="keyword">for</span> (<span class="type">int</span> j = i + <span class="integer">1</span>; j &lt; A.length; j++) {
+<span class="line-numbers"><a href="#n32" name="n32">32</a></span>                    <span class="keyword">if</span> (A[j] &gt; newRightMax) {
+<span class="line-numbers"><a href="#n33" name="n33">33</a></span>                        newRightMax = A[j];
+<span class="line-numbers"><a href="#n34" name="n34">34</a></span>                    }
+<span class="line-numbers"><a href="#n35" name="n35">35</a></span>                }
+<span class="line-numbers"><a href="#n36" name="n36">36</a></span>                rightMax = newRightMax;
+<span class="line-numbers"><a href="#n37" name="n37">37</a></span>            }
+<span class="line-numbers"><a href="#n38" name="n38">38</a></span>
+<span class="line-numbers"><a href="#n39" name="n39">39</a></span>            <span class="type">int</span> localMax = left &gt; right ? right : left;
+<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>            capacity += localMax &gt; A[i] ? localMax - A[i] : <span class="integer">0</span>;
+<span class="line-numbers"><a href="#n41" name="n41">41</a></span>        }
+<span class="line-numbers"><a href="#n42" name="n42">42</a></span>
+<span class="line-numbers"><a href="#n43" name="n43">43</a></span>        <span class="keyword">return</span> capacity;
+<span class="line-numbers"><a href="#n44" name="n44">44</a></span>    }
+</pre></div>
+</div>
+</div>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -867,97 +955,6 @@ Thus we need figure if target must reside in one of the two parts(to see if <em>
 </span><span class="line">			<span class="o">}</span>
 </span><span class="line">		<span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/26/relearn-java-day-1/">Relearn Java Day 1</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-26T07:53:35-07:00" pubdate data-updated="true">Jun 26<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>The foundation is so important for a skyscraper, thus I want to rebuild, or, renovate of my java foundation in the next few weeks. I will post valuable points here in this <em>relearn java</em> series. Here is Day 1:</p>
-
-<ol>
-  <li>Basic Conceptions:<br />
-    <ul>
-      <li><strong>Java Virtual Machine(JVM)</strong>:  <br />
-        <ul>
-          <li>help Java become cross-platform language(note jvm isn’t cross-platform)</li>
-          <li>between language and operating system</li>
-        </ul>
-      </li>
-      <li><strong>Java Runtime Environment(JRE)</strong>
-        <ul>
-          <li>JVM + 核心类库</li>
-        </ul>
-      </li>
-      <li><strong>Java Development Kit(JDK)</strong>
-        <ul>
-          <li>JRE + javac.exe + jar.exe + …</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>Comment
-    <ul>
-      <li>one line : //</li>
-      <li>multiple line: /*  */</li>
-      <li>文档注释： /** */</li>
-    </ul>
-  </li>
-  <li>Bit computing
-    <ul>
-      <li>&amp; and. could used to get several bits of bytes.
-        <ul>
-          <li>not the difference between &amp; and &amp;&amp; is &amp;&amp; is more efficient when the left of &amp;&amp; is false(it will stop calculating the right one).</li>
-        </ul>
-      </li>
-      <li>^ xor. note you can get the original number by xor two times
-        <ul>
-          <li>change the value of variable a, b in place :<br />
-  a = a ^ b;
-  b = a ^ b;
-  a = a ^ b;</li>
-        </ul>
-      </li>
-      <li><strong>«</strong> 左移 （该数乘以2的几次方）</li>
-      <li><strong>»</strong> 右移 （该数除以2的几次方）对于高位出现的空位， 补与原来相同的数</li>
-      <li><strong>»&gt;</strong> 无论原来高位是什么 都用0来补</li>
-    </ul>
-  </li>
-  <li>switch : 
-    <ul>
-      <li>the types that could be compared ： byte, short, int, char</li>
-    </ul>
-  </li>
-</ol>
 </div>
   
   
