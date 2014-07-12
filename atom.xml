@@ -4,7 +4,7 @@
   <title><![CDATA[KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-07-11T00:40:44-07:00</updated>
+  <updated>2014-07-11T17:08:16-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -12,6 +12,65 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Rotate List]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/07/11/rotate-list/"/>
+    <updated>2014-07-11T17:05:14-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/07/11/rotate-list</id>
+    <content type="html"><![CDATA[<p><a href="https://oj.leetcode.com/problems/rotate-list/">Question</a></p>
+
+<hr />
+<p>For this question, note when n is larger than the length of the list, we need do the mod operation to get the remainder. Here is the code:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span class="directive">public</span> ListNode rotateRight(ListNode head, <span class="type">int</span> n) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="type">int</span> len = getLength(head);
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        <span class="keyword">if</span> (head == <span class="predefined-constant">null</span> || n == <span class="integer">0</span> || n % len == <span class="integer">0</span>) {
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>            <span class="keyword">return</span> head;
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        }
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        <span class="type">int</span> rotateIndex = len - n % len;
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        <span class="type">int</span> index = <span class="integer">1</span>;
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        <span class="comment">/* Find where to start rotate */</span>
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>        ListNode pointNode = head;
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        <span class="keyword">while</span> (index &lt; rotateIndex) {
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>            pointNode = pointNode.next;
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>            index++;
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>        }
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>        
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>        ListNode startRotateNode = pointNode.next;
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>        pointNode.next = <span class="predefined-constant">null</span>;
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>        
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>        <span class="comment">/* rotate, point the node before startRotateNode to null</span>
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span><span class="comment">           point the last node in the rotated list to the head</span>
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span><span class="comment">           return startRotateNode</span>
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span><span class="comment">        */</span>
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>        ListNode rotateNode = startRotateNode;
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>        <span class="keyword">while</span>(rotateNode.next != <span class="predefined-constant">null</span>) {
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>            rotateNode = rotateNode.next;
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span>        }
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span>        
+<span class="line-numbers"><a href="#n29" name="n29">29</a></span>        rotateNode.next = head;
+<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>        
+<span class="line-numbers"><a href="#n31" name="n31">31</a></span>        <span class="keyword">return</span> startRotateNode;
+<span class="line-numbers"><a href="#n32" name="n32">32</a></span>    }
+<span class="line-numbers"><a href="#n33" name="n33">33</a></span>    
+<span class="line-numbers"><a href="#n34" name="n34">34</a></span>    <span class="comment">/* Helper Functions */</span>
+<span class="line-numbers"><a href="#n35" name="n35">35</a></span>    <span class="directive">public</span> <span class="type">int</span> getLength(ListNode head) {
+<span class="line-numbers"><a href="#n36" name="n36">36</a></span>        <span class="type">int</span> k = <span class="integer">0</span>;
+<span class="line-numbers"><a href="#n37" name="n37">37</a></span>        <span class="keyword">while</span> (head != <span class="predefined-constant">null</span>) {
+<span class="line-numbers"><a href="#n38" name="n38">38</a></span>            head = head.next;
+<span class="line-numbers"><a href="#n39" name="n39">39</a></span>            k++;
+<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>        }
+<span class="line-numbers"><a href="#n41" name="n41">41</a></span>        <span class="keyword">return</span> k;
+<span class="line-numbers"><a href="#n42" name="n42">42</a></span>    }
+</pre></div>
+</div>
+</div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Remove Duplicates From Sorted List]]></title>
@@ -947,6 +1006,46 @@ To calculate gray code sequence of 1 bit, only need to flip the last bit from 0 
       <li>could be overloaded</li>
     </ul>
   </li>
+  <li><strong>This</strong>
+    <ul>
+      <li>when member variable’s name is the same with local variables’, we can use key word <em>this</em> to represent the current object.</li>
+      <li><em>this()</em> can be used to call other constructor functions, but can be only at the very first sentence.</li>
+    </ul>
+  </li>
+  <li><strong>Static</strong>
+    <ul>
+      <li>classify class members 
+        <ul>
+          <li>for variables: 
+            <ul>
+              <li>with static : static varaible, class variable. Stored at method.</li>
+              <li>without static : member variable, instance variable. Stored at heap</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>shared by all objects</li>
+      <li>exist before object, since it exists when class is loaded</li>
+      <li>static members can be called directly by class name
+        <ul>
+          <li>Classname.staticmember</li>
+        </ul>
+      </li>
+      <li>Tips:
+        <ul>
+          <li>static function can only visit static variables/functions, while not static functions can visit both.</li>
+          <li>static function can not use this or super</li>
+          <li>main function is static</li>
+        </ul>
+      </li>
+      <li>Static block
+        <ul>
+          <li>implemented when the class loaded, only once</li>
+          <li>used to initialize the class, especially when some class do not need constructor function(no objects)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
 </ul>
 
 ]]></content>
@@ -1153,129 +1252,6 @@ With the help of three sum’s <a href="http://en.wikipedia.org/wiki/3SUM">wiki 
 	2. 堆内存中的每一个变量都有默认初始化值，根据类型的不同而不同。整数是0，小数0.0或者0.0f，boolean false char ‘\u0000’<br />
 	3. 垃圾回收机制。      </p>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Search in Rotated Sorted Array]]></title>
-    <link href="http://tangkangkai.github.io/blog/2014/06/26/search-in-rotated-sorted-array/"/>
-    <updated>2014-06-26T17:23:30-07:00</updated>
-    <id>http://tangkangkai.github.io/blog/2014/06/26/search-in-rotated-sorted-array</id>
-    <content type="html"><![CDATA[<p>Q：Suppose a sorted array is rotated at some pivot unknown to you beforehand.You are given a target value to search. If found in the array return its index, otherwise return -1.You may assume no duplicate exists in the array.</p>
-
-<p>Q2:Follow up for “Search in Rotated Sorted Array”:
-What if duplicates are allowed?<br />
-Would this affect the run-time complexity? How and why?<br />
-Write a function to determine if a given target is in the array.</p>
-
-<hr />
-
-<p>For sorted array <strong>not rotated</strong>, we use binary search, the runtime of which would be O(logn). The basic steps would be : 
-&gt;
-1. Set <em>left</em> be the left most point of the array, similar to <em>right</em>
-2. Set <em>mid</em> to be the mid point of the array : (left + right) / 2
-3. If <em>mid</em> element is equal to target, we return the index
-4. Otherwise, we compare the <em>mid</em> element with target, and repeat these steps on the subtracted array (either <em>left</em> to <em>mid</em>-1 or <em>mid</em>+1 to right)。
-5. If we can’t find one before left &lt;= right, we will return -1.</p>
-
-<p>Now the array is rotated, while when doing binary search, after <em>mid</em> divides the array into two parts, there must be one part that is in sequence. Thus we can adjust the previous solution a little bit, that is, after step 3, we figure out which part is in sequence, then we judge whether the target would reside in the part. If so, actually it becomes same with normal binary search, if not, it must reside in the other part(based on the fact that the target is in the array), then we can repeat the procedure again on the subtracted array. </p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Search in Sorted Array</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-</pre></td><td class="code"><pre><code class="java"><span class="line">		<span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
-</span><span class="line">			<span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
-</span><span class="line">
-</span><span class="line">			<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-</span><span class="line">				<span class="k">return</span> <span class="n">mid</span><span class="o">;</span>
-</span><span class="line">			<span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">])</span> <span class="o">{</span>
-</span><span class="line">				<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">target</span> <span class="o">&amp;&amp;</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">])</span> <span class="o">{</span>
-</span><span class="line">					<span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class="line">				<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class="line">					<span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class="line">				<span class="o">}</span>
-</span><span class="line">			<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class="line">				<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span> <span class="o">&amp;&amp;</span> <span class="n">target</span> <span class="o">&lt;=</span> <span class="n">A</span><span class="o">[</span><span class="n">right</span><span class="o">])</span> <span class="o">{</span>
-</span><span class="line">					<span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class="line">				<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class="line">					<span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class="line">				<span class="o">}</span>
-</span><span class="line">			<span class="o">}</span>
-</span><span class="line">		<span class="o">}</span>
-</span><span class="line">		<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>If duplicates are allowed, we have no idea if the part is in sequence by comparing <em>left</em> and <em>mid</em>(or <em>mid</em> and <em>right</em>) as they may be the same.
-Thus we need figure if target must reside in one of the two parts(to see if <em>left</em>&lt;target&lt;<em>mid</em> or <em>mid</em> &lt; target &lt; <em>right</em>), if so, we do the same previously. Otherwise, if we could not make sure either of them, we need narrow the range of left to right and repeat the procedure again. By doing so, the runtime would be O(n) in worst. Here is the detail:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Search in Sorted Array</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-</pre></td><td class="code"><pre><code class="java"><span class="line">		<span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
-</span><span class="line">			<span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
-</span><span class="line">			<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-</span><span class="line">				<span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-</span><span class="line">			<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class="line">				<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span> <span class="o">&amp;&amp;</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">])</span> <span class="o">{</span>
-</span><span class="line">					<span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class="line">				<span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span> <span class="o">&amp;&amp;</span> <span class="n">target</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">[</span><span class="n">right</span><span class="o">])</span> <span class="o">{</span>
-</span><span class="line">					<span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
-</span><span class="line">				<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class="line">					<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-</span><span class="line">						<span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-</span><span class="line">					<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class="line">						<span class="n">left</span><span class="o">++;</span>
-</span><span class="line">					<span class="o">}</span>
-</span><span class="line">
-</span><span class="line">					<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">right</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-</span><span class="line">						<span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-</span><span class="line">					<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span><span class="line">						<span class="n">right</span><span class="o">--;</span>
-</span><span class="line">					<span class="o">}</span>
-</span><span class="line">				<span class="o">}</span>
-</span><span class="line">
-</span><span class="line">			<span class="o">}</span>
-</span><span class="line">		<span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
 ]]></content>
   </entry>
   
