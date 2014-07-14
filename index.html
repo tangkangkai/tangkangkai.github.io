@@ -12,7 +12,7 @@
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="Question We need two pointers, first(beforeRemovedNode in the code) pointing to the head node, the next(pointNode in the code) pointing to the node n &hellip;">
+  <meta name="description" content="Question For this question, we can firstly swap the first and second node, then point the second node to the result of calling function(recursively) &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,63 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/07/13/swap-nodes-in-pairs/">Swap Nodes in Pairs</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-13T22:05:48-07:00" pubdate data-updated="true">Jul 13<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://oj.leetcode.com/problems/swap-nodes-in-pairs/">Question</a></p>
+
+<hr />
+<p>For this question, we can firstly swap the first and second node, then point the second node to the result of calling function(recursively) on the third node. Here is the code:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> ListNode swapPairs(ListNode head) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="keyword">if</span> (head == <span class="predefined-constant">null</span> || head.next == <span class="predefined-constant">null</span>) {
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>            <span class="keyword">return</span> head;
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        }
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        ListNode headNode = head.next;
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        ListNode thirdNode = headNode.next;
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        headNode.next = head;
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        head.next = swapPairs(thirdNode);
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>        
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        <span class="keyword">return</span> headNode;
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>    }
+</pre></div>
+</div>
+</div>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -946,62 +1003,6 @@ To calculate gray code sequence of 1 bit, only need to flip the last bit from 0 
 <span class="line-numbers"><a href="#n12" name="n12">12</a></span>
 <span class="line-numbers"><a href="#n13" name="n13">13</a></span>        <span class="keyword">return</span> codeList;
 <span class="line-numbers"><a href="#n14" name="n14">14</a></span>    }
-</pre></div>
-</div>
-</div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/07/01/climbing-stairs/">Climbing Stairs</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-07-01T23:11:20-07:00" pubdate data-updated="true">Jul 1<sup>st</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="https://oj.leetcode.com/problems/climbing-stairs/">Question</a></p>
-
-<hr />
-<p>We can solve this question by taking advantage of <a href="http://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci number</a>. To get the distinct ways to climb n steps, we can separate it into two parts, first taking one step, then the ways is the same with <em>climeStair(n - 1)</em>; Second taking two steps, then the the ways is the same with <em>climeStair(n - 2)</em>. In total, <em>climeStair(n)</em> = <em>climeStair(n - 1)</em> + <em>climeStair(n - 2)</em>, which is actually to find the _n_th Fibonacci number. The code follows here:</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="type">int</span> climbStairs(<span class="type">int</span> n) {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="keyword">if</span> (n &lt;= <span class="integer">2</span>) {
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>            <span class="keyword">return</span> n;
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        }
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        <span class="type">int</span><span class="type">[]</span> steps = <span class="keyword">new</span> <span class="type">int</span>[n + <span class="integer">1</span>];
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        steps[<span class="integer">1</span>] = <span class="integer">1</span>;
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        steps[<span class="integer">2</span>] = <span class="integer">2</span>;
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="integer">3</span>; i &lt;= n; i++) {
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>            steps[i] = steps[i - <span class="integer">1</span>] + steps[i - <span class="integer">2</span>];
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        }
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>        <span class="keyword">return</span> steps[n];
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>    }
 </pre></div>
 </div>
 </div>

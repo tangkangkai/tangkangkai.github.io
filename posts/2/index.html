@@ -12,7 +12,7 @@
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="Question For this question, I take advantage of a helper function plusOneHelper, which will add one to the end element of array digit, if the result &hellip;">
+  <meta name="description" content="Question We can solve this question by taking advantage of Fibonacci number. To get the distinct ways to climb n steps, we can separate it into two &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,62 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/07/01/climbing-stairs/">Climbing Stairs</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-01T23:11:20-07:00" pubdate data-updated="true">Jul 1<sup>st</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://oj.leetcode.com/problems/climbing-stairs/">Question</a></p>
+
+<hr />
+<p>We can solve this question by taking advantage of <a href="http://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci number</a>. To get the distinct ways to climb n steps, we can separate it into two parts, first taking one step, then the ways is the same with <em>climeStair(n - 1)</em>; Second taking two steps, then the the ways is the same with <em>climeStair(n - 2)</em>. In total, <em>climeStair(n)</em> = <em>climeStair(n - 1)</em> + <em>climeStair(n - 2)</em>, which is actually to find the _n_th Fibonacci number. The code follows here:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="type">int</span> climbStairs(<span class="type">int</span> n) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="keyword">if</span> (n &lt;= <span class="integer">2</span>) {
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>            <span class="keyword">return</span> n;
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        }
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        <span class="type">int</span><span class="type">[]</span> steps = <span class="keyword">new</span> <span class="type">int</span>[n + <span class="integer">1</span>];
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        steps[<span class="integer">1</span>] = <span class="integer">1</span>;
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        steps[<span class="integer">2</span>] = <span class="integer">2</span>;
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="integer">3</span>; i &lt;= n; i++) {
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>            steps[i] = steps[i - <span class="integer">1</span>] + steps[i - <span class="integer">2</span>];
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        }
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>        <span class="keyword">return</span> steps[n];
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>    }
+</pre></div>
+</div>
+</div>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -815,91 +871,6 @@ With the help of three sum’s <a href="http://en.wikipedia.org/wiki/3SUM">wiki 
 <span class="line-numbers"><a href="#n38" name="n38">38</a></span>        <span class="keyword">return</span> sumList;
 <span class="line-numbers"><a href="#n39" name="n39">39</a></span>    }
 <span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>}
-</pre></div>
-</div>
-</div>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/28/relearn-java-day-3/">Relearn Java Day 3 Arrays</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-28T07:31:57-07:00" pubdate data-updated="true">Jun 28<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>Arrays</strong>： </p>
-
-<ul>
-  <li>initialization:
-    <ul>
-      <li>int[] arr = new int[5]; //the default value would be 0(default value of int)  </li>
-      <li>int[] arr = new int[]{1, 2, 3, 4, 5};  </li>
-      <li>int[] arr = {1, 2, 3, 4, 5};</li>
-    </ul>
-  </li>
-  <li>
-    <p>sort:</p>
-
-    <ul>
-      <li>Arrays.sort([]);  </li>
-    </ul>
-  </li>
-  <li>
-    <p>BinarySearch: </p>
-
-    <ul>
-      <li>Arrays.binarySearch(arr,key);//如果存在返回的具体的角标位置，不存在返回的是  -插入点-1   </li>
-    </ul>
-  </li>
-</ul>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span class="directive">public</span> <span class="directive">static</span> <span class="type">int</span> halfSearch_2(<span class="type">int</span><span class="type">[]</span> arr,<span class="type">int</span> key)
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>    {
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        <span class="type">int</span> max,min,mid;
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        min = <span class="integer">0</span>;
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        max = arr.length-<span class="integer">1</span>;
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        <span class="keyword">while</span>(min&lt;=max)
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        {
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>            mid = (max+min)&gt;&gt;<span class="integer">1</span>;
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>            <span class="keyword">if</span>(key&gt;arr[mid])
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>                min = mid + <span class="integer">1</span>;
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>            <span class="keyword">else</span> <span class="keyword">if</span>(key&lt;arr[mid])
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>                max = mid - <span class="integer">1</span>;
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>            <span class="keyword">else</span>
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>                <span class="keyword">return</span> mid;
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>        }
-<span class="line-numbers"><a href="#n18" name="n18">18</a></span>        <span class="keyword">return</span> -<span class="integer">1</span>;
-<span class="line-numbers"><a href="#n19" name="n19">19</a></span>    }
 </pre></div>
 </div>
 </div>
