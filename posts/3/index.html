@@ -12,7 +12,7 @@
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="Questions: Two Sum Three Sum Two Sum : If we use brute force, the time complexity would be O(n^2), we can figure out a better way. Try to think like &hellip;">
+  <meta name="description" content="Encapsulation hide details, including private the member variable.(set(), get()) class, framework are also encapsulation Anonymous object new Car &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,120 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/06/29/relearn-java-day-4/">Relearn Java Day 4 OOP</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-29T07:33:54-07:00" pubdate data-updated="true">Jun 29<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+  <li><strong>Encapsulation</strong>
+    <ul>
+      <li>hide details, including private the member variable.(set(), get())</li>
+      <li>class, framework are also encapsulation </li>
+    </ul>
+  </li>
+  <li><strong>Anonymous object</strong>
+    <ul>
+      <li>new Car();</li>
+      <li>when member functions only called once, we can use anonymous object</li>
+      <li>can be regarded as function arguments.</li>
+    </ul>
+  </li>
+  <li><strong>Member variable</strong>:
+    <ul>
+      <li>when object created, the corresponding member variables are initialized with default value (as the object is created in heap)</li>
+      <li>
+        <p>the difference between member variable and local variable:  </p>
+
+        <ul>
+          <li>member variable is defined in the block of class, can be visited through the class. local variable is defined in the block of function.  </li>
+          <li>member variable is created in heap, while local variable in stack.  </li>
+          <li>member variable exists with class, local variable exists with it’s corresponding blcok(functions).  </li>
+          <li>member variable has default value, local variable doesn’t</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Constructor</strong>
+    <ul>
+      <li>when newed, constructor functions must be called</li>
+      <li>no return value, name is the same with the class.</li>
+      <li>if not defined, there would be a default constructor function. If defined, the default one not used.</li>
+      <li>could be overloaded</li>
+    </ul>
+  </li>
+  <li><strong>This</strong>
+    <ul>
+      <li>when member variable’s name is the same with local variables’, we can use key word <em>this</em> to represent the current object.</li>
+      <li><em>this()</em> can be used to call other constructor functions, but can be only at the very first sentence.</li>
+    </ul>
+  </li>
+  <li><strong>Static</strong>
+    <ul>
+      <li>classify class members 
+        <ul>
+          <li>for variables: 
+            <ul>
+              <li>with static : static varaible, class variable. Stored at method.</li>
+              <li>without static : member variable, instance variable. Stored at heap</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>shared by all objects</li>
+      <li>exist before object, since it exists when class is loaded</li>
+      <li>static members can be called directly by class name
+        <ul>
+          <li>Classname.staticmember</li>
+        </ul>
+      </li>
+      <li>Tips:
+        <ul>
+          <li>static function can only visit static variables/functions, while not static functions can visit both.</li>
+          <li>static function can not use this or super</li>
+          <li>main function is static</li>
+        </ul>
+      </li>
+      <li>Static block
+        <ul>
+          <li>implemented when the class loaded, only once</li>
+          <li>used to initialize the class, especially when some class do not need constructor function(no objects)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>

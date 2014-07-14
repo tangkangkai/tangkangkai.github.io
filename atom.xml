@@ -4,7 +4,7 @@
   <title><![CDATA[KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-07-13T22:40:58-07:00</updated>
+  <updated>2014-07-14T16:18:30-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -14,7 +14,61 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Reverse Nodes in k-GroupReverse Nodes in k-Group]]></title>
+    <title type="html"><![CDATA[Valid Palindrome]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/07/14/valid-palindrome/"/>
+    <updated>2014-07-14T16:11:19-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/07/14/valid-palindrome</id>
+    <content type="html"><![CDATA[<p><a href="https://oj.leetcode.com/problems/valid-palindrome/">Question</a></p>
+
+<hr />
+<p>We compare the first and last alphanumeric character, if they are not equal return false directly otherwise keep comparing until there is only one or no character left in the string. Here is the code:</p>
+
+<p>Ref: <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Character.html#isLetterOrDigit%28char%29">Character.isLetterOrDigit</a> and <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Character.html#toLowerCase%28char%29">Character.toLowerCase</a></p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="type">boolean</span> isPalindrome(<span class="predefined-type">String</span> s) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        <span class="type">int</span> firstIndex = <span class="integer">0</span>;
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        <span class="type">char</span> firstChar;
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        <span class="type">int</span> lastIndex = s.length() - <span class="integer">1</span>;
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        <span class="type">char</span> lastChar;
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        <span class="keyword">while</span> (firstIndex &lt; lastIndex) {
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>            
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>            <span class="comment">/* only alphanumeric */</span>
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>            <span class="keyword">if</span> (!<span class="predefined-type">Character</span>.isLetterOrDigit((firstChar = s.charAt(firstIndex)))) {
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>                firstIndex++;
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>                <span class="keyword">continue</span>;
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>            }
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>            <span class="keyword">if</span> (!<span class="predefined-type">Character</span>.isLetterOrDigit((lastChar = s.charAt(lastIndex)))) {
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>                lastIndex--;
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>                <span class="keyword">continue</span>;
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>            }
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>            <span class="comment">/* Ignore Case */</span>
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>            <span class="keyword">if</span> (<span class="predefined-type">Character</span>.toLowerCase(firstChar) != <span class="predefined-type">Character</span>
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>                    .toLowerCase(lastChar)) {
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>                <span class="keyword">return</span> <span class="predefined-constant">false</span>;
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>            }
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span>            
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span>            firstIndex++;
+<span class="line-numbers"><a href="#n29" name="n29">29</a></span>            lastIndex--;
+<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>        }
+<span class="line-numbers"><a href="#n31" name="n31">31</a></span>        
+<span class="line-numbers"><a href="#n32" name="n32">32</a></span>        <span class="keyword">return</span> <span class="predefined-constant">true</span>;
+<span class="line-numbers"><a href="#n33" name="n33">33</a></span>
+<span class="line-numbers"><a href="#n34" name="n34">34</a></span>    }
+<span class="line-numbers"><a href="#n35" name="n35">35</a></span>
+</pre></div>
+</div>
+</div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Reverse Nodes in k-Group]]></title>
     <link href="http://tangkangkai.github.io/blog/2014/07/13/reverse-nodes-in-k-groupreverse-nodes-in-k-group/"/>
     <updated>2014-07-13T22:35:55-07:00</updated>
     <id>http://tangkangkai.github.io/blog/2014/07/13/reverse-nodes-in-k-groupreverse-nodes-in-k-group</id>
@@ -1099,93 +1153,6 @@ To calculate gray code sequence of 1 bit, only need to flip the last bit from 0 
 </pre></div>
 </div>
 </div>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Relearn Java Day 4 OOP]]></title>
-    <link href="http://tangkangkai.github.io/blog/2014/06/29/relearn-java-day-4/"/>
-    <updated>2014-06-29T07:33:54-07:00</updated>
-    <id>http://tangkangkai.github.io/blog/2014/06/29/relearn-java-day-4</id>
-    <content type="html"><![CDATA[<ul>
-  <li><strong>Encapsulation</strong>
-    <ul>
-      <li>hide details, including private the member variable.(set(), get())</li>
-      <li>class, framework are also encapsulation </li>
-    </ul>
-  </li>
-  <li><strong>Anonymous object</strong>
-    <ul>
-      <li>new Car();</li>
-      <li>when member functions only called once, we can use anonymous object</li>
-      <li>can be regarded as function arguments.</li>
-    </ul>
-  </li>
-  <li><strong>Member variable</strong>:
-    <ul>
-      <li>when object created, the corresponding member variables are initialized with default value (as the object is created in heap)</li>
-      <li>
-        <p>the difference between member variable and local variable:  </p>
-
-        <ul>
-          <li>member variable is defined in the block of class, can be visited through the class. local variable is defined in the block of function.  </li>
-          <li>member variable is created in heap, while local variable in stack.  </li>
-          <li>member variable exists with class, local variable exists with it’s corresponding blcok(functions).  </li>
-          <li>member variable has default value, local variable doesn’t</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><strong>Constructor</strong>
-    <ul>
-      <li>when newed, constructor functions must be called</li>
-      <li>no return value, name is the same with the class.</li>
-      <li>if not defined, there would be a default constructor function. If defined, the default one not used.</li>
-      <li>could be overloaded</li>
-    </ul>
-  </li>
-  <li><strong>This</strong>
-    <ul>
-      <li>when member variable’s name is the same with local variables’, we can use key word <em>this</em> to represent the current object.</li>
-      <li><em>this()</em> can be used to call other constructor functions, but can be only at the very first sentence.</li>
-    </ul>
-  </li>
-  <li><strong>Static</strong>
-    <ul>
-      <li>classify class members 
-        <ul>
-          <li>for variables: 
-            <ul>
-              <li>with static : static varaible, class variable. Stored at method.</li>
-              <li>without static : member variable, instance variable. Stored at heap</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>shared by all objects</li>
-      <li>exist before object, since it exists when class is loaded</li>
-      <li>static members can be called directly by class name
-        <ul>
-          <li>Classname.staticmember</li>
-        </ul>
-      </li>
-      <li>Tips:
-        <ul>
-          <li>static function can only visit static variables/functions, while not static functions can visit both.</li>
-          <li>static function can not use this or super</li>
-          <li>main function is static</li>
-        </ul>
-      </li>
-      <li>Static block
-        <ul>
-          <li>implemented when the class loaded, only once</li>
-          <li>used to initialize the class, especially when some class do not need constructor function(no objects)</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
 
 ]]></content>
   </entry>
