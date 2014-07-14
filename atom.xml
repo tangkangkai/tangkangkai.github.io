@@ -4,7 +4,7 @@
   <title><![CDATA[KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-07-11T17:08:16-07:00</updated>
+  <updated>2014-07-13T21:44:46-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -12,6 +12,61 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Remove Nth Node From End of List]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/07/13/remove-nth-node-from-end-of-list/"/>
+    <updated>2014-07-13T21:37:56-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/07/13/remove-nth-node-from-end-of-list</id>
+    <content type="html"><![CDATA[<p><a href="https://oj.leetcode.com/problems/remove-nth-node-from-end-of-list/">Question</a></p>
+
+<hr />
+<p>We need two pointers, first(<em>beforeRemovedNode</em> in the code) pointing to the head node, the next(<em>pointNode</em> in the code) pointing to the node <em>n</em> positions after head node. Then we move both pointer to its <em>next</em> position in the same time until the pointNode’s <em>next</em> is null. The we can remove the node just after <em>beforeRemovedNode</em> by doing </p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>beforeRemoveNode.next = beforeRemoveNode.next.next;
+</pre></div>
+</div>
+</div>
+
+<p>Below is the whole code:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> ListNode removeNthFromEnd(ListNode head, <span class="type">int</span> n) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="keyword">if</span> (head == <span class="predefined-constant">null</span>) {
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>            <span class="keyword">return</span> head;
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        }
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        <span class="comment">/* beforeRemovedNode point to the head first</span>
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span><span class="comment">         * pointNode point to the node n positions after beforeRemovedNode</span>
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span><span class="comment">         */</span>
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        ListNode pointNode = head;
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        ListNode beforeRemoveNode = head;
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>        <span class="type">int</span> index = <span class="integer">1</span>;
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>        <span class="keyword">while</span> (index &lt;= n) {
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>            <span class="keyword">if</span> (pointNode.next == <span class="predefined-constant">null</span>) {
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>                <span class="keyword">return</span> head.next;
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>            }
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>            pointNode = pointNode.next;
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>            index++;
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>        }
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>        
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>        <span class="keyword">while</span>(pointNode.next != <span class="predefined-constant">null</span>) {
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>            beforeRemoveNode = beforeRemoveNode.next;
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>            pointNode = pointNode.next;
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>        }
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>        
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>        beforeRemoveNode.next = beforeRemoveNode.next.next;
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span>
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span>        <span class="keyword">return</span> head;
+<span class="line-numbers"><a href="#n29" name="n29">29</a></span>
+<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>    }
+</pre></div>
+</div>
+</div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Rotate List]]></title>
@@ -1197,60 +1252,6 @@ With the help of three sum’s <a href="http://en.wikipedia.org/wiki/3SUM">wiki 
 </pre></div>
 </div>
 </div>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Relearn Java Day 2]]></title>
-    <link href="http://tangkangkai.github.io/blog/2014/06/27/relearn-java-day-2/"/>
-    <updated>2014-06-27T08:35:05-07:00</updated>
-    <id>http://tangkangkai.github.io/blog/2014/06/27/relearn-java-day-2</id>
-    <content type="html"><![CDATA[<p>1.<strong>Break</strong>:</p>
-
-<ul>
-  <li>jump out of only : <strong>switch</strong>, loop </li>
-  <li>break designated loop : break + 标号</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Example</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class="java"><span class="line">	<span class="nl">loopoint:</span><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span> <span class="n">x</span><span class="o">++)</span> <span class="o">{</span>
-</span><span class="line">		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">;</span> <span class="n">y</span><span class="o">++)</span> <span class="o">{</span>
-</span><span class="line">			<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">y</span><span class="o">);</span>
-</span><span class="line">			<span class="k">break</span> <span class="n">loopoint</span><span class="o">;</span>
-</span><span class="line">		<span class="o">}</span>	
-</span><span class="line">	<span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>2.<strong>Overload</strong>:<br />
-&gt;
-1. 同一个类，<br />
-2. 同名。<br />
-3. 参数个数不同。or 参数类型不同。<br />
-4. 函数重载和返回值类型无关。<br />
-5. java是严谨性语言，如果函数出现的调用的不确定性，会编译失败。 </p>
-
-<p>3.<strong>Division of JVM</strong>:<br />
-&gt;	
-1. 寄存器。<br />
-2. 本地方法区。<br />
-	和所在系统有关
-3. 方法区。<br />
-4. 栈内存（Stack）。<br />
-	存储的都是局部变量。<br />
-	而且变量所属的作用域一旦结束，该变量就自动释放。 
-	特点：生命周期短，处理速度快 
-5. 堆内存(Heap)。<br />
-	存储是数组和对象(其实数组就是对象) 凡是new建立在堆中。<br />
-	特点：<br />
-	1. 每一个实体都有首地址值。<br />
-	2. 堆内存中的每一个变量都有默认初始化值，根据类型的不同而不同。整数是0，小数0.0或者0.0f，boolean false char ‘\u0000’<br />
-	3. 垃圾回收机制。      </p>
 
 ]]></content>
   </entry>
