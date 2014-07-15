@@ -12,7 +12,7 @@
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="Question We need to take care of a situation when m equals to one, since it affects what we return. If m=1, then we return the last element in the &hellip;">
+  <meta name="description" content="Question1 Question2 Question 1 is very easy, I’ll just post my solution: 1 public ListNode deleteDuplicates(ListNode head) { 2 if (head == null) { 3 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,214 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/07/10/remove-duplicates-from-sorted-list/">Remove Duplicates From Sorted List</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-10T23:25:13-07:00" pubdate data-updated="true">Jul 10<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://oj.leetcode.com/problems/remove-duplicates-from-sorted-list/">Question1</a></p>
+
+<p><a href="https://oj.leetcode.com/problems/remove-duplicates-from-sorted-list-ii/">Question2</a></p>
+
+<hr />
+<p>Question 1 is very easy, I’ll just post my solution:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> ListNode deleteDuplicates(ListNode head) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="keyword">if</span> (head == <span class="predefined-constant">null</span>) {
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>            <span class="keyword">return</span> <span class="predefined-constant">null</span>;
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        }
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        ListNode pointNode = head;
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        ListNode nextNode;
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        <span class="keyword">while</span> ((nextNode = pointNode.next) != <span class="predefined-constant">null</span>) {
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>            <span class="keyword">if</span> (pointNode.val == nextNode.val) {
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>                pointNode.next = nextNode.next;
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>            } <span class="keyword">else</span> {
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>                pointNode = pointNode.next;
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>            }
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>        }
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>        
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>        <span class="keyword">return</span> head;
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>    }
+</pre></div>
+</div>
+</div>
+
+<p>For question 2, we need deal with more possible cases. We can use a <em>pivot node</em> to track. The basic idea is, if the first node is element, <em>pivot node</em> would be null and recursively call the first node after the duplicate nodesl; Otherwise, set the head node as the pivot node and begin to traverse. If we meet duplicates node, we skip them and point to <em>pivot node</em> to the next node which is not duplicate, update the pivot node to that node as well. We keep doing it until we meet the end of the list. Here is the code:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> ListNode deleteDuplicates(ListNode head) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="keyword">if</span> (head == <span class="predefined-constant">null</span> || head.next == <span class="predefined-constant">null</span>) {
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>            <span class="keyword">return</span> head;
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        }
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        ListNode pointNode;
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        ListNode pivotNode;
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        <span class="comment">/* if head node is duplicated, recursively call at the first node</span>
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span><span class="comment">         * which is different with the head node</span>
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span><span class="comment">         */</span>
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        <span class="keyword">if</span> (head.val == head.next.val) {
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>            pointNode = head;
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>            <span class="keyword">while</span> (pointNode.next != <span class="predefined-constant">null</span> &amp;&amp; pointNode.val == pointNode.next.val) {
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>                pointNode = pointNode.next;
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>            }
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>            <span class="keyword">return</span> deleteDuplicates(pointNode.next);
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>        } <span class="keyword">else</span> {
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>            <span class="comment">/* if head node is not duplicated, set it as pivot node</span>
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span><span class="comment">             * if it's next node is not duplicated, set it's next node as new pivot node</span>
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span><span class="comment">             * otherwise point pivotNode to the first node not duplicated, and set it as new pivot node</span>
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span><span class="comment">             */</span>
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>            pivotNode = head;
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>            pointNode = head.next;
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>            <span class="keyword">while</span> (pointNode.next != <span class="predefined-constant">null</span>) {
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span>                <span class="keyword">if</span> (pointNode.val == pointNode.next.val) {
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span>                    <span class="keyword">while</span> (pointNode.next != <span class="predefined-constant">null</span> &amp;&amp; pointNode.val == pointNode.next.val) {
+<span class="line-numbers"><a href="#n29" name="n29">29</a></span>                        pointNode = pointNode.next;
+<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>                    }
+<span class="line-numbers"><a href="#n31" name="n31">31</a></span>
+<span class="line-numbers"><a href="#n32" name="n32">32</a></span>                    <span class="keyword">if</span> (pointNode.next == <span class="predefined-constant">null</span>) {
+<span class="line-numbers"><a href="#n33" name="n33">33</a></span>                        pivotNode.next = <span class="predefined-constant">null</span>;
+<span class="line-numbers"><a href="#n34" name="n34">34</a></span>                    } <span class="keyword">else</span> {
+<span class="line-numbers"><a href="#n35" name="n35">35</a></span>                        pointNode = pointNode.next;
+<span class="line-numbers"><a href="#n36" name="n36">36</a></span>                        pivotNode.next = pointNode;
+<span class="line-numbers"><a href="#n37" name="n37">37</a></span>                    }
+<span class="line-numbers"><a href="#n38" name="n38">38</a></span>
+<span class="line-numbers"><a href="#n39" name="n39">39</a></span>                } <span class="keyword">else</span> {
+<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>                    pivotNode = pointNode;
+<span class="line-numbers"><a href="#n41" name="n41">41</a></span>                    pointNode = pointNode.next;
+<span class="line-numbers"><a href="#n42" name="n42">42</a></span>                }
+<span class="line-numbers"><a href="#n43" name="n43">43</a></span>            }
+<span class="line-numbers"><a href="#n44" name="n44">44</a></span>
+<span class="line-numbers"><a href="#n45" name="n45">45</a></span>            <span class="keyword">return</span> head;
+<span class="line-numbers"><a href="#n46" name="n46">46</a></span>        }
+<span class="line-numbers"><a href="#n47" name="n47">47</a></span>    }
+</pre></div>
+</div>
+</div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/07/10/partition-list/">Partition List</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-10T21:46:09-07:00" pubdate data-updated="true">Jul 10<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://oj.leetcode.com/problems/partition-list/">Question</a></p>
+
+<hr />
+<p>First, we need to find the first node whose <em>next</em> node’s value is not smaller than 3, which means the nodes before (and it self)this say,  <em>pivot node</em>, do not need to change. Next we traverse to see which node is smaller than <em>x</em>, put it after <em>pivot node</em>. Also note the special case where the head node’s value is larger than <em>x</em>, then the <em>pivot node</em> would be assigned later. Here is the code:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span class="directive">public</span> ListNode partition(ListNode head, <span class="type">int</span> x) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="keyword">if</span> (head == <span class="predefined-constant">null</span>) {
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>            <span class="keyword">return</span> <span class="predefined-constant">null</span>;
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        }
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        ListNode pointNode = head;
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        ListNode pivotNode;
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        <span class="comment">/* Find the pivot node */</span>
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>        <span class="keyword">if</span> (head.val &lt; x) {
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>            <span class="keyword">while</span> (pointNode.next != <span class="predefined-constant">null</span>) {
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>                <span class="keyword">if</span> (pointNode.next.val &lt; x) {
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>                    pointNode = pointNode.next;
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>                } <span class="keyword">else</span> {
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>                    <span class="keyword">break</span>;
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>                }
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>            }
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>            pivotNode = pointNode;
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>        } <span class="keyword">else</span> { <span class="comment">// if the head node's value is larger than x, then pivotNode is null</span>
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>            pivotNode = <span class="predefined-constant">null</span>;
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>        }
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>        
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>        <span class="comment">/* Traverse */</span>
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>        <span class="keyword">while</span> (pointNode.next != <span class="predefined-constant">null</span>) {
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span>            <span class="keyword">if</span> (pointNode.next.val &lt; x) {
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span>                ListNode temp = pointNode.next;
+<span class="line-numbers"><a href="#n29" name="n29">29</a></span>                pointNode.next = pointNode.next.next;
+<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>
+<span class="line-numbers"><a href="#n31" name="n31">31</a></span>                <span class="keyword">if</span> (pivotNode != <span class="predefined-constant">null</span>) {
+<span class="line-numbers"><a href="#n32" name="n32">32</a></span>                    temp.next = pivotNode.next;
+<span class="line-numbers"><a href="#n33" name="n33">33</a></span>                    pivotNode.next = temp;
+<span class="line-numbers"><a href="#n34" name="n34">34</a></span>                    pivotNode = temp;
+<span class="line-numbers"><a href="#n35" name="n35">35</a></span>                } <span class="keyword">else</span> {
+<span class="line-numbers"><a href="#n36" name="n36">36</a></span>                    pivotNode = temp;
+<span class="line-numbers"><a href="#n37" name="n37">37</a></span>                    temp.next = head;
+<span class="line-numbers"><a href="#n38" name="n38">38</a></span>                    head = temp;
+<span class="line-numbers"><a href="#n39" name="n39">39</a></span>                }
+<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>
+<span class="line-numbers"><a href="#n41" name="n41">41</a></span>            } <span class="keyword">else</span> {
+<span class="line-numbers"><a href="#n42" name="n42">42</a></span>                pointNode = pointNode.next;
+<span class="line-numbers"><a href="#n43" name="n43">43</a></span>            }
+<span class="line-numbers"><a href="#n44" name="n44">44</a></span>        }
+<span class="line-numbers"><a href="#n45" name="n45">45</a></span>
+<span class="line-numbers"><a href="#n46" name="n46">46</a></span>        <span class="keyword">return</span> head;
+<span class="line-numbers"><a href="#n47" name="n47">47</a></span>    }
+</pre></div>
+</div>
+</div>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -766,198 +974,6 @@ To calculate gray code sequence of 1 bit, only need to flip the last bit from 0 
 <span class="line-numbers"><a href="#n19" name="n19">19</a></span>        matrix[n - <span class="integer">1</span> - i][n - <span class="integer">1</span> - j] = matrix[j][n - <span class="integer">1</span> - i];
 <span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>        matrix[j][n - <span class="integer">1</span> - i] = temp;
 <span class="line-numbers"><a href="#n21" name="n21">21</a></span>    }
-</pre></div>
-</div>
-</div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/30/trapping-rain-water/">Trapping Rain Water</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-30T17:06:16-07:00" pubdate data-updated="true">Jun 30<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="https://oj.leetcode.com/problems/trapping-rain-water/">Question</a></p>
-
-<hr />
-<p>For every slot, we find both the highest elevation of its left slots and right slots, the <strong>smaller</strong> of which will be the local maximum height. Next we need to compare this height, say <em>maxh</em> with the height of the slot, say <em>h</em>, if <em>h</em> is larger, meaning it’s not able to trap water as it itself is the highest. If not, we can trap <em>mh</em> - <em>h</em> amount of water. Here follows the code:</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="type">int</span> trap(<span class="type">int</span><span class="type">[]</span> A) {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="keyword">if</span> (A.length == <span class="integer">0</span>) {
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>            <span class="keyword">return</span> <span class="integer">0</span>;
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        }
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        <span class="comment">/* Initialize leftMax and rightMax */</span>
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        <span class="type">int</span> leftMax = A[<span class="integer">0</span>];
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        <span class="type">int</span> rightMax = <span class="integer">0</span>;
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">1</span>; i &lt; A.length; i++) {
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>            <span class="keyword">if</span> (A[i] &gt; rightMax) {
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>                rightMax = A[i];
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>            }
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>        }
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>        
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>        <span class="comment">/* Get capacity of every slot */</span>
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>        <span class="type">int</span> capacity = <span class="integer">0</span>;
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">1</span>; i &lt; A.length - <span class="integer">1</span>; i++) {
-<span class="line-numbers"><a href="#n18" name="n18">18</a></span>            <span class="type">int</span> left = <span class="integer">0</span>;
-<span class="line-numbers"><a href="#n19" name="n19">19</a></span>            <span class="type">int</span> right = <span class="integer">0</span>;
-<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>
-<span class="line-numbers"><a href="#n21" name="n21">21</a></span>            <span class="keyword">if</span> (leftMax &gt; A[i]) {
-<span class="line-numbers"><a href="#n22" name="n22">22</a></span>                left = leftMax;
-<span class="line-numbers"><a href="#n23" name="n23">23</a></span>            } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n24" name="n24">24</a></span>                leftMax = A[i];
-<span class="line-numbers"><a href="#n25" name="n25">25</a></span>            }
-<span class="line-numbers"><a href="#n26" name="n26">26</a></span>
-<span class="line-numbers"><a href="#n27" name="n27">27</a></span>            <span class="keyword">if</span> (rightMax &gt; A[i]) {
-<span class="line-numbers"><a href="#n28" name="n28">28</a></span>                right = rightMax;
-<span class="line-numbers"><a href="#n29" name="n29">29</a></span>            } <span class="keyword">else</span> {
-<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>                <span class="type">int</span> newRightMax = <span class="integer">0</span>;
-<span class="line-numbers"><a href="#n31" name="n31">31</a></span>                <span class="keyword">for</span> (<span class="type">int</span> j = i + <span class="integer">1</span>; j &lt; A.length; j++) {
-<span class="line-numbers"><a href="#n32" name="n32">32</a></span>                    <span class="keyword">if</span> (A[j] &gt; newRightMax) {
-<span class="line-numbers"><a href="#n33" name="n33">33</a></span>                        newRightMax = A[j];
-<span class="line-numbers"><a href="#n34" name="n34">34</a></span>                    }
-<span class="line-numbers"><a href="#n35" name="n35">35</a></span>                }
-<span class="line-numbers"><a href="#n36" name="n36">36</a></span>                rightMax = newRightMax;
-<span class="line-numbers"><a href="#n37" name="n37">37</a></span>            }
-<span class="line-numbers"><a href="#n38" name="n38">38</a></span>
-<span class="line-numbers"><a href="#n39" name="n39">39</a></span>            <span class="type">int</span> localMax = left &gt; right ? right : left;
-<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>            capacity += localMax &gt; A[i] ? localMax - A[i] : <span class="integer">0</span>;
-<span class="line-numbers"><a href="#n41" name="n41">41</a></span>        }
-<span class="line-numbers"><a href="#n42" name="n42">42</a></span>
-<span class="line-numbers"><a href="#n43" name="n43">43</a></span>        <span class="keyword">return</span> capacity;
-<span class="line-numbers"><a href="#n44" name="n44">44</a></span>    }
-</pre></div>
-</div>
-</div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/30/valid-sudoku/">Valid Sudoku</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-30T15:45:57-07:00" pubdate data-updated="true">Jun 30<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="https://oj.leetcode.com/problems/valid-sudoku/">Question</a></p>
-
-<hr />
-
-<p>This is a simple question, as the <a href="http://sudoku.com.au/TheRules.aspx">rules</a> of a valid sudoku is already given. We just need to follow the rules to implement the function.</p>
-
-<p>Here I convert int <em>i</em> to char by using (char)(‘0’ + i). The whole code snippet follows here:</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="type">boolean</span> isValidSudoku(<span class="type">char</span><span class="type">[]</span><span class="type">[]</span> board) {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="predefined-type">Set</span>&lt;<span class="predefined-type">Character</span>&gt; set1 = <span class="keyword">new</span> <span class="predefined-type">HashSet</span>&lt;&gt;();
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        <span class="predefined-type">Set</span>&lt;<span class="predefined-type">Character</span>&gt; set2 = <span class="keyword">new</span> <span class="predefined-type">HashSet</span>&lt;&gt;();
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; <span class="integer">9</span>; i++) {
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>            setUp(set1);
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>            setUp(set2);
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="integer">0</span>; j &lt; <span class="integer">9</span>; j++) {
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>                <span class="type">char</span> num;
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>                <span class="comment">// Each row must have the numbers 1-9 occuring just once.</span>
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>                <span class="keyword">if</span> ((num = board[i][j]) != <span class="string"><span class="delimiter">'</span><span class="content">.</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>                    <span class="keyword">if</span> (set1.contains(num)) {
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>                        set1.remove(num);
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>                    } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>                        <span class="keyword">return</span> <span class="predefined-constant">false</span>;
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>                    }
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>                }
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>                <span class="comment">// Each column must have the numbers 1-9 occuring just once.</span>
-<span class="line-numbers"><a href="#n18" name="n18">18</a></span>                <span class="keyword">if</span> ((num = board[j][i]) != <span class="string"><span class="delimiter">'</span><span class="content">.</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"><a href="#n19" name="n19">19</a></span>                    <span class="keyword">if</span> (set2.contains(num)) {
-<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>                        set2.remove(num);
-<span class="line-numbers"><a href="#n21" name="n21">21</a></span>                    } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n22" name="n22">22</a></span>                        <span class="keyword">return</span> <span class="predefined-constant">false</span>;
-<span class="line-numbers"><a href="#n23" name="n23">23</a></span>                    }
-<span class="line-numbers"><a href="#n24" name="n24">24</a></span>                }
-<span class="line-numbers"><a href="#n25" name="n25">25</a></span>            }
-<span class="line-numbers"><a href="#n26" name="n26">26</a></span>        }
-<span class="line-numbers"><a href="#n27" name="n27">27</a></span>
-<span class="line-numbers"><a href="#n28" name="n28">28</a></span>        <span class="comment">// the numbers 1-9 must occur just once in each of the 9 sub-boxes of</span>
-<span class="line-numbers"><a href="#n29" name="n29">29</a></span>        <span class="comment">// the grid.</span>
-<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; <span class="integer">3</span>; i++) {
-<span class="line-numbers"><a href="#n31" name="n31">31</a></span>            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="integer">0</span>; j &lt; <span class="integer">3</span>; j++) {
-<span class="line-numbers"><a href="#n32" name="n32">32</a></span>                <span class="type">int</span> m = i * <span class="integer">3</span>;
-<span class="line-numbers"><a href="#n33" name="n33">33</a></span>                <span class="type">int</span> n = j * <span class="integer">3</span>;
-<span class="line-numbers"><a href="#n34" name="n34">34</a></span>                setUp(set1);
-<span class="line-numbers"><a href="#n35" name="n35">35</a></span>                <span class="keyword">for</span> (<span class="type">int</span> k = m; k &lt; m + <span class="integer">3</span>; k++) {
-<span class="line-numbers"><a href="#n36" name="n36">36</a></span>                    <span class="keyword">for</span> (<span class="type">int</span> l = n; l &lt; n + <span class="integer">3</span>; l++) {
-<span class="line-numbers"><a href="#n37" name="n37">37</a></span>                        <span class="type">char</span> num;
-<span class="line-numbers"><a href="#n38" name="n38">38</a></span>                        <span class="keyword">if</span> ((num = board[k][l]) == <span class="string"><span class="delimiter">'</span><span class="content">.</span><span class="delimiter">'</span></span>)
-<span class="line-numbers"><a href="#n39" name="n39">39</a></span>                            <span class="keyword">continue</span>;
-<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>                        <span class="keyword">if</span> (set1.contains(num)) {
-<span class="line-numbers"><a href="#n41" name="n41">41</a></span>                            set1.remove(num);
-<span class="line-numbers"><a href="#n42" name="n42">42</a></span>                        } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n43" name="n43">43</a></span>                            <span class="keyword">return</span> <span class="predefined-constant">false</span>;
-<span class="line-numbers"><a href="#n44" name="n44">44</a></span>                        }
-<span class="line-numbers"><a href="#n45" name="n45">45</a></span>                    }
-<span class="line-numbers"><a href="#n46" name="n46">46</a></span>                }
-<span class="line-numbers"><a href="#n47" name="n47">47</a></span>            }
-<span class="line-numbers"><a href="#n48" name="n48">48</a></span>        }
-<span class="line-numbers"><a href="#n49" name="n49">49</a></span>        <span class="keyword">return</span> <span class="predefined-constant">true</span>;
-<span class="line-numbers"><strong><a href="#n50" name="n50">50</a></strong></span>    }
-<span class="line-numbers"><a href="#n51" name="n51">51</a></span>
-<span class="line-numbers"><a href="#n52" name="n52">52</a></span>    <span class="comment">/* Helper Functions */</span>
-<span class="line-numbers"><a href="#n53" name="n53">53</a></span>    <span class="directive">public</span> <span class="type">void</span> setUp(<span class="predefined-type">Set</span>&lt;<span class="predefined-type">Character</span>&gt; set) {
-<span class="line-numbers"><a href="#n54" name="n54">54</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">1</span>; i &lt;= <span class="integer">9</span>; i++) {
-<span class="line-numbers"><a href="#n55" name="n55">55</a></span>            set.add((<span class="type">char</span>) (<span class="string"><span class="delimiter">'</span><span class="content">0</span><span class="delimiter">'</span></span> + i));
-<span class="line-numbers"><a href="#n56" name="n56">56</a></span>        }
-<span class="line-numbers"><a href="#n57" name="n57">57</a></span>    }
 </pre></div>
 </div>
 </div>

@@ -12,7 +12,7 @@
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="Recently I’ve been doing LeetCode Problems and found it’s tons of fun. Meanwhile I felt my lacking of solid way solving basic questions, e.g. the &hellip;">
+  <meta name="description" content="The foundation is so important for a skyscraper, thus I want to rebuild, or, renovate of my java foundation in the next few weeks. I will post &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,220 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/06/26/relearn-java-day-1/">Relearn Java Day 1</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-26T07:53:35-07:00" pubdate data-updated="true">Jun 26<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The foundation is so important for a skyscraper, thus I want to rebuild, or, renovate of my java foundation in the next few weeks. I will post valuable points here in this <em>relearn java</em> series. Here is Day 1:</p>
+
+<ol>
+  <li>Basic Conceptions:<br />
+    <ul>
+      <li><strong>Java Virtual Machine(JVM)</strong>:  <br />
+        <ul>
+          <li>help Java become cross-platform language(note jvm isn’t cross-platform)</li>
+          <li>between language and operating system</li>
+        </ul>
+      </li>
+      <li><strong>Java Runtime Environment(JRE)</strong>
+        <ul>
+          <li>JVM + 核心类库</li>
+        </ul>
+      </li>
+      <li><strong>Java Development Kit(JDK)</strong>
+        <ul>
+          <li>JRE + javac.exe + jar.exe + …</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Comment
+    <ul>
+      <li>one line : //</li>
+      <li>multiple line: /*  */</li>
+      <li>文档注释： /** */</li>
+    </ul>
+  </li>
+  <li>Bit computing
+    <ul>
+      <li>&amp; and. could used to get several bits of bytes.
+        <ul>
+          <li>not the difference between &amp; and &amp;&amp; is &amp;&amp; is more efficient when the left of &amp;&amp; is false(it will stop calculating the right one).</li>
+        </ul>
+      </li>
+      <li>^ xor. note you can get the original number by xor two times
+        <ul>
+          <li>change the value of variable a, b in place :<br />
+  a = a ^ b;
+  b = a ^ b;
+  a = a ^ b;</li>
+        </ul>
+      </li>
+      <li><strong>«</strong> 左移 （该数乘以2的几次方）</li>
+      <li><strong>»</strong> 右移 （该数除以2的几次方）对于高位出现的空位， 补与原来相同的数</li>
+      <li><strong>»&gt;</strong> 无论原来高位是什么 都用0来补</li>
+    </ul>
+  </li>
+  <li>switch : 
+    <ul>
+      <li>the types that could be compared ： byte, short, int, char</li>
+    </ul>
+  </li>
+</ol>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/06/25/remove-duplicates-in-array/">Remove Duplicates in Array</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-25T22:37:26-07:00" pubdate data-updated="true">Jun 25<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Q1: Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length. Do not allocate extra space for another array, you must do this in place with constant memory. </p>
+
+<p>Q2:Follow up for “Remove Duplicates”: What if duplicates are allowed at most twice?</p>
+
+<hr />
+
+<p>If we adjust the position of every element whenever there happens a duplicate, the running time would be large. In order to be more efficient, we can do in this way: if the element is the same with the previous one, we increase a “offset”(recording the offset) variable by one. When traversing through every element, say index of i, we adjust the position from i to i - offset.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Remove duplicate </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line">		<span class="kd">public</span> <span class="kt">int</span> <span class="nf">removeDuplicates1</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">A</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">		<span class="k">if</span> <span class="o">(</span><span class="n">A</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">			<span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class="line">		<span class="o">}</span>
+</span><span class="line">
+</span><span class="line">		<span class="c1">// we use count to show the offset</span>
+</span><span class="line">		<span class="kt">int</span> <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class="line">
+</span><span class="line">		<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class="line">			<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">==</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">{</span>
+</span><span class="line">				<span class="n">offset</span><span class="o">++;</span>
+</span><span class="line">			<span class="o">}</span>
+</span><span class="line">			<span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">offset</span><span class="o">]</span> <span class="o">=</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+</span><span class="line">		
+</span><span class="line">		<span class="o">}</span>
+</span><span class="line">
+</span><span class="line">		<span class="k">return</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">offset</span><span class="o">;</span>
+</span><span class="line">	<span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>For question 2, the solution is similar except for we need know when to increase the offset. We use a variable “count” to count, the following code show the details:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Remove duplicate </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line">	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">removeDuplicates2</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">A</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">		<span class="k">if</span> <span class="o">(</span><span class="n">A</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">			<span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class="line">		<span class="o">}</span>
+</span><span class="line">
+</span><span class="line">		<span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class="line">		<span class="kt">int</span> <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class="line">
+</span><span class="line">		<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span><span class="line">			<span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">==</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">{</span>
+</span><span class="line">				<span class="n">count</span><span class="o">++;</span>
+</span><span class="line">				<span class="k">if</span> <span class="o">(</span><span class="n">count</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
+</span><span class="line">					<span class="n">offset</span> <span class="o">+=</span> <span class="mi">1</span><span class="o">;</span>
+</span><span class="line">				<span class="o">}</span>
+</span><span class="line">			<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span><span class="line">				<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span><span class="line">			<span class="o">}</span>
+</span><span class="line">			<span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">offset</span><span class="o">]</span> <span class="o">=</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+</span><span class="line">		<span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>

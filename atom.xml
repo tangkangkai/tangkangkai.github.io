@@ -4,7 +4,7 @@
   <title><![CDATA[KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-07-14T20:25:59-07:00</updated>
+  <updated>2014-07-15T09:50:12-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -12,6 +12,75 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[One Day One Pattern : Singleton]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/07/15/one-day-one-pattern-singleton/"/>
+    <updated>2014-07-15T09:00:14-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/07/15/one-day-one-pattern-singleton</id>
+    <content type="html"><![CDATA[<ul>
+  <li>Purpose:
+    <ul>
+      <li>Restrict the creations of objects. Only one instance(of the class) could be created.</li>
+    </ul>
+  </li>
+  <li>Implementation Details:
+    <ul>
+      <li>Private Constructor</li>
+      <li>Private static variable that is the only instance of the class.</li>
+      <li>Public static method that returns the instance of the class</li>
+    </ul>
+  </li>
+  <li>Example:</li>
+</ul>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span class="directive">public</span> <span class="type">class</span> <span class="class">SingletonClass</span> {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>     
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>    <span class="directive">private</span> <span class="directive">static</span> <span class="directive">final</span> SingletonClass instance;
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>     
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>    <span class="comment">/* private constructor to avoid client applications to use constructor */</span>
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>    <span class="directive">private</span> SingletonClass(){}
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>    <span class="comment">/* for thread safety purpose */</span>
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>    <span class="directive">private</span> <span class="directive">static</span> <span class="type">class</span> <span class="class">SingletonHelper</span>{
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        <span class="directive">private</span> <span class="directive">static</span> <span class="directive">final</span> SingletonClass INSTANCE = <span class="keyword">new</span> SingletonClass();
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>    }
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span> 
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>    <span class="directive">public</span> <span class="directive">static</span> EagerInitializedSingleton getInstance(){
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>        <span class="comment">/* Lazy initialization */</span>
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>        <span class="keyword">return</span> SingletonHelper.INSTANCE;
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>    }
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>}
+</pre></div>
+</div>
+</div>
+
+<ul>
+  <li>Further &amp; Deeper understanding : <a href="http://www.journaldev.com/1377/java-singleton-design-pattern-best-practices-with-examples">Singleton Design Pattern</a></li>
+  <li>Reference may be needed:
+    <ul>
+      <li><a href="http://www.programmerinterview.com/index.php/java-questions/inner-vs-nested-classes/">difference between an inner and nested class in Java</a></li>
+      <li><a href="http://stackoverflow.com/questions/1353309/java-static-vs-non-static-inner-class">difference between static and non-static nested classes(inner class)</a>
+        <ul>
+          <li>A static nested class does not have a reference to a nesting instance, so a static nested class cannot invoke non-static methods or access non-static fields of an instance of the class within which it is nested.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Relearn Java Day 5]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/07/15/relearn-java-day-5/"/>
+    <updated>2014-07-15T08:27:04-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/07/15/relearn-java-day-5</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Add Binary]]></title>
@@ -1094,144 +1163,6 @@ To calculate gray code sequence of 1 bit, only need to flip the last bit from 0 
 <span class="line-numbers"><a href="#n19" name="n19">19</a></span>        matrix[n - <span class="integer">1</span> - i][n - <span class="integer">1</span> - j] = matrix[j][n - <span class="integer">1</span> - i];
 <span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>        matrix[j][n - <span class="integer">1</span> - i] = temp;
 <span class="line-numbers"><a href="#n21" name="n21">21</a></span>    }
-</pre></div>
-</div>
-</div>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Trapping Rain Water]]></title>
-    <link href="http://tangkangkai.github.io/blog/2014/06/30/trapping-rain-water/"/>
-    <updated>2014-06-30T17:06:16-07:00</updated>
-    <id>http://tangkangkai.github.io/blog/2014/06/30/trapping-rain-water</id>
-    <content type="html"><![CDATA[<p><a href="https://oj.leetcode.com/problems/trapping-rain-water/">Question</a></p>
-
-<hr />
-<p>For every slot, we find both the highest elevation of its left slots and right slots, the <strong>smaller</strong> of which will be the local maximum height. Next we need to compare this height, say <em>maxh</em> with the height of the slot, say <em>h</em>, if <em>h</em> is larger, meaning it’s not able to trap water as it itself is the highest. If not, we can trap <em>mh</em> - <em>h</em> amount of water. Here follows the code:</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="type">int</span> trap(<span class="type">int</span><span class="type">[]</span> A) {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="keyword">if</span> (A.length == <span class="integer">0</span>) {
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>            <span class="keyword">return</span> <span class="integer">0</span>;
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        }
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        <span class="comment">/* Initialize leftMax and rightMax */</span>
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        <span class="type">int</span> leftMax = A[<span class="integer">0</span>];
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        <span class="type">int</span> rightMax = <span class="integer">0</span>;
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">1</span>; i &lt; A.length; i++) {
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>            <span class="keyword">if</span> (A[i] &gt; rightMax) {
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>                rightMax = A[i];
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>            }
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>        }
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>        
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>        <span class="comment">/* Get capacity of every slot */</span>
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>        <span class="type">int</span> capacity = <span class="integer">0</span>;
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">1</span>; i &lt; A.length - <span class="integer">1</span>; i++) {
-<span class="line-numbers"><a href="#n18" name="n18">18</a></span>            <span class="type">int</span> left = <span class="integer">0</span>;
-<span class="line-numbers"><a href="#n19" name="n19">19</a></span>            <span class="type">int</span> right = <span class="integer">0</span>;
-<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>
-<span class="line-numbers"><a href="#n21" name="n21">21</a></span>            <span class="keyword">if</span> (leftMax &gt; A[i]) {
-<span class="line-numbers"><a href="#n22" name="n22">22</a></span>                left = leftMax;
-<span class="line-numbers"><a href="#n23" name="n23">23</a></span>            } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n24" name="n24">24</a></span>                leftMax = A[i];
-<span class="line-numbers"><a href="#n25" name="n25">25</a></span>            }
-<span class="line-numbers"><a href="#n26" name="n26">26</a></span>
-<span class="line-numbers"><a href="#n27" name="n27">27</a></span>            <span class="keyword">if</span> (rightMax &gt; A[i]) {
-<span class="line-numbers"><a href="#n28" name="n28">28</a></span>                right = rightMax;
-<span class="line-numbers"><a href="#n29" name="n29">29</a></span>            } <span class="keyword">else</span> {
-<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>                <span class="type">int</span> newRightMax = <span class="integer">0</span>;
-<span class="line-numbers"><a href="#n31" name="n31">31</a></span>                <span class="keyword">for</span> (<span class="type">int</span> j = i + <span class="integer">1</span>; j &lt; A.length; j++) {
-<span class="line-numbers"><a href="#n32" name="n32">32</a></span>                    <span class="keyword">if</span> (A[j] &gt; newRightMax) {
-<span class="line-numbers"><a href="#n33" name="n33">33</a></span>                        newRightMax = A[j];
-<span class="line-numbers"><a href="#n34" name="n34">34</a></span>                    }
-<span class="line-numbers"><a href="#n35" name="n35">35</a></span>                }
-<span class="line-numbers"><a href="#n36" name="n36">36</a></span>                rightMax = newRightMax;
-<span class="line-numbers"><a href="#n37" name="n37">37</a></span>            }
-<span class="line-numbers"><a href="#n38" name="n38">38</a></span>
-<span class="line-numbers"><a href="#n39" name="n39">39</a></span>            <span class="type">int</span> localMax = left &gt; right ? right : left;
-<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>            capacity += localMax &gt; A[i] ? localMax - A[i] : <span class="integer">0</span>;
-<span class="line-numbers"><a href="#n41" name="n41">41</a></span>        }
-<span class="line-numbers"><a href="#n42" name="n42">42</a></span>
-<span class="line-numbers"><a href="#n43" name="n43">43</a></span>        <span class="keyword">return</span> capacity;
-<span class="line-numbers"><a href="#n44" name="n44">44</a></span>    }
-</pre></div>
-</div>
-</div>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Valid Sudoku]]></title>
-    <link href="http://tangkangkai.github.io/blog/2014/06/30/valid-sudoku/"/>
-    <updated>2014-06-30T15:45:57-07:00</updated>
-    <id>http://tangkangkai.github.io/blog/2014/06/30/valid-sudoku</id>
-    <content type="html"><![CDATA[<p><a href="https://oj.leetcode.com/problems/valid-sudoku/">Question</a></p>
-
-<hr />
-
-<p>This is a simple question, as the <a href="http://sudoku.com.au/TheRules.aspx">rules</a> of a valid sudoku is already given. We just need to follow the rules to implement the function.</p>
-
-<p>Here I convert int <em>i</em> to char by using (char)(‘0’ + i). The whole code snippet follows here:</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="type">boolean</span> isValidSudoku(<span class="type">char</span><span class="type">[]</span><span class="type">[]</span> board) {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="predefined-type">Set</span>&lt;<span class="predefined-type">Character</span>&gt; set1 = <span class="keyword">new</span> <span class="predefined-type">HashSet</span>&lt;&gt;();
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        <span class="predefined-type">Set</span>&lt;<span class="predefined-type">Character</span>&gt; set2 = <span class="keyword">new</span> <span class="predefined-type">HashSet</span>&lt;&gt;();
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; <span class="integer">9</span>; i++) {
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>            setUp(set1);
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>            setUp(set2);
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="integer">0</span>; j &lt; <span class="integer">9</span>; j++) {
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>                <span class="type">char</span> num;
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>                <span class="comment">// Each row must have the numbers 1-9 occuring just once.</span>
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>                <span class="keyword">if</span> ((num = board[i][j]) != <span class="string"><span class="delimiter">'</span><span class="content">.</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>                    <span class="keyword">if</span> (set1.contains(num)) {
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>                        set1.remove(num);
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>                    } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>                        <span class="keyword">return</span> <span class="predefined-constant">false</span>;
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>                    }
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>                }
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>                <span class="comment">// Each column must have the numbers 1-9 occuring just once.</span>
-<span class="line-numbers"><a href="#n18" name="n18">18</a></span>                <span class="keyword">if</span> ((num = board[j][i]) != <span class="string"><span class="delimiter">'</span><span class="content">.</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"><a href="#n19" name="n19">19</a></span>                    <span class="keyword">if</span> (set2.contains(num)) {
-<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>                        set2.remove(num);
-<span class="line-numbers"><a href="#n21" name="n21">21</a></span>                    } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n22" name="n22">22</a></span>                        <span class="keyword">return</span> <span class="predefined-constant">false</span>;
-<span class="line-numbers"><a href="#n23" name="n23">23</a></span>                    }
-<span class="line-numbers"><a href="#n24" name="n24">24</a></span>                }
-<span class="line-numbers"><a href="#n25" name="n25">25</a></span>            }
-<span class="line-numbers"><a href="#n26" name="n26">26</a></span>        }
-<span class="line-numbers"><a href="#n27" name="n27">27</a></span>
-<span class="line-numbers"><a href="#n28" name="n28">28</a></span>        <span class="comment">// the numbers 1-9 must occur just once in each of the 9 sub-boxes of</span>
-<span class="line-numbers"><a href="#n29" name="n29">29</a></span>        <span class="comment">// the grid.</span>
-<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; <span class="integer">3</span>; i++) {
-<span class="line-numbers"><a href="#n31" name="n31">31</a></span>            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="integer">0</span>; j &lt; <span class="integer">3</span>; j++) {
-<span class="line-numbers"><a href="#n32" name="n32">32</a></span>                <span class="type">int</span> m = i * <span class="integer">3</span>;
-<span class="line-numbers"><a href="#n33" name="n33">33</a></span>                <span class="type">int</span> n = j * <span class="integer">3</span>;
-<span class="line-numbers"><a href="#n34" name="n34">34</a></span>                setUp(set1);
-<span class="line-numbers"><a href="#n35" name="n35">35</a></span>                <span class="keyword">for</span> (<span class="type">int</span> k = m; k &lt; m + <span class="integer">3</span>; k++) {
-<span class="line-numbers"><a href="#n36" name="n36">36</a></span>                    <span class="keyword">for</span> (<span class="type">int</span> l = n; l &lt; n + <span class="integer">3</span>; l++) {
-<span class="line-numbers"><a href="#n37" name="n37">37</a></span>                        <span class="type">char</span> num;
-<span class="line-numbers"><a href="#n38" name="n38">38</a></span>                        <span class="keyword">if</span> ((num = board[k][l]) == <span class="string"><span class="delimiter">'</span><span class="content">.</span><span class="delimiter">'</span></span>)
-<span class="line-numbers"><a href="#n39" name="n39">39</a></span>                            <span class="keyword">continue</span>;
-<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>                        <span class="keyword">if</span> (set1.contains(num)) {
-<span class="line-numbers"><a href="#n41" name="n41">41</a></span>                            set1.remove(num);
-<span class="line-numbers"><a href="#n42" name="n42">42</a></span>                        } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n43" name="n43">43</a></span>                            <span class="keyword">return</span> <span class="predefined-constant">false</span>;
-<span class="line-numbers"><a href="#n44" name="n44">44</a></span>                        }
-<span class="line-numbers"><a href="#n45" name="n45">45</a></span>                    }
-<span class="line-numbers"><a href="#n46" name="n46">46</a></span>                }
-<span class="line-numbers"><a href="#n47" name="n47">47</a></span>            }
-<span class="line-numbers"><a href="#n48" name="n48">48</a></span>        }
-<span class="line-numbers"><a href="#n49" name="n49">49</a></span>        <span class="keyword">return</span> <span class="predefined-constant">true</span>;
-<span class="line-numbers"><strong><a href="#n50" name="n50">50</a></strong></span>    }
-<span class="line-numbers"><a href="#n51" name="n51">51</a></span>
-<span class="line-numbers"><a href="#n52" name="n52">52</a></span>    <span class="comment">/* Helper Functions */</span>
-<span class="line-numbers"><a href="#n53" name="n53">53</a></span>    <span class="directive">public</span> <span class="type">void</span> setUp(<span class="predefined-type">Set</span>&lt;<span class="predefined-type">Character</span>&gt; set) {
-<span class="line-numbers"><a href="#n54" name="n54">54</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">1</span>; i &lt;= <span class="integer">9</span>; i++) {
-<span class="line-numbers"><a href="#n55" name="n55">55</a></span>            set.add((<span class="type">char</span>) (<span class="string"><span class="delimiter">'</span><span class="content">0</span><span class="delimiter">'</span></span> + i));
-<span class="line-numbers"><a href="#n56" name="n56">56</a></span>        }
-<span class="line-numbers"><a href="#n57" name="n57">57</a></span>    }
 </pre></div>
 </div>
 </div>
