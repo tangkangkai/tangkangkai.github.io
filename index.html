@@ -12,7 +12,7 @@
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="Question This question is complicated at the requirement need by atoi() function. At least these requirements need be met: * The leading invalid &hellip;">
+  <meta name="description" content="Question As the string could be very long, we could not use the functions given in the Integer class, we need add operation ourselves. Basically, the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,99 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/07/14/add-binary/">Add Binary</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-14T19:44:41-07:00" pubdate data-updated="true">Jul 14<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://oj.leetcode.com/problems/add-binary/">Question</a></p>
+
+<hr />
+<p>As the string could be very long, we could not use the functions given in the Integer class, we need add operation ourselves. Basically, the strategy is adding the common part, then dealt with the remaining part, note we need take care of the <em>carry</em> all the way through. For example, when adding “101” and “10”, we add “01” and “10” firstly, then add “1” as the remaining part. Here is the implementation code:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="predefined-type">String</span> addBinary(<span class="predefined-type">String</span> a, <span class="predefined-type">String</span> b) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="type">int</span> carry = <span class="integer">0</span>;
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        <span class="predefined-type">StringBuilder</span> sb = <span class="keyword">new</span> <span class="predefined-type">StringBuilder</span>();
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        <span class="type">int</span> alen = a.length();
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        <span class="type">int</span> blen = b.length();
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        <span class="type">boolean</span> flag = alen &gt;= blen;
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        <span class="predefined-type">String</span> longStr = flag ? a : b;
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        <span class="type">int</span> longlen = longStr.length();
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        <span class="type">int</span> i;
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        <span class="comment">/* Add the mutual part */</span>
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>        <span class="keyword">for</span> (i = <span class="integer">0</span>; i &lt; (flag ? blen : alen); i++) {
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>            <span class="type">int</span> aChar = a.charAt(alen - <span class="integer">1</span> - i) - <span class="integer">48</span>;
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>            <span class="type">int</span> bChar = b.charAt(blen - <span class="integer">1</span> - i) - <span class="integer">48</span>;
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>            <span class="type">int</span> resultChar;
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>            <span class="keyword">if</span> ((resultChar = aChar + bChar + carry) &gt;= <span class="integer">2</span>) {
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>                resultChar -= <span class="integer">2</span>;
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>                carry = <span class="integer">1</span>;
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>            } <span class="keyword">else</span> {
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>                carry = <span class="integer">0</span>;
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>            }
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>            sb.insert(<span class="integer">0</span>, resultChar);
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>        }
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span>
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span>        <span class="comment">/* Add the remaining part */</span>
+<span class="line-numbers"><a href="#n29" name="n29">29</a></span>
+<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>        <span class="keyword">for</span> (; i &lt; longlen; i++) {
+<span class="line-numbers"><a href="#n31" name="n31">31</a></span>            <span class="type">int</span> resultChar;
+<span class="line-numbers"><a href="#n32" name="n32">32</a></span>
+<span class="line-numbers"><a href="#n33" name="n33">33</a></span>            <span class="keyword">if</span> ((resultChar = longStr.charAt(longlen - <span class="integer">1</span> - i) - <span class="integer">48</span> + carry) &gt;= <span class="integer">2</span>) {
+<span class="line-numbers"><a href="#n34" name="n34">34</a></span>                resultChar -= <span class="integer">2</span>;
+<span class="line-numbers"><a href="#n35" name="n35">35</a></span>                carry = <span class="integer">1</span>;
+<span class="line-numbers"><a href="#n36" name="n36">36</a></span>            } <span class="keyword">else</span> {
+<span class="line-numbers"><a href="#n37" name="n37">37</a></span>                carry = <span class="integer">0</span>;
+<span class="line-numbers"><a href="#n38" name="n38">38</a></span>            }
+<span class="line-numbers"><a href="#n39" name="n39">39</a></span>            
+<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>            sb.insert(<span class="integer">0</span>, resultChar);
+<span class="line-numbers"><a href="#n41" name="n41">41</a></span>        }
+<span class="line-numbers"><a href="#n42" name="n42">42</a></span>
+<span class="line-numbers"><a href="#n43" name="n43">43</a></span>        <span class="comment">/* Add carry if there it's the hightes */</span>
+<span class="line-numbers"><a href="#n44" name="n44">44</a></span>        <span class="keyword">if</span> (carry == <span class="integer">1</span>) {
+<span class="line-numbers"><a href="#n45" name="n45">45</a></span>            sb.insert(<span class="integer">0</span>, <span class="integer">1</span>);
+<span class="line-numbers"><a href="#n46" name="n46">46</a></span>        }
+<span class="line-numbers"><a href="#n47" name="n47">47</a></span>
+<span class="line-numbers"><a href="#n48" name="n48">48</a></span>        <span class="keyword">return</span> sb.toString();
+<span class="line-numbers"><a href="#n49" name="n49">49</a></span>    }
+</pre></div>
+</div>
+</div>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -834,115 +927,6 @@
 <span class="line-numbers"><a href="#n45" name="n45">45</a></span>
 <span class="line-numbers"><a href="#n46" name="n46">46</a></span>        <span class="keyword">return</span> head;
 <span class="line-numbers"><a href="#n47" name="n47">47</a></span>    }
-</pre></div>
-</div>
-</div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/07/10/reverse-linked-list-ii/">Reverse Linked List II</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-07-10T15:48:08-07:00" pubdate data-updated="true">Jul 10<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="https://oj.leetcode.com/problems/reverse-linked-list-ii/">Question</a></p>
-
-<hr />
-<p>We need to take care of a situation when <em>m</em> equals to one, since it affects what we return. If <em>m=1</em>, then we return the last element in the list part that need reversed, otherwise we return the original head. </p>
-
-<p>For the reverse operation, it’s helpful to know how to just simply reverse a linkedlist. Note we not only need to point node to its previous node, but also record the real next node. Therefore we need three pointers: <em>prev, curr, next</em>. Here is the code </p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> ListNode reverseLinkedList(ListNode head) {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="keyword">if</span> (head == <span class="predefined-constant">null</span> || head.next == <span class="predefined-constant">null</span>) {
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>            <span class="keyword">return</span> head;
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        }
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        ListNode prev = head;
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        ListNode curr = head;
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        ListNode next = head.next;
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        head.next = <span class="predefined-constant">null</span>;
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>        <span class="keyword">while</span> (next != <span class="predefined-constant">null</span>) {
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>            curr = next;
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>            next = next.next;
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>            curr.next = prev;
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>            prev = curr;
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>        }
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>        <span class="keyword">return</span> curr;
-<span class="line-numbers"><a href="#n18" name="n18">18</a></span>    }
-</pre></div>
-</div>
-</div>
-
-<p>With the help of this basic operation we can move to solve our original question. Here is the code </p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> ListNode reverseBetween(ListNode head, <span class="type">int</span> m, <span class="type">int</span> n) {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="type">int</span> index = <span class="integer">1</span>;
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        ListNode pointNode;<span class="comment">// node used to traverse the list</span>
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        ListNode listPrev; <span class="comment">// record the node before the reversed list part</span>
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        ListNode listHead; <span class="comment">// record the head of the reversed list part</span>
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        pointNode = head;
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        <span class="keyword">while</span> (index + <span class="integer">1</span> &lt; m) {
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>            pointNode = pointNode.next;
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>            index++;
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        }
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>        listPrev = pointNode;
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>        listHead = m == <span class="integer">1</span>? head : pointNode.next;
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>
-<span class="line-numbers"><a href="#n18" name="n18">18</a></span>        ListNode prev = pointNode;
-<span class="line-numbers"><a href="#n19" name="n19">19</a></span>        ListNode curr = pointNode;
-<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>        ListNode next = pointNode.next;
-<span class="line-numbers"><a href="#n21" name="n21">21</a></span>
-<span class="line-numbers"><a href="#n22" name="n22">22</a></span>        <span class="keyword">while</span> (index &lt; n) {
-<span class="line-numbers"><a href="#n23" name="n23">23</a></span>            curr = next;
-<span class="line-numbers"><a href="#n24" name="n24">24</a></span>            next = next.next;
-<span class="line-numbers"><a href="#n25" name="n25">25</a></span>            curr.next = prev;
-<span class="line-numbers"><a href="#n26" name="n26">26</a></span>            prev = curr;
-<span class="line-numbers"><a href="#n27" name="n27">27</a></span>            index++;
-<span class="line-numbers"><a href="#n28" name="n28">28</a></span>        }
-<span class="line-numbers"><a href="#n29" name="n29">29</a></span>        
-<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>        listHead.next = next;
-<span class="line-numbers"><a href="#n31" name="n31">31</a></span>        
-<span class="line-numbers"><a href="#n32" name="n32">32</a></span>        <span class="keyword">if</span> (m == <span class="integer">1</span>) {
-<span class="line-numbers"><a href="#n33" name="n33">33</a></span>            <span class="keyword">return</span> curr;
-<span class="line-numbers"><a href="#n34" name="n34">34</a></span>        } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n35" name="n35">35</a></span>            listPrev.next = curr;
-<span class="line-numbers"><a href="#n36" name="n36">36</a></span>            <span class="keyword">return</span> head;    
-<span class="line-numbers"><a href="#n37" name="n37">37</a></span>        }
-<span class="line-numbers"><a href="#n38" name="n38">38</a></span>    }
 </pre></div>
 </div>
 </div>

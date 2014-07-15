@@ -12,7 +12,7 @@
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="Question For this question, in order to get the next larger permutation, we need start from the last element, compare it with the previous element to &hellip;">
+  <meta name="description" content="Question We have already solved Next Permutation question, with the help of this, we just need a loop to find the k th string. Here are the code: &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,67 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/06/30/permutation-sequence/">Permutation Sequence</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-30T11:40:31-07:00" pubdate data-updated="true">Jun 30<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://oj.leetcode.com/problems/permutation-sequence/">Question</a></p>
+
+<hr />
+
+<p>We have already solved <a href="http://www.codertkk.com/blog/2014/06/29/next-permutation/">Next Permutation</a> question, with the help of this, we just need a loop to find the <em>k</em> th string. Here are the code:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span class="directive">public</span> <span class="predefined-type">String</span> getPermutation(<span class="type">int</span> n, <span class="type">int</span> k) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>    <span class="type">int</span><span class="type">[]</span> num = <span class="keyword">new</span> <span class="type">int</span>[n];
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; n; i++) {
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        num[i] = i + <span class="integer">1</span>;
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>    }
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>    
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="integer">1</span>; i &lt; k; i++ ) {
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        nextPermutation(num);
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>    }
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>    <span class="predefined-type">StringBuilder</span> sb = <span class="keyword">new</span> <span class="predefined-type">StringBuilder</span>();
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>    <span class="keyword">for</span>(<span class="type">int</span> i : num) {
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>        sb.append(i);
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>    }
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>    <span class="keyword">return</span> sb.toString();
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>}
+</pre></div>
+</div>
+</div>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -955,58 +1016,6 @@ Thus we need figure if target must reside in one of the two parts(to see if <em>
 </span><span class="line">			<span class="n">A</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">offset</span><span class="o">]</span> <span class="o">=</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
 </span><span class="line">		<span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/06/25/bfs-and-dfs/">BFS and DFS</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-25T07:33:17-07:00" pubdate data-updated="true">Jun 25<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Recently I’ve been doing <a href="https://oj.leetcode.com/problems">LeetCode Problems</a> and found it’s tons of fun. Meanwhile I felt my lacking of solid way solving basic questions, e.g. the topic of the post today : BFS and DFS.I searched through the Internet and found <a href="http://www.codeproject.com/Articles/32212/Introduction-to-Graph-with-Breadth-First-Search-BF">this post</a> really helps me a lot.  </p>
-
-<p>Basically it’s important to know which data structure we use to implement the algorithm, for DFS we use Stack and for BFS we use Queue.</p>
-
-<p><strong>The steps for DFS:</strong><br />
-&gt;Step 1: Push the root node in the Stack.<br />
-Step 2: Loop until stack is empty. <br />
-Step 3: Peek the node of the stack.<br />
-Step 4: If the node has unvisited child nodes, get the unvisited child node, mark it as traversed and push it on stack. <br />
-Step 5: If the node does not have any unvisited child nodes, pop the node from the stack. </p>
-
-<p><strong>The steps for DFS:</strong><br />
-&gt;Step 1: Push the root node in the Queue.<br />
-Step 2: Loop until the queue is empty.<br />
-Step 3: Remove the node from the Queue. <br />
-Step 4: If the removed node has unvisited child nodes, mark them as visited and insert the unvisited children in the queue. </p>
 
 </div>
   
