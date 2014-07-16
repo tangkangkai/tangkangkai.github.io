@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Leetcode | KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/blog/categories/leetcode/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-07-15T09:50:12-07:00</updated>
+  <updated>2014-07-16T09:29:22-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -12,6 +12,53 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Longest Palindromic Substring]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/07/16/longest-palindromic-substring/"/>
+    <updated>2014-07-16T09:25:36-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/07/16/longest-palindromic-substring</id>
+    <content type="html"><![CDATA[<p><a href="https://oj.leetcode.com/problems/longest-palindromic-substring/">Question</a></p>
+
+<hr />
+<p>We use two pointers pointing to the middle of the string, then move them to each side if the character they pointing to are the same. Note substring is continuous and we need take care of both odd and even length situations. The code follows below:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="predefined-type">String</span> longestPalindrome(<span class="predefined-type">String</span> s) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="predefined-type">String</span> longestPalindromeString = <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>;
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; s.length(); i++) {
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>            <span class="predefined-type">String</span> palindrome = findLongestPalindrome(s, i, i);
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>            <span class="keyword">if</span> (palindrome.length() &gt; longestPalindromeString.length()) {
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>                longestPalindromeString = palindrome;
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>            }
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        }
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">1</span>; i &lt; s.length(); i++) {
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>            <span class="predefined-type">String</span> palindrome = findLongestPalindrome(s, i - <span class="integer">1</span>, i);
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>            <span class="keyword">if</span> (palindrome.length() &gt; longestPalindromeString.length()) {
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>                longestPalindromeString = palindrome;
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>            }
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>        }
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>        
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>        <span class="keyword">return</span> longestPalindromeString;
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>    }
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>    
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>    <span class="comment">/* Helper Functions */</span>
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>    <span class="directive">public</span> <span class="predefined-type">String</span> findLongestPalindrome(<span class="predefined-type">String</span> s, <span class="type">int</span> i, <span class="type">int</span> j) {
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>        <span class="keyword">while</span> (i &gt;= <span class="integer">0</span> &amp;&amp; j &lt; s.length() &amp;&amp; s.charAt(i) == s.charAt(j)) {
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>            i--;
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>            j++;
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span>        }
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span>        
+<span class="line-numbers"><a href="#n29" name="n29">29</a></span>        <span class="keyword">return</span> s.substring(i + <span class="integer">1</span>, j);
+<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>    }
+</pre></div>
+</div>
+</div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Add Binary]]></title>
@@ -252,36 +299,6 @@
 <span class="line-numbers"><a href="#n33" name="n33">33</a></span>
 <span class="line-numbers"><a href="#n34" name="n34">34</a></span>    }
 <span class="line-numbers"><a href="#n35" name="n35">35</a></span>
-</pre></div>
-</div>
-</div>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Swap Nodes in Pairs]]></title>
-    <link href="http://tangkangkai.github.io/blog/2014/07/13/swap-nodes-in-pairs/"/>
-    <updated>2014-07-13T22:05:48-07:00</updated>
-    <id>http://tangkangkai.github.io/blog/2014/07/13/swap-nodes-in-pairs</id>
-    <content type="html"><![CDATA[<p><a href="https://oj.leetcode.com/problems/swap-nodes-in-pairs/">Question</a></p>
-
-<hr />
-<p>For this question, we can firstly swap the first and second node, then point the second node to the result of calling function(recursively) on the third node. Here is the code:</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> ListNode swapPairs(ListNode head) {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="keyword">if</span> (head == <span class="predefined-constant">null</span> || head.next == <span class="predefined-constant">null</span>) {
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>            <span class="keyword">return</span> head;
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        }
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        ListNode headNode = head.next;
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        ListNode thirdNode = headNode.next;
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        headNode.next = head;
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        head.next = swapPairs(thirdNode);
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>        
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        <span class="keyword">return</span> headNode;
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>    }
 </pre></div>
 </div>
 </div>
