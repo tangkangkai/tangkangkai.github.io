@@ -12,7 +12,7 @@
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="Question For this question, note when n is larger than the length of the list, we need do the mod operation to get the remainder. Here is the code: &hellip;">
+  <meta name="description" content="Question We need two pointers, first(beforeRemovedNode in the code) pointing to the head node, the next(pointNode in the code) pointing to the node n &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,88 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/07/13/remove-nth-node-from-end-of-list/">Remove Nth Node From End of List</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-13T21:37:56-07:00" pubdate data-updated="true">Jul 13<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://oj.leetcode.com/problems/remove-nth-node-from-end-of-list/">Question</a></p>
+
+<hr />
+<p>We need two pointers, first(<em>beforeRemovedNode</em> in the code) pointing to the head node, the next(<em>pointNode</em> in the code) pointing to the node <em>n</em> positions after head node. Then we move both pointer to its <em>next</em> position in the same time until the pointNode’s <em>next</em> is null. The we can remove the node just after <em>beforeRemovedNode</em> by doing </p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span>beforeRemoveNode.next = beforeRemoveNode.next.next;
+</pre></div>
+</div>
+</div>
+
+<p>Below is the whole code:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> ListNode removeNthFromEnd(ListNode head, <span class="type">int</span> n) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="keyword">if</span> (head == <span class="predefined-constant">null</span>) {
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>            <span class="keyword">return</span> head;
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        }
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        <span class="comment">/* beforeRemovedNode point to the head first</span>
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span><span class="comment">         * pointNode point to the node n positions after beforeRemovedNode</span>
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span><span class="comment">         */</span>
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        ListNode pointNode = head;
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        ListNode beforeRemoveNode = head;
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>        <span class="type">int</span> index = <span class="integer">1</span>;
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>        <span class="keyword">while</span> (index &lt;= n) {
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>            <span class="keyword">if</span> (pointNode.next == <span class="predefined-constant">null</span>) {
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>                <span class="keyword">return</span> head.next;
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>            }
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>            pointNode = pointNode.next;
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>            index++;
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>        }
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>        
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>        <span class="keyword">while</span>(pointNode.next != <span class="predefined-constant">null</span>) {
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>            beforeRemoveNode = beforeRemoveNode.next;
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>            pointNode = pointNode.next;
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>        }
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>        
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>        beforeRemoveNode.next = beforeRemoveNode.next.next;
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span>
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span>        <span class="keyword">return</span> head;
+<span class="line-numbers"><a href="#n29" name="n29">29</a></span>
+<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>    }
+</pre></div>
+</div>
+</div>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -920,81 +1002,6 @@ To calculate gray code sequence of 1 bit, only need to flip the last bit from 0 
 <span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        }
 <span class="line-numbers"><a href="#n11" name="n11">11</a></span>        <span class="keyword">return</span> steps[n];
 <span class="line-numbers"><a href="#n12" name="n12">12</a></span>    }
-</pre></div>
-</div>
-</div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/07/01/plus-one/">Plus One</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-07-01T16:30:34-07:00" pubdate data-updated="true">Jul 1<sup>st</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="https://oj.leetcode.com/problems/plus-one/">Question</a></p>
-
-<hr />
-<p>For this question, I take advantage of a helper function <em>plusOneHelper</em>, which will add one to the <em>end</em> element of array <em>digit</em>, if the result is smaller than 10, we can return. If not, we set the digit on that index 0 and recursively call this helper function on the array from start to <em>end</em>-1. After running this helper function, we determine if the first element of the array is 0, if not we return the original array. Otherwise, we create a new array <em>newDigit</em>, starting with 1, and copy the rest from <em>digits</em>. Here is the code:</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="type">int</span><span class="type">[]</span> plusOne(<span class="type">int</span><span class="type">[]</span> digits) {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        plusOneHelper(digits, <span class="integer">0</span>, digits.length - <span class="integer">1</span>);
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        <span class="keyword">if</span> (digits[<span class="integer">0</span>] == <span class="integer">0</span>) {
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>            <span class="type">int</span><span class="type">[]</span> newDigit = <span class="keyword">new</span> <span class="type">int</span>[digits.length + <span class="integer">1</span>];
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>            newDigit[<span class="integer">0</span>] = <span class="integer">1</span>;
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; digits.length; i++) {
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>                newDigit[i + <span class="integer">1</span>] = digits[i];
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>            }
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>            <span class="keyword">return</span> newDigit;
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        }
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>        <span class="keyword">return</span> digits;
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>    }
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>    <span class="comment">/* Helper Functions */</span>
-<span class="line-numbers"><a href="#n18" name="n18">18</a></span>
-<span class="line-numbers"><a href="#n19" name="n19">19</a></span>    <span class="directive">private</span> <span class="type">void</span> plusOneHelper(<span class="type">int</span><span class="type">[]</span> digits, <span class="type">int</span> start, <span class="type">int</span> end) {
-<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>        <span class="keyword">if</span> (end &lt; start) {
-<span class="line-numbers"><a href="#n21" name="n21">21</a></span>            <span class="keyword">return</span>;
-<span class="line-numbers"><a href="#n22" name="n22">22</a></span>        }
-<span class="line-numbers"><a href="#n23" name="n23">23</a></span>        <span class="type">int</span> base = digits[end];
-<span class="line-numbers"><a href="#n24" name="n24">24</a></span>        base += <span class="integer">1</span>;
-<span class="line-numbers"><a href="#n25" name="n25">25</a></span>        <span class="keyword">if</span> (base &lt; <span class="integer">10</span>) {
-<span class="line-numbers"><a href="#n26" name="n26">26</a></span>            digits[end] = base;
-<span class="line-numbers"><a href="#n27" name="n27">27</a></span>        } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n28" name="n28">28</a></span>            digits[end] = <span class="integer">0</span>;
-<span class="line-numbers"><a href="#n29" name="n29">29</a></span>            plusOneHelper(digits, start, end - <span class="integer">1</span>);
-<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>        }
-<span class="line-numbers"><a href="#n31" name="n31">31</a></span>    }
 </pre></div>
 </div>
 </div>
