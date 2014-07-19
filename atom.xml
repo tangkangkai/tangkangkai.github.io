@@ -4,7 +4,7 @@
   <title><![CDATA[KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-07-19T09:09:45-07:00</updated>
+  <updated>2014-07-19T09:42:22-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -38,20 +38,17 @@
 <span class="line-numbers"><a href="#n12" name="n12">12</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; s.length(); i++) {
 <span class="line-numbers"><a href="#n13" name="n13">13</a></span>            <span class="type">char</span> c = s.charAt(i);
 <span class="line-numbers"><a href="#n14" name="n14">14</a></span>            <span class="type">int</span> count = <span class="integer">1</span>;
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>            <span class="keyword">if</span> (i == s.length() - <span class="integer">1</span>) {
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>                sb.append(<span class="string"><span class="delimiter">&quot;</span><span class="content">1</span><span class="delimiter">&quot;</span></span> + c);
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>            } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n18" name="n18">18</a></span>                <span class="type">char</span> next_c;
-<span class="line-numbers"><a href="#n19" name="n19">19</a></span>                <span class="keyword">while</span> (i != s.length() - <span class="integer">1</span> &amp;&amp; (next_c = s.charAt(i + <span class="integer">1</span>)) == c) {
-<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>                    count++;
-<span class="line-numbers"><a href="#n21" name="n21">21</a></span>                    i++;
-<span class="line-numbers"><a href="#n22" name="n22">22</a></span>                }        
-<span class="line-numbers"><a href="#n23" name="n23">23</a></span>                sb.append(count);
-<span class="line-numbers"><a href="#n24" name="n24">24</a></span>                sb.append(c);
-<span class="line-numbers"><a href="#n25" name="n25">25</a></span>            }
-<span class="line-numbers"><a href="#n26" name="n26">26</a></span>        }
-<span class="line-numbers"><a href="#n27" name="n27">27</a></span>        <span class="keyword">return</span> sb.toString();
-<span class="line-numbers"><a href="#n28" name="n28">28</a></span>    }
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>            <span class="type">char</span> next_c;
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>            <span class="keyword">while</span> (i != s.length() - <span class="integer">1</span> &amp;&amp; (next_c = s.charAt(i + <span class="integer">1</span>)) == c) {
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>                count++;
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>                i++;
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>            }        
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>            sb.append(count);
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>            sb.append(c);
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>        
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>        }
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>        <span class="keyword">return</span> sb.toString();
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>    }
 </pre></div>
 </div>
 </div>
