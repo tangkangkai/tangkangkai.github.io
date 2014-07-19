@@ -100,61 +100,65 @@
 <hr />
 <p>This question is the inverse version of <a href="http://www.codertkk.com/blog/2014/07/18/integer-to-roman/"><em>Integer to Roman</em></a>. We need to take care of different situations of <a href="http://en.wikipedia.org/wiki/Roman_numerals">Roman Numerals</a>, here is the code:</p>
 
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>        <span class="type">int</span> returnValue = <span class="integer">0</span>;
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="integer">0</span>; i &lt; s.length(); i++) {
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>            <span class="keyword">if</span> (s.charAt(i) == <span class="string"><span class="delimiter">'</span><span class="content">M</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>                returnValue += <span class="integer">1000</span>;
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>            } <span class="keyword">else</span> <span class="keyword">if</span> (s.charAt(i) == <span class="string"><span class="delimiter">'</span><span class="content">D</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>                returnValue += <span class="integer">500</span>;
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>            } <span class="keyword">else</span> <span class="keyword">if</span> (s.charAt(i) == <span class="string"><span class="delimiter">'</span><span class="content">C</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>                <span class="keyword">if</span> (i == s.length() -<span class="integer">1</span>) {
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>                    returnValue += <span class="integer">100</span>;
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>                } <span class="keyword">else</span> <span class="keyword">if</span> (s.charAt(i + <span class="integer">1</span>) == <span class="string"><span class="delimiter">'</span><span class="content">M</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>                    i++;
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>                    returnValue += <span class="integer">900</span>;
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>                    
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>                } <span class="keyword">else</span> <span class="keyword">if</span> (s.charAt(i + <span class="integer">1</span>) == <span class="string"><span class="delimiter">'</span><span class="content">D</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>                    i++;
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>                    returnValue += <span class="integer">400</span>;
-<span class="line-numbers"><a href="#n18" name="n18">18</a></span>                } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n19" name="n19">19</a></span>                    returnValue += <span class="integer">100</span>;
-<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>                }
-<span class="line-numbers"><a href="#n21" name="n21">21</a></span>            } <span class="keyword">else</span> <span class="keyword">if</span> (s.charAt(i) == <span class="string"><span class="delimiter">'</span><span class="content">L</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"><a href="#n22" name="n22">22</a></span>                returnValue += <span class="integer">50</span>;
-<span class="line-numbers"><a href="#n23" name="n23">23</a></span>            } <span class="keyword">else</span> <span class="keyword">if</span> (s.charAt(i) == <span class="string"><span class="delimiter">'</span><span class="content">X</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"><a href="#n24" name="n24">24</a></span>                <span class="keyword">if</span> (i == s.length() -<span class="integer">1</span>) {
-<span class="line-numbers"><a href="#n25" name="n25">25</a></span>                    returnValue += <span class="integer">10</span>;
-<span class="line-numbers"><a href="#n26" name="n26">26</a></span>                } <span class="keyword">else</span> <span class="keyword">if</span> (s.charAt(i + <span class="integer">1</span>) == <span class="string"><span class="delimiter">'</span><span class="content">C</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"><a href="#n27" name="n27">27</a></span>                    i++;
-<span class="line-numbers"><a href="#n28" name="n28">28</a></span>                    returnValue += <span class="integer">90</span>;
-<span class="line-numbers"><a href="#n29" name="n29">29</a></span>                    
-<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>                } <span class="keyword">else</span> <span class="keyword">if</span> (s.charAt(i + <span class="integer">1</span>) == <span class="string"><span class="delimiter">'</span><span class="content">L</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"><a href="#n31" name="n31">31</a></span>                    i++;
-<span class="line-numbers"><a href="#n32" name="n32">32</a></span>                    returnValue += <span class="integer">40</span>;
-<span class="line-numbers"><a href="#n33" name="n33">33</a></span>                } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n34" name="n34">34</a></span>                    returnValue += <span class="integer">10</span>;
-<span class="line-numbers"><a href="#n35" name="n35">35</a></span>                }
-<span class="line-numbers"><a href="#n36" name="n36">36</a></span>            } <span class="keyword">else</span> <span class="keyword">if</span> (s.charAt(i) == <span class="string"><span class="delimiter">'</span><span class="content">V</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"><a href="#n37" name="n37">37</a></span>                returnValue += <span class="integer">5</span>;
-<span class="line-numbers"><a href="#n38" name="n38">38</a></span>            } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n39" name="n39">39</a></span>                <span class="keyword">if</span> (i == s.length() -<span class="integer">1</span>) {
-<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>                    returnValue += <span class="integer">1</span>;
-<span class="line-numbers"><a href="#n41" name="n41">41</a></span>                } <span class="keyword">else</span> <span class="keyword">if</span> (s.charAt(i + <span class="integer">1</span>) == <span class="string"><span class="delimiter">'</span><span class="content">X</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"><a href="#n42" name="n42">42</a></span>                    i++;
-<span class="line-numbers"><a href="#n43" name="n43">43</a></span>                    returnValue += <span class="integer">9</span>;
-<span class="line-numbers"><a href="#n44" name="n44">44</a></span>                    
-<span class="line-numbers"><a href="#n45" name="n45">45</a></span>                } <span class="keyword">else</span> <span class="keyword">if</span> (s.charAt(i + <span class="integer">1</span>) == <span class="string"><span class="delimiter">'</span><span class="content">V</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"><a href="#n46" name="n46">46</a></span>                    i++;
-<span class="line-numbers"><a href="#n47" name="n47">47</a></span>                    returnValue += <span class="integer">4</span>;
-<span class="line-numbers"><a href="#n48" name="n48">48</a></span>                } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n49" name="n49">49</a></span>                    returnValue += <span class="integer">1</span>;
-<span class="line-numbers"><strong><a href="#n50" name="n50">50</a></strong></span>                }
-<span class="line-numbers"><a href="#n51" name="n51">51</a></span>            }            
-<span class="line-numbers"><a href="#n52" name="n52">52</a></span>        }
-<span class="line-numbers"><a href="#n53" name="n53">53</a></span>
-<span class="line-numbers"><a href="#n54" name="n54">54</a></span>        <span class="keyword">return</span> returnValue;
+<div class="language-java"><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    public int romanToInt(String s) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        int returnValue = 0;
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        for(int i = 0; i &lt; s.length(); i++) {
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>            if (s.charAt(i) == 'M') {
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>                returnValue += 1000;
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>            } else if (s.charAt(i) == 'D') {
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>                returnValue += 500;
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>            } else if (s.charAt(i) == 'C') {
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>                if (i == s.length() -1) {
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>                    returnValue += 100;
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>                } else if (s.charAt(i + 1) == 'M') {
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>                    i++;
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>                    returnValue += 900;
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>                    
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>                } else if (s.charAt(i + 1) == 'D') {
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>                    i++;
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>                    returnValue += 400;
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>                } else {
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>                    returnValue += 100;
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>                }
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>            } else if (s.charAt(i) == 'L') {
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>                returnValue += 50;
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>            } else if (s.charAt(i) == 'X') {
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>                if (i == s.length() -1) {
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>                    returnValue += 10;
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span>                } else if (s.charAt(i + 1) == 'C') {
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span>                    i++;
+<span class="line-numbers"><a href="#n29" name="n29">29</a></span>                    returnValue += 90;
+<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>                    
+<span class="line-numbers"><a href="#n31" name="n31">31</a></span>                } else if (s.charAt(i + 1) == 'L') {
+<span class="line-numbers"><a href="#n32" name="n32">32</a></span>                    i++;
+<span class="line-numbers"><a href="#n33" name="n33">33</a></span>                    returnValue += 40;
+<span class="line-numbers"><a href="#n34" name="n34">34</a></span>                } else {
+<span class="line-numbers"><a href="#n35" name="n35">35</a></span>                    returnValue += 10;
+<span class="line-numbers"><a href="#n36" name="n36">36</a></span>                }
+<span class="line-numbers"><a href="#n37" name="n37">37</a></span>            } else if (s.charAt(i) == 'V') {
+<span class="line-numbers"><a href="#n38" name="n38">38</a></span>                returnValue += 5;
+<span class="line-numbers"><a href="#n39" name="n39">39</a></span>            } else {
+<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>                if (i == s.length() -1) {
+<span class="line-numbers"><a href="#n41" name="n41">41</a></span>                    returnValue += 1;
+<span class="line-numbers"><a href="#n42" name="n42">42</a></span>                } else if (s.charAt(i + 1) == 'X') {
+<span class="line-numbers"><a href="#n43" name="n43">43</a></span>                    i++;
+<span class="line-numbers"><a href="#n44" name="n44">44</a></span>                    returnValue += 9;
+<span class="line-numbers"><a href="#n45" name="n45">45</a></span>                    
+<span class="line-numbers"><a href="#n46" name="n46">46</a></span>                } else if (s.charAt(i + 1) == 'V') {
+<span class="line-numbers"><a href="#n47" name="n47">47</a></span>                    i++;
+<span class="line-numbers"><a href="#n48" name="n48">48</a></span>                    returnValue += 4;
+<span class="line-numbers"><a href="#n49" name="n49">49</a></span>                } else {
+<span class="line-numbers"><strong><a href="#n50" name="n50">50</a></strong></span>                    returnValue += 1;
+<span class="line-numbers"><a href="#n51" name="n51">51</a></span>                }
+<span class="line-numbers"><a href="#n52" name="n52">52</a></span>            }
+<span class="line-numbers"><a href="#n53" name="n53">53</a></span>            
+<span class="line-numbers"><a href="#n54" name="n54">54</a></span>        }
+<span class="line-numbers"><a href="#n55" name="n55">55</a></span>
+<span class="line-numbers"><a href="#n56" name="n56">56</a></span>        return returnValue;
+<span class="line-numbers"><a href="#n57" name="n57">57</a></span>    }
+<span class="line-numbers"><a href="#n58" name="n58">58</a></span>
 </pre></div>
 </div>
 </div>
@@ -205,6 +209,8 @@
       
         <a class="basic-alignment left" href="/blog/2014/07/18/integer-to-roman/" title="Previous Post: Integer to Roman">&laquo; Integer to Roman</a>
       
+      
+        <a class="basic-alignment right" href="/blog/2014/07/19/count-and-say/" title="Next Post: Count and Say">Count and Say &raquo;</a>
       
     </p>
   </footer>

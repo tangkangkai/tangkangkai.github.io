@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Leetcode | KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/blog/categories/leetcode/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-07-19T01:09:36-07:00</updated>
+  <updated>2014-07-19T09:09:45-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -12,6 +12,51 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Count and Say]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/07/19/count-and-say/"/>
+    <updated>2014-07-19T09:04:58-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/07/19/count-and-say</id>
+    <content type="html"><![CDATA[<p><a href="https://oj.leetcode.com/problems/count-and-say/">Question</a></p>
+
+<hr />
+<p>We use a <em>countAndSayHelper</em> function to generate “next” count and say sequence. Here we need traverse through the string, compare each character with its next one, if they are the same, we add the <em>count</em> and keep going. If not, we concatenate the <em>count</em> and the <em>character</em> together and append it to a stringbuilder. Here is the code:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="predefined-type">String</span> countAndSay(<span class="type">int</span> n) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="predefined-type">String</span> s = <span class="predefined-type">String</span>.valueOf(n);
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; n; i++) {
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>            s = countAndSayHelper(s);
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        }
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        <span class="keyword">return</span> s;
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>    }
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>    <span class="comment">/* Helper Functions */</span>
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>    <span class="directive">public</span> <span class="predefined-type">String</span> countAndSayHelper(<span class="predefined-type">String</span> s) {
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>        <span class="predefined-type">StringBuilder</span> sb = <span class="keyword">new</span> <span class="predefined-type">StringBuilder</span>();
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; s.length(); i++) {
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>            <span class="type">char</span> c = s.charAt(i);
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>            <span class="type">int</span> count = <span class="integer">1</span>;
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>            <span class="keyword">if</span> (i == s.length() - <span class="integer">1</span>) {
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>                sb.append(<span class="string"><span class="delimiter">&quot;</span><span class="content">1</span><span class="delimiter">&quot;</span></span> + c);
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>            } <span class="keyword">else</span> {
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>                <span class="type">char</span> next_c;
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>                <span class="keyword">while</span> (i != s.length() - <span class="integer">1</span> &amp;&amp; (next_c = s.charAt(i + <span class="integer">1</span>)) == c) {
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>                    count++;
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>                    i++;
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>                }        
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>                sb.append(count);
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>                sb.append(c);
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>            }
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>        }
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span>        <span class="keyword">return</span> sb.toString();
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span>    }
+</pre></div>
+</div>
+</div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Roman to Integer]]></title>
@@ -23,61 +68,65 @@
 <hr />
 <p>This question is the inverse version of <a href="http://www.codertkk.com/blog/2014/07/18/integer-to-roman/"><em>Integer to Roman</em></a>. We need to take care of different situations of <a href="http://en.wikipedia.org/wiki/Roman_numerals">Roman Numerals</a>, here is the code:</p>
 
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>        <span class="type">int</span> returnValue = <span class="integer">0</span>;
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="integer">0</span>; i &lt; s.length(); i++) {
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>            <span class="keyword">if</span> (s.charAt(i) == <span class="string"><span class="delimiter">'</span><span class="content">M</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>                returnValue += <span class="integer">1000</span>;
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>            } <span class="keyword">else</span> <span class="keyword">if</span> (s.charAt(i) == <span class="string"><span class="delimiter">'</span><span class="content">D</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>                returnValue += <span class="integer">500</span>;
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>            } <span class="keyword">else</span> <span class="keyword">if</span> (s.charAt(i) == <span class="string"><span class="delimiter">'</span><span class="content">C</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>                <span class="keyword">if</span> (i == s.length() -<span class="integer">1</span>) {
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>                    returnValue += <span class="integer">100</span>;
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>                } <span class="keyword">else</span> <span class="keyword">if</span> (s.charAt(i + <span class="integer">1</span>) == <span class="string"><span class="delimiter">'</span><span class="content">M</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>                    i++;
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>                    returnValue += <span class="integer">900</span>;
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>                    
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>                } <span class="keyword">else</span> <span class="keyword">if</span> (s.charAt(i + <span class="integer">1</span>) == <span class="string"><span class="delimiter">'</span><span class="content">D</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>                    i++;
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>                    returnValue += <span class="integer">400</span>;
-<span class="line-numbers"><a href="#n18" name="n18">18</a></span>                } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n19" name="n19">19</a></span>                    returnValue += <span class="integer">100</span>;
-<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>                }
-<span class="line-numbers"><a href="#n21" name="n21">21</a></span>            } <span class="keyword">else</span> <span class="keyword">if</span> (s.charAt(i) == <span class="string"><span class="delimiter">'</span><span class="content">L</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"><a href="#n22" name="n22">22</a></span>                returnValue += <span class="integer">50</span>;
-<span class="line-numbers"><a href="#n23" name="n23">23</a></span>            } <span class="keyword">else</span> <span class="keyword">if</span> (s.charAt(i) == <span class="string"><span class="delimiter">'</span><span class="content">X</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"><a href="#n24" name="n24">24</a></span>                <span class="keyword">if</span> (i == s.length() -<span class="integer">1</span>) {
-<span class="line-numbers"><a href="#n25" name="n25">25</a></span>                    returnValue += <span class="integer">10</span>;
-<span class="line-numbers"><a href="#n26" name="n26">26</a></span>                } <span class="keyword">else</span> <span class="keyword">if</span> (s.charAt(i + <span class="integer">1</span>) == <span class="string"><span class="delimiter">'</span><span class="content">C</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"><a href="#n27" name="n27">27</a></span>                    i++;
-<span class="line-numbers"><a href="#n28" name="n28">28</a></span>                    returnValue += <span class="integer">90</span>;
-<span class="line-numbers"><a href="#n29" name="n29">29</a></span>                    
-<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>                } <span class="keyword">else</span> <span class="keyword">if</span> (s.charAt(i + <span class="integer">1</span>) == <span class="string"><span class="delimiter">'</span><span class="content">L</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"><a href="#n31" name="n31">31</a></span>                    i++;
-<span class="line-numbers"><a href="#n32" name="n32">32</a></span>                    returnValue += <span class="integer">40</span>;
-<span class="line-numbers"><a href="#n33" name="n33">33</a></span>                } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n34" name="n34">34</a></span>                    returnValue += <span class="integer">10</span>;
-<span class="line-numbers"><a href="#n35" name="n35">35</a></span>                }
-<span class="line-numbers"><a href="#n36" name="n36">36</a></span>            } <span class="keyword">else</span> <span class="keyword">if</span> (s.charAt(i) == <span class="string"><span class="delimiter">'</span><span class="content">V</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"><a href="#n37" name="n37">37</a></span>                returnValue += <span class="integer">5</span>;
-<span class="line-numbers"><a href="#n38" name="n38">38</a></span>            } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n39" name="n39">39</a></span>                <span class="keyword">if</span> (i == s.length() -<span class="integer">1</span>) {
-<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>                    returnValue += <span class="integer">1</span>;
-<span class="line-numbers"><a href="#n41" name="n41">41</a></span>                } <span class="keyword">else</span> <span class="keyword">if</span> (s.charAt(i + <span class="integer">1</span>) == <span class="string"><span class="delimiter">'</span><span class="content">X</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"><a href="#n42" name="n42">42</a></span>                    i++;
-<span class="line-numbers"><a href="#n43" name="n43">43</a></span>                    returnValue += <span class="integer">9</span>;
-<span class="line-numbers"><a href="#n44" name="n44">44</a></span>                    
-<span class="line-numbers"><a href="#n45" name="n45">45</a></span>                } <span class="keyword">else</span> <span class="keyword">if</span> (s.charAt(i + <span class="integer">1</span>) == <span class="string"><span class="delimiter">'</span><span class="content">V</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"><a href="#n46" name="n46">46</a></span>                    i++;
-<span class="line-numbers"><a href="#n47" name="n47">47</a></span>                    returnValue += <span class="integer">4</span>;
-<span class="line-numbers"><a href="#n48" name="n48">48</a></span>                } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n49" name="n49">49</a></span>                    returnValue += <span class="integer">1</span>;
-<span class="line-numbers"><strong><a href="#n50" name="n50">50</a></strong></span>                }
-<span class="line-numbers"><a href="#n51" name="n51">51</a></span>            }            
-<span class="line-numbers"><a href="#n52" name="n52">52</a></span>        }
-<span class="line-numbers"><a href="#n53" name="n53">53</a></span>
-<span class="line-numbers"><a href="#n54" name="n54">54</a></span>        <span class="keyword">return</span> returnValue;
+<div class="language-java"><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    public int romanToInt(String s) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        int returnValue = 0;
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        for(int i = 0; i &lt; s.length(); i++) {
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>            if (s.charAt(i) == 'M') {
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>                returnValue += 1000;
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>            } else if (s.charAt(i) == 'D') {
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>                returnValue += 500;
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>            } else if (s.charAt(i) == 'C') {
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>                if (i == s.length() -1) {
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>                    returnValue += 100;
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>                } else if (s.charAt(i + 1) == 'M') {
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>                    i++;
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>                    returnValue += 900;
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>                    
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>                } else if (s.charAt(i + 1) == 'D') {
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>                    i++;
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>                    returnValue += 400;
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>                } else {
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>                    returnValue += 100;
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>                }
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>            } else if (s.charAt(i) == 'L') {
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>                returnValue += 50;
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>            } else if (s.charAt(i) == 'X') {
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>                if (i == s.length() -1) {
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>                    returnValue += 10;
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span>                } else if (s.charAt(i + 1) == 'C') {
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span>                    i++;
+<span class="line-numbers"><a href="#n29" name="n29">29</a></span>                    returnValue += 90;
+<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>                    
+<span class="line-numbers"><a href="#n31" name="n31">31</a></span>                } else if (s.charAt(i + 1) == 'L') {
+<span class="line-numbers"><a href="#n32" name="n32">32</a></span>                    i++;
+<span class="line-numbers"><a href="#n33" name="n33">33</a></span>                    returnValue += 40;
+<span class="line-numbers"><a href="#n34" name="n34">34</a></span>                } else {
+<span class="line-numbers"><a href="#n35" name="n35">35</a></span>                    returnValue += 10;
+<span class="line-numbers"><a href="#n36" name="n36">36</a></span>                }
+<span class="line-numbers"><a href="#n37" name="n37">37</a></span>            } else if (s.charAt(i) == 'V') {
+<span class="line-numbers"><a href="#n38" name="n38">38</a></span>                returnValue += 5;
+<span class="line-numbers"><a href="#n39" name="n39">39</a></span>            } else {
+<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>                if (i == s.length() -1) {
+<span class="line-numbers"><a href="#n41" name="n41">41</a></span>                    returnValue += 1;
+<span class="line-numbers"><a href="#n42" name="n42">42</a></span>                } else if (s.charAt(i + 1) == 'X') {
+<span class="line-numbers"><a href="#n43" name="n43">43</a></span>                    i++;
+<span class="line-numbers"><a href="#n44" name="n44">44</a></span>                    returnValue += 9;
+<span class="line-numbers"><a href="#n45" name="n45">45</a></span>                    
+<span class="line-numbers"><a href="#n46" name="n46">46</a></span>                } else if (s.charAt(i + 1) == 'V') {
+<span class="line-numbers"><a href="#n47" name="n47">47</a></span>                    i++;
+<span class="line-numbers"><a href="#n48" name="n48">48</a></span>                    returnValue += 4;
+<span class="line-numbers"><a href="#n49" name="n49">49</a></span>                } else {
+<span class="line-numbers"><strong><a href="#n50" name="n50">50</a></strong></span>                    returnValue += 1;
+<span class="line-numbers"><a href="#n51" name="n51">51</a></span>                }
+<span class="line-numbers"><a href="#n52" name="n52">52</a></span>            }
+<span class="line-numbers"><a href="#n53" name="n53">53</a></span>            
+<span class="line-numbers"><a href="#n54" name="n54">54</a></span>        }
+<span class="line-numbers"><a href="#n55" name="n55">55</a></span>
+<span class="line-numbers"><a href="#n56" name="n56">56</a></span>        return returnValue;
+<span class="line-numbers"><a href="#n57" name="n57">57</a></span>    }
+<span class="line-numbers"><a href="#n58" name="n58">58</a></span>
 </pre></div>
 </div>
 </div>
@@ -356,53 +405,6 @@
 <span class="line-numbers"><a href="#n16" name="n16">16</a></span>        }
 <span class="line-numbers"><a href="#n17" name="n17">17</a></span>        <span class="keyword">return</span> testString;
 <span class="line-numbers"><a href="#n18" name="n18">18</a></span>    }
-</pre></div>
-</div>
-</div>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Longest Palindromic Substring]]></title>
-    <link href="http://tangkangkai.github.io/blog/2014/07/16/longest-palindromic-substring/"/>
-    <updated>2014-07-16T09:25:36-07:00</updated>
-    <id>http://tangkangkai.github.io/blog/2014/07/16/longest-palindromic-substring</id>
-    <content type="html"><![CDATA[<p><a href="https://oj.leetcode.com/problems/longest-palindromic-substring/">Question</a></p>
-
-<hr />
-<p>We use two pointers pointing to the middle of the string, then move them to each side if the character they pointing to are the same. Note substring is continuous and we need take care of both odd and even length situations. The code follows below:</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="predefined-type">String</span> longestPalindrome(<span class="predefined-type">String</span> s) {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="predefined-type">String</span> longestPalindromeString = <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>;
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; s.length(); i++) {
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>            <span class="predefined-type">String</span> palindrome = findLongestPalindrome(s, i, i);
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>            <span class="keyword">if</span> (palindrome.length() &gt; longestPalindromeString.length()) {
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>                longestPalindromeString = palindrome;
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>            }
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        }
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">1</span>; i &lt; s.length(); i++) {
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>            <span class="predefined-type">String</span> palindrome = findLongestPalindrome(s, i - <span class="integer">1</span>, i);
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>            <span class="keyword">if</span> (palindrome.length() &gt; longestPalindromeString.length()) {
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>                longestPalindromeString = palindrome;
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>            }
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>        }
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>        
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>        <span class="keyword">return</span> longestPalindromeString;
-<span class="line-numbers"><a href="#n18" name="n18">18</a></span>    }
-<span class="line-numbers"><a href="#n19" name="n19">19</a></span>    
-<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>    <span class="comment">/* Helper Functions */</span>
-<span class="line-numbers"><a href="#n21" name="n21">21</a></span>
-<span class="line-numbers"><a href="#n22" name="n22">22</a></span>    <span class="directive">public</span> <span class="predefined-type">String</span> findLongestPalindrome(<span class="predefined-type">String</span> s, <span class="type">int</span> i, <span class="type">int</span> j) {
-<span class="line-numbers"><a href="#n23" name="n23">23</a></span>
-<span class="line-numbers"><a href="#n24" name="n24">24</a></span>        <span class="keyword">while</span> (i &gt;= <span class="integer">0</span> &amp;&amp; j &lt; s.length() &amp;&amp; s.charAt(i) == s.charAt(j)) {
-<span class="line-numbers"><a href="#n25" name="n25">25</a></span>            i--;
-<span class="line-numbers"><a href="#n26" name="n26">26</a></span>            j++;
-<span class="line-numbers"><a href="#n27" name="n27">27</a></span>        }
-<span class="line-numbers"><a href="#n28" name="n28">28</a></span>        
-<span class="line-numbers"><a href="#n29" name="n29">29</a></span>        <span class="keyword">return</span> s.substring(i + <span class="integer">1</span>, j);
-<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>    }
 </pre></div>
 </div>
 </div>
