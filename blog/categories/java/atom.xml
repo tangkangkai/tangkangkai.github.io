@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-07-19T09:42:22-07:00</updated>
+  <updated>2014-07-23T17:44:21-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -28,9 +28,42 @@
   <li>
     <p>override &amp; overload </p>
   </li>
-  <li>initialization</li>
-</ul>
+  <li>
+    <p>initialization<br />
+  Person p = new Person()</p>
 
+    <ul>
+      <li>JVM load Person.class to memory, if it has Father Class, load the Father class first.</li>
+      <li>Allocate space in Heap </li>
+      <li>Initialize variables with default value</li>
+      <li>Call construct function</li>
+      <li>In the first line, call Father’s construct function</li>
+      <li>After the Father initialized, assign the specific value to the variables</li>
+    </ul>
+  </li>
+  <li>final<br />
+    <ul>
+      <li>final class cannot be extended</li>
+      <li>final method cannot be override</li>
+      <li>final variable is a constant</li>
+    </ul>
+  </li>
+  <li>abstract class
+    <ul>
+      <li>cannot be initialized</li>
+      <li>when a method only clarified not implemented, declare it as <strong>abstract</strong> method, declare its class <strong>abstract</strong></li>
+      <li>cannot contain <strong>private, static, final</strong>  </li>
+    </ul>
+  </li>
+  <li>interface
+    <ul>
+      <li>all methods are abstract : public abstract</li>
+      <li>global variable : public static final</li>
+      <li>class <em>implements</em> interface : multi implements</li>
+      <li>interface <em>extends</em> interface : multi extends</li>
+    </ul>
+  </li>
+</ul>
 ]]></content>
   </entry>
   
