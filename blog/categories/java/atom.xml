@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-07-23T17:44:21-07:00</updated>
+  <updated>2014-07-25T08:32:50-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -12,6 +12,99 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Relearn Java Day 6]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/07/24/relearn-java-day-6/"/>
+    <updated>2014-07-24T08:14:42-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/07/24/relearn-java-day-6</id>
+    <content type="html"><![CDATA[<ul>
+  <li>interface
+    <ul>
+      <li>all methods are abstract : public abstract</li>
+      <li>global variable : public static final</li>
+      <li>class <em>implements</em> interface : multi implements</li>
+      <li>interface <em>extends</em> interface : multi extends</li>
+      <li>loose coupling </li>
+    </ul>
+  </li>
+  <li>poymorphism:
+    <ul>
+      <li>one object, two form</li>
+      <li>Father class/interface reference points to child class</li>
+      <li>increase the expandability</li>
+      <li>premise:
+        <ul>
+          <li>inheritance</li>
+          <li>overide</li>
+        </ul>
+      </li>
+      <li>Casting:
+        <ul>
+          <li>upcasting Animal a = new Cat();</li>
+          <li>downcasting Cat c = (Cat)a;
+            <ul>
+              <li>use instance of to determine the child class:
+  if (a instance of Cat)</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>member :
+        <ul>
+          <li>member variable:
+            <ul>
+              <li>compile &amp; run : refer to the <strong>reference type</strong> variable</li>
+            </ul>
+          </li>
+          <li>member function:
+            <ul>
+              <li>compile : refer to the <strong>reference type</strong> function</li>
+              <li>run : refer to <strong>actual type</strong> function</li>
+            </ul>
+          </li>
+          <li>static function: no need for binded object
+            <ul>
+              <li>compile &amp; run : refer to the reference type variable</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>inner class
+    <ul>
+      <li>inner class can directly access the members in outer class
+        <ul>
+          <li>it has the reference to the Outer Class : Outer.this</li>
+        </ul>
+      </li>
+      <li>outer class need object of inner class to access the members in it</li>
+      <li>other class access inner class:
+        <ul>
+          <li>Outer.Inner in = new Outer().new Inner();// not static</li>
+          <li>Outer.Inner in = new Outer.Inner(); //Outer static</li>
+          <li>Outer.Inner.func() // both Outer and Inner are static</li>
+          <li>while for most time, inner class is <strong>private</strong></li>
+        </ul>
+      </li>
+      <li>local inner class:
+        <ul>
+          <li>can only access local members which is final</li>
+        </ul>
+      </li>
+      <li>anonymous inner class:
+        <ul>
+          <li>premise: inner class extends or implements a outer class or interface</li>
+          <li>actually anonymous child class</li>
+          <li>new Father Class/Interface() {}.function()</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Relearn Java Day 5]]></title>
@@ -55,15 +148,8 @@
       <li>cannot contain <strong>private, static, final</strong>  </li>
     </ul>
   </li>
-  <li>interface
-    <ul>
-      <li>all methods are abstract : public abstract</li>
-      <li>global variable : public static final</li>
-      <li>class <em>implements</em> interface : multi implements</li>
-      <li>interface <em>extends</em> interface : multi extends</li>
-    </ul>
-  </li>
 </ul>
+
 ]]></content>
   </entry>
   
@@ -261,70 +347,6 @@
 	2. 堆内存中的每一个变量都有默认初始化值，根据类型的不同而不同。整数是0，小数0.0或者0.0f，boolean false char ‘\u0000’<br />
 	3. 垃圾回收机制。      </p>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Relearn Java Day 1]]></title>
-    <link href="http://tangkangkai.github.io/blog/2014/06/26/relearn-java-day-1/"/>
-    <updated>2014-06-26T07:53:35-07:00</updated>
-    <id>http://tangkangkai.github.io/blog/2014/06/26/relearn-java-day-1</id>
-    <content type="html"><![CDATA[<p>The foundation is so important for a skyscraper, thus I want to rebuild, or, renovate of my java foundation in the next few weeks. I will post valuable points here in this <em>relearn java</em> series. Here is Day 1:</p>
-
-<ol>
-  <li>Basic Conceptions:<br />
-    <ul>
-      <li><strong>Java Virtual Machine(JVM)</strong>:  <br />
-        <ul>
-          <li>help Java become cross-platform language(note jvm isn’t cross-platform)</li>
-          <li>between language and operating system</li>
-        </ul>
-      </li>
-      <li><strong>Java Runtime Environment(JRE)</strong>
-        <ul>
-          <li>JVM + 核心类库</li>
-        </ul>
-      </li>
-      <li><strong>Java Development Kit(JDK)</strong>
-        <ul>
-          <li>JRE + javac.exe + jar.exe + …</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>Comment
-    <ul>
-      <li>one line : //</li>
-      <li>multiple line: /*  */</li>
-      <li>文档注释： /** */</li>
-    </ul>
-  </li>
-  <li>Bit computing
-    <ul>
-      <li>&amp; and. could used to get several bits of bytes.
-        <ul>
-          <li>not the difference between &amp; and &amp;&amp; is &amp;&amp; is more efficient when the left of &amp;&amp; is false(it will stop calculating the right one).</li>
-        </ul>
-      </li>
-      <li>^ xor. note you can get the original number by xor two times
-        <ul>
-          <li>change the value of variable a, b in place :<br />
-  a = a ^ b;
-  b = a ^ b;
-  a = a ^ b;</li>
-        </ul>
-      </li>
-      <li><strong>«</strong> 左移 （该数乘以2的几次方）</li>
-      <li><strong>»</strong> 右移 （该数除以2的几次方）对于高位出现的空位， 补与原来相同的数</li>
-      <li><strong>»&gt;</strong> 无论原来高位是什么 都用0来补</li>
-    </ul>
-  </li>
-  <li>switch : 
-    <ul>
-      <li>the types that could be compared ： byte, short, int, char</li>
-    </ul>
-  </li>
-</ol>
 ]]></content>
   </entry>
   

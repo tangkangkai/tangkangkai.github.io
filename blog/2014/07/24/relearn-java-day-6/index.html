@@ -1,0 +1,283 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+
+<link href="/stylesheets/coderay-github.css" media="screen" rel="stylesheet" type="text/css">
+
+<head>
+  <meta charset="utf-8">
+  <title>Relearn Java Day 6 - KK's Coding Blog</title>
+  <meta name="author" content="Kangkai Tang">
+
+  
+  <meta name="description" content="interface all methods are abstract : public abstract global variable : public static final class implements interface : multi implements interface &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tangkangkai.github.io/blog/2014/07/24/relearn-java-day-6">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="KK's Coding Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">KK's Coding Blog</a></h1>
+  
+    <h2>keep coding keep pushing keep believing</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:tangkangkai.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Relearn Java Day 6</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-24T08:14:42-07:00" pubdate data-updated="true">Jul 24<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><ul>
+  <li>interface
+    <ul>
+      <li>all methods are abstract : public abstract</li>
+      <li>global variable : public static final</li>
+      <li>class <em>implements</em> interface : multi implements</li>
+      <li>interface <em>extends</em> interface : multi extends</li>
+      <li>loose coupling </li>
+    </ul>
+  </li>
+  <li>poymorphism:
+    <ul>
+      <li>one object, two form</li>
+      <li>Father class/interface reference points to child class</li>
+      <li>increase the expandability</li>
+      <li>premise:
+        <ul>
+          <li>inheritance</li>
+          <li>overide</li>
+        </ul>
+      </li>
+      <li>Casting:
+        <ul>
+          <li>upcasting Animal a = new Cat();</li>
+          <li>downcasting Cat c = (Cat)a;
+            <ul>
+              <li>use instance of to determine the child class:
+  if (a instance of Cat)</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>member :
+        <ul>
+          <li>member variable:
+            <ul>
+              <li>compile &amp; run : refer to the <strong>reference type</strong> variable</li>
+            </ul>
+          </li>
+          <li>member function:
+            <ul>
+              <li>compile : refer to the <strong>reference type</strong> function</li>
+              <li>run : refer to <strong>actual type</strong> function</li>
+            </ul>
+          </li>
+          <li>static function: no need for binded object
+            <ul>
+              <li>compile &amp; run : refer to the reference type variable</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>inner class
+    <ul>
+      <li>inner class can directly access the members in outer class
+        <ul>
+          <li>it has the reference to the Outer Class : Outer.this</li>
+        </ul>
+      </li>
+      <li>outer class need object of inner class to access the members in it</li>
+      <li>other class access inner class:
+        <ul>
+          <li>Outer.Inner in = new Outer().new Inner();// not static</li>
+          <li>Outer.Inner in = new Outer.Inner(); //Outer static</li>
+          <li>Outer.Inner.func() // both Outer and Inner are static</li>
+          <li>while for most time, inner class is <strong>private</strong></li>
+        </ul>
+      </li>
+      <li>local inner class:
+        <ul>
+          <li>can only access local members which is final</li>
+        </ul>
+      </li>
+      <li>anonymous inner class:
+        <ul>
+          <li>premise: inner class extends or implements a outer class or interface</li>
+          <li>actually anonymous child class</li>
+          <li>new Father Class/Interface() {}.function()</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Authored by <span class="fn">Kangkai Tang</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-24T08:14:42-07:00" pubdate data-updated="true">Jul 24<sup>th</sup>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/inner/'>'inner</a>, <a class='category' href='/blog/categories/class/'>class'</a>, <a class='category' href='/blog/categories/interface/'>interface</a>, <a class='category' href='/blog/categories/java/'>java</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tangkangkai.github.io/blog/2014/07/24/relearn-java-day-6/" data-via="" data-counturl="http://tangkangkai.github.io/blog/2014/07/24/relearn-java-day-6/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/07/19/count-and-say/" title="Previous Post: Count and Say">&laquo; Count and Say</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/07/25/relearn-java-day-7/" title="Next Post: Relearn Java Day 7">Relearn Java Day 7 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Kangkai Tang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -12,7 +12,8 @@
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="Question We use a countAndSayHelper function to generate “next” count and say sequence. Here we need traverse through the string, compare each &hellip;">
+  <meta name="description" content="
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +70,162 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/07/25/relearn-java-day-7/">Relearn Java Day 7</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-25T08:31:36-07:00" pubdate data-updated="true">Jul 25<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/07/24/relearn-java-day-6/">Relearn Java Day 6</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-24T08:14:42-07:00" pubdate data-updated="true">Jul 24<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+  <li>interface
+    <ul>
+      <li>all methods are abstract : public abstract</li>
+      <li>global variable : public static final</li>
+      <li>class <em>implements</em> interface : multi implements</li>
+      <li>interface <em>extends</em> interface : multi extends</li>
+      <li>loose coupling </li>
+    </ul>
+  </li>
+  <li>poymorphism:
+    <ul>
+      <li>one object, two form</li>
+      <li>Father class/interface reference points to child class</li>
+      <li>increase the expandability</li>
+      <li>premise:
+        <ul>
+          <li>inheritance</li>
+          <li>overide</li>
+        </ul>
+      </li>
+      <li>Casting:
+        <ul>
+          <li>upcasting Animal a = new Cat();</li>
+          <li>downcasting Cat c = (Cat)a;
+            <ul>
+              <li>use instance of to determine the child class:
+  if (a instance of Cat)</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>member :
+        <ul>
+          <li>member variable:
+            <ul>
+              <li>compile &amp; run : refer to the <strong>reference type</strong> variable</li>
+            </ul>
+          </li>
+          <li>member function:
+            <ul>
+              <li>compile : refer to the <strong>reference type</strong> function</li>
+              <li>run : refer to <strong>actual type</strong> function</li>
+            </ul>
+          </li>
+          <li>static function: no need for binded object
+            <ul>
+              <li>compile &amp; run : refer to the reference type variable</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>inner class
+    <ul>
+      <li>inner class can directly access the members in outer class
+        <ul>
+          <li>it has the reference to the Outer Class : Outer.this</li>
+        </ul>
+      </li>
+      <li>outer class need object of inner class to access the members in it</li>
+      <li>other class access inner class:
+        <ul>
+          <li>Outer.Inner in = new Outer().new Inner();// not static</li>
+          <li>Outer.Inner in = new Outer.Inner(); //Outer static</li>
+          <li>Outer.Inner.func() // both Outer and Inner are static</li>
+          <li>while for most time, inner class is <strong>private</strong></li>
+        </ul>
+      </li>
+      <li>local inner class:
+        <ul>
+          <li>can only access local members which is final</li>
+        </ul>
+      </li>
+      <li>anonymous inner class:
+        <ul>
+          <li>premise: inner class extends or implements a outer class or interface</li>
+          <li>actually anonymous child class</li>
+          <li>new Father Class/Interface() {}.function()</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -823,228 +980,8 @@
       <li>cannot contain <strong>private, static, final</strong>  </li>
     </ul>
   </li>
-  <li>interface
-    <ul>
-      <li>all methods are abstract : public abstract</li>
-      <li>global variable : public static final</li>
-      <li>class <em>implements</em> interface : multi implements</li>
-      <li>interface <em>extends</em> interface : multi extends</li>
-    </ul>
-  </li>
 </ul>
-</div>
-  
-  
 
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/07/14/add-binary/">Add Binary</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-07-14T19:44:41-07:00" pubdate data-updated="true">Jul 14<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="https://oj.leetcode.com/problems/add-binary/">Question</a></p>
-
-<hr />
-<p>As the string could be very long, we could not use the functions given in the Integer class, we need add operation ourselves. Basically, the strategy is adding the common part, then dealt with the remaining part, note we need take care of the <em>carry</em> all the way through. For example, when adding “101” and “10”, we add “01” and “10” firstly, then add “1” as the remaining part. Here is the implementation code:</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="predefined-type">String</span> addBinary(<span class="predefined-type">String</span> a, <span class="predefined-type">String</span> b) {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="type">int</span> carry = <span class="integer">0</span>;
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        <span class="predefined-type">StringBuilder</span> sb = <span class="keyword">new</span> <span class="predefined-type">StringBuilder</span>();
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        <span class="type">int</span> alen = a.length();
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        <span class="type">int</span> blen = b.length();
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        <span class="type">boolean</span> flag = alen &gt;= blen;
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        <span class="predefined-type">String</span> longStr = flag ? a : b;
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        <span class="type">int</span> longlen = longStr.length();
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        <span class="type">int</span> i;
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        <span class="comment">/* Add the mutual part */</span>
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>        <span class="keyword">for</span> (i = <span class="integer">0</span>; i &lt; (flag ? blen : alen); i++) {
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>            <span class="type">int</span> aChar = a.charAt(alen - <span class="integer">1</span> - i) - <span class="integer">48</span>;
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>            <span class="type">int</span> bChar = b.charAt(blen - <span class="integer">1</span> - i) - <span class="integer">48</span>;
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>            <span class="type">int</span> resultChar;
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>
-<span class="line-numbers"><a href="#n18" name="n18">18</a></span>            <span class="keyword">if</span> ((resultChar = aChar + bChar + carry) &gt;= <span class="integer">2</span>) {
-<span class="line-numbers"><a href="#n19" name="n19">19</a></span>                resultChar -= <span class="integer">2</span>;
-<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>                carry = <span class="integer">1</span>;
-<span class="line-numbers"><a href="#n21" name="n21">21</a></span>            } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n22" name="n22">22</a></span>                carry = <span class="integer">0</span>;
-<span class="line-numbers"><a href="#n23" name="n23">23</a></span>            }
-<span class="line-numbers"><a href="#n24" name="n24">24</a></span>
-<span class="line-numbers"><a href="#n25" name="n25">25</a></span>            sb.insert(<span class="integer">0</span>, resultChar);
-<span class="line-numbers"><a href="#n26" name="n26">26</a></span>        }
-<span class="line-numbers"><a href="#n27" name="n27">27</a></span>
-<span class="line-numbers"><a href="#n28" name="n28">28</a></span>        <span class="comment">/* Add the remaining part */</span>
-<span class="line-numbers"><a href="#n29" name="n29">29</a></span>
-<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>        <span class="keyword">for</span> (; i &lt; longlen; i++) {
-<span class="line-numbers"><a href="#n31" name="n31">31</a></span>            <span class="type">int</span> resultChar;
-<span class="line-numbers"><a href="#n32" name="n32">32</a></span>
-<span class="line-numbers"><a href="#n33" name="n33">33</a></span>            <span class="keyword">if</span> ((resultChar = longStr.charAt(longlen - <span class="integer">1</span> - i) - <span class="integer">48</span> + carry) &gt;= <span class="integer">2</span>) {
-<span class="line-numbers"><a href="#n34" name="n34">34</a></span>                resultChar -= <span class="integer">2</span>;
-<span class="line-numbers"><a href="#n35" name="n35">35</a></span>                carry = <span class="integer">1</span>;
-<span class="line-numbers"><a href="#n36" name="n36">36</a></span>            } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n37" name="n37">37</a></span>                carry = <span class="integer">0</span>;
-<span class="line-numbers"><a href="#n38" name="n38">38</a></span>            }
-<span class="line-numbers"><a href="#n39" name="n39">39</a></span>            
-<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>            sb.insert(<span class="integer">0</span>, resultChar);
-<span class="line-numbers"><a href="#n41" name="n41">41</a></span>        }
-<span class="line-numbers"><a href="#n42" name="n42">42</a></span>
-<span class="line-numbers"><a href="#n43" name="n43">43</a></span>        <span class="comment">/* Add carry if there it's the hightes */</span>
-<span class="line-numbers"><a href="#n44" name="n44">44</a></span>        <span class="keyword">if</span> (carry == <span class="integer">1</span>) {
-<span class="line-numbers"><a href="#n45" name="n45">45</a></span>            sb.insert(<span class="integer">0</span>, <span class="integer">1</span>);
-<span class="line-numbers"><a href="#n46" name="n46">46</a></span>        }
-<span class="line-numbers"><a href="#n47" name="n47">47</a></span>
-<span class="line-numbers"><a href="#n48" name="n48">48</a></span>        <span class="keyword">return</span> sb.toString();
-<span class="line-numbers"><a href="#n49" name="n49">49</a></span>    }
-</pre></div>
-</div>
-</div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/07/14/string-to-integer-atoi/">String to Integer (Atoi)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-07-14T17:38:56-07:00" pubdate data-updated="true">Jul 14<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="https://oj.leetcode.com/problems/string-to-integer-atoi/">Question</a></p>
-
-<hr />
-<p>This question is complicated at the requirement need by <em>atoi()</em> function. At least these requirements need be met:</p>
-
-<pre><code>* The leading invalid character(not number, + or -) could only be space
-* After getting the first valid character, if there appears a invalid character, the string stops there. e.g. "123a2" will return 123.
-* If string value out range of integer, return INT_MAX (2147483647) or INT_MIN (-2147483648) 
-</code></pre>
-
-<p>In my implementation, I use <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/StringBuilder.html">StringBuilder</a> to store the valid string. Here is the code:</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="type">int</span> atoi(<span class="predefined-type">String</span> str) {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="predefined-type">StringBuilder</span> sb = <span class="keyword">new</span> <span class="predefined-type">StringBuilder</span>();
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        <span class="type">int</span> index = <span class="integer">0</span>;
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        <span class="type">int</span> signFlag = <span class="integer">1</span>;
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        <span class="type">char</span> c;
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        <span class="comment">/* Truncate the leading invalid characters, get the sign of the integer */</span>
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        <span class="keyword">while</span> (index &lt; str.length()) {
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>            c = str.charAt(index);
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>            <span class="keyword">if</span> ((c &gt;= <span class="string"><span class="delimiter">'</span><span class="content">0</span><span class="delimiter">'</span></span> &amp;&amp; c &lt;= <span class="string"><span class="delimiter">'</span><span class="content">9</span><span class="delimiter">'</span></span>) || c == <span class="string"><span class="delimiter">'</span><span class="content">+</span><span class="delimiter">'</span></span> || c == <span class="string"><span class="delimiter">'</span><span class="content">-</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>                <span class="keyword">if</span> (c == <span class="string"><span class="delimiter">'</span><span class="content">-</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>                    signFlag = -<span class="integer">1</span>;
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>                    index++;
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>                } 
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>                
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>                <span class="keyword">if</span> (c == <span class="string"><span class="delimiter">'</span><span class="content">+</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>                    index++;
-<span class="line-numbers"><a href="#n18" name="n18">18</a></span>                }
-<span class="line-numbers"><a href="#n19" name="n19">19</a></span>            } <span class="keyword">else</span> <span class="keyword">if</span> (c == <span class="string"><span class="delimiter">'</span><span class="content"> </span><span class="delimiter">'</span></span>){
-<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>                index++;
-<span class="line-numbers"><a href="#n21" name="n21">21</a></span>                <span class="keyword">continue</span>;
-<span class="line-numbers"><a href="#n22" name="n22">22</a></span>            } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n23" name="n23">23</a></span>                <span class="comment">/* the invalid leading character could only be space */</span>
-<span class="line-numbers"><a href="#n24" name="n24">24</a></span>                <span class="keyword">return</span> <span class="integer">0</span>;
-<span class="line-numbers"><a href="#n25" name="n25">25</a></span>            }
-<span class="line-numbers"><a href="#n26" name="n26">26</a></span>
-<span class="line-numbers"><a href="#n27" name="n27">27</a></span>            <span class="keyword">break</span>;
-<span class="line-numbers"><a href="#n28" name="n28">28</a></span>        }
-<span class="line-numbers"><a href="#n29" name="n29">29</a></span>
-<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>        <span class="comment">/* Get the valid string */</span>
-<span class="line-numbers"><a href="#n31" name="n31">31</a></span>        <span class="keyword">while</span> (index &lt; str.length()) {
-<span class="line-numbers"><a href="#n32" name="n32">32</a></span>            c = str.charAt(index);
-<span class="line-numbers"><a href="#n33" name="n33">33</a></span>            <span class="comment">/* invalid sign */</span>
-<span class="line-numbers"><a href="#n34" name="n34">34</a></span>            <span class="keyword">if</span> (c &gt;= <span class="string"><span class="delimiter">'</span><span class="content">0</span><span class="delimiter">'</span></span> &amp;&amp; c &lt;= <span class="string"><span class="delimiter">'</span><span class="content">9</span><span class="delimiter">'</span></span>) {
-<span class="line-numbers"><a href="#n35" name="n35">35</a></span>                sb.append(c);
-<span class="line-numbers"><a href="#n36" name="n36">36</a></span>            } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n37" name="n37">37</a></span>                <span class="keyword">break</span>;
-<span class="line-numbers"><a href="#n38" name="n38">38</a></span>            }
-<span class="line-numbers"><a href="#n39" name="n39">39</a></span>            index++;
-<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>        }
-<span class="line-numbers"><a href="#n41" name="n41">41</a></span>
-<span class="line-numbers"><a href="#n42" name="n42">42</a></span>        <span class="comment">/* change string to integer */</span>
-<span class="line-numbers"><a href="#n43" name="n43">43</a></span>        <span class="type">int</span> base = <span class="integer">0</span>;
-<span class="line-numbers"><a href="#n44" name="n44">44</a></span>        <span class="type">int</span> returnValue = <span class="integer">0</span>;
-<span class="line-numbers"><a href="#n45" name="n45">45</a></span>        <span class="type">int</span> newReturnValue = returnValue;
-<span class="line-numbers"><a href="#n46" name="n46">46</a></span>
-<span class="line-numbers"><a href="#n47" name="n47">47</a></span>        <span class="keyword">if</span> (signFlag == <span class="integer">1</span>) {
-<span class="line-numbers"><a href="#n48" name="n48">48</a></span>            <span class="keyword">for</span> (<span class="type">int</span> i = sb.length() - <span class="integer">1</span>; i &gt;= <span class="integer">0</span>; i--) {
-<span class="line-numbers"><a href="#n49" name="n49">49</a></span>                newReturnValue = (<span class="type">int</span>) (returnValue + ((<span class="type">int</span>) (sb.charAt(i)) - <span class="integer">48</span>) * <span class="predefined-type">Math</span>.pow(<span class="integer">10</span>, base++));
-<span class="line-numbers"><strong><a href="#n50" name="n50">50</a></strong></span>                <span class="keyword">if</span> (newReturnValue &lt; returnValue) {
-<span class="line-numbers"><a href="#n51" name="n51">51</a></span>                    <span class="comment">/* out of the range */</span>
-<span class="line-numbers"><a href="#n52" name="n52">52</a></span>                    <span class="keyword">return</span> <span class="predefined-type">Integer</span>.MAX_VALUE;
-<span class="line-numbers"><a href="#n53" name="n53">53</a></span>                }
-<span class="line-numbers"><a href="#n54" name="n54">54</a></span>                returnValue = newReturnValue;
-<span class="line-numbers"><a href="#n55" name="n55">55</a></span>            }
-<span class="line-numbers"><a href="#n56" name="n56">56</a></span>
-<span class="line-numbers"><a href="#n57" name="n57">57</a></span>        } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n58" name="n58">58</a></span>            <span class="keyword">for</span> (<span class="type">int</span> i = sb.length() - <span class="integer">1</span>; i &gt;= <span class="integer">0</span>; i--) {
-<span class="line-numbers"><a href="#n59" name="n59">59</a></span>                newReturnValue = (<span class="type">int</span>) (returnValue - ((<span class="type">int</span>) (sb.charAt(i)) - <span class="integer">48</span>) * <span class="predefined-type">Math</span>.pow(<span class="integer">10</span>, base++));
-<span class="line-numbers"><strong><a href="#n60" name="n60">60</a></strong></span>                <span class="keyword">if</span> (newReturnValue &gt; returnValue) {
-<span class="line-numbers"><a href="#n61" name="n61">61</a></span>                    <span class="comment">/* out of the range */</span>
-<span class="line-numbers"><a href="#n62" name="n62">62</a></span>                    <span class="keyword">return</span> <span class="predefined-type">Integer</span>.MIN_VALUE;
-<span class="line-numbers"><a href="#n63" name="n63">63</a></span>                }
-<span class="line-numbers"><a href="#n64" name="n64">64</a></span>                returnValue = newReturnValue;
-<span class="line-numbers"><a href="#n65" name="n65">65</a></span>            }
-<span class="line-numbers"><a href="#n66" name="n66">66</a></span>        }
-<span class="line-numbers"><a href="#n67" name="n67">67</a></span>
-<span class="line-numbers"><a href="#n68" name="n68">68</a></span>        <span class="keyword">return</span> returnValue;
-<span class="line-numbers"><a href="#n69" name="n69">69</a></span>    }
-</pre></div>
-</div>
-</div>
 </div>
   
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Inheritance | KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/blog/categories/inheritance/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-07-23T17:44:21-07:00</updated>
+  <updated>2014-07-25T08:32:50-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -55,15 +55,8 @@
       <li>cannot contain <strong>private, static, final</strong>  </li>
     </ul>
   </li>
-  <li>interface
-    <ul>
-      <li>all methods are abstract : public abstract</li>
-      <li>global variable : public static final</li>
-      <li>class <em>implements</em> interface : multi implements</li>
-      <li>interface <em>extends</em> interface : multi extends</li>
-    </ul>
-  </li>
 </ul>
+
 ]]></content>
   </entry>
   

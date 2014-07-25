@@ -4,7 +4,7 @@
   <title><![CDATA[KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-07-23T17:44:21-07:00</updated>
+  <updated>2014-07-25T08:32:50-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -12,6 +12,108 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Relearn Java Day 7]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/07/25/relearn-java-day-7/"/>
+    <updated>2014-07-25T08:31:36-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/07/25/relearn-java-day-7</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Relearn Java Day 6]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/07/24/relearn-java-day-6/"/>
+    <updated>2014-07-24T08:14:42-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/07/24/relearn-java-day-6</id>
+    <content type="html"><![CDATA[<ul>
+  <li>interface
+    <ul>
+      <li>all methods are abstract : public abstract</li>
+      <li>global variable : public static final</li>
+      <li>class <em>implements</em> interface : multi implements</li>
+      <li>interface <em>extends</em> interface : multi extends</li>
+      <li>loose coupling </li>
+    </ul>
+  </li>
+  <li>poymorphism:
+    <ul>
+      <li>one object, two form</li>
+      <li>Father class/interface reference points to child class</li>
+      <li>increase the expandability</li>
+      <li>premise:
+        <ul>
+          <li>inheritance</li>
+          <li>overide</li>
+        </ul>
+      </li>
+      <li>Casting:
+        <ul>
+          <li>upcasting Animal a = new Cat();</li>
+          <li>downcasting Cat c = (Cat)a;
+            <ul>
+              <li>use instance of to determine the child class:
+  if (a instance of Cat)</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>member :
+        <ul>
+          <li>member variable:
+            <ul>
+              <li>compile &amp; run : refer to the <strong>reference type</strong> variable</li>
+            </ul>
+          </li>
+          <li>member function:
+            <ul>
+              <li>compile : refer to the <strong>reference type</strong> function</li>
+              <li>run : refer to <strong>actual type</strong> function</li>
+            </ul>
+          </li>
+          <li>static function: no need for binded object
+            <ul>
+              <li>compile &amp; run : refer to the reference type variable</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>inner class
+    <ul>
+      <li>inner class can directly access the members in outer class
+        <ul>
+          <li>it has the reference to the Outer Class : Outer.this</li>
+        </ul>
+      </li>
+      <li>outer class need object of inner class to access the members in it</li>
+      <li>other class access inner class:
+        <ul>
+          <li>Outer.Inner in = new Outer().new Inner();// not static</li>
+          <li>Outer.Inner in = new Outer.Inner(); //Outer static</li>
+          <li>Outer.Inner.func() // both Outer and Inner are static</li>
+          <li>while for most time, inner class is <strong>private</strong></li>
+        </ul>
+      </li>
+      <li>local inner class:
+        <ul>
+          <li>can only access local members which is final</li>
+        </ul>
+      </li>
+      <li>anonymous inner class:
+        <ul>
+          <li>premise: inner class extends or implements a outer class or interface</li>
+          <li>actually anonymous child class</li>
+          <li>new Father Class/Interface() {}.function()</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Count and Say]]></title>
@@ -554,15 +656,8 @@
       <li>cannot contain <strong>private, static, final</strong>  </li>
     </ul>
   </li>
-  <li>interface
-    <ul>
-      <li>all methods are abstract : public abstract</li>
-      <li>global variable : public static final</li>
-      <li>class <em>implements</em> interface : multi implements</li>
-      <li>interface <em>extends</em> interface : multi extends</li>
-    </ul>
-  </li>
 </ul>
+
 ]]></content>
   </entry>
   
@@ -1157,131 +1252,6 @@
 <span class="line-numbers"><a href="#n45" name="n45">45</a></span>
 <span class="line-numbers"><a href="#n46" name="n46">46</a></span>        <span class="keyword">return</span> head;
 <span class="line-numbers"><a href="#n47" name="n47">47</a></span>    }
-</pre></div>
-</div>
-</div>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Reverse Linked List II]]></title>
-    <link href="http://tangkangkai.github.io/blog/2014/07/10/reverse-linked-list-ii/"/>
-    <updated>2014-07-10T15:48:08-07:00</updated>
-    <id>http://tangkangkai.github.io/blog/2014/07/10/reverse-linked-list-ii</id>
-    <content type="html"><![CDATA[<p><a href="https://oj.leetcode.com/problems/reverse-linked-list-ii/">Question</a></p>
-
-<hr />
-<p>We need to take care of a situation when <em>m</em> equals to one, since it affects what we return. If <em>m=1</em>, then we return the last element in the list part that need reversed, otherwise we return the original head. </p>
-
-<p>For the reverse operation, it’s helpful to know how to just simply reverse a linkedlist. Note we not only need to point node to its previous node, but also record the real next node. Therefore we need three pointers: <em>prev, curr, next</em>. Here is the code </p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> ListNode reverseLinkedList(ListNode head) {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="keyword">if</span> (head == <span class="predefined-constant">null</span> || head.next == <span class="predefined-constant">null</span>) {
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>            <span class="keyword">return</span> head;
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        }
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        ListNode prev = head;
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        ListNode curr = head;
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        ListNode next = head.next;
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        head.next = <span class="predefined-constant">null</span>;
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>        <span class="keyword">while</span> (next != <span class="predefined-constant">null</span>) {
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>            curr = next;
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>            next = next.next;
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>            curr.next = prev;
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>            prev = curr;
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>        }
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>        <span class="keyword">return</span> curr;
-<span class="line-numbers"><a href="#n18" name="n18">18</a></span>    }
-</pre></div>
-</div>
-</div>
-
-<p>With the help of this basic operation we can move to solve our original question. Here is the code </p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> ListNode reverseBetween(ListNode head, <span class="type">int</span> m, <span class="type">int</span> n) {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="type">int</span> index = <span class="integer">1</span>;
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        ListNode pointNode;<span class="comment">// node used to traverse the list</span>
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        ListNode listPrev; <span class="comment">// record the node before the reversed list part</span>
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        ListNode listHead; <span class="comment">// record the head of the reversed list part</span>
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        pointNode = head;
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        <span class="keyword">while</span> (index + <span class="integer">1</span> &lt; m) {
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>            pointNode = pointNode.next;
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>            index++;
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        }
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>        listPrev = pointNode;
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>        listHead = m == <span class="integer">1</span>? head : pointNode.next;
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>
-<span class="line-numbers"><a href="#n18" name="n18">18</a></span>        ListNode prev = pointNode;
-<span class="line-numbers"><a href="#n19" name="n19">19</a></span>        ListNode curr = pointNode;
-<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>        ListNode next = pointNode.next;
-<span class="line-numbers"><a href="#n21" name="n21">21</a></span>
-<span class="line-numbers"><a href="#n22" name="n22">22</a></span>        <span class="keyword">while</span> (index &lt; n) {
-<span class="line-numbers"><a href="#n23" name="n23">23</a></span>            curr = next;
-<span class="line-numbers"><a href="#n24" name="n24">24</a></span>            next = next.next;
-<span class="line-numbers"><a href="#n25" name="n25">25</a></span>            curr.next = prev;
-<span class="line-numbers"><a href="#n26" name="n26">26</a></span>            prev = curr;
-<span class="line-numbers"><a href="#n27" name="n27">27</a></span>            index++;
-<span class="line-numbers"><a href="#n28" name="n28">28</a></span>        }
-<span class="line-numbers"><a href="#n29" name="n29">29</a></span>        
-<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>        listHead.next = next;
-<span class="line-numbers"><a href="#n31" name="n31">31</a></span>        
-<span class="line-numbers"><a href="#n32" name="n32">32</a></span>        <span class="keyword">if</span> (m == <span class="integer">1</span>) {
-<span class="line-numbers"><a href="#n33" name="n33">33</a></span>            <span class="keyword">return</span> curr;
-<span class="line-numbers"><a href="#n34" name="n34">34</a></span>        } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n35" name="n35">35</a></span>            listPrev.next = curr;
-<span class="line-numbers"><a href="#n36" name="n36">36</a></span>            <span class="keyword">return</span> head;    
-<span class="line-numbers"><a href="#n37" name="n37">37</a></span>        }
-<span class="line-numbers"><a href="#n38" name="n38">38</a></span>    }
-</pre></div>
-</div>
-</div>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Add Two Numbers]]></title>
-    <link href="http://tangkangkai.github.io/blog/2014/07/02/add-two-numbers/"/>
-    <updated>2014-07-02T17:39:28-07:00</updated>
-    <id>http://tangkangkai.github.io/blog/2014/07/02/add-two-numbers</id>
-    <content type="html"><![CDATA[<p><a href="https://oj.leetcode.com/problems/add-two-numbers/">Question</a></p>
-
-<hr />
-<p>For this question, we need to take care of the carry from the previous calculation. Here I use a helper function <em>addHelper</em> to help maintain the information of the carry. Here follows the code:</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        <span class="keyword">return</span> addHelper(l1, l2, <span class="integer">0</span>);
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>    }
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>    <span class="comment">/* Helper Functions */</span>
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>    <span class="comment">/* @param carry:if there is a carry from previous caculation */</span>
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>    <span class="directive">private</span> ListNode addHelper(ListNode l1, ListNode l2, <span class="type">int</span> carry) {
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        <span class="keyword">if</span> (l1 == <span class="predefined-constant">null</span> &amp;&amp; l2 == <span class="predefined-constant">null</span>) {
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>            <span class="keyword">return</span> carry == <span class="integer">1</span> ? <span class="keyword">new</span> ListNode(<span class="integer">1</span>) : <span class="predefined-constant">null</span>;
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        } <span class="keyword">else</span> <span class="keyword">if</span> (l1 == <span class="predefined-constant">null</span>) {
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>            <span class="keyword">return</span> carry == <span class="integer">1</span> ? addHelper(l2, <span class="keyword">new</span> ListNode(<span class="integer">1</span>), <span class="integer">0</span>) : l2;
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>        } <span class="keyword">else</span> <span class="keyword">if</span> (l2 == <span class="predefined-constant">null</span>) {
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>            <span class="keyword">return</span> carry == <span class="integer">1</span> ? addHelper(l1, <span class="keyword">new</span> ListNode(<span class="integer">1</span>), <span class="integer">0</span>) : l1;
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>        } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>            <span class="type">int</span> val1 = l1.val;
-<span class="line-numbers"><a href="#n18" name="n18">18</a></span>            <span class="type">int</span> val2 = l2.val;
-<span class="line-numbers"><a href="#n19" name="n19">19</a></span>
-<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>            <span class="type">int</span> sum = carry + val1 + val2;
-<span class="line-numbers"><a href="#n21" name="n21">21</a></span>            ListNode lstNode = <span class="keyword">new</span> ListNode(sum % <span class="integer">10</span>);
-<span class="line-numbers"><a href="#n22" name="n22">22</a></span>            lstNode.next = (sum &gt;= <span class="integer">10</span>) ? (addHelper(l1.next, l2.next, <span class="integer">1</span>))
-<span class="line-numbers"><a href="#n23" name="n23">23</a></span>                    : (addHelper(l1.next, l2.next, <span class="integer">0</span>));
-<span class="line-numbers"><a href="#n24" name="n24">24</a></span>            <span class="keyword">return</span> lstNode;
-<span class="line-numbers"><a href="#n25" name="n25">25</a></span>        }
-<span class="line-numbers"><a href="#n26" name="n26">26</a></span>    }
 </pre></div>
 </div>
 </div>
