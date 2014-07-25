@@ -111,12 +111,19 @@
       </li>
       <li>Self-defined exception class</li>
     </ul>
-
-    <p class="language-java">~~~
-  Class MyException extends Exception {}
-  ~~~</p>
   </li>
 </ul>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span><span class="predefined-type">Class</span> MyException <span class="directive">extends</span> <span class="exception">Exception</span> {}
+<span class="line-numbers"><a href="#n2" name="n2">2</a></span>
+<span class="line-numbers"><a href="#n3" name="n3">3</a></span>
+<span class="line-numbers"><a href="#n4" name="n4">4</a></span><span class="directive">public</span> <span class="type">void</span> testException <span class="directive">throws</span> MyException {
+<span class="line-numbers"><a href="#n5" name="n5">5</a></span>    <span class="keyword">throw</span> <span class="keyword">new</span> MyException();
+<span class="line-numbers"><a href="#n6" name="n6">6</a></span>}
+</pre></div>
+</div>
+</div>
 </div>
   
   
