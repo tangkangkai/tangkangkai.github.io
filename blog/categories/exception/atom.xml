@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Exception | KK's Coding Blog]]></title>
+  <link href="http://tangkangkai.github.io/blog/categories/exception/atom.xml" rel="self"/>
+  <link href="http://tangkangkai.github.io/"/>
+  <updated>2014-07-25T09:09:30-07:00</updated>
+  <id>http://tangkangkai.github.io/</id>
+  <author>
+    <name><![CDATA[Kangkai Tang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Relearn Java Day 7]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/07/25/relearn-java-day-7/"/>
+    <updated>2014-07-25T08:31:36-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/07/25/relearn-java-day-7</id>
+    <content type="html"><![CDATA[<ul>
+  <li>exception:
+    <ul>
+      <li>using class to describe bad situations</li>
+      <li>Throwable
+        <ul>
+          <li>Error:cannot handle, throwed by jvm</li>
+          <li>Exception:can handle</li>
+          <li>throw the throwable object let caller know</li>
+        </ul>
+      </li>
+      <li>Self-defined exception class</li>
+    </ul>
+
+    <p class="language-java">~~~
+  Class MyException extends Exception {}
+  ~~~</p>
+  </li>
+</ul>
+]]></content>
+  </entry>
+  
+</feed>

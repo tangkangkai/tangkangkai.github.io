@@ -4,7 +4,7 @@
   <title><![CDATA[KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-07-25T08:32:50-07:00</updated>
+  <updated>2014-07-25T09:09:30-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -18,7 +18,25 @@
     <link href="http://tangkangkai.github.io/blog/2014/07/25/relearn-java-day-7/"/>
     <updated>2014-07-25T08:31:36-07:00</updated>
     <id>http://tangkangkai.github.io/blog/2014/07/25/relearn-java-day-7</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<ul>
+  <li>exception:
+    <ul>
+      <li>using class to describe bad situations</li>
+      <li>Throwable
+        <ul>
+          <li>Error:cannot handle, throwed by jvm</li>
+          <li>Exception:can handle</li>
+          <li>throw the throwable object let caller know</li>
+        </ul>
+      </li>
+      <li>Self-defined exception class</li>
+    </ul>
+
+    <p class="language-java">~~~
+  Class MyException extends Exception {}
+  ~~~</p>
+  </li>
+</ul>
 ]]></content>
   </entry>
   
