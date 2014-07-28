@@ -4,7 +4,7 @@
   <title><![CDATA[KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-07-25T09:14:26-07:00</updated>
+  <updated>2014-07-28T10:58:41-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -25,7 +25,12 @@
       <li>Throwable
         <ul>
           <li>Error:cannot handle, throwed by jvm</li>
-          <li>Exception:can handle</li>
+          <li>Exception:can handle
+            <ul>
+              <li>RuntimeException, check when running</li>
+              <li>OtherException, check when compiling</li>
+            </ul>
+          </li>
           <li>throw the throwable object let caller know</li>
         </ul>
       </li>
@@ -37,13 +42,59 @@
 <div><div class="CodeRay">
   <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span><span class="predefined-type">Class</span> MyException <span class="directive">extends</span> <span class="exception">Exception</span> {}
 <span class="line-numbers"><a href="#n2" name="n2">2</a></span>
-<span class="line-numbers"><a href="#n3" name="n3">3</a></span>
-<span class="line-numbers"><a href="#n4" name="n4">4</a></span><span class="directive">public</span> <span class="type">void</span> testException <span class="directive">throws</span> MyException {
-<span class="line-numbers"><a href="#n5" name="n5">5</a></span>    <span class="keyword">throw</span> <span class="keyword">new</span> MyException();
-<span class="line-numbers"><a href="#n6" name="n6">6</a></span>}
+<span class="line-numbers"><a href="#n3" name="n3">3</a></span><span class="directive">public</span> <span class="type">void</span> testException <span class="directive">throws</span> MyException {
+<span class="line-numbers"><a href="#n4" name="n4">4</a></span>    <span class="keyword">throw</span> <span class="keyword">new</span> MyException();
+<span class="line-numbers"><a href="#n5" name="n5">5</a></span>}
 </pre></div>
 </div>
 </div>
+
+<ul>
+  <li>throw &amp; throws:
+    <ul>
+      <li>throws: declare on function, throws one or more Exception</li>
+      <li>throw: declare in function, throw an object</li>
+    </ul>
+  </li>
+  <li>finally:
+    <ul>
+      <li>always executed except for System.exit()</li>
+      <li>format
+        <ul>
+          <li>try catch finally</li>
+          <li>try catch</li>
+          <li>try finally , release resource but throws exception</li>
+        </ul>
+      </li>
+      <li>normally used to release resource</li>
+    </ul>
+  </li>
+  <li>principles:
+    <ul>
+      <li>if exception(need check when compile) throwed inside function, need throws it on function </li>
+      <li>caller need catch or throws this exception
+        <ul>
+          <li>if could be solved, use catch</li>
+          <li>if cannot be solved, use throws</li>
+        </ul>
+      </li>
+      <li>multiple exceptions corresponds to multiple catches</li>
+      <li>for inheritance, override a method: child class can only throw the father’s exception or the exceptions’ child class or its subset. If father did not throws any exception, child cannot throw exception.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+<ul>
+  <li>Object
+    <ul>
+      <li>boolean equals(Obj o): can be override and used for compare objects</li>
+      <li>int hashCode(): modified if equals() is override</li>
+      <li>toString():what will be printed by System.out.print</li>
+    </ul>
+  </li>
+</ul>
+
 ]]></content>
   </entry>
   

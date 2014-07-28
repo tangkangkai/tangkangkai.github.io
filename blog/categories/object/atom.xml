@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Exception | KK's Coding Blog]]></title>
-  <link href="http://tangkangkai.github.io/blog/categories/exception/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Object | KK's Coding Blog]]></title>
+  <link href="http://tangkangkai.github.io/blog/categories/object/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
   <updated>2014-07-28T10:58:41-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
