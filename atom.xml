@@ -4,7 +4,7 @@
   <title><![CDATA[KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-07-29T09:16:08-07:00</updated>
+  <updated>2014-07-29T16:11:48-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -34,50 +34,53 @@
   <li>Example:</li>
 </ul>
 
-<pre><code>public class FactoryClass {
-	public static Super getSub(String type) {
-		if ("1".equals(type)) {
-			return new Sub1();
-		} 
-		
-		if ("2".equals(type)) {
-			return new Sub2();
-		}
-		
-		return null;
-	}
-	
-	public static void main(String[] args) {
-		Super sub1 = FactoryClass.getSub("1");
-		Super sub2 = FactoryClass.getSub("2");
-	}
-}
-
-abstract class Super {
-	public abstract String getName();
-	
-	@Override
-	public String toString() {
-		return "name = " + this.getName();
-	}
-}
-
-class Sub1 extends Super {
-
-	@Override
-	public String getName() {
-		return "Sub1";
-	}
-}
-
-class Sub2 extends Super {
-
-	@Override
-	public String getName() {
-		return "Sub2";
-	}
-}
-</code></pre>
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span class="directive">public</span> <span class="type">class</span> <span class="class">FactoryClass</span> {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>    <span class="directive">public</span> <span class="directive">static</span> Super getSub(<span class="predefined-type">String</span> type) {
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        <span class="keyword">if</span> (<span class="string"><span class="delimiter">&quot;</span><span class="content">1</span><span class="delimiter">&quot;</span></span>.equals(type)) {
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>            <span class="keyword">return</span> <span class="keyword">new</span> Sub1();
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        } 
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        <span class="keyword">if</span> (<span class="string"><span class="delimiter">&quot;</span><span class="content">2</span><span class="delimiter">&quot;</span></span>.equals(type)) {
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>            <span class="keyword">return</span> <span class="keyword">new</span> Sub2();
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        }
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>        <span class="keyword">return</span> <span class="predefined-constant">null</span>;
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>    }
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>    
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>    <span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span> main(<span class="predefined-type">String</span><span class="type">[]</span> args) {
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>        Super sub1 = FactoryClass.getSub(<span class="string"><span class="delimiter">&quot;</span><span class="content">1</span><span class="delimiter">&quot;</span></span>);
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>        Super sub2 = FactoryClass.getSub(<span class="string"><span class="delimiter">&quot;</span><span class="content">2</span><span class="delimiter">&quot;</span></span>);
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>    }
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>}
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span><span class="directive">abstract</span> <span class="type">class</span> <span class="class">Super</span> {
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>    <span class="directive">public</span> <span class="directive">abstract</span> <span class="predefined-type">String</span> getName();
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>    
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>    <span class="annotation">@Override</span>
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>    <span class="directive">public</span> <span class="predefined-type">String</span> toString() {
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>        <span class="keyword">return</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">name = </span><span class="delimiter">&quot;</span></span> + <span class="local-variable">this</span>.getName();
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>    }
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span>}
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span>
+<span class="line-numbers"><a href="#n29" name="n29">29</a></span><span class="type">class</span> <span class="class">Sub1</span> <span class="directive">extends</span> Super {
+<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>
+<span class="line-numbers"><a href="#n31" name="n31">31</a></span>    <span class="annotation">@Override</span>
+<span class="line-numbers"><a href="#n32" name="n32">32</a></span>    <span class="directive">public</span> <span class="predefined-type">String</span> getName() {
+<span class="line-numbers"><a href="#n33" name="n33">33</a></span>        <span class="keyword">return</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">Sub1</span><span class="delimiter">&quot;</span></span>;
+<span class="line-numbers"><a href="#n34" name="n34">34</a></span>    }
+<span class="line-numbers"><a href="#n35" name="n35">35</a></span>}
+<span class="line-numbers"><a href="#n36" name="n36">36</a></span>
+<span class="line-numbers"><a href="#n37" name="n37">37</a></span><span class="type">class</span> <span class="class">Sub2</span> <span class="directive">extends</span> Super {
+<span class="line-numbers"><a href="#n38" name="n38">38</a></span>
+<span class="line-numbers"><a href="#n39" name="n39">39</a></span>    <span class="annotation">@Override</span>
+<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>    <span class="directive">public</span> <span class="predefined-type">String</span> getName() {
+<span class="line-numbers"><a href="#n41" name="n41">41</a></span>        <span class="keyword">return</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">Sub2</span><span class="delimiter">&quot;</span></span>;
+<span class="line-numbers"><a href="#n42" name="n42">42</a></span>    }
+<span class="line-numbers"><a href="#n43" name="n43">43</a></span>}
+</pre></div>
+</div>
+</div>
 
 <ul>
   <li>Benifits:
