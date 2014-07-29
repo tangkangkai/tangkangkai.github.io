@@ -4,7 +4,7 @@
   <title><![CDATA[KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-07-28T10:58:41-07:00</updated>
+  <updated>2014-07-29T09:16:08-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -12,6 +12,84 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[One Day One Pattern : Factory Pattern]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/07/28/one-day-one-pattern-factory-pattern/"/>
+    <updated>2014-07-28T11:12:16-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/07/28/one-day-one-pattern-factory-pattern</id>
+    <content type="html"><![CDATA[<ul>
+  <li>Purpose:
+    <ul>
+      <li>Take out the responsibility of instantiation of a class from client program to the factory class. </li>
+    </ul>
+  </li>
+  <li>Implementation Details:
+    <ul>
+      <li>Can apply Singleton pattern on Factory class or make the factory method static.</li>
+      <li>One Super Class, which can be interface, abstract class or normal class</li>
+      <li>Several sub classes extending the super class</li>
+    </ul>
+  </li>
+  <li>Example:</li>
+</ul>
+
+<pre><code>public class FactoryClass {
+	public static Super getSub(String type) {
+		if ("1".equals(type)) {
+			return new Sub1();
+		} 
+		
+		if ("2".equals(type)) {
+			return new Sub2();
+		}
+		
+		return null;
+	}
+	
+	public static void main(String[] args) {
+		Super sub1 = FactoryClass.getSub("1");
+		Super sub2 = FactoryClass.getSub("2");
+	}
+}
+
+abstract class Super {
+	public abstract String getName();
+	
+	@Override
+	public String toString() {
+		return "name = " + this.getName();
+	}
+}
+
+class Sub1 extends Super {
+
+	@Override
+	public String getName() {
+		return "Sub1";
+	}
+}
+
+class Sub2 extends Super {
+
+	@Override
+	public String getName() {
+		return "Sub2";
+	}
+}
+</code></pre>
+
+<ul>
+  <li>Benifits:
+    <ul>
+      <li>instantiate class from interface rather then implemention</li>
+      <li>less coupled, easy to extend</li>
+    </ul>
+  </li>
+  <li>For more : <a href="http://www.journaldev.com/1392/factory-design-pattern-in-java">Factory Design Pattern</a></li>
+</ul>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Relearn Java Day 7]]></title>
@@ -1263,70 +1341,6 @@
 <span class="line-numbers"><a href="#n44" name="n44">44</a></span>
 <span class="line-numbers"><a href="#n45" name="n45">45</a></span>            <span class="keyword">return</span> head;
 <span class="line-numbers"><a href="#n46" name="n46">46</a></span>        }
-<span class="line-numbers"><a href="#n47" name="n47">47</a></span>    }
-</pre></div>
-</div>
-</div>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Partition List]]></title>
-    <link href="http://tangkangkai.github.io/blog/2014/07/10/partition-list/"/>
-    <updated>2014-07-10T21:46:09-07:00</updated>
-    <id>http://tangkangkai.github.io/blog/2014/07/10/partition-list</id>
-    <content type="html"><![CDATA[<p><a href="https://oj.leetcode.com/problems/partition-list/">Question</a></p>
-
-<hr />
-<p>First, we need to find the first node whose <em>next</em> node’s value is not smaller than 3, which means the nodes before (and it self)this say,  <em>pivot node</em>, do not need to change. Next we traverse to see which node is smaller than <em>x</em>, put it after <em>pivot node</em>. Also note the special case where the head node’s value is larger than <em>x</em>, then the <em>pivot node</em> would be assigned later. Here is the code:</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span class="directive">public</span> ListNode partition(ListNode head, <span class="type">int</span> x) {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="keyword">if</span> (head == <span class="predefined-constant">null</span>) {
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>            <span class="keyword">return</span> <span class="predefined-constant">null</span>;
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        }
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        ListNode pointNode = head;
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        ListNode pivotNode;
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        <span class="comment">/* Find the pivot node */</span>
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>        <span class="keyword">if</span> (head.val &lt; x) {
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>            <span class="keyword">while</span> (pointNode.next != <span class="predefined-constant">null</span>) {
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>                <span class="keyword">if</span> (pointNode.next.val &lt; x) {
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>                    pointNode = pointNode.next;
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>                } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>                    <span class="keyword">break</span>;
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>                }
-<span class="line-numbers"><a href="#n18" name="n18">18</a></span>            }
-<span class="line-numbers"><a href="#n19" name="n19">19</a></span>            pivotNode = pointNode;
-<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>        } <span class="keyword">else</span> { <span class="comment">// if the head node's value is larger than x, then pivotNode is null</span>
-<span class="line-numbers"><a href="#n21" name="n21">21</a></span>            pivotNode = <span class="predefined-constant">null</span>;
-<span class="line-numbers"><a href="#n22" name="n22">22</a></span>        }
-<span class="line-numbers"><a href="#n23" name="n23">23</a></span>        
-<span class="line-numbers"><a href="#n24" name="n24">24</a></span>        <span class="comment">/* Traverse */</span>
-<span class="line-numbers"><a href="#n25" name="n25">25</a></span>
-<span class="line-numbers"><a href="#n26" name="n26">26</a></span>        <span class="keyword">while</span> (pointNode.next != <span class="predefined-constant">null</span>) {
-<span class="line-numbers"><a href="#n27" name="n27">27</a></span>            <span class="keyword">if</span> (pointNode.next.val &lt; x) {
-<span class="line-numbers"><a href="#n28" name="n28">28</a></span>                ListNode temp = pointNode.next;
-<span class="line-numbers"><a href="#n29" name="n29">29</a></span>                pointNode.next = pointNode.next.next;
-<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>
-<span class="line-numbers"><a href="#n31" name="n31">31</a></span>                <span class="keyword">if</span> (pivotNode != <span class="predefined-constant">null</span>) {
-<span class="line-numbers"><a href="#n32" name="n32">32</a></span>                    temp.next = pivotNode.next;
-<span class="line-numbers"><a href="#n33" name="n33">33</a></span>                    pivotNode.next = temp;
-<span class="line-numbers"><a href="#n34" name="n34">34</a></span>                    pivotNode = temp;
-<span class="line-numbers"><a href="#n35" name="n35">35</a></span>                } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n36" name="n36">36</a></span>                    pivotNode = temp;
-<span class="line-numbers"><a href="#n37" name="n37">37</a></span>                    temp.next = head;
-<span class="line-numbers"><a href="#n38" name="n38">38</a></span>                    head = temp;
-<span class="line-numbers"><a href="#n39" name="n39">39</a></span>                }
-<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>
-<span class="line-numbers"><a href="#n41" name="n41">41</a></span>            } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n42" name="n42">42</a></span>                pointNode = pointNode.next;
-<span class="line-numbers"><a href="#n43" name="n43">43</a></span>            }
-<span class="line-numbers"><a href="#n44" name="n44">44</a></span>        }
-<span class="line-numbers"><a href="#n45" name="n45">45</a></span>
-<span class="line-numbers"><a href="#n46" name="n46">46</a></span>        <span class="keyword">return</span> head;
 <span class="line-numbers"><a href="#n47" name="n47">47</a></span>    }
 </pre></div>
 </div>

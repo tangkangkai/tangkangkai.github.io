@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Designpattern | KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/blog/categories/designpattern/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-07-28T10:58:41-07:00</updated>
+  <updated>2014-07-29T09:16:08-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -12,6 +12,84 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[One Day One Pattern : Factory Pattern]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/07/28/one-day-one-pattern-factory-pattern/"/>
+    <updated>2014-07-28T11:12:16-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/07/28/one-day-one-pattern-factory-pattern</id>
+    <content type="html"><![CDATA[<ul>
+  <li>Purpose:
+    <ul>
+      <li>Take out the responsibility of instantiation of a class from client program to the factory class. </li>
+    </ul>
+  </li>
+  <li>Implementation Details:
+    <ul>
+      <li>Can apply Singleton pattern on Factory class or make the factory method static.</li>
+      <li>One Super Class, which can be interface, abstract class or normal class</li>
+      <li>Several sub classes extending the super class</li>
+    </ul>
+  </li>
+  <li>Example:</li>
+</ul>
+
+<pre><code>public class FactoryClass {
+	public static Super getSub(String type) {
+		if ("1".equals(type)) {
+			return new Sub1();
+		} 
+		
+		if ("2".equals(type)) {
+			return new Sub2();
+		}
+		
+		return null;
+	}
+	
+	public static void main(String[] args) {
+		Super sub1 = FactoryClass.getSub("1");
+		Super sub2 = FactoryClass.getSub("2");
+	}
+}
+
+abstract class Super {
+	public abstract String getName();
+	
+	@Override
+	public String toString() {
+		return "name = " + this.getName();
+	}
+}
+
+class Sub1 extends Super {
+
+	@Override
+	public String getName() {
+		return "Sub1";
+	}
+}
+
+class Sub2 extends Super {
+
+	@Override
+	public String getName() {
+		return "Sub2";
+	}
+}
+</code></pre>
+
+<ul>
+  <li>Benifits:
+    <ul>
+      <li>instantiate class from interface rather then implemention</li>
+      <li>less coupled, easy to extend</li>
+    </ul>
+  </li>
+  <li>For more : <a href="http://www.journaldev.com/1392/factory-design-pattern-in-java">Factory Design Pattern</a></li>
+</ul>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[One Day One Pattern : Singleton]]></title>

@@ -12,7 +12,7 @@
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="exception: using class to describe bad situations Throwable Error:cannot handle, throwed by jvm Exception:can handle RuntimeException, check when &hellip;">
+  <meta name="description" content="Purpose: Take out the responsibility of instantiation of a class from client program to the factory class. Implementation Details: Can apply &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,111 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/07/28/one-day-one-pattern-factory-pattern/">One Day One Pattern : Factory Pattern</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-28T11:12:16-07:00" pubdate data-updated="true">Jul 28<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+  <li>Purpose:
+    <ul>
+      <li>Take out the responsibility of instantiation of a class from client program to the factory class. </li>
+    </ul>
+  </li>
+  <li>Implementation Details:
+    <ul>
+      <li>Can apply Singleton pattern on Factory class or make the factory method static.</li>
+      <li>One Super Class, which can be interface, abstract class or normal class</li>
+      <li>Several sub classes extending the super class</li>
+    </ul>
+  </li>
+  <li>Example:</li>
+</ul>
+
+<pre><code>public class FactoryClass {
+	public static Super getSub(String type) {
+		if ("1".equals(type)) {
+			return new Sub1();
+		} 
+		
+		if ("2".equals(type)) {
+			return new Sub2();
+		}
+		
+		return null;
+	}
+	
+	public static void main(String[] args) {
+		Super sub1 = FactoryClass.getSub("1");
+		Super sub2 = FactoryClass.getSub("2");
+	}
+}
+
+abstract class Super {
+	public abstract String getName();
+	
+	@Override
+	public String toString() {
+		return "name = " + this.getName();
+	}
+}
+
+class Sub1 extends Super {
+
+	@Override
+	public String getName() {
+		return "Sub1";
+	}
+}
+
+class Sub2 extends Super {
+
+	@Override
+	public String getName() {
+		return "Sub2";
+	}
+}
+</code></pre>
+
+<ul>
+  <li>Benifits:
+    <ul>
+      <li>instantiate class from interface rather then implemention</li>
+      <li>less coupled, easy to extend</li>
+    </ul>
+  </li>
+  <li>For more : <a href="http://www.journaldev.com/1392/factory-design-pattern-in-java">Factory Design Pattern</a></li>
+</ul>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -979,80 +1084,6 @@
           <li>A static nested class does not have a reference to a nesting instance, so a static nested class cannot invoke non-static methods or access non-static fields of an instance of the class within which it is nested.</li>
         </ul>
       </li>
-    </ul>
-  </li>
-</ul>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/07/15/relearn-java-day-5/">Relearn Java Day 5</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-07-15T08:27:04-07:00" pubdate data-updated="true">Jul 15<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><ul>
-  <li>super:
-    <ul>
-      <li>represent the father class</li>
-      <li>there is invisible super() at the <strong>first</strong> sentence in the construction function of child class </li>
-    </ul>
-  </li>
-  <li>
-    <p>override &amp; overload </p>
-  </li>
-  <li>
-    <p>initialization<br />
-  Person p = new Person()</p>
-
-    <ul>
-      <li>JVM load Person.class to memory, if it has Father Class, load the Father class first.</li>
-      <li>Allocate space in Heap </li>
-      <li>Initialize variables with default value</li>
-      <li>Call construct function</li>
-      <li>In the first line, call Father’s construct function</li>
-      <li>After the Father initialized, assign the specific value to the variables</li>
-    </ul>
-  </li>
-  <li>final<br />
-    <ul>
-      <li>final class cannot be extended</li>
-      <li>final method cannot be override</li>
-      <li>final variable is a constant</li>
-    </ul>
-  </li>
-  <li>abstract class
-    <ul>
-      <li>cannot be initialized</li>
-      <li>when a method only clarified not implemented, declare it as <strong>abstract</strong> method, declare its class <strong>abstract</strong></li>
-      <li>cannot contain <strong>private, static, final</strong>  </li>
     </ul>
   </li>
 </ul>
