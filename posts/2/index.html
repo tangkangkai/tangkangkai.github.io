@@ -12,7 +12,7 @@
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="super: represent the father class there is invisible super() at the first sentence in the construction function of child class override &amp; &hellip;">
+  <meta name="description" content="Purpose: Restrict the creations of objects. Only one instance(of the class) could be created. Implementation Details: Private Constructor Private &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,91 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/07/15/one-day-one-pattern-singleton/">One Day One Pattern : Singleton</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-15T09:00:14-07:00" pubdate data-updated="true">Jul 15<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+  <li>Purpose:
+    <ul>
+      <li>Restrict the creations of objects. Only one instance(of the class) could be created.</li>
+    </ul>
+  </li>
+  <li>Implementation Details:
+    <ul>
+      <li>Private Constructor</li>
+      <li>Private static variable that is the only instance of the class.</li>
+      <li>Public static method that returns the instance of the class</li>
+    </ul>
+  </li>
+  <li>Example:</li>
+</ul>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span class="directive">public</span> <span class="type">class</span> <span class="class">SingletonClass</span> {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>     
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>    <span class="comment">/* private constructor to avoid client applications to use constructor */</span>
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>    <span class="directive">private</span> SingletonClass(){}
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>    <span class="comment">/* for thread safety purpose */</span>
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>    <span class="directive">private</span> <span class="directive">static</span> <span class="type">class</span> <span class="class">SingletonHelper</span>{
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        <span class="directive">private</span> <span class="directive">static</span> <span class="directive">final</span> SingletonClass INSTANCE = <span class="keyword">new</span> SingletonClass();
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>    }
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span> 
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>    <span class="directive">public</span> <span class="directive">static</span> SingletonClass getInstance(){
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        <span class="comment">/* Lazy initialization */</span>
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>        <span class="keyword">return</span> SingletonHelper.INSTANCE;
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>    }
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>}
+</pre></div>
+</div>
+</div>
+
+<ul>
+  <li>Further &amp; Deeper understanding : <a href="http://www.journaldev.com/1377/java-singleton-design-pattern-best-practices-with-examples">Singleton Design Pattern</a></li>
+  <li>Reference may be needed:
+    <ul>
+      <li><a href="http://www.programmerinterview.com/index.php/java-questions/inner-vs-nested-classes/">difference between an inner and nested class in Java</a></li>
+      <li><a href="http://stackoverflow.com/questions/1353309/java-static-vs-non-static-inner-class">difference between static and non-static nested classes(inner class)</a>
+        <ul>
+          <li>A static nested class does not have a reference to a nesting instance, so a static nested class cannot invoke non-static methods or access non-static fields of an instance of the class within which it is nested.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -793,123 +878,6 @@
 <span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>        }
 <span class="line-numbers"><a href="#n41" name="n41">41</a></span>        <span class="keyword">return</span> k;
 <span class="line-numbers"><a href="#n42" name="n42">42</a></span>    }
-</pre></div>
-</div>
-</div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/07/10/remove-duplicates-from-sorted-list/">Remove Duplicates From Sorted List</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-07-10T23:25:13-07:00" pubdate data-updated="true">Jul 10<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="https://oj.leetcode.com/problems/remove-duplicates-from-sorted-list/">Question1</a></p>
-
-<p><a href="https://oj.leetcode.com/problems/remove-duplicates-from-sorted-list-ii/">Question2</a></p>
-
-<hr />
-<p>Question 1 is very easy, I’ll just post my solution:</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> ListNode deleteDuplicates(ListNode head) {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="keyword">if</span> (head == <span class="predefined-constant">null</span>) {
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>            <span class="keyword">return</span> <span class="predefined-constant">null</span>;
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        }
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        ListNode pointNode = head;
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        ListNode nextNode;
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        <span class="keyword">while</span> ((nextNode = pointNode.next) != <span class="predefined-constant">null</span>) {
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>            <span class="keyword">if</span> (pointNode.val == nextNode.val) {
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>                pointNode.next = nextNode.next;
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>            } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>                pointNode = pointNode.next;
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>            }
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>        }
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>        
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>        <span class="keyword">return</span> head;
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>    }
-</pre></div>
-</div>
-</div>
-
-<p>For question 2, we need deal with more possible cases. We can use a <em>pivot node</em> to track. The basic idea is, if the first node is element, <em>pivot node</em> would be null and recursively call the first node after the duplicate nodesl; Otherwise, set the head node as the pivot node and begin to traverse. If we meet duplicates node, we skip them and point to <em>pivot node</em> to the next node which is not duplicate, update the pivot node to that node as well. We keep doing it until we meet the end of the list. Here is the code:</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> ListNode deleteDuplicates(ListNode head) {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="keyword">if</span> (head == <span class="predefined-constant">null</span> || head.next == <span class="predefined-constant">null</span>) {
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>            <span class="keyword">return</span> head;
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        }
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        ListNode pointNode;
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        ListNode pivotNode;
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        <span class="comment">/* if head node is duplicated, recursively call at the first node</span>
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span><span class="comment">         * which is different with the head node</span>
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span><span class="comment">         */</span>
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        <span class="keyword">if</span> (head.val == head.next.val) {
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>            pointNode = head;
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>            <span class="keyword">while</span> (pointNode.next != <span class="predefined-constant">null</span> &amp;&amp; pointNode.val == pointNode.next.val) {
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>                pointNode = pointNode.next;
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>            }
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>            <span class="keyword">return</span> deleteDuplicates(pointNode.next);
-<span class="line-numbers"><a href="#n18" name="n18">18</a></span>        } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n19" name="n19">19</a></span>            <span class="comment">/* if head node is not duplicated, set it as pivot node</span>
-<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span><span class="comment">             * if it's next node is not duplicated, set it's next node as new pivot node</span>
-<span class="line-numbers"><a href="#n21" name="n21">21</a></span><span class="comment">             * otherwise point pivotNode to the first node not duplicated, and set it as new pivot node</span>
-<span class="line-numbers"><a href="#n22" name="n22">22</a></span><span class="comment">             */</span>
-<span class="line-numbers"><a href="#n23" name="n23">23</a></span>            pivotNode = head;
-<span class="line-numbers"><a href="#n24" name="n24">24</a></span>
-<span class="line-numbers"><a href="#n25" name="n25">25</a></span>            pointNode = head.next;
-<span class="line-numbers"><a href="#n26" name="n26">26</a></span>            <span class="keyword">while</span> (pointNode.next != <span class="predefined-constant">null</span>) {
-<span class="line-numbers"><a href="#n27" name="n27">27</a></span>                <span class="keyword">if</span> (pointNode.val == pointNode.next.val) {
-<span class="line-numbers"><a href="#n28" name="n28">28</a></span>                    <span class="keyword">while</span> (pointNode.next != <span class="predefined-constant">null</span> &amp;&amp; pointNode.val == pointNode.next.val) {
-<span class="line-numbers"><a href="#n29" name="n29">29</a></span>                        pointNode = pointNode.next;
-<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>                    }
-<span class="line-numbers"><a href="#n31" name="n31">31</a></span>
-<span class="line-numbers"><a href="#n32" name="n32">32</a></span>                    <span class="keyword">if</span> (pointNode.next == <span class="predefined-constant">null</span>) {
-<span class="line-numbers"><a href="#n33" name="n33">33</a></span>                        pivotNode.next = <span class="predefined-constant">null</span>;
-<span class="line-numbers"><a href="#n34" name="n34">34</a></span>                    } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n35" name="n35">35</a></span>                        pointNode = pointNode.next;
-<span class="line-numbers"><a href="#n36" name="n36">36</a></span>                        pivotNode.next = pointNode;
-<span class="line-numbers"><a href="#n37" name="n37">37</a></span>                    }
-<span class="line-numbers"><a href="#n38" name="n38">38</a></span>
-<span class="line-numbers"><a href="#n39" name="n39">39</a></span>                } <span class="keyword">else</span> {
-<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>                    pivotNode = pointNode;
-<span class="line-numbers"><a href="#n41" name="n41">41</a></span>                    pointNode = pointNode.next;
-<span class="line-numbers"><a href="#n42" name="n42">42</a></span>                }
-<span class="line-numbers"><a href="#n43" name="n43">43</a></span>            }
-<span class="line-numbers"><a href="#n44" name="n44">44</a></span>
-<span class="line-numbers"><a href="#n45" name="n45">45</a></span>            <span class="keyword">return</span> head;
-<span class="line-numbers"><a href="#n46" name="n46">46</a></span>        }
-<span class="line-numbers"><a href="#n47" name="n47">47</a></span>    }
 </pre></div>
 </div>
 </div>

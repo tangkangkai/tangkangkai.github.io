@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Thread | KK's Coding Blog]]></title>
+  <link href="http://tangkangkai.github.io/blog/categories/thread/atom.xml" rel="self"/>
+  <link href="http://tangkangkai.github.io/"/>
+  <updated>2014-08-07T20:30:10-07:00</updated>
+  <id>http://tangkangkai.github.io/</id>
+  <author>
+    <name><![CDATA[Kangkai Tang]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Relearn Java Day 8]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/08/05/relearn-java-day-8/"/>
+    <updated>2014-08-05T09:12:55-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/08/05/relearn-java-day-8</id>
+    <content type="html"><![CDATA[<ul>
+  <li>
+    <p>Thread : a thread of execution is the smallest sequence of programmed instructions that can be managed independently by a scheduler</p>
+  </li>
+  <li>Thread creation:
+    <ul>
+      <li>1.extends Thread class
+        <ul>
+          <li>create a class, extends Thread class</li>
+          <li>override run method</li>
+          <li>create thread instance </li>
+          <li>call start() method to start a thread, which will call run</li>
+        </ul>
+      </li>
+      <li>2.implements 	Runnable (normally used)
+        <ul>
+          <li>create a class, implements Runnable interface</li>
+          <li>override run method</li>
+          <li>create Thread instance with Runnable instance as argument</li>
+          <li>call start() method to start </li>
+          <li>benefit:
+            <ul>
+              <li>multiple inheritance</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Thread state: <a href="http://www.uml-diagrams.org/examples/java-6-thread-state-machine-diagram-example.html">Click Here</a></p>
+  </li>
+  <li>Thread Safety
+    <ul>
+      <li>Unsafety Reason:
+        <ul>
+          <li>shared data</li>
+          <li>multiple thread operate on the shared data</li>
+        </ul>
+      </li>
+      <li>How to deal with:
+        <ul>
+          <li>synchronized
+            <ul>
+              <li>synchornized block 
+                <ul>
+                  <li>synchornized(lock obj){}</li>
+                </ul>
+              </li>
+              <li>synchornized method
+                <ul>
+                  <li>public synchronized void func()</li>
+                  <li>lock of synchronized method:
+                    <ul>
+                      <li>this</li>
+                      <li>static synchronized method:
+                        <ul>
+                          <li>this.getClass()</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>difference with synchronized block:
+                    <ul>
+                      <li>lock is different</li>
+                      <li></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>good and bad:
+                <ul>
+                  <li>good: solve synchronization problem</li>
+                  <li>bad : decrease efficiency</li>
+                </ul>
+              </li>
+              <li>precondition:
+                <ul>
+                  <li>multiple thread with one lock</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Deadlock</li>
+    </ul>
+  </li>
+  <li>Communication between Threads:
+      * shared data, different tasks
+      * wait() &amp; notify()/notifyAll():
+          * according to the related lock
+              * lock.wait() &amp; lock.notify()/notifyAll()</li>
+  <li>Lock &amp; Condition:<strong>java.util.concurrent.lock</strong>
+    <ul>
+      <li>replace synchronized &amp; Object monitor method</li>
+      <li>encapsulate the lock to an object
+        <ul>
+          <li>Lock lock = new ReentrantLock(); lock.lock(); lock.unlock();</li>
+          <li>normally put unlock in <strong>finally</strong> block</li>
+        </ul>
+      </li>
+      <li>Condition:
+        <ul>
+          <li>Condition factors out the Object monitor methods (wait, notify and notifyAll) into distinct objects </li>
+          <li>A Condition instance is intrinsically bound to a lock. To obtain a Condition instance for a particular Lock instance use its newCondition() method. </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

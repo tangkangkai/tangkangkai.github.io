@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-07-29T16:11:48-07:00</updated>
+  <updated>2014-08-07T20:30:10-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -12,6 +12,126 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Relearn Java Day 8]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/08/05/relearn-java-day-8/"/>
+    <updated>2014-08-05T09:12:55-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/08/05/relearn-java-day-8</id>
+    <content type="html"><![CDATA[<ul>
+  <li>
+    <p>Thread : a thread of execution is the smallest sequence of programmed instructions that can be managed independently by a scheduler</p>
+  </li>
+  <li>Thread creation:
+    <ul>
+      <li>1.extends Thread class
+        <ul>
+          <li>create a class, extends Thread class</li>
+          <li>override run method</li>
+          <li>create thread instance </li>
+          <li>call start() method to start a thread, which will call run</li>
+        </ul>
+      </li>
+      <li>2.implements 	Runnable (normally used)
+        <ul>
+          <li>create a class, implements Runnable interface</li>
+          <li>override run method</li>
+          <li>create Thread instance with Runnable instance as argument</li>
+          <li>call start() method to start </li>
+          <li>benefit:
+            <ul>
+              <li>multiple inheritance</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Thread state: <a href="http://www.uml-diagrams.org/examples/java-6-thread-state-machine-diagram-example.html">Click Here</a></p>
+  </li>
+  <li>Thread Safety
+    <ul>
+      <li>Unsafety Reason:
+        <ul>
+          <li>shared data</li>
+          <li>multiple thread operate on the shared data</li>
+        </ul>
+      </li>
+      <li>How to deal with:
+        <ul>
+          <li>synchronized
+            <ul>
+              <li>synchornized block 
+                <ul>
+                  <li>synchornized(lock obj){}</li>
+                </ul>
+              </li>
+              <li>synchornized method
+                <ul>
+                  <li>public synchronized void func()</li>
+                  <li>lock of synchronized method:
+                    <ul>
+                      <li>this</li>
+                      <li>static synchronized method:
+                        <ul>
+                          <li>this.getClass()</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>difference with synchronized block:
+                    <ul>
+                      <li>lock is different</li>
+                      <li></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>good and bad:
+                <ul>
+                  <li>good: solve synchronization problem</li>
+                  <li>bad : decrease efficiency</li>
+                </ul>
+              </li>
+              <li>precondition:
+                <ul>
+                  <li>multiple thread with one lock</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Deadlock</li>
+    </ul>
+  </li>
+  <li>Communication between Threads:
+      * shared data, different tasks
+      * wait() &amp; notify()/notifyAll():
+          * according to the related lock
+              * lock.wait() &amp; lock.notify()/notifyAll()</li>
+  <li>Lock &amp; Condition:<strong>java.util.concurrent.lock</strong>
+    <ul>
+      <li>replace synchronized &amp; Object monitor method</li>
+      <li>encapsulate the lock to an object
+        <ul>
+          <li>Lock lock = new ReentrantLock(); lock.lock(); lock.unlock();</li>
+          <li>normally put unlock in <strong>finally</strong> block</li>
+        </ul>
+      </li>
+      <li>Condition:
+        <ul>
+          <li>Condition factors out the Object monitor methods (wait, notify and notifyAll) into distinct objects </li>
+          <li>A Condition instance is intrinsically bound to a lock. To obtain a Condition instance for a particular Lock instance use its newCondition() method. </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Relearn Java Day 7]]></title>
@@ -321,64 +441,6 @@
     </ul>
   </li>
 </ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Relearn Java Day 3 Arrays]]></title>
-    <link href="http://tangkangkai.github.io/blog/2014/06/28/relearn-java-day-3/"/>
-    <updated>2014-06-28T07:31:57-07:00</updated>
-    <id>http://tangkangkai.github.io/blog/2014/06/28/relearn-java-day-3</id>
-    <content type="html"><![CDATA[<p><strong>Arrays</strong>： </p>
-
-<ul>
-  <li>initialization:
-    <ul>
-      <li>int[] arr = new int[5]; //the default value would be 0(default value of int)  </li>
-      <li>int[] arr = new int[]{1, 2, 3, 4, 5};  </li>
-      <li>int[] arr = {1, 2, 3, 4, 5};</li>
-    </ul>
-  </li>
-  <li>
-    <p>sort:</p>
-
-    <ul>
-      <li>Arrays.sort([]);  </li>
-    </ul>
-  </li>
-  <li>
-    <p>BinarySearch: </p>
-
-    <ul>
-      <li>Arrays.binarySearch(arr,key);//如果存在返回的具体的角标位置，不存在返回的是  -插入点-1   </li>
-    </ul>
-  </li>
-</ul>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span class="directive">public</span> <span class="directive">static</span> <span class="type">int</span> halfSearch_2(<span class="type">int</span><span class="type">[]</span> arr,<span class="type">int</span> key)
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>    {
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        <span class="type">int</span> max,min,mid;
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        min = <span class="integer">0</span>;
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        max = arr.length-<span class="integer">1</span>;
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        <span class="keyword">while</span>(min&lt;=max)
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        {
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>            mid = (max+min)&gt;&gt;<span class="integer">1</span>;
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>            <span class="keyword">if</span>(key&gt;arr[mid])
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>                min = mid + <span class="integer">1</span>;
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>            <span class="keyword">else</span> <span class="keyword">if</span>(key&lt;arr[mid])
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>                max = mid - <span class="integer">1</span>;
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>            <span class="keyword">else</span>
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>                <span class="keyword">return</span> mid;
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>        }
-<span class="line-numbers"><a href="#n18" name="n18">18</a></span>        <span class="keyword">return</span> -<span class="integer">1</span>;
-<span class="line-numbers"><a href="#n19" name="n19">19</a></span>    }
-</pre></div>
-</div>
-</div>
 
 ]]></content>
   </entry>

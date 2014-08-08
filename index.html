@@ -12,7 +12,7 @@
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="Purpose: Take out the responsibility of instantiation of a class from client program to the factory class. Implementation Details: Can apply &hellip;">
+  <meta name="description" content="Thread : a thread of execution is the smallest sequence of programmed instructions that can be managed independently by a scheduler Thread creation &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,153 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/08/05/relearn-java-day-8/">Relearn Java Day 8</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-05T09:12:55-07:00" pubdate data-updated="true">Aug 5<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+  <li>
+    <p>Thread : a thread of execution is the smallest sequence of programmed instructions that can be managed independently by a scheduler</p>
+  </li>
+  <li>Thread creation:
+    <ul>
+      <li>1.extends Thread class
+        <ul>
+          <li>create a class, extends Thread class</li>
+          <li>override run method</li>
+          <li>create thread instance </li>
+          <li>call start() method to start a thread, which will call run</li>
+        </ul>
+      </li>
+      <li>2.implements 	Runnable (normally used)
+        <ul>
+          <li>create a class, implements Runnable interface</li>
+          <li>override run method</li>
+          <li>create Thread instance with Runnable instance as argument</li>
+          <li>call start() method to start </li>
+          <li>benefit:
+            <ul>
+              <li>multiple inheritance</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Thread state: <a href="http://www.uml-diagrams.org/examples/java-6-thread-state-machine-diagram-example.html">Click Here</a></p>
+  </li>
+  <li>Thread Safety
+    <ul>
+      <li>Unsafety Reason:
+        <ul>
+          <li>shared data</li>
+          <li>multiple thread operate on the shared data</li>
+        </ul>
+      </li>
+      <li>How to deal with:
+        <ul>
+          <li>synchronized
+            <ul>
+              <li>synchornized block 
+                <ul>
+                  <li>synchornized(lock obj){}</li>
+                </ul>
+              </li>
+              <li>synchornized method
+                <ul>
+                  <li>public synchronized void func()</li>
+                  <li>lock of synchronized method:
+                    <ul>
+                      <li>this</li>
+                      <li>static synchronized method:
+                        <ul>
+                          <li>this.getClass()</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>difference with synchronized block:
+                    <ul>
+                      <li>lock is different</li>
+                      <li></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>good and bad:
+                <ul>
+                  <li>good: solve synchronization problem</li>
+                  <li>bad : decrease efficiency</li>
+                </ul>
+              </li>
+              <li>precondition:
+                <ul>
+                  <li>multiple thread with one lock</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Deadlock</li>
+    </ul>
+  </li>
+  <li>Communication between Threads:
+      * shared data, different tasks
+      * wait() &amp; notify()/notifyAll():
+          * according to the related lock
+              * lock.wait() &amp; lock.notify()/notifyAll()</li>
+  <li>Lock &amp; Condition:<strong>java.util.concurrent.lock</strong>
+    <ul>
+      <li>replace synchronized &amp; Object monitor method</li>
+      <li>encapsulate the lock to an object
+        <ul>
+          <li>Lock lock = new ReentrantLock(); lock.lock(); lock.unlock();</li>
+          <li>normally put unlock in <strong>finally</strong> block</li>
+        </ul>
+      </li>
+      <li>Condition:
+        <ul>
+          <li>Condition factors out the Object monitor methods (wait, notify and notifyAll) into distinct objects </li>
+          <li>A Condition instance is intrinsically bound to a lock. To obtain a Condition instance for a particular Lock instance use its newCondition() method. </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1006,91 +1153,6 @@
 </pre></div>
 </div>
 </div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/07/15/one-day-one-pattern-singleton/">One Day One Pattern : Singleton</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-07-15T09:00:14-07:00" pubdate data-updated="true">Jul 15<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><ul>
-  <li>Purpose:
-    <ul>
-      <li>Restrict the creations of objects. Only one instance(of the class) could be created.</li>
-    </ul>
-  </li>
-  <li>Implementation Details:
-    <ul>
-      <li>Private Constructor</li>
-      <li>Private static variable that is the only instance of the class.</li>
-      <li>Public static method that returns the instance of the class</li>
-    </ul>
-  </li>
-  <li>Example:</li>
-</ul>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span class="directive">public</span> <span class="type">class</span> <span class="class">SingletonClass</span> {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>     
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>    <span class="comment">/* private constructor to avoid client applications to use constructor */</span>
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>    <span class="directive">private</span> SingletonClass(){}
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>    <span class="comment">/* for thread safety purpose */</span>
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>    <span class="directive">private</span> <span class="directive">static</span> <span class="type">class</span> <span class="class">SingletonHelper</span>{
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        <span class="directive">private</span> <span class="directive">static</span> <span class="directive">final</span> SingletonClass INSTANCE = <span class="keyword">new</span> SingletonClass();
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>    }
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span> 
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>    <span class="directive">public</span> <span class="directive">static</span> SingletonClass getInstance(){
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        <span class="comment">/* Lazy initialization */</span>
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>        <span class="keyword">return</span> SingletonHelper.INSTANCE;
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>    }
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>}
-</pre></div>
-</div>
-</div>
-
-<ul>
-  <li>Further &amp; Deeper understanding : <a href="http://www.journaldev.com/1377/java-singleton-design-pattern-best-practices-with-examples">Singleton Design Pattern</a></li>
-  <li>Reference may be needed:
-    <ul>
-      <li><a href="http://www.programmerinterview.com/index.php/java-questions/inner-vs-nested-classes/">difference between an inner and nested class in Java</a></li>
-      <li><a href="http://stackoverflow.com/questions/1353309/java-static-vs-non-static-inner-class">difference between static and non-static nested classes(inner class)</a>
-        <ul>
-          <li>A static nested class does not have a reference to a nesting instance, so a static nested class cannot invoke non-static methods or access non-static fields of an instance of the class within which it is nested.</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
 </div>
   
   
