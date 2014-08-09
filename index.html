@@ -12,7 +12,7 @@
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="Thread : a thread of execution is the smallest sequence of programmed instructions that can be managed independently by a scheduler Thread creation &hellip;">
+  <meta name="description" content="String: When String object is created, it won’t be changed Construction: String s = “abc”; string pool, if exist, take the object directly, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,165 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/08/07/relearn-java-day-9/">Relearn Java Day 9</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-07T20:37:52-07:00" pubdate data-updated="true">Aug 7<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+  <li>String:
+    <ul>
+      <li>When String object is created, it won’t be changed</li>
+      <li>Construction:
+        <ul>
+          <li>String s = “abc”;
+            <ul>
+              <li>string pool, if exist, take the object directly, otherwise create a new one</li>
+            </ul>
+          </li>
+          <li>String s = new String(“abc”);
+            <ul>
+              <li>created the object in Heap not in string pool</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>StringBuffer
+    <ul>
+      <li>length could be changed, could be changed with different string</li>
+      <li>difference with StringBuilder
+        <ul>
+          <li>StringBuilder is faster but not support synchronization</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>transfer between primitive type and string
+    <ul>
+      <li>primitive type —&gt; string
+        <ul>
+          <li>primitive type + “”</li>
+          <li>String.valueOf()</li>
+        </ul>
+      </li>
+      <li>string —&gt; primitive type
+        <ul>
+          <li>Wrapper Class(say, Integer).parseInt(“”);</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+<ul>
+  <li>Collection:
+    <ul>
+      <li>store object</li>
+      <li>could change the length</li>
+      <li>cannot store primitive type data(arrays can)</li>
+    </ul>
+  </li>
+  <li>Iterator:
+    <ul>
+      <li>implement Iterator interface</li>
+      <li>a private class in concrete objects</li>
+      <li>ListIterator: could change object when traverse through(general iterator cannnot)</li>
+    </ul>
+  </li>
+</ul>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span><span class="predefined-type">Iterator</span> it = collecton.iterator();
+<span class="line-numbers"><a href="#n2" name="n2">2</a></span><span class="keyword">while</span>(it.hasNext()) {
+<span class="line-numbers"><a href="#n3" name="n3">3</a></span>    <span class="predefined-type">System</span>.out.println(it.next());
+<span class="line-numbers"><a href="#n4" name="n4">4</a></span>}
+</pre></div>
+</div>
+</div>
+
+<ul>
+  <li>List &amp; Set
+    <ul>
+      <li>List: has order, with index
+        <ul>
+          <li>Vector:
+            <ul>
+              <li>array, length could be changed</li>
+              <li>synchronized</li>
+            </ul>
+          </li>
+          <li>ArrayList
+            <ul>
+              <li>array, length could be changed</li>
+              <li>not synchronized</li>
+              <li>good for retrieve</li>
+            </ul>
+          </li>
+          <li>LinkedList
+            <ul>
+              <li>linked list</li>
+              <li>not synchronized</li>
+              <li>good for add/delete</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Set: no order, without repetition
+        <ul>
+          <li>HashSet
+            <ul>
+              <li>compare according to hashCode()</li>
+            </ul>
+          </li>
+          <li>TreeSet
+            <ul>
+              <li>has order
+                <ul>
+                  <li>1.object implements Comparable, override compareTo()</li>
+                  <li>2.create comparator, implements compare(), sent it as argument to TreeSet() constructor</li>
+                </ul>
+              </li>
+              <li>compare according to compareTo(), if return 0, regarded as the same element</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1076,80 +1235,6 @@
 <span class="line-numbers"><a href="#n16" name="n16">16</a></span>        }
 <span class="line-numbers"><a href="#n17" name="n17">17</a></span>        <span class="keyword">return</span> testString;
 <span class="line-numbers"><a href="#n18" name="n18">18</a></span>    }
-</pre></div>
-</div>
-</div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/07/16/longest-palindromic-substring/">Longest Palindromic Substring</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-07-16T09:25:36-07:00" pubdate data-updated="true">Jul 16<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="https://oj.leetcode.com/problems/longest-palindromic-substring/">Question</a></p>
-
-<hr />
-<p>We use two pointers pointing to the middle of the string, then move them to each side if the character they pointing to are the same. Note substring is continuous and we need take care of both odd and even length situations. The code follows below:</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="predefined-type">String</span> longestPalindrome(<span class="predefined-type">String</span> s) {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="predefined-type">String</span> longestPalindromeString = <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>;
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; s.length(); i++) {
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>            <span class="predefined-type">String</span> palindrome = findLongestPalindrome(s, i, i);
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>            <span class="keyword">if</span> (palindrome.length() &gt; longestPalindromeString.length()) {
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>                longestPalindromeString = palindrome;
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>            }
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        }
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">1</span>; i &lt; s.length(); i++) {
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>            <span class="predefined-type">String</span> palindrome = findLongestPalindrome(s, i - <span class="integer">1</span>, i);
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>            <span class="keyword">if</span> (palindrome.length() &gt; longestPalindromeString.length()) {
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>                longestPalindromeString = palindrome;
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>            }
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>        }
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>        
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>        <span class="keyword">return</span> longestPalindromeString;
-<span class="line-numbers"><a href="#n18" name="n18">18</a></span>    }
-<span class="line-numbers"><a href="#n19" name="n19">19</a></span>    
-<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>    <span class="comment">/* Helper Functions */</span>
-<span class="line-numbers"><a href="#n21" name="n21">21</a></span>
-<span class="line-numbers"><a href="#n22" name="n22">22</a></span>    <span class="directive">public</span> <span class="predefined-type">String</span> findLongestPalindrome(<span class="predefined-type">String</span> s, <span class="type">int</span> i, <span class="type">int</span> j) {
-<span class="line-numbers"><a href="#n23" name="n23">23</a></span>
-<span class="line-numbers"><a href="#n24" name="n24">24</a></span>        <span class="keyword">while</span> (i &gt;= <span class="integer">0</span> &amp;&amp; j &lt; s.length() &amp;&amp; s.charAt(i) == s.charAt(j)) {
-<span class="line-numbers"><a href="#n25" name="n25">25</a></span>            i--;
-<span class="line-numbers"><a href="#n26" name="n26">26</a></span>            j++;
-<span class="line-numbers"><a href="#n27" name="n27">27</a></span>        }
-<span class="line-numbers"><a href="#n28" name="n28">28</a></span>        
-<span class="line-numbers"><a href="#n29" name="n29">29</a></span>        <span class="keyword">return</span> s.substring(i + <span class="integer">1</span>, j);
-<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>    }
 </pre></div>
 </div>
 </div>

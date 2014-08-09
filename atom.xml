@@ -4,7 +4,7 @@
   <title><![CDATA[KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-08-07T20:30:10-07:00</updated>
+  <updated>2014-08-08T22:33:49-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -12,6 +12,138 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Relearn Java Day 9]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/08/07/relearn-java-day-9/"/>
+    <updated>2014-08-07T20:37:52-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/08/07/relearn-java-day-9</id>
+    <content type="html"><![CDATA[<ul>
+  <li>String:
+    <ul>
+      <li>When String object is created, it won’t be changed</li>
+      <li>Construction:
+        <ul>
+          <li>String s = “abc”;
+            <ul>
+              <li>string pool, if exist, take the object directly, otherwise create a new one</li>
+            </ul>
+          </li>
+          <li>String s = new String(“abc”);
+            <ul>
+              <li>created the object in Heap not in string pool</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>StringBuffer
+    <ul>
+      <li>length could be changed, could be changed with different string</li>
+      <li>difference with StringBuilder
+        <ul>
+          <li>StringBuilder is faster but not support synchronization</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>transfer between primitive type and string
+    <ul>
+      <li>primitive type —&gt; string
+        <ul>
+          <li>primitive type + “”</li>
+          <li>String.valueOf()</li>
+        </ul>
+      </li>
+      <li>string —&gt; primitive type
+        <ul>
+          <li>Wrapper Class(say, Integer).parseInt(“”);</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+<ul>
+  <li>Collection:
+    <ul>
+      <li>store object</li>
+      <li>could change the length</li>
+      <li>cannot store primitive type data(arrays can)</li>
+    </ul>
+  </li>
+  <li>Iterator:
+    <ul>
+      <li>implement Iterator interface</li>
+      <li>a private class in concrete objects</li>
+      <li>ListIterator: could change object when traverse through(general iterator cannnot)</li>
+    </ul>
+  </li>
+</ul>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span><span class="predefined-type">Iterator</span> it = collecton.iterator();
+<span class="line-numbers"><a href="#n2" name="n2">2</a></span><span class="keyword">while</span>(it.hasNext()) {
+<span class="line-numbers"><a href="#n3" name="n3">3</a></span>    <span class="predefined-type">System</span>.out.println(it.next());
+<span class="line-numbers"><a href="#n4" name="n4">4</a></span>}
+</pre></div>
+</div>
+</div>
+
+<ul>
+  <li>List &amp; Set
+    <ul>
+      <li>List: has order, with index
+        <ul>
+          <li>Vector:
+            <ul>
+              <li>array, length could be changed</li>
+              <li>synchronized</li>
+            </ul>
+          </li>
+          <li>ArrayList
+            <ul>
+              <li>array, length could be changed</li>
+              <li>not synchronized</li>
+              <li>good for retrieve</li>
+            </ul>
+          </li>
+          <li>LinkedList
+            <ul>
+              <li>linked list</li>
+              <li>not synchronized</li>
+              <li>good for add/delete</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Set: no order, without repetition
+        <ul>
+          <li>HashSet
+            <ul>
+              <li>compare according to hashCode()</li>
+            </ul>
+          </li>
+          <li>TreeSet
+            <ul>
+              <li>has order
+                <ul>
+                  <li>1.object implements Comparable, override compareTo()</li>
+                  <li>2.create comparator, implements compare(), sent it as argument to TreeSet() constructor</li>
+                </ul>
+              </li>
+              <li>compare according to compareTo(), if return 0, regarded as the same element</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Relearn Java Day 8]]></title>
@@ -1316,65 +1448,6 @@
 <span class="line-numbers"><a href="#n28" name="n28">28</a></span>        <span class="keyword">return</span> head;
 <span class="line-numbers"><a href="#n29" name="n29">29</a></span>
 <span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>    }
-</pre></div>
-</div>
-</div>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rotate List]]></title>
-    <link href="http://tangkangkai.github.io/blog/2014/07/11/rotate-list/"/>
-    <updated>2014-07-11T17:05:14-07:00</updated>
-    <id>http://tangkangkai.github.io/blog/2014/07/11/rotate-list</id>
-    <content type="html"><![CDATA[<p><a href="https://oj.leetcode.com/problems/rotate-list/">Question</a></p>
-
-<hr />
-<p>For this question, note when n is larger than the length of the list, we need do the mod operation to get the remainder. Here is the code:</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span class="directive">public</span> ListNode rotateRight(ListNode head, <span class="type">int</span> n) {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="type">int</span> len = getLength(head);
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        <span class="keyword">if</span> (head == <span class="predefined-constant">null</span> || n == <span class="integer">0</span> || n % len == <span class="integer">0</span>) {
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>            <span class="keyword">return</span> head;
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        }
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        <span class="type">int</span> rotateIndex = len - n % len;
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        <span class="type">int</span> index = <span class="integer">1</span>;
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        <span class="comment">/* Find where to start rotate */</span>
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>        ListNode pointNode = head;
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        <span class="keyword">while</span> (index &lt; rotateIndex) {
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>            pointNode = pointNode.next;
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>            index++;
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>        }
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>        
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>        ListNode startRotateNode = pointNode.next;
-<span class="line-numbers"><a href="#n18" name="n18">18</a></span>        pointNode.next = <span class="predefined-constant">null</span>;
-<span class="line-numbers"><a href="#n19" name="n19">19</a></span>        
-<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>        <span class="comment">/* rotate, point the node before startRotateNode to null</span>
-<span class="line-numbers"><a href="#n21" name="n21">21</a></span><span class="comment">           point the last node in the rotated list to the head</span>
-<span class="line-numbers"><a href="#n22" name="n22">22</a></span><span class="comment">           return startRotateNode</span>
-<span class="line-numbers"><a href="#n23" name="n23">23</a></span><span class="comment">        */</span>
-<span class="line-numbers"><a href="#n24" name="n24">24</a></span>        ListNode rotateNode = startRotateNode;
-<span class="line-numbers"><a href="#n25" name="n25">25</a></span>        <span class="keyword">while</span>(rotateNode.next != <span class="predefined-constant">null</span>) {
-<span class="line-numbers"><a href="#n26" name="n26">26</a></span>            rotateNode = rotateNode.next;
-<span class="line-numbers"><a href="#n27" name="n27">27</a></span>        }
-<span class="line-numbers"><a href="#n28" name="n28">28</a></span>        
-<span class="line-numbers"><a href="#n29" name="n29">29</a></span>        rotateNode.next = head;
-<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>        
-<span class="line-numbers"><a href="#n31" name="n31">31</a></span>        <span class="keyword">return</span> startRotateNode;
-<span class="line-numbers"><a href="#n32" name="n32">32</a></span>    }
-<span class="line-numbers"><a href="#n33" name="n33">33</a></span>    
-<span class="line-numbers"><a href="#n34" name="n34">34</a></span>    <span class="comment">/* Helper Functions */</span>
-<span class="line-numbers"><a href="#n35" name="n35">35</a></span>    <span class="directive">public</span> <span class="type">int</span> getLength(ListNode head) {
-<span class="line-numbers"><a href="#n36" name="n36">36</a></span>        <span class="type">int</span> k = <span class="integer">0</span>;
-<span class="line-numbers"><a href="#n37" name="n37">37</a></span>        <span class="keyword">while</span> (head != <span class="predefined-constant">null</span>) {
-<span class="line-numbers"><a href="#n38" name="n38">38</a></span>            head = head.next;
-<span class="line-numbers"><a href="#n39" name="n39">39</a></span>            k++;
-<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>        }
-<span class="line-numbers"><a href="#n41" name="n41">41</a></span>        <span class="keyword">return</span> k;
-<span class="line-numbers"><a href="#n42" name="n42">42</a></span>    }
 </pre></div>
 </div>
 </div>

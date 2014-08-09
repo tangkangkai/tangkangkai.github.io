@@ -3,6 +3,12 @@
   
   
   <url>
+    <loc>http://tangkangkai.github.io/blog/2014/08/07/relearn-java-day-9/</loc>
+    <lastmod>2014-08-07T20:37:52-07:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://tangkangkai.github.io/blog/2014/08/05/relearn-java-day-8/</loc>
     <lastmod>2014-08-05T09:12:55-07:00</lastmod>
     <priority>0.8</priority>
@@ -269,28 +275,28 @@
   
   <url>
     <loc>http://tangkangkai.github.io/blog/</loc>
-    <lastmod>2014-08-07T20:30:10-07:00</lastmod>
+    <lastmod>2014-08-08T22:33:49-07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://tangkangkai.github.io/</loc>
-    <lastmod>2014-08-07T20:30:10-07:00</lastmod>
+    <lastmod>2014-08-08T22:33:49-07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
     <loc>http://tangkangkai.github.io/blog/archives/</loc>
-    <lastmod>2014-08-07T20:30:10-07:00</lastmod>
+    <lastmod>2014-08-08T22:33:49-07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://tangkangkai.github.io/about/</loc>
-    <lastmod>2014-08-07T20:30:10-07:00</lastmod>
+    <lastmod>2014-08-08T22:33:49-07:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

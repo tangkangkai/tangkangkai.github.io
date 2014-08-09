@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-08-07T20:30:10-07:00</updated>
+  <updated>2014-08-08T22:33:49-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -12,6 +12,138 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Relearn Java Day 9]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/08/07/relearn-java-day-9/"/>
+    <updated>2014-08-07T20:37:52-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/08/07/relearn-java-day-9</id>
+    <content type="html"><![CDATA[<ul>
+  <li>String:
+    <ul>
+      <li>When String object is created, it won’t be changed</li>
+      <li>Construction:
+        <ul>
+          <li>String s = “abc”;
+            <ul>
+              <li>string pool, if exist, take the object directly, otherwise create a new one</li>
+            </ul>
+          </li>
+          <li>String s = new String(“abc”);
+            <ul>
+              <li>created the object in Heap not in string pool</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>StringBuffer
+    <ul>
+      <li>length could be changed, could be changed with different string</li>
+      <li>difference with StringBuilder
+        <ul>
+          <li>StringBuilder is faster but not support synchronization</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>transfer between primitive type and string
+    <ul>
+      <li>primitive type —&gt; string
+        <ul>
+          <li>primitive type + “”</li>
+          <li>String.valueOf()</li>
+        </ul>
+      </li>
+      <li>string —&gt; primitive type
+        <ul>
+          <li>Wrapper Class(say, Integer).parseInt(“”);</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+<ul>
+  <li>Collection:
+    <ul>
+      <li>store object</li>
+      <li>could change the length</li>
+      <li>cannot store primitive type data(arrays can)</li>
+    </ul>
+  </li>
+  <li>Iterator:
+    <ul>
+      <li>implement Iterator interface</li>
+      <li>a private class in concrete objects</li>
+      <li>ListIterator: could change object when traverse through(general iterator cannnot)</li>
+    </ul>
+  </li>
+</ul>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span><span class="predefined-type">Iterator</span> it = collecton.iterator();
+<span class="line-numbers"><a href="#n2" name="n2">2</a></span><span class="keyword">while</span>(it.hasNext()) {
+<span class="line-numbers"><a href="#n3" name="n3">3</a></span>    <span class="predefined-type">System</span>.out.println(it.next());
+<span class="line-numbers"><a href="#n4" name="n4">4</a></span>}
+</pre></div>
+</div>
+</div>
+
+<ul>
+  <li>List &amp; Set
+    <ul>
+      <li>List: has order, with index
+        <ul>
+          <li>Vector:
+            <ul>
+              <li>array, length could be changed</li>
+              <li>synchronized</li>
+            </ul>
+          </li>
+          <li>ArrayList
+            <ul>
+              <li>array, length could be changed</li>
+              <li>not synchronized</li>
+              <li>good for retrieve</li>
+            </ul>
+          </li>
+          <li>LinkedList
+            <ul>
+              <li>linked list</li>
+              <li>not synchronized</li>
+              <li>good for add/delete</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Set: no order, without repetition
+        <ul>
+          <li>HashSet
+            <ul>
+              <li>compare according to hashCode()</li>
+            </ul>
+          </li>
+          <li>TreeSet
+            <ul>
+              <li>has order
+                <ul>
+                  <li>1.object implements Comparable, override compareTo()</li>
+                  <li>2.create comparator, implements compare(), sent it as argument to TreeSet() constructor</li>
+                </ul>
+              </li>
+              <li>compare according to compareTo(), if return 0, regarded as the same element</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Relearn Java Day 8]]></title>
@@ -351,93 +483,6 @@
       <li>cannot be initialized</li>
       <li>when a method only clarified not implemented, declare it as <strong>abstract</strong> method, declare its class <strong>abstract</strong></li>
       <li>cannot contain <strong>private, static, final</strong>  </li>
-    </ul>
-  </li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Relearn Java Day 4 OOP]]></title>
-    <link href="http://tangkangkai.github.io/blog/2014/06/29/relearn-java-day-4/"/>
-    <updated>2014-06-29T07:33:54-07:00</updated>
-    <id>http://tangkangkai.github.io/blog/2014/06/29/relearn-java-day-4</id>
-    <content type="html"><![CDATA[<ul>
-  <li><strong>Encapsulation</strong>
-    <ul>
-      <li>hide details, including private the member variable.(set(), get())</li>
-      <li>class, framework are also encapsulation </li>
-    </ul>
-  </li>
-  <li><strong>Anonymous object</strong>
-    <ul>
-      <li>new Car();</li>
-      <li>when member functions only called once, we can use anonymous object</li>
-      <li>can be regarded as function arguments.</li>
-    </ul>
-  </li>
-  <li><strong>Member variable</strong>:
-    <ul>
-      <li>when object created, the corresponding member variables are initialized with default value (as the object is created in heap)</li>
-      <li>
-        <p>the difference between member variable and local variable:  </p>
-
-        <ul>
-          <li>member variable is defined in the block of class, can be visited through the class. local variable is defined in the block of function.  </li>
-          <li>member variable is created in heap, while local variable in stack.  </li>
-          <li>member variable exists with class, local variable exists with it’s corresponding blcok(functions).  </li>
-          <li>member variable has default value, local variable doesn’t</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><strong>Constructor</strong>
-    <ul>
-      <li>when newed, constructor functions must be called</li>
-      <li>no return value, name is the same with the class.</li>
-      <li>if not defined, there would be a default constructor function. If defined, the default one not used.</li>
-      <li>could be overloaded</li>
-    </ul>
-  </li>
-  <li><strong>This</strong>
-    <ul>
-      <li>when member variable’s name is the same with local variables’, we can use key word <em>this</em> to represent the current object.</li>
-      <li><em>this()</em> can be used to call other constructor functions, but can be only at the very first sentence.</li>
-    </ul>
-  </li>
-  <li><strong>Static</strong>
-    <ul>
-      <li>classify class members 
-        <ul>
-          <li>for variables: 
-            <ul>
-              <li>with static : static varaible, class variable. Stored at method.</li>
-              <li>without static : member variable, instance variable. Stored at heap</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>shared by all objects</li>
-      <li>exist before object, since it exists when class is loaded</li>
-      <li>static members can be called directly by class name
-        <ul>
-          <li>Classname.staticmember</li>
-        </ul>
-      </li>
-      <li>Tips:
-        <ul>
-          <li>static function can only visit static variables/functions, while not static functions can visit both.</li>
-          <li>static function can not use this or super</li>
-          <li>main function is static</li>
-        </ul>
-      </li>
-      <li>Static block
-        <ul>
-          <li>implemented when the class loaded, only once</li>
-          <li>used to initialize the class, especially when some class do not need constructor function(no objects)</li>
-        </ul>
-      </li>
     </ul>
   </li>
 </ul>
