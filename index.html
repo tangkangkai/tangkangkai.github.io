@@ -12,7 +12,7 @@
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="String: When String object is created, it won’t be changed Construction: String s = “abc”; string pool, if exist, take the object directly, &hellip;">
+  <meta name="description" content="Map: key-value pairs HashTable synchronized no null key or value HashMap data structure same with HashTable, not synchronized could have null key &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,106 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/08/09/relearn-java-day-10/">Relearn Java Day 10</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-09T09:07:19-07:00" pubdate data-updated="true">Aug 9<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+  <li>Map:
+    <ul>
+      <li>key-value pairs</li>
+      <li>HashTable
+        <ul>
+          <li>synchronized</li>
+          <li>no null key or value</li>
+        </ul>
+      </li>
+      <li>HashMap
+        <ul>
+          <li>data structure same with HashTable, not synchronized</li>
+          <li>could have null key and value</li>
+        </ul>
+      </li>
+      <li>TreeMap
+        <ul>
+          <li>data structure : binary tree</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+<ul>
+  <li>Generics
+    <ul>
+      <li>
+        <type variable=""> no primitive type
+</type>
+      </li>
+      <li>Benefit:
+        <ul>
+          <li>runtime issue -&gt; compile time</li>
+          <li>avoid casting </li>
+        </ul>
+      </li>
+      <li>when in runtime, no generics
+        <ul>
+          <li>in .class file, generics would be erased </li>
+        </ul>
+      </li>
+      <li>could be defined both on class and method:
+        <ul>
+          <li>class: class GenericTest<t> {}</t></li>
+          <li>public <t> void show(T t){}</t></li>
+          <li>for static method, cannot access generics on class, only can access generics on method:
+            <ul>
+              <li>public static <t> void show(T t) {}</t></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Generics interface</li>
+      <li>wildcard chracter:
+        <ul>
+          <li>&lt;? extends E&gt; : E or E’s subclasses</li>
+          <li>&lt;? super E&gt; : E or E’s superclasses </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1173,68 +1273,6 @@
 <span class="line-numbers"><a href="#n47" name="n47">47</a></span>
 <span class="line-numbers"><a href="#n48" name="n48">48</a></span>        <span class="keyword">return</span> <span class="predefined-constant">true</span>;
 <span class="line-numbers"><a href="#n49" name="n49">49</a></span>    }
-</pre></div>
-</div>
-</div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/07/17/longest-common-prefix/">Longest Common Prefix</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-07-17T17:07:46-07:00" pubdate data-updated="true">Jul 17<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="https://oj.leetcode.com/problems/longest-common-prefix/">Question</a></p>
-
-<hr />
-<p>We take the first string of the array as a <em>test string</em>, starting from its first character and comparing to each string in the array. We compare each character until the character doesn’t match in one of the compares or the length has exceeded the shortest string. We can return the substring of the <em>test string</em> as a result. Here is the result:</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="predefined-type">String</span> longestCommonPrefix(<span class="predefined-type">String</span><span class="type">[]</span> strs) {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="keyword">if</span> (strs == <span class="predefined-constant">null</span>) <span class="keyword">return</span> <span class="predefined-constant">null</span>;
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        <span class="keyword">if</span> (strs.length == <span class="integer">0</span>) <span class="keyword">return</span> <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>;
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        <span class="predefined-type">String</span> testString = strs[<span class="integer">0</span>];
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        <span class="type">int</span> index = <span class="integer">0</span>;
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        <span class="keyword">while</span>(index &lt; testString.length()) {
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>            <span class="type">char</span> cAtIndex = testString.charAt(index);
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; strs.length; i++) {
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>                <span class="keyword">if</span> (index &gt;= strs[i].length() || strs[i].charAt(index) != cAtIndex) {
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>                    <span class="keyword">return</span> testString.substring(<span class="integer">0</span>, index);
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>                }
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>            }
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>            index++;
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>        }
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>        <span class="keyword">return</span> testString;
-<span class="line-numbers"><a href="#n18" name="n18">18</a></span>    }
 </pre></div>
 </div>
 </div>

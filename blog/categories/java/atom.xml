@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-08-08T22:33:49-07:00</updated>
+  <updated>2014-08-10T18:38:41-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -12,6 +12,79 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Relearn Java Day 10]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/08/09/relearn-java-day-10/"/>
+    <updated>2014-08-09T09:07:19-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/08/09/relearn-java-day-10</id>
+    <content type="html"><![CDATA[<ul>
+  <li>Map:
+    <ul>
+      <li>key-value pairs</li>
+      <li>HashTable
+        <ul>
+          <li>synchronized</li>
+          <li>no null key or value</li>
+        </ul>
+      </li>
+      <li>HashMap
+        <ul>
+          <li>data structure same with HashTable, not synchronized</li>
+          <li>could have null key and value</li>
+        </ul>
+      </li>
+      <li>TreeMap
+        <ul>
+          <li>data structure : binary tree</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+<ul>
+  <li>Generics
+    <ul>
+      <li>
+        <type variable=""> no primitive type
+</type>
+      </li>
+      <li>Benefit:
+        <ul>
+          <li>runtime issue -&gt; compile time</li>
+          <li>avoid casting </li>
+        </ul>
+      </li>
+      <li>when in runtime, no generics
+        <ul>
+          <li>in .class file, generics would be erased </li>
+        </ul>
+      </li>
+      <li>could be defined both on class and method:
+        <ul>
+          <li>class: class GenericTest<t> {}</t></li>
+          <li>public <t> void show(T t){}</t></li>
+          <li>for static method, cannot access generics on class, only can access generics on method:
+            <ul>
+              <li>public static <t> void show(T t) {}</t></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Generics interface</li>
+      <li>wildcard chracter:
+        <ul>
+          <li>&lt;? extends E&gt; : E or E’s subclasses</li>
+          <li>&lt;? super E&gt; : E or E’s superclasses </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Relearn Java Day 9]]></title>
@@ -440,53 +513,6 @@
     </ul>
   </li>
 </ul>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Relearn Java Day 5]]></title>
-    <link href="http://tangkangkai.github.io/blog/2014/07/15/relearn-java-day-5/"/>
-    <updated>2014-07-15T08:27:04-07:00</updated>
-    <id>http://tangkangkai.github.io/blog/2014/07/15/relearn-java-day-5</id>
-    <content type="html"><![CDATA[<ul>
-  <li>super:
-    <ul>
-      <li>represent the father class</li>
-      <li>there is invisible super() at the <strong>first</strong> sentence in the construction function of child class </li>
-    </ul>
-  </li>
-  <li>
-    <p>override &amp; overload </p>
-  </li>
-  <li>
-    <p>initialization<br />
-  Person p = new Person()</p>
-
-    <ul>
-      <li>JVM load Person.class to memory, if it has Father Class, load the Father class first.</li>
-      <li>Allocate space in Heap </li>
-      <li>Initialize variables with default value</li>
-      <li>Call construct function</li>
-      <li>In the first line, call Father’s construct function</li>
-      <li>After the Father initialized, assign the specific value to the variables</li>
-    </ul>
-  </li>
-  <li>final<br />
-    <ul>
-      <li>final class cannot be extended</li>
-      <li>final method cannot be override</li>
-      <li>final variable is a constant</li>
-    </ul>
-  </li>
-  <li>abstract class
-    <ul>
-      <li>cannot be initialized</li>
-      <li>when a method only clarified not implemented, declare it as <strong>abstract</strong> method, declare its class <strong>abstract</strong></li>
-      <li>cannot contain <strong>private, static, final</strong>  </li>
-    </ul>
-  </li>
-</ul>
-
 ]]></content>
   </entry>
   
