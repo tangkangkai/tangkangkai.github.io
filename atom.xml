@@ -4,7 +4,7 @@
   <title><![CDATA[KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-08-12T16:55:20-07:00</updated>
+  <updated>2014-08-12T16:57:48-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -163,73 +163,60 @@
 <ul>
   <li>Basic rule
     <ul>
-      <li>
-        <ol>
-          <li>make sure the sourse &amp; destination
-            <ul>
-              <li>source: InputStream Reader</li>
-              <li>destination: OutputStream Writer</li>
-            </ul>
-          </li>
-        </ol>
+      <li>make sure the sourse &amp; destination
+        <ul>
+          <li>source: InputStream Reader</li>
+          <li>destination: OutputStream Writer</li>
+        </ul>
       </li>
-      <li>
-        <ol>
-          <li>make sure if the data is character
+      <li>make sure if the data is character
+        <ul>
+          <li>source: 
             <ul>
-              <li>source: </li>
               <li>character : Reader</li>
               <li>byte : InputStream</li>
-              <li>destination:</li>
+            </ul>
+          </li>
+          <li>destination:
+            <ul>
               <li>character : Writer</li>
               <li>byte : OutputStream</li>
             </ul>
           </li>
-        </ol>
+        </ul>
       </li>
-      <li>
-        <ol>
-          <li>make sure the device
+      <li>make sure the device
+        <ul>
+          <li>source:
             <ul>
-              <li>source:</li>
               <li>disk : File</li>
               <li>keyboard : System.in</li>
               <li>memory : array</li>
               <li>network : Socket stream</li>
-              <li>destination:</li>
+            </ul>
+          </li>
+          <li>destination:
+            <ul>
               <li>disk : File</li>
               <li>keyboard : System.out</li>
               <li>memory : array</li>
               <li>network : Socket stream</li>
             </ul>
           </li>
-        </ol>
+        </ul>
       </li>
-      <li>
-        <ol>
-          <li>make sure if other function needed:
+      <li>make sure if other function needed:
+        <ul>
+          <li>buffer: BufferedReader, BufferedWriter</li>
+          <li>transfer: InputStreamReader, OutputStreamWriter</li>
+          <li>Chinese character write to file according to coding schedule
             <ul>
-              <li>
-                <ol>
-                  <li>buffer: BufferedReader, BufferedWriter</li>
-                </ol>
-              </li>
-              <li>
-                <ol>
-                  <li>transfer: InputStreamReader, OutputStreamWriter</li>
-                </ol>
-              </li>
-              <li>
-                <ol>
-                  <li>Chinese character write to file according to coding schedule</li>
-                </ol>
-              </li>
               <li>FileWriter : ByteStream + default coding schedule</li>
               <li>If coding schedule specified, need OutputStreamWriter()</li>
               <li>same with Reader and InputStreamReader()</li>
             </ul>
           </li>
-        </ol>
+        </ul>
       </li>
     </ul>
   </li>
