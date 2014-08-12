@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-08-11T09:40:57-07:00</updated>
+  <updated>2014-08-12T16:51:17-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -12,6 +12,219 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Relearn Java Day11]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/08/11/relearn-java-day11/"/>
+    <updated>2014-08-11T09:49:41-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/08/11/relearn-java-day11</id>
+    <content type="html"><![CDATA[<ul class="language-java">
+  <li>Intro
+    <ul>
+      <li>memory -&gt; disk:
+        <ul>
+          <li>Output</li>
+          <li>Write</li>
+        </ul>
+      </li>
+      <li>disk -&gt; memory:
+        <ul>
+          <li>Input </li>
+          <li>Read</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Byte Stream &amp; Character Stream
+    <ul>
+      <li>Byte Stream:
+        <ul>
+          <li>deal with one byte per time</li>
+          <li>InputStream
+            <ul>
+              <li>FileInputStream</li>
+            </ul>
+          </li>
+          <li>OutputStream
+            <ul>
+              <li>FileOutputStream</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Character Stream:
+        <ul>
+          <li>byte stream + code schedule, better for words communication</li>
+          <li>Reader
+            <ul>
+              <li>FileReader</li>
+              <li>BufferedReader
+                <ul>
+                  <li>increase the efficiency, read from buffer not disk</li>
+                  <li>readLine()</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Writer
+            <ul>
+              <li>OutputStreamWriter
+                <ul>
+                  <li>FileWriter</li>
+                  <li>BufferedWriter
+                    <ul>
+                      <li>increase the efficiency</li>
+                      <li>newLine()
+~~~
+FileReader fr = new FileReader(“a.txt”);
+FileWriter fw = new FileWriter(“b.txt”);
+char[] buffer = new char[1024]
+int len;
+while((len = fr.read(buffer)) != -1) {
+  fw.write(buffer, 0, len);
+}
+~~~</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span class="predefined-type">FileReader</span> fr = <span class="keyword">new</span> <span class="predefined-type">FileReader</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">a.txt</span><span class="delimiter">&quot;</span></span>);
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span><span class="predefined-type">BufferedReader</span> br = <span class="keyword">new</span> <span class="predefined-type">BufferedReader</span>(fr);
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span><span class="predefined-type">FileWriter</span> fw = <span class="keyword">new</span> <span class="predefined-type">FileWriter</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">b.txt</span><span class="delimiter">&quot;</span></span>);
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span><span class="predefined-type">BufferedWriter</span> bw = <span class="keyword">new</span> <span class="predefined-type">BufferedWriter</span>(fw);
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span><span class="predefined-type">String</span> len;
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span><span class="keyword">while</span>((len = br.readLine()) != <span class="predefined-constant">null</span>) {
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>    bw.write(line);
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>    bw.newLine();
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>    bw.flush();
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>}
+</pre></div>
+</div>
+</div>
+
+<ul>
+  <li>Transfer between Byte Stream &amp; Character Stream
+    <ul>
+      <li>byte stream -&gt; character stream:
+        <ul>
+          <li>InputStreamReader(Input in)</li>
+        </ul>
+      </li>
+      <li>character stream -&gt; byte stream:
+        <ul>
+          <li>OutputStreamWriter</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span class="predefined-type">BufferedReader</span> br = <span class="keyword">new</span> <span class="predefined-type">BufferedReader</span>(<span class="keyword">new</span> InputStreamReder(<span class="predefined-type">System</span>.in));
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span><span class="predefined-type">BufferedWriter</span> bw = <span class="keyword">new</span> <span class="predefined-type">BufferedWriter</span>(<span class="keyword">new</span> <span class="predefined-type">OutputStreamWriter</span>(<span class="predefined-type">System</span>.out));
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span><span class="predefined-type">String</span> line = <span class="predefined-constant">null</span>;
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span><span class="keyword">while</span> ((line = br.readLine()) != <span class="predefined-constant">null</span>) {
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>    <span class="keyword">if</span> (<span class="string"><span class="delimiter">&quot;</span><span class="content">over</span><span class="delimiter">&quot;</span></span>.equals(line)) {
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        <span class="keyword">break</span>;
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>    }
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>    
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>    bw.write(line);
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>    bw.newLine();
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>    bw.flush();
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>}
+</pre></div>
+</div>
+</div>
+
+<ul>
+  <li>Basic rule
+    <ul>
+      <li>
+        <ol>
+          <li>make sure the sourse &amp; destination
+            <ul>
+              <li>source: InputStream Reader</li>
+              <li>destination: OutputStream Writer</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+      <li>
+        <ol>
+          <li>make sure if the data is character
+            <ul>
+              <li>source: </li>
+              <li>character : Reader</li>
+              <li>byte : InputStream</li>
+              <li>destination:</li>
+              <li>character : Writer</li>
+              <li>byte : OutputStream</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+      <li>
+        <ol>
+          <li>make sure the device
+            <ul>
+              <li>source:</li>
+              <li>disk : File</li>
+              <li>keyboard : System.in</li>
+              <li>memory : array</li>
+              <li>network : Socket stream</li>
+              <li>destination:</li>
+              <li>disk : File</li>
+              <li>keyboard : System.out</li>
+              <li>memory : array</li>
+              <li>network : Socket stream</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+      <li>
+        <ol>
+          <li>make sure if other function needed:
+            <ul>
+              <li>
+                <ol>
+                  <li>buffer: BufferedReader, BufferedWriter</li>
+                </ol>
+              </li>
+              <li>
+                <ol>
+                  <li>transfer: InputStreamReader, OutputStreamWriter</li>
+                </ol>
+              </li>
+              <li>
+                <ol>
+                  <li>Chinese character write to file according to coding schedule</li>
+                </ol>
+              </li>
+              <li>FileWriter : ByteStream + default coding schedule</li>
+              <li>If coding schedule specified, need OutputStreamWriter()</li>
+              <li>same with Reader and InputStreamReader()</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Relearn Java Day 10]]></title>
@@ -455,99 +668,6 @@
   </li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Relearn Java Day 6]]></title>
-    <link href="http://tangkangkai.github.io/blog/2014/07/24/relearn-java-day-6/"/>
-    <updated>2014-07-24T08:14:42-07:00</updated>
-    <id>http://tangkangkai.github.io/blog/2014/07/24/relearn-java-day-6</id>
-    <content type="html"><![CDATA[<ul>
-  <li>interface
-    <ul>
-      <li>all methods are abstract : public abstract</li>
-      <li>global variable : public static final</li>
-      <li>class <em>implements</em> interface : multi implements</li>
-      <li>interface <em>extends</em> interface : multi extends</li>
-      <li>loose coupling </li>
-    </ul>
-  </li>
-  <li>poymorphism:
-    <ul>
-      <li>one object, two form</li>
-      <li>Father class/interface reference points to child class</li>
-      <li>increase the expandability</li>
-      <li>premise:
-        <ul>
-          <li>inheritance</li>
-          <li>overide</li>
-        </ul>
-      </li>
-      <li>Casting:
-        <ul>
-          <li>upcasting Animal a = new Cat();</li>
-          <li>downcasting Cat c = (Cat)a;
-            <ul>
-              <li>use instance of to determine the child class:
-  if (a instance of Cat)</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>member :
-        <ul>
-          <li>member variable:
-            <ul>
-              <li>compile &amp; run : refer to the <strong>reference type</strong> variable</li>
-            </ul>
-          </li>
-          <li>member function:
-            <ul>
-              <li>compile : refer to the <strong>reference type</strong> function</li>
-              <li>run : refer to <strong>actual type</strong> function</li>
-            </ul>
-          </li>
-          <li>static function: no need for binded object
-            <ul>
-              <li>compile &amp; run : refer to the reference type variable</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>inner class
-    <ul>
-      <li>inner class can directly access the members in outer class
-        <ul>
-          <li>it has the reference to the Outer Class : Outer.this</li>
-        </ul>
-      </li>
-      <li>outer class need object of inner class to access the members in it</li>
-      <li>other class access inner class:
-        <ul>
-          <li>Outer.Inner in = new Outer().new Inner();// not static</li>
-          <li>Outer.Inner in = new Outer.Inner(); //Outer static</li>
-          <li>Outer.Inner.func() // both Outer and Inner are static</li>
-          <li>while for most time, inner class is <strong>private</strong></li>
-        </ul>
-      </li>
-      <li>local inner class:
-        <ul>
-          <li>can only access local members which is final</li>
-        </ul>
-      </li>
-      <li>anonymous inner class:
-        <ul>
-          <li>premise: inner class extends or implements a outer class or interface</li>
-          <li>actually anonymous child class</li>
-          <li>new Father Class/Interface() {}.function()</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
 ]]></content>
   </entry>
   

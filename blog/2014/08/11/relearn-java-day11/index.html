@@ -1,0 +1,401 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+
+<link href="/stylesheets/coderay-github.css" media="screen" rel="stylesheet" type="text/css">
+
+<head>
+  <meta charset="utf-8">
+  <title>Relearn Java Day11 - KK's Coding Blog</title>
+  <meta name="author" content="Kangkai Tang">
+
+  
+  <meta name="description" content="Intro memory -&gt; disk: Output Write disk -&gt; memory: Input Read Byte Stream &amp; Character Stream Byte Stream: deal with one byte per time &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tangkangkai.github.io/blog/2014/08/11/relearn-java-day11">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="KK's Coding Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">KK's Coding Blog</a></h1>
+  
+    <h2>keep coding keep pushing keep believing</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:tangkangkai.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Relearn Java Day11</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-11T09:49:41-07:00" pubdate data-updated="true">Aug 11<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><ul class="language-java">
+  <li>Intro
+    <ul>
+      <li>memory -&gt; disk:
+        <ul>
+          <li>Output</li>
+          <li>Write</li>
+        </ul>
+      </li>
+      <li>disk -&gt; memory:
+        <ul>
+          <li>Input </li>
+          <li>Read</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Byte Stream &amp; Character Stream
+    <ul>
+      <li>Byte Stream:
+        <ul>
+          <li>deal with one byte per time</li>
+          <li>InputStream
+            <ul>
+              <li>FileInputStream</li>
+            </ul>
+          </li>
+          <li>OutputStream
+            <ul>
+              <li>FileOutputStream</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Character Stream:
+        <ul>
+          <li>byte stream + code schedule, better for words communication</li>
+          <li>Reader
+            <ul>
+              <li>FileReader</li>
+              <li>BufferedReader
+                <ul>
+                  <li>increase the efficiency, read from buffer not disk</li>
+                  <li>readLine()</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>Writer
+            <ul>
+              <li>OutputStreamWriter
+                <ul>
+                  <li>FileWriter</li>
+                  <li>BufferedWriter
+                    <ul>
+                      <li>increase the efficiency</li>
+                      <li>newLine()
+~~~
+FileReader fr = new FileReader(“a.txt”);
+FileWriter fw = new FileWriter(“b.txt”);
+char[] buffer = new char[1024]
+int len;
+while((len = fr.read(buffer)) != -1) {
+  fw.write(buffer, 0, len);
+}
+~~~</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span class="predefined-type">FileReader</span> fr = <span class="keyword">new</span> <span class="predefined-type">FileReader</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">a.txt</span><span class="delimiter">&quot;</span></span>);
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span><span class="predefined-type">BufferedReader</span> br = <span class="keyword">new</span> <span class="predefined-type">BufferedReader</span>(fr);
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span><span class="predefined-type">FileWriter</span> fw = <span class="keyword">new</span> <span class="predefined-type">FileWriter</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">b.txt</span><span class="delimiter">&quot;</span></span>);
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span><span class="predefined-type">BufferedWriter</span> bw = <span class="keyword">new</span> <span class="predefined-type">BufferedWriter</span>(fw);
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span><span class="predefined-type">String</span> len;
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span><span class="keyword">while</span>((len = br.readLine()) != <span class="predefined-constant">null</span>) {
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>    bw.write(line);
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>    bw.newLine();
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>    bw.flush();
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>}
+</pre></div>
+</div>
+</div>
+
+<ul>
+  <li>Transfer between Byte Stream &amp; Character Stream
+    <ul>
+      <li>byte stream -&gt; character stream:
+        <ul>
+          <li>InputStreamReader(Input in)</li>
+        </ul>
+      </li>
+      <li>character stream -&gt; byte stream:
+        <ul>
+          <li>OutputStreamWriter</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span class="predefined-type">BufferedReader</span> br = <span class="keyword">new</span> <span class="predefined-type">BufferedReader</span>(<span class="keyword">new</span> InputStreamReder(<span class="predefined-type">System</span>.in));
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span><span class="predefined-type">BufferedWriter</span> bw = <span class="keyword">new</span> <span class="predefined-type">BufferedWriter</span>(<span class="keyword">new</span> <span class="predefined-type">OutputStreamWriter</span>(<span class="predefined-type">System</span>.out));
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span><span class="predefined-type">String</span> line = <span class="predefined-constant">null</span>;
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span><span class="keyword">while</span> ((line = br.readLine()) != <span class="predefined-constant">null</span>) {
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>    <span class="keyword">if</span> (<span class="string"><span class="delimiter">&quot;</span><span class="content">over</span><span class="delimiter">&quot;</span></span>.equals(line)) {
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        <span class="keyword">break</span>;
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>    }
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>    
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>    bw.write(line);
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>    bw.newLine();
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>    bw.flush();
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>}
+</pre></div>
+</div>
+</div>
+
+<ul>
+  <li>Basic rule
+    <ul>
+      <li>
+        <ol>
+          <li>make sure the sourse &amp; destination
+            <ul>
+              <li>source: InputStream Reader</li>
+              <li>destination: OutputStream Writer</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+      <li>
+        <ol>
+          <li>make sure if the data is character
+            <ul>
+              <li>source: </li>
+              <li>character : Reader</li>
+              <li>byte : InputStream</li>
+              <li>destination:</li>
+              <li>character : Writer</li>
+              <li>byte : OutputStream</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+      <li>
+        <ol>
+          <li>make sure the device
+            <ul>
+              <li>source:</li>
+              <li>disk : File</li>
+              <li>keyboard : System.in</li>
+              <li>memory : array</li>
+              <li>network : Socket stream</li>
+              <li>destination:</li>
+              <li>disk : File</li>
+              <li>keyboard : System.out</li>
+              <li>memory : array</li>
+              <li>network : Socket stream</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+      <li>
+        <ol>
+          <li>make sure if other function needed:
+            <ul>
+              <li>
+                <ol>
+                  <li>buffer: BufferedReader, BufferedWriter</li>
+                </ol>
+              </li>
+              <li>
+                <ol>
+                  <li>transfer: InputStreamReader, OutputStreamWriter</li>
+                </ol>
+              </li>
+              <li>
+                <ol>
+                  <li>Chinese character write to file according to coding schedule</li>
+                </ol>
+              </li>
+              <li>FileWriter : ByteStream + default coding schedule</li>
+              <li>If coding schedule specified, need OutputStreamWriter()</li>
+              <li>same with Reader and InputStreamReader()</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Authored by <span class="fn">Kangkai Tang</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-11T09:49:41-07:00" pubdate data-updated="true">Aug 11<sup>th</sup>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/io/'>io</a>, <a class='category' href='/blog/categories/java/'>java</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tangkangkai.github.io/blog/2014/08/11/relearn-java-day11/" data-via="" data-counturl="http://tangkangkai.github.io/blog/2014/08/11/relearn-java-day11/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/08/09/relearn-java-day-10/" title="Previous Post: Relearn Java Day 10">&laquo; Relearn Java Day 10</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Kangkai Tang -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

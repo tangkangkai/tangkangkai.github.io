@@ -12,7 +12,7 @@
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="Question We take the first string of the array as a test string, starting from its first character and comparing to each string in the array. We &hellip;">
+  <meta name="description" content="Question This question isn’t tricky but many requirements need be meet. For these requirements, I　comment them in the code following below: 1 public &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +69,99 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/07/18/valid-number/">Valid Number</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-18T21:22:34-07:00" pubdate data-updated="true">Jul 18<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://oj.leetcode.com/problems/valid-number/">Question</a></p>
+
+<hr />
+<p>This question isn’t tricky but many requirements need be meet. For these requirements, I　comment them in the code following below:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> <span class="type">boolean</span> isNumber(<span class="predefined-type">String</span> s) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="comment">/* trim the leading and trailing space, if there's space in the middle, return false */</span>
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        s = s.trim();
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        <span class="keyword">if</span> (s == <span class="predefined-constant">null</span> || s.isEmpty()) {
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>            <span class="keyword">return</span> <span class="predefined-constant">false</span>;
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        }
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        <span class="comment">/* s could cantain ONE '.' and ONE 'e' */</span>
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        <span class="type">boolean</span> dotFlag = <span class="predefined-constant">true</span>;
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>        <span class="type">boolean</span> eFlag = <span class="predefined-constant">true</span>;
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>        <span class="comment">/* For '.', there must either be number before it or after it</span>
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span><span class="comment">         * For 'e', there must be number before and after it */</span>
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>    
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; s.length(); i++) {
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>            <span class="type">char</span> c = s.charAt(i);
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>            <span class="keyword">if</span> (<span class="predefined-type">Character</span>.isDigit(c)) 
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>                <span class="keyword">continue</span>;
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>            <span class="keyword">if</span> (c == <span class="string"><span class="delimiter">'</span><span class="content">.</span><span class="delimiter">'</span></span>) {
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>                <span class="comment">/* if '.' is after 'e', return false */</span>
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>                <span class="keyword">if</span> (!eFlag || !dotFlag || !(isNumber(s.substring(<span class="integer">0</span>, i)) || isNumber(s.substring(i + <span class="integer">1</span>)))) 
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>                    <span class="keyword">return</span> <span class="predefined-constant">false</span>;
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>                
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>                
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>                <span class="keyword">if</span> (!eFlag) {
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span>                    
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span>                }
+<span class="line-numbers"><a href="#n29" name="n29">29</a></span>                dotFlag = <span class="predefined-constant">false</span>;
+<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>            } <span class="keyword">else</span> <span class="keyword">if</span> (c == <span class="string"><span class="delimiter">'</span><span class="content">e</span><span class="delimiter">'</span></span>) {
+<span class="line-numbers"><a href="#n31" name="n31">31</a></span>                <span class="keyword">if</span> (!eFlag|| !isNumber(s.substring(<span class="integer">0</span>, i)) || !isNumber(s.substring(i + <span class="integer">1</span>))) 
+<span class="line-numbers"><a href="#n32" name="n32">32</a></span>                    <span class="keyword">return</span> <span class="predefined-constant">false</span>;
+<span class="line-numbers"><a href="#n33" name="n33">33</a></span>                eFlag = <span class="predefined-constant">false</span>;
+<span class="line-numbers"><a href="#n34" name="n34">34</a></span>            } <span class="keyword">else</span> <span class="keyword">if</span> (c == <span class="string"><span class="delimiter">'</span><span class="content">-</span><span class="delimiter">'</span></span> || c == <span class="string"><span class="delimiter">'</span><span class="content">+</span><span class="delimiter">'</span></span>) {
+<span class="line-numbers"><a href="#n35" name="n35">35</a></span>                <span class="comment">/* '-' and '+' must be at the first character, and followed by valid number */</span>
+<span class="line-numbers"><a href="#n36" name="n36">36</a></span>                <span class="keyword">if</span> (!isNumber(s.substring(i + <span class="integer">1</span>))) {
+<span class="line-numbers"><a href="#n37" name="n37">37</a></span>                    <span class="keyword">return</span> <span class="predefined-constant">false</span>;
+<span class="line-numbers"><a href="#n38" name="n38">38</a></span>                }
+<span class="line-numbers"><a href="#n39" name="n39">39</a></span>                
+<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>                <span class="keyword">if</span> (!(i == <span class="integer">0</span> || s.charAt(i - <span class="integer">1</span>) == <span class="string"><span class="delimiter">'</span><span class="content">e</span><span class="delimiter">'</span></span>)) {
+<span class="line-numbers"><a href="#n41" name="n41">41</a></span>                    <span class="keyword">return</span> <span class="predefined-constant">false</span>;
+<span class="line-numbers"><a href="#n42" name="n42">42</a></span>                }
+<span class="line-numbers"><a href="#n43" name="n43">43</a></span>            } <span class="keyword">else</span> {
+<span class="line-numbers"><a href="#n44" name="n44">44</a></span>                <span class="keyword">return</span> <span class="predefined-constant">false</span>;
+<span class="line-numbers"><a href="#n45" name="n45">45</a></span>            }
+<span class="line-numbers"><a href="#n46" name="n46">46</a></span>        }
+<span class="line-numbers"><a href="#n47" name="n47">47</a></span>
+<span class="line-numbers"><a href="#n48" name="n48">48</a></span>        <span class="keyword">return</span> <span class="predefined-constant">true</span>;
+<span class="line-numbers"><a href="#n49" name="n49">49</a></span>    }
+</pre></div>
+</div>
+</div>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -235,6 +328,11 @@
 
 
   <div class="entry-content"><ul>
+  <li>Example:
+    <ul>
+      <li>Java Runtime Class</li>
+    </ul>
+  </li>
   <li>Purpose:
     <ul>
       <li>Restrict the creations of objects. Only one instance(of the class) could be created.</li>
@@ -789,63 +887,6 @@
 <span class="line-numbers"><a href="#n35" name="n35">35</a></span>        
 <span class="line-numbers"><a href="#n36" name="n36">36</a></span>        <span class="keyword">return</span> curr;
 <span class="line-numbers"><a href="#n37" name="n37">37</a></span>    }
-</pre></div>
-</div>
-</div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/07/13/swap-nodes-in-pairs/">Swap Nodes in Pairs</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-07-13T22:05:48-07:00" pubdate data-updated="true">Jul 13<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="https://oj.leetcode.com/problems/swap-nodes-in-pairs/">Question</a></p>
-
-<hr />
-<p>For this question, we can firstly swap the first and second node, then point the second node to the result of calling function(recursively) on the third node. Here is the code:</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> ListNode swapPairs(ListNode head) {
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="keyword">if</span> (head == <span class="predefined-constant">null</span> || head.next == <span class="predefined-constant">null</span>) {
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>            <span class="keyword">return</span> head;
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        }
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        ListNode headNode = head.next;
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        ListNode thirdNode = headNode.next;
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        headNode.next = head;
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        head.next = swapPairs(thirdNode);
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>        
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>        <span class="keyword">return</span> headNode;
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>    }
 </pre></div>
 </div>
 </div>

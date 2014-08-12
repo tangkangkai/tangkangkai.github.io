@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Creational | KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/blog/categories/creational/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-08-11T09:40:57-07:00</updated>
+  <updated>2014-08-12T16:51:17-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -100,6 +100,11 @@
     <updated>2014-07-15T09:00:14-07:00</updated>
     <id>http://tangkangkai.github.io/blog/2014/07/15/one-day-one-pattern-singleton</id>
     <content type="html"><![CDATA[<ul>
+  <li>Example:
+    <ul>
+      <li>Java Runtime Class</li>
+    </ul>
+  </li>
   <li>Purpose:
     <ul>
       <li>Restrict the creations of objects. Only one instance(of the class) could be created.</li>
