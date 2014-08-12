@@ -12,7 +12,8 @@
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="Intro memory -&gt; disk: Output Write disk -&gt; memory: Input Read Byte Stream &amp; Character Stream Byte Stream: deal with one byte per time &hellip;">
+  <meta name="description" content="
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -75,6 +76,42 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2014/08/12/relearn-java-day12/">Relearn Java Day12</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-12T16:55:09-07:00" pubdate data-updated="true">Aug 12<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2014/08/11/relearn-java-day11/">Relearn Java Day11</a></h1>
     
     
@@ -98,7 +135,7 @@
   </header>
 
 
-  <div class="entry-content"><ul class="language-java">
+  <div class="entry-content"><ul>
   <li>Intro
     <ul>
       <li>memory -&gt; disk:
@@ -154,16 +191,7 @@
                   <li>BufferedWriter
                     <ul>
                       <li>increase the efficiency</li>
-                      <li>newLine()
-~~~
-FileReader fr = new FileReader(“a.txt”);
-FileWriter fw = new FileWriter(“b.txt”);
-char[] buffer = new char[1024]
-int len;
-while((len = fr.read(buffer)) != -1) {
-  fw.write(buffer, 0, len);
-}
-~~~</li>
+                      <li>newLine()</li>
                     </ul>
                   </li>
                 </ul>
@@ -175,6 +203,18 @@ while((len = fr.read(buffer)) != -1) {
     </ul>
   </li>
 </ul>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"><a href="#n1" name="n1">1</a></span><span class="predefined-type">FileReader</span> fr = <span class="keyword">new</span> <span class="predefined-type">FileReader</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">a.txt</span><span class="delimiter">&quot;</span></span>);
+<span class="line-numbers"><a href="#n2" name="n2">2</a></span><span class="predefined-type">FileWriter</span> fw = <span class="keyword">new</span> <span class="predefined-type">FileWriter</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">b.txt</span><span class="delimiter">&quot;</span></span>);
+<span class="line-numbers"><a href="#n3" name="n3">3</a></span><span class="type">char</span><span class="type">[]</span> buffer = <span class="keyword">new</span> <span class="type">char</span>[<span class="integer">1024</span>]
+<span class="line-numbers"><a href="#n4" name="n4">4</a></span><span class="type">int</span> len;
+<span class="line-numbers"><a href="#n5" name="n5">5</a></span><span class="keyword">while</span>((len = fr.read(buffer)) != -<span class="integer">1</span>) {
+<span class="line-numbers"><a href="#n6" name="n6">6</a></span>    fw.write(buffer, <span class="integer">0</span>, len);
+<span class="line-numbers"><a href="#n7" name="n7">7</a></span>}
+</pre></div>
+</div>
+</div>
 
 <div><div class="CodeRay">
   <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span><span class="predefined-type">FileReader</span> fr = <span class="keyword">new</span> <span class="predefined-type">FileReader</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">a.txt</span><span class="delimiter">&quot;</span></span>);
@@ -1251,210 +1291,6 @@ while((len = fr.read(buffer)) != -1) {
 <span class="line-numbers"><a href="#n56" name="n56">56</a></span>        return returnValue;
 <span class="line-numbers"><a href="#n57" name="n57">57</a></span>    }
 <span class="line-numbers"><a href="#n58" name="n58">58</a></span>
-</pre></div>
-</div>
-</div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/07/18/integer-to-roman/">Integer to Roman</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-07-18T22:28:45-07:00" pubdate data-updated="true">Jul 18<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="https://oj.leetcode.com/problems/integer-to-roman/">Question</a></p>
-
-<hr />
-<p>For the number on <em>hundred, ten, one</em> bits, there are four situations, 9, 8-5, 4, 3-1. We can deal with this question using the code below,</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="predefined-type">StringBuilder</span> sb;
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>    <span class="directive">public</span> <span class="predefined-type">String</span> intToRoman(<span class="type">int</span> num) {
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>        <span class="type">int</span> digit;
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        sb = <span class="keyword">new</span> <span class="predefined-type">StringBuilder</span>();
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        <span class="comment">/* thousand */</span>
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        <span class="keyword">if</span> (num &gt;= <span class="integer">1000</span>) {
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>            digit = num / <span class="integer">1000</span>;
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; digit; i++) {
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>                sb.append(<span class="string"><span class="delimiter">&quot;</span><span class="content">M</span><span class="delimiter">&quot;</span></span>);
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>            }
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>            num -= digit * <span class="integer">1000</span>;
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>        }
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>        <span class="comment">/* handred */</span>
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>        <span class="keyword">if</span> (num &gt;= <span class="integer">100</span>) {
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>            <span class="keyword">if</span> (num &gt;= <span class="integer">900</span>) {
-<span class="line-numbers"><a href="#n18" name="n18">18</a></span>                sb.append(<span class="string"><span class="delimiter">&quot;</span><span class="content">CM</span><span class="delimiter">&quot;</span></span>);
-<span class="line-numbers"><a href="#n19" name="n19">19</a></span>                num -= <span class="integer">900</span>;
-<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>            } <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="integer">500</span>) {
-<span class="line-numbers"><a href="#n21" name="n21">21</a></span>                sb.append(<span class="string"><span class="delimiter">&quot;</span><span class="content">D</span><span class="delimiter">&quot;</span></span>);
-<span class="line-numbers"><a href="#n22" name="n22">22</a></span>                num -= <span class="integer">500</span>;
-<span class="line-numbers"><a href="#n23" name="n23">23</a></span>
-<span class="line-numbers"><a href="#n24" name="n24">24</a></span>                digit = num / <span class="integer">100</span>;
-<span class="line-numbers"><a href="#n25" name="n25">25</a></span>                <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; digit; i++) {
-<span class="line-numbers"><a href="#n26" name="n26">26</a></span>                    sb.append(<span class="string"><span class="delimiter">&quot;</span><span class="content">C</span><span class="delimiter">&quot;</span></span>);
-<span class="line-numbers"><a href="#n27" name="n27">27</a></span>                }
-<span class="line-numbers"><a href="#n28" name="n28">28</a></span>                num -= digit * <span class="integer">100</span>;
-<span class="line-numbers"><a href="#n29" name="n29">29</a></span>            } <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="integer">400</span>) {
-<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>                sb.append(<span class="string"><span class="delimiter">&quot;</span><span class="content">CD</span><span class="delimiter">&quot;</span></span>);
-<span class="line-numbers"><a href="#n31" name="n31">31</a></span>                num -= <span class="integer">400</span>;
-<span class="line-numbers"><a href="#n32" name="n32">32</a></span>            } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n33" name="n33">33</a></span>                digit = num / <span class="integer">100</span>;
-<span class="line-numbers"><a href="#n34" name="n34">34</a></span>                <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; digit; i++) {
-<span class="line-numbers"><a href="#n35" name="n35">35</a></span>                    sb.append(<span class="string"><span class="delimiter">&quot;</span><span class="content">C</span><span class="delimiter">&quot;</span></span>);
-<span class="line-numbers"><a href="#n36" name="n36">36</a></span>                }
-<span class="line-numbers"><a href="#n37" name="n37">37</a></span>                num -= digit * <span class="integer">100</span>;
-<span class="line-numbers"><a href="#n38" name="n38">38</a></span>            }
-<span class="line-numbers"><a href="#n39" name="n39">39</a></span>        }
-<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>        
-<span class="line-numbers"><a href="#n41" name="n41">41</a></span>        <span class="comment">/* ten */</span>
-<span class="line-numbers"><a href="#n42" name="n42">42</a></span>        <span class="keyword">if</span> (num &gt;= <span class="integer">10</span>) {
-<span class="line-numbers"><a href="#n43" name="n43">43</a></span>            <span class="keyword">if</span> (num &gt;= <span class="integer">90</span>) {
-<span class="line-numbers"><a href="#n44" name="n44">44</a></span>                sb.append(<span class="string"><span class="delimiter">&quot;</span><span class="content">XC</span><span class="delimiter">&quot;</span></span>);
-<span class="line-numbers"><a href="#n45" name="n45">45</a></span>                num -= <span class="integer">90</span>;
-<span class="line-numbers"><a href="#n46" name="n46">46</a></span>            } <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="integer">50</span>) {
-<span class="line-numbers"><a href="#n47" name="n47">47</a></span>                sb.append(<span class="string"><span class="delimiter">&quot;</span><span class="content">L</span><span class="delimiter">&quot;</span></span>);
-<span class="line-numbers"><a href="#n48" name="n48">48</a></span>                num -= <span class="integer">50</span>;
-<span class="line-numbers"><a href="#n49" name="n49">49</a></span>                
-<span class="line-numbers"><strong><a href="#n50" name="n50">50</a></strong></span>                digit = num / <span class="integer">10</span>;
-<span class="line-numbers"><a href="#n51" name="n51">51</a></span>                <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; digit; i++) {
-<span class="line-numbers"><a href="#n52" name="n52">52</a></span>                    sb.append(<span class="string"><span class="delimiter">&quot;</span><span class="content">X</span><span class="delimiter">&quot;</span></span>);
-<span class="line-numbers"><a href="#n53" name="n53">53</a></span>                }
-<span class="line-numbers"><a href="#n54" name="n54">54</a></span>                num -= digit * <span class="integer">10</span>;
-<span class="line-numbers"><a href="#n55" name="n55">55</a></span>             } <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="integer">40</span>) {
-<span class="line-numbers"><a href="#n56" name="n56">56</a></span>                 sb.append(<span class="string"><span class="delimiter">&quot;</span><span class="content">XL</span><span class="delimiter">&quot;</span></span>);
-<span class="line-numbers"><a href="#n57" name="n57">57</a></span>                 num -= <span class="integer">40</span>;
-<span class="line-numbers"><a href="#n58" name="n58">58</a></span>             } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n59" name="n59">59</a></span>                digit = num / <span class="integer">10</span>;
-<span class="line-numbers"><strong><a href="#n60" name="n60">60</a></strong></span>                <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; digit; i++) {
-<span class="line-numbers"><a href="#n61" name="n61">61</a></span>                    sb.append(<span class="string"><span class="delimiter">&quot;</span><span class="content">X</span><span class="delimiter">&quot;</span></span>);
-<span class="line-numbers"><a href="#n62" name="n62">62</a></span>                }
-<span class="line-numbers"><a href="#n63" name="n63">63</a></span>                num -= digit * <span class="integer">10</span>;
-<span class="line-numbers"><a href="#n64" name="n64">64</a></span>             }
-<span class="line-numbers"><a href="#n65" name="n65">65</a></span>        }
-<span class="line-numbers"><a href="#n66" name="n66">66</a></span>        
-<span class="line-numbers"><a href="#n67" name="n67">67</a></span>        <span class="comment">/* one */</span>
-<span class="line-numbers"><a href="#n68" name="n68">68</a></span>        <span class="keyword">if</span> (num &gt;= <span class="integer">1</span>) {
-<span class="line-numbers"><a href="#n69" name="n69">69</a></span>            <span class="keyword">if</span> (num &gt;= <span class="integer">9</span>) {
-<span class="line-numbers"><strong><a href="#n70" name="n70">70</a></strong></span>                sb.append(<span class="string"><span class="delimiter">&quot;</span><span class="content">IX</span><span class="delimiter">&quot;</span></span>);
-<span class="line-numbers"><a href="#n71" name="n71">71</a></span>                num -= <span class="integer">9</span>;
-<span class="line-numbers"><a href="#n72" name="n72">72</a></span>            } <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="integer">5</span>) {
-<span class="line-numbers"><a href="#n73" name="n73">73</a></span>                sb.append(<span class="string"><span class="delimiter">&quot;</span><span class="content">V</span><span class="delimiter">&quot;</span></span>);
-<span class="line-numbers"><a href="#n74" name="n74">74</a></span>                num -= <span class="integer">5</span>;
-<span class="line-numbers"><a href="#n75" name="n75">75</a></span>                
-<span class="line-numbers"><a href="#n76" name="n76">76</a></span>                digit = num / <span class="integer">1</span>;
-<span class="line-numbers"><a href="#n77" name="n77">77</a></span>                <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; digit; i++) {
-<span class="line-numbers"><a href="#n78" name="n78">78</a></span>                    sb.append(<span class="string"><span class="delimiter">&quot;</span><span class="content">I</span><span class="delimiter">&quot;</span></span>);
-<span class="line-numbers"><a href="#n79" name="n79">79</a></span>                }
-<span class="line-numbers"><strong><a href="#n80" name="n80">80</a></strong></span>                num -= digit * <span class="integer">1</span>;
-<span class="line-numbers"><a href="#n81" name="n81">81</a></span>             } <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="integer">4</span>) {
-<span class="line-numbers"><a href="#n82" name="n82">82</a></span>                 sb.append(<span class="string"><span class="delimiter">&quot;</span><span class="content">IX</span><span class="delimiter">&quot;</span></span>);
-<span class="line-numbers"><a href="#n83" name="n83">83</a></span>                 num -= <span class="integer">4</span>;
-<span class="line-numbers"><a href="#n84" name="n84">84</a></span>             } <span class="keyword">else</span> {
-<span class="line-numbers"><a href="#n85" name="n85">85</a></span>                digit = num / <span class="integer">1</span>;
-<span class="line-numbers"><a href="#n86" name="n86">86</a></span>                <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; digit; i++) {
-<span class="line-numbers"><a href="#n87" name="n87">87</a></span>                    sb.append(<span class="string"><span class="delimiter">&quot;</span><span class="content">I</span><span class="delimiter">&quot;</span></span>);
-<span class="line-numbers"><a href="#n88" name="n88">88</a></span>                }
-<span class="line-numbers"><a href="#n89" name="n89">89</a></span>                num -= digit * <span class="integer">1</span>;
-<span class="line-numbers"><strong><a href="#n90" name="n90">90</a></strong></span>             }
-<span class="line-numbers"><a href="#n91" name="n91">91</a></span>        }
-<span class="line-numbers"><a href="#n92" name="n92">92</a></span>
-<span class="line-numbers"><a href="#n93" name="n93">93</a></span>        <span class="keyword">return</span> sb.toString();
-<span class="line-numbers"><a href="#n94" name="n94">94</a></span>
-<span class="line-numbers"><a href="#n95" name="n95">95</a></span>    }
-</pre></div>
-</div>
-</div>
-
-<p>However, this solution is redundant, as for each digit on hundred, ten, one would meet similar situations, we can extract a helper function to deal with them. Here is the modified function:</p>
-
-<div><div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="predefined-type">StringBuilder</span> sb;
-<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>    <span class="type">int</span> num;
-<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>    <span class="directive">public</span> <span class="predefined-type">String</span> intToRoman(<span class="type">int</span> num) {
-<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        <span class="type">int</span> digit;
-<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        <span class="local-variable">this</span>.num = num;
-<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        sb = <span class="keyword">new</span> <span class="predefined-type">StringBuilder</span>();
-<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>
-<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        <span class="comment">/* thousand */</span>
-<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        <span class="keyword">if</span> (num &gt;= <span class="integer">1000</span>) {
-<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>            digit = num / <span class="integer">1000</span>;
-<span class="line-numbers"><a href="#n11" name="n11">11</a></span>            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; digit; i++) {
-<span class="line-numbers"><a href="#n12" name="n12">12</a></span>                sb.append(<span class="string"><span class="delimiter">&quot;</span><span class="content">M</span><span class="delimiter">&quot;</span></span>);
-<span class="line-numbers"><a href="#n13" name="n13">13</a></span>            }
-<span class="line-numbers"><a href="#n14" name="n14">14</a></span>            <span class="local-variable">this</span>.num -= digit * <span class="integer">1000</span>;
-<span class="line-numbers"><a href="#n15" name="n15">15</a></span>        }
-<span class="line-numbers"><a href="#n16" name="n16">16</a></span>
-<span class="line-numbers"><a href="#n17" name="n17">17</a></span>        <span class="comment">/* handred */</span>
-<span class="line-numbers"><a href="#n18" name="n18">18</a></span>        buildHelper(<span class="local-variable">this</span>.num, <span class="integer">100</span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">M</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">D</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">C</span><span class="delimiter">&quot;</span></span>);
-<span class="line-numbers"><a href="#n19" name="n19">19</a></span>        
-<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>        <span class="comment">/* ten */</span>
-<span class="line-numbers"><a href="#n21" name="n21">21</a></span>        buildHelper(<span class="local-variable">this</span>.num, <span class="integer">10</span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">C</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">L</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">X</span><span class="delimiter">&quot;</span></span>);
-<span class="line-numbers"><a href="#n22" name="n22">22</a></span>        
-<span class="line-numbers"><a href="#n23" name="n23">23</a></span>        <span class="comment">/* one */</span>
-<span class="line-numbers"><a href="#n24" name="n24">24</a></span>        buildHelper(<span class="local-variable">this</span>.num, <span class="integer">1</span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">X</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">V</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">I</span><span class="delimiter">&quot;</span></span>);
-<span class="line-numbers"><a href="#n25" name="n25">25</a></span>        
-<span class="line-numbers"><a href="#n26" name="n26">26</a></span>        <span class="keyword">return</span> sb.toString();
-<span class="line-numbers"><a href="#n27" name="n27">27</a></span>
-<span class="line-numbers"><a href="#n28" name="n28">28</a></span>    }
-<span class="line-numbers"><a href="#n29" name="n29">29</a></span>
-<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>    <span class="comment">/* Helper Functions */</span>
-<span class="line-numbers"><a href="#n31" name="n31">31</a></span>    <span class="directive">public</span> <span class="type">void</span> buildHelper(<span class="type">int</span> num, <span class="type">int</span> base, <span class="predefined-type">String</span> tenS, <span class="predefined-type">String</span> fiveS, <span class="predefined-type">String</span> oneS) {
-<span class="line-numbers"><a href="#n32" name="n32">32</a></span>        <span class="type">int</span> digit;
-<span class="line-numbers"><a href="#n33" name="n33">33</a></span>        <span class="keyword">if</span> (num &gt;= base) {
-<span class="line-numbers"><a href="#n34" name="n34">34</a></span>            <span class="keyword">if</span> (num &gt;= <span class="integer">9</span> * base) {
-<span class="line-numbers"><a href="#n35" name="n35">35</a></span>                sb.append(oneS + tenS);
-<span class="line-numbers"><a href="#n36" name="n36">36</a></span>                num -= <span class="integer">9</span> * base;
-<span class="line-numbers"><a href="#n37" name="n37">37</a></span>            } <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="integer">5</span> * base) {
-<span class="line-numbers"><a href="#n38" name="n38">38</a></span>                sb.append(fiveS);
-<span class="line-numbers"><a href="#n39" name="n39">39</a></span>                num -= <span class="integer">5</span> * base;
-<span class="line-numbers"><strong><a href="#n40" name="n40">40</a></strong></span>                
-<span class="line-numbers"><a href="#n41" name="n41">41</a></span>                digit = num / base;
-<span class="line-numbers"><a href="#n42" name="n42">42</a></span>                <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; digit; i++) {
-<span class="line-numbers"><a href="#n43" name="n43">43</a></span>                    sb.append(oneS);
-<span class="line-numbers"><a href="#n44" name="n44">44</a></span>                }
-<span class="line-numbers"><a href="#n45" name="n45">45</a></span>                num -= digit * base;
-<span class="line-numbers"><a href="#n46" name="n46">46</a></span>            } <span class="keyword">else</span> <span class="keyword">if</span> (num &gt;= <span class="integer">4</span> * base) {
-<span class="line-numbers"><a href="#n47" name="n47">47</a></span>                sb.append(oneS + fiveS);
-<span class="line-numbers"><a href="#n48" name="n48">48</a></span>                num -= <span class="integer">4</span> * base;
-<span class="line-numbers"><a href="#n49" name="n49">49</a></span>            } <span class="keyword">else</span> {
-<span class="line-numbers"><strong><a href="#n50" name="n50">50</a></strong></span>                digit = num / base;
-<span class="line-numbers"><a href="#n51" name="n51">51</a></span>                <span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt; digit; i++) {
-<span class="line-numbers"><a href="#n52" name="n52">52</a></span>                    sb.append(oneS);
-<span class="line-numbers"><a href="#n53" name="n53">53</a></span>                }
-<span class="line-numbers"><a href="#n54" name="n54">54</a></span>                num -= digit * base;
-<span class="line-numbers"><a href="#n55" name="n55">55</a></span>            }
-<span class="line-numbers"><a href="#n56" name="n56">56</a></span>        }
-<span class="line-numbers"><a href="#n57" name="n57">57</a></span>        <span class="local-variable">this</span>.num = num;
-<span class="line-numbers"><a href="#n58" name="n58">58</a></span>    }
 </pre></div>
 </div>
 </div>
