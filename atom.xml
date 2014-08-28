@@ -4,7 +4,7 @@
   <title><![CDATA[KK's Coding Blog]]></title>
   <link href="http://tangkangkai.github.io/atom.xml" rel="self"/>
   <link href="http://tangkangkai.github.io/"/>
-  <updated>2014-08-12T16:57:48-07:00</updated>
+  <updated>2014-08-27T22:43:14-07:00</updated>
   <id>http://tangkangkai.github.io/</id>
   <author>
     <name><![CDATA[Kangkai Tang]]></name>
@@ -12,15 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Relearn Java Day12]]></title>
-    <link href="http://tangkangkai.github.io/blog/2014/08/12/relearn-java-day12/"/>
-    <updated>2014-08-12T16:55:09-07:00</updated>
-    <id>http://tangkangkai.github.io/blog/2014/08/12/relearn-java-day12</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Relearn Java Day11]]></title>
@@ -1634,6 +1625,60 @@
 <span class="line-numbers"><a href="#n33" name="n33">33</a></span>
 <span class="line-numbers"><a href="#n34" name="n34">34</a></span>    }
 <span class="line-numbers"><a href="#n35" name="n35">35</a></span>
+</pre></div>
+</div>
+</div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Reverse Nodes in k-Group]]></title>
+    <link href="http://tangkangkai.github.io/blog/2014/07/13/reverse-nodes-in-k-groupreverse-nodes-in-k-group/"/>
+    <updated>2014-07-13T22:35:55-07:00</updated>
+    <id>http://tangkangkai.github.io/blog/2014/07/13/reverse-nodes-in-k-groupreverse-nodes-in-k-group</id>
+    <content type="html"><![CDATA[<p><a href="https://oj.leetcode.com/problems/reverse-nodes-in-k-group/">Question</a></p>
+
+<hr />
+<p>This question is similar to <a href="http://www.codertkk.com/blog/2014/07/13/swap-nodes-in-pairs/">Swap Nodes in Pairs</a>. The difference is we form a group of <em>k</em> nodes and reverse them rather than just easily swap two nodes. But the procedure is similar, here is the code:</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> <a href="#n1" name="n1">1</a></span>    <span class="directive">public</span> ListNode reverseKGroup(ListNode head, <span class="type">int</span> k) {
+<span class="line-numbers"> <a href="#n2" name="n2">2</a></span>        <span class="keyword">if</span> (head == <span class="predefined-constant">null</span> || head.next == <span class="predefined-constant">null</span>) {
+<span class="line-numbers"> <a href="#n3" name="n3">3</a></span>            <span class="keyword">return</span> head;
+<span class="line-numbers"> <a href="#n4" name="n4">4</a></span>        }
+<span class="line-numbers"> <a href="#n5" name="n5">5</a></span>        
+<span class="line-numbers"> <a href="#n6" name="n6">6</a></span>        ListNode pointerNode = head;
+<span class="line-numbers"> <a href="#n7" name="n7">7</a></span>        <span class="type">int</span> index = <span class="integer">1</span>;
+<span class="line-numbers"> <a href="#n8" name="n8">8</a></span>        
+<span class="line-numbers"> <a href="#n9" name="n9">9</a></span>        <span class="comment">/* Get a group of k nodes, if there is less than k nodes, return head */</span>
+<span class="line-numbers"><strong><a href="#n10" name="n10">10</a></strong></span>        <span class="keyword">while</span> (index &lt; k) {
+<span class="line-numbers"><a href="#n11" name="n11">11</a></span>            pointerNode = pointerNode.next;
+<span class="line-numbers"><a href="#n12" name="n12">12</a></span>            <span class="keyword">if</span>(pointerNode == <span class="predefined-constant">null</span>) {
+<span class="line-numbers"><a href="#n13" name="n13">13</a></span>                <span class="keyword">return</span> head;
+<span class="line-numbers"><a href="#n14" name="n14">14</a></span>            }
+<span class="line-numbers"><a href="#n15" name="n15">15</a></span>            index++;
+<span class="line-numbers"><a href="#n16" name="n16">16</a></span>        }
+<span class="line-numbers"><a href="#n17" name="n17">17</a></span>        
+<span class="line-numbers"><a href="#n18" name="n18">18</a></span>        <span class="comment">/* Get the next node we need recursively call the function on */</span>
+<span class="line-numbers"><a href="#n19" name="n19">19</a></span>        ListNode nextGroupNode = pointerNode.next;
+<span class="line-numbers"><strong><a href="#n20" name="n20">20</a></strong></span>        
+<span class="line-numbers"><a href="#n21" name="n21">21</a></span>        ListNode prev = head;
+<span class="line-numbers"><a href="#n22" name="n22">22</a></span>        ListNode curr = head;
+<span class="line-numbers"><a href="#n23" name="n23">23</a></span>        ListNode next = head.next;
+<span class="line-numbers"><a href="#n24" name="n24">24</a></span>        
+<span class="line-numbers"><a href="#n25" name="n25">25</a></span>        <span class="comment">/* Reverse the nodes in the group */</span>
+<span class="line-numbers"><a href="#n26" name="n26">26</a></span>        <span class="keyword">while</span>(next != nextGroupNode) {
+<span class="line-numbers"><a href="#n27" name="n27">27</a></span>            curr = next;
+<span class="line-numbers"><a href="#n28" name="n28">28</a></span>            next = next.next;
+<span class="line-numbers"><a href="#n29" name="n29">29</a></span>            curr.next = prev;
+<span class="line-numbers"><strong><a href="#n30" name="n30">30</a></strong></span>            prev = curr;
+<span class="line-numbers"><a href="#n31" name="n31">31</a></span>        }
+<span class="line-numbers"><a href="#n32" name="n32">32</a></span>        
+<span class="line-numbers"><a href="#n33" name="n33">33</a></span>        <span class="comment">/* Recursively call the function on the head of the next group */</span>
+<span class="line-numbers"><a href="#n34" name="n34">34</a></span>        head.next = reverseKGroup(nextGroupNode, k);
+<span class="line-numbers"><a href="#n35" name="n35">35</a></span>        
+<span class="line-numbers"><a href="#n36" name="n36">36</a></span>        <span class="keyword">return</span> curr;
+<span class="line-numbers"><a href="#n37" name="n37">37</a></span>    }
 </pre></div>
 </div>
 </div>
