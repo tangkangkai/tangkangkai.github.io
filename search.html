@@ -8,11 +8,11 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Category: Palindrome - KK's Coding Blog</title>
+  <title>Search Results - KK's Coding Blog</title>
   <meta name="author" content="Kangkai Tang">
 
   
-  <meta name="description" content="Category: palindrome">
+  <meta name="description" content="Search Results $('#search_results').tapir({ 'token': '53fec48f586e9b0200000001', 'complete' : function() { document.getElementById('search_loading &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +21,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://tangkangkai.github.io/blog/categories/palindrome">
+  <link rel="canonical" href="http://tangkangkai.github.io/search.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="KK's Coding Blog" type="application/atom+xml">
@@ -80,30 +80,27 @@
 <article role="article">
   
   <header>
-    <h1 class="entry-title">Category: Palindrome</h1>
+    <h1 class="entry-title">Search Results</h1>
     
   </header>
   
-  <div id="blog-archives" class="category">
+  <div id="search_loading" style="margin: 40px 0">
+    <center><img src="/images/loading.gif"></center>
+</div>
 
-
-
-  
-  <h2>2014</h2>
-
-<article>
-  
-<h1><a href="/blog/2014/07/16/longest-palindromic-substring/">Longest Palindromic Substring</a></h1>
-<time datetime="2014-07-16T09:25:36-07:00" pubdate><span class='month'>Jul</span> <span class='day'>16</span> <span class='year'>2014</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/leetcode/'>leetcode</a>, <a class='category' href='/blog/categories/palindrome/'>palindrome</a>, <a class='category' href='/blog/categories/string/'>string</a></span>
-</footer>
-
-
-</article>
+<script type="text/javascript" src="/javascripts/jquery-tapir.js"></script>
+<div id="blog-archives">
+<div id="search_results" style="display:none">
 
 </div>
+</div>
+<script>
+    $('#search_results').tapir({
+        'token': '53fec48f586e9b0200000001',
+        'complete' : function() { document.getElementById('search_loading').style.display="none"; }
+    });
+</script>
+
 
   
 </article>
